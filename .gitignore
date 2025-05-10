@@ -1,2 +1,4 @@
 .vscode
 .qmake.stash
+build/
+Makefile

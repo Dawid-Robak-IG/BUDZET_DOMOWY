@@ -3,10 +3,9 @@
 ######################################################################
 
 TEMPLATE = app
-TARGET = ConShip
-RESOURCES += resources.qrc
-INCLUDEPATH += Inc
-OBJECTS_DIR = Obj
+TARGET = BUDZET_APP
+INCLUDEPATH += inc
+OBJECTS_DIR = build/Obj
 
 # You can make your code fail to compile if you use deprecated APIs.
 # In order to do so, uncomment the following line.
@@ -17,4 +16,9 @@ OBJECTS_DIR = Obj
 
 # Input
 QT+=widgets
-SOURCES += Src/main.cpp 
+QT += sql
+SOURCES += src/main.cpp \
+           src/MainWindow.cpp \
+           src/LogReg.cpp 
+HEADERS += inc/MainWindow.hpp \
+           inc/LogReg.hpp 
