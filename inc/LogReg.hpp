@@ -35,7 +35,7 @@ public:
 
 private slots:
     void registerUser();  
-    // void loginUser(); 
+    void loginUser(); 
 
 private:
     void connectToDatabase(); 

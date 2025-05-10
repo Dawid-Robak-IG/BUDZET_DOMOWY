@@ -11,7 +11,7 @@ LogReg::LogReg(QWidget *parent): QWidget(parent) {
     layout->addLayout(regLayout,1);
 
     connect(regButton, &QPushButton::clicked, this, &LogReg::registerUser);
-    // connect(logButton, &QPushButton::clicked, this, &LogReg::loginUser);
+    connect(logButton, &QPushButton::clicked, this, &LogReg::loginUser);
 
     connectToDatabase();
 }
@@ -24,6 +24,7 @@ void LogReg::setLogin(){
     logMail->setPlaceholderText("E-mail");
     logPass = new QLineEdit();
     logPass->setPlaceholderText("Haslo");
+    logPass->setEchoMode(QLineEdit::Password);
     logButton = new QPushButton("Zaloguj");
 
     logLayout->addWidget(logMail);
@@ -49,6 +50,7 @@ void LogReg::setRegistration(){
 
     regPass = new QLineEdit();
     regPass->setPlaceholderText("Haslo");
+    regPass->setEchoMode(QLineEdit::Password);
     regButton = new QPushButton("Zarejestruj");
 
     regLayout->addWidget(regMail);
@@ -132,31 +134,30 @@ bool LogReg::isValidReg(){
     return true;
 }
 
-// void LogReg::loginUser() {
-//     QString username = usernameEdit->text();
-//     QString password = passwordEdit->text();
+void LogReg::loginUser() {
+    QString mail = logMail->text();
+    QString password = logPass->text();
 
-//     if (username.isEmpty() || password.isEmpty()) {
-//         QMessageBox::warning(this, "Błąd", "Wszystkie pola muszą być wypełnione!");
-//         return;
-//     }
+    if (mail.isEmpty() || password.isEmpty()) {
+        QMessageBox::warning(this, "Błąd", "Wszystkie pola muszą być wypełnione!");
+        return;
+    }
 
-//     // Sprawdzanie, czy użytkownik istnieje w bazie danych
-//     QSqlQuery query;
-//     query.prepare("SELECT COUNT(*) FROM users WHERE username = ? AND password = ?");
-//     query.addBindValue(username);
-//     query.addBindValue(password);
+    // Sprawdzanie, czy użytkownik istnieje w bazie danych
+    QSqlQuery query;
+    query.prepare("SELECT COUNT(*) FROM `Uzytkownik zalogowany` WHERE `Email` = ? AND `Haslo` = ?");
+    query.addBindValue(mail);
+    query.addBindValue(password);
 
-//     if (!query.exec()) {
-//         qDebug() << "Błąd zapytania do bazy: " << query.lastError();
-//         return;
-//     }
+    if (!query.exec()) {
+        QMessageBox::warning(this, "Błąd", "Błąd w logowaniu");
+        return;
+    }
 
-//     query.next();
-//     if (query.value(0).toInt() > 0) {
-//         qDebug() << "Zalogowano użytkownika: " << username;
-//         QMessageBox::information(this, "Sukces", "Zalogowano pomyślnie!");
-//     } else {
-//         QMessageBox::warning(this, "Błąd", "Błędna nazwa użytkownika lub hasło.");
-//     }
-// }
+    query.next();
+    if (query.value(0).toInt() > 0) {
+        QMessageBox::information(this, "Sukces", "Zalogowano pomyślnie!");
+    } else {
+        QMessageBox::warning(this, "Błąd", "Błędna nazwa użytkownika lub hasło.");
+    }
+}
