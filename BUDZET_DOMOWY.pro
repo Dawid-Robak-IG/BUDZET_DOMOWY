@@ -19,6 +19,8 @@ QT+=widgets
 QT += sql
 SOURCES += src/main.cpp \
            src/MainWindow.cpp \
+           src/MainMenu.cpp \
            src/LogReg.cpp 
 HEADERS += inc/MainWindow.hpp \
+            inc/MainMenu.hpp \
            inc/LogReg.hpp 

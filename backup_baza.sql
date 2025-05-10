@@ -182,7 +182,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
   `Rola` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,7 +191,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
 
 LOCK TABLES `Uzytkownik zalogowany` WRITE;
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` DISABLE KEYS */;
-INSERT INTO `Uzytkownik zalogowany` VALUES (1,'Janusz','Januszewski','januszek@gmail.com','taktoja',_binary '\0','2021-01-20','Użytkownik'),(2,'mikolaj','wielki','mikolajek@gmail.com','asdasdasd',_binary '\0','2025-05-10','Użytkownik');
+INSERT INTO `Uzytkownik zalogowany` VALUES (1,'Janusz','Januszewski','januszek@gmail.com','taktoja',_binary '\0','2021-01-20','Użytkownik'),(2,'mikolaj','wielki','mikolajek@gmail.com','asdasdasd',_binary '\0','2025-05-10','Użytkownik'),(3,'Baska','Maczna','chamia@playa.com','makabasi',_binary '\0','2025-05-10','Użytkownik'),(4,'AS','DO','asd@asd.com','asdasdasdasdasd',_binary '\0','2025-05-10','Użytkownik');
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -204,4 +204,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-10 19:38:31
+-- Dump completed on 2025-05-10 20:27:58

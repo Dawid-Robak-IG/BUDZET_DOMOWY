@@ -54,12 +54,16 @@ OBJECTS_DIR   = build/Obj/
 
 SOURCES       = src/main.cpp \
 		src/MainWindow.cpp \
+		src/MainMenu.cpp \
 		src/LogReg.cpp moc_MainWindow.cpp \
+		moc_MainMenu.cpp \
 		moc_LogReg.cpp
 OBJECTS       = build/Obj/main.o \
 		build/Obj/MainWindow.o \
+		build/Obj/MainMenu.o \
 		build/Obj/LogReg.o \
 		build/Obj/moc_MainWindow.o \
+		build/Obj/moc_MainMenu.o \
 		build/Obj/moc_LogReg.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
@@ -143,8 +147,10 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		BUDZET_DOMOWY.pro inc/MainWindow.hpp \
+		inc/MainMenu.hpp \
 		inc/LogReg.hpp src/main.cpp \
 		src/MainWindow.cpp \
+		src/MainMenu.cpp \
 		src/LogReg.cpp
 QMAKE_TARGET  = BUDZET_APP
 DESTDIR       = 
@@ -337,8 +343,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents inc/MainWindow.hpp inc/LogReg.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp src/MainWindow.cpp src/LogReg.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents inc/MainWindow.hpp inc/MainMenu.hpp inc/LogReg.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp src/MainWindow.cpp src/MainMenu.cpp src/LogReg.cpp $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -370,14 +376,20 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_LogReg.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_MainMenu.cpp moc_LogReg.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_LogReg.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_MainMenu.cpp moc_LogReg.cpp
 moc_MainWindow.cpp: inc/MainWindow.hpp \
 		inc/LogReg.hpp \
+		inc/MainMenu.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/drworms/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/drworms/BUDZET_DOMOWY -I/home/drworms/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/MainWindow.hpp -o moc_MainWindow.cpp
+
+moc_MainMenu.cpp: inc/MainMenu.hpp \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/drworms/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/drworms/BUDZET_DOMOWY -I/home/drworms/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/MainMenu.hpp -o moc_MainMenu.cpp
 
 moc_LogReg.cpp: inc/LogReg.hpp \
 		moc_predefs.h \
@@ -401,18 +413,26 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean
 ####### Compile
 
 build/Obj/main.o: src/main.cpp inc/MainWindow.hpp \
-		inc/LogReg.hpp
+		inc/LogReg.hpp \
+		inc/MainMenu.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/main.o src/main.cpp
 
 build/Obj/MainWindow.o: src/MainWindow.cpp inc/MainWindow.hpp \
-		inc/LogReg.hpp
+		inc/LogReg.hpp \
+		inc/MainMenu.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/MainWindow.o src/MainWindow.cpp
+
+build/Obj/MainMenu.o: src/MainMenu.cpp inc/MainMenu.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/MainMenu.o src/MainMenu.cpp
 
 build/Obj/LogReg.o: src/LogReg.cpp inc/LogReg.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/LogReg.o src/LogReg.cpp
 
 build/Obj/moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_MainWindow.o moc_MainWindow.cpp
+
+build/Obj/moc_MainMenu.o: moc_MainMenu.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_MainMenu.o moc_MainMenu.cpp
 
 build/Obj/moc_LogReg.o: moc_LogReg.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_LogReg.o moc_LogReg.cpp

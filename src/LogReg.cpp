@@ -116,6 +116,7 @@ void LogReg::registerUser() {
 
     if (registerQuery.exec()) {
         QMessageBox::information(this, "Sukces", "Rejestracja zakończona pomyślnie!");
+        clear_reg();
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się zarejestrować użytkownika.");
     }
@@ -157,7 +158,17 @@ void LogReg::loginUser() {
     query.next();
     if (query.value(0).toInt() > 0) {
         QMessageBox::information(this, "Sukces", "Zalogowano pomyślnie!");
+        logMail->clear();
+        logPass->clear();
+        emit loginSuccessful(mail);
     } else {
         QMessageBox::warning(this, "Błąd", "Błędna nazwa użytkownika lub hasło.");
     }
+}
+void LogReg::clear_reg(){
+    regMail->clear();
+    regName->clear();
+    regSurrname->clear();
+    regDate->clear();
+    regPass->clear();
 }

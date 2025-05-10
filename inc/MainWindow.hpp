@@ -1,6 +1,7 @@
 #include <QMainWindow>
 #include <QStackedWidget>
 #include "LogReg.hpp"  
+#include "MainMenu.hpp"
 
 class MainWindow : public QMainWindow {
     Q_OBJECT
@@ -12,4 +13,5 @@ public:
 private:
     QStackedWidget *stackedWidget; 
     LogReg *logRegScreen; 
+    MainMenu *mainMenu;
 };

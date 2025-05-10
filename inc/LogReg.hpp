@@ -37,9 +37,13 @@ private slots:
     void registerUser();  
     void loginUser(); 
 
+signals:
+    void loginSuccessful(const QString &username); 
+
 private:
     void connectToDatabase(); 
     void setLogin();
     void setRegistration();
     bool isValidReg();
+    void clear_reg();
 };
