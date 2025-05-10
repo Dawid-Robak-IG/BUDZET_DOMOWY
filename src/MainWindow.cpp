@@ -1,6 +1,8 @@
 #include "MainWindow.hpp"
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), stackedWidget(new QStackedWidget(this)) {
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), stackedWidget(new QStackedWidget(this)) {\
+    setWindowTitle("Budzet domowy");
+
     logRegScreen = new LogReg();
 
     stackedWidget->addWidget(logRegScreen);
@@ -11,6 +13,4 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), stackedWidget(new
 }
 
 MainWindow::~MainWindow() {
-    delete stackedWidget;
-    delete logRegScreen;
 }
