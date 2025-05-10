@@ -6,6 +6,8 @@ build/
 *.pro.user.*
 *.qmake.stash
 *.moc.cpp
+moc*.cpp
+moc*.h
 
 # Ignorowanie folderów edytora VSCode
 .vscode/

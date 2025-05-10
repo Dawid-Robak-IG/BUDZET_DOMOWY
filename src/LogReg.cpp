@@ -73,6 +73,8 @@ void LogReg::connectToDatabase() {
 }
 
 void LogReg::registerUser() {
+    if(!isValidReg())return;
+
     QString email = regMail->text();
     QString name = regName->text();
     QString surname = regSurrname->text();
@@ -115,6 +117,19 @@ void LogReg::registerUser() {
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się zarejestrować użytkownika.");
     }
+}
+bool LogReg::isValidReg(){
+    QString email = regMail->text();
+    if (!email.contains('@') || email.indexOf('@') == 0 || email.indexOf('@') == email.length() - 1) {
+        QMessageBox::warning(this, "Błąd", "Wprowadź poprawny adres e-mail.");
+        return false;
+    }
+    QString password = regPass->text();
+    if (password.length() < 8) {
+        QMessageBox::warning(this, "Błąd", "Hasło musi mieć co najmniej 8 znaków.");
+        return false;
+    }
+    return true;
 }
 
 // void LogReg::loginUser() {

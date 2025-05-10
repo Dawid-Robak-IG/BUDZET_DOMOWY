@@ -41,4 +41,5 @@ private:
     void connectToDatabase(); 
     void setLogin();
     void setRegistration();
+    bool isValidReg();
 };
