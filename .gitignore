@@ -1,4 +1,14 @@
-.vscode
-.qmake.stash
+# Ignorowanie folderów build
 build/
+
+# Ignorowanie plików tymczasowych Qt
+*.pro.user
+*.pro.user.*
+*.qmake.stash
+*.moc.cpp
+
+# Ignorowanie folderów edytora VSCode
+.vscode/
+
+# Ignorowanie Makefile
 Makefile
