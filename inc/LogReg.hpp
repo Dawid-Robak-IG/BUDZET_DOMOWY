@@ -38,7 +38,7 @@ private slots:
     void loginUser(); 
 
 signals:
-    void loginSuccessful(const QString &username); 
+    void loginSuccessful(const QString &email);
 
 private:
     void connectToDatabase(); 

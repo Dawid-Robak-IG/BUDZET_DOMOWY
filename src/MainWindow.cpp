@@ -1,27 +1,44 @@
 #include "MainWindow.hpp"
+#include <QDebug>
 
-MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent), stackedWidget(new QStackedWidget(this)) {\
+MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     setWindowTitle("Budzet domowy");
 
-    logRegScreen = new LogReg();
-    mainMenu = new MainMenu();
-
-    stackedWidget->addWidget(logRegScreen);
-    stackedWidget->addWidget(mainMenu);
-
+    stackedWidget = new QStackedWidget(this);
     setCentralWidget(stackedWidget);
 
-    stackedWidget->setCurrentWidget(logRegScreen);
+    logRegScreen = new LogReg();
+    stackedWidget->addWidget(logRegScreen);
 
-    connect(logRegScreen, &LogReg::loginSuccessful, this, [=](const QString &username) {
-        mainMenu->setUser(username); 
-        stackedWidget->setCurrentWidget(mainMenu);
-    });
+    userPanel = nullptr; // Inicjalizujemy na nullptr
 
-    connect(mainMenu, &MainMenu::logoutRequested, this, [=]() {
-        stackedWidget->setCurrentWidget(logRegScreen);
-    });
+    // Łączymy sygnał logowania
+    connect(logRegScreen, &LogReg::loginSuccessful, this, &MainWindow::handleLogin);
 }
 
+
 MainWindow::~MainWindow() {
+}
+
+void MainWindow::handleLogin(QString email) {
+    if (!userPanel) {
+        userPanel = new User_Panel(email);
+        stackedWidget->addWidget(userPanel);
+        connect(userPanel, &User_Panel::logoutRequested, this, &MainWindow::handleLogout);
+    } else {
+        userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
+        userPanel->loadUserRole();      // I przeładowujemy rolę
+    }
+    stackedWidget->setCurrentIndex(WidgetIndex::UserPanelIndex);
+}
+
+void MainWindow::handleLogout() {
+    qDebug() << "Wylogowywanie...";
+    stackedWidget->setCurrentIndex(WidgetIndex::LogRegIndex);
+
+    // Opcjonalnie: Możesz zdecydować, czy chcesz niszczyć userPanel po wylogowaniu
+    // if (userPanel) {
+    //     userPanel->deleteLater();
+    //     userPanel = nullptr;
+    // }
 }

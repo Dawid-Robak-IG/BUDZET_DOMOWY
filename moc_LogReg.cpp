@@ -23,7 +23,7 @@ QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_LogReg_t {
     QByteArrayData data[6];
-    char stringdata0[56];
+    char stringdata0[53];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -35,12 +35,12 @@ static const qt_meta_stringdata_LogReg_t qt_meta_stringdata_LogReg = {
 QT_MOC_LITERAL(0, 0, 6), // "LogReg"
 QT_MOC_LITERAL(1, 7, 15), // "loginSuccessful"
 QT_MOC_LITERAL(2, 23, 0), // ""
-QT_MOC_LITERAL(3, 24, 8), // "username"
-QT_MOC_LITERAL(4, 33, 12), // "registerUser"
-QT_MOC_LITERAL(5, 46, 9) // "loginUser"
+QT_MOC_LITERAL(3, 24, 5), // "email"
+QT_MOC_LITERAL(4, 30, 12), // "registerUser"
+QT_MOC_LITERAL(5, 43, 9) // "loginUser"
 
     },
-    "LogReg\0loginSuccessful\0\0username\0"
+    "LogReg\0loginSuccessful\0\0email\0"
     "registerUser\0loginUser"
 };
 #undef QT_MOC_LITERAL

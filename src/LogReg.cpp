@@ -31,6 +31,7 @@ void LogReg::setLogin(){
     logLayout->addWidget(logPass);
     logLayout->addWidget(logButton);
 }
+
 void LogReg::setRegistration(){
     regLayout = new QVBoxLayout();
 
@@ -121,6 +122,7 @@ void LogReg::registerUser() {
         QMessageBox::warning(this, "Błąd", "Nie udało się zarejestrować użytkownika.");
     }
 }
+
 bool LogReg::isValidReg(){
     QString email = regMail->text();
     if (!email.contains('@') || email.indexOf('@') == 0 || email.indexOf('@') == email.length() - 1) {
@@ -160,11 +162,12 @@ void LogReg::loginUser() {
         QMessageBox::information(this, "Sukces", "Zalogowano pomyślnie!");
         logMail->clear();
         logPass->clear();
-        emit loginSuccessful(mail);
+        emit loginSuccessful(mail);   //emitowanie sygnału po udanym zalogowaniu
     } else {
         QMessageBox::warning(this, "Błąd", "Błędna nazwa użytkownika lub hasło.");
     }
 }
+
 void LogReg::clear_reg(){
     regMail->clear();
     regName->clear();
