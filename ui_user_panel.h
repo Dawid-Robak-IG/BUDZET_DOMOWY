@@ -56,6 +56,13 @@ public:
     QSpacerItem *verticalSpacer;
     QPushButton *pushButton;
     QWidget *Wydatki;
+    QWidget *Kategorie;
+    QHBoxLayout *horizontalLayout_5;
+    QVBoxLayout *verticalLayout_3;
+    QLabel *label_7;
+    QLineEdit *lineEdit_nowaKategoriaPrzychod;
+    QSpacerItem *verticalSpacer_2;
+    QPushButton *pushButton_dodajKategoriePrzychod;
 
     void setupUi(QWidget *User_Panel)
     {
@@ -140,10 +147,6 @@ public:
         horizontalLayout_3 = new QHBoxLayout();
         horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
         comboBox_kategoriaPrzychod = new QComboBox(income_expensies);
-        comboBox_kategoriaPrzychod->addItem(QString());
-        comboBox_kategoriaPrzychod->addItem(QString());
-        comboBox_kategoriaPrzychod->addItem(QString());
-        comboBox_kategoriaPrzychod->addItem(QString());
         comboBox_kategoriaPrzychod->setObjectName(QString::fromUtf8("comboBox_kategoriaPrzychod"));
         comboBox_kategoriaPrzychod->setMinimumSize(QSize(150, 0));
 
@@ -166,6 +169,7 @@ public:
         dateEdit_dataPrzychod = new QDateEdit(income_expensies);
         dateEdit_dataPrzychod->setObjectName(QString::fromUtf8("dateEdit_dataPrzychod"));
         dateEdit_dataPrzychod->setMinimumSize(QSize(150, 0));
+        dateEdit_dataPrzychod->setCalendarPopup(true);
 
         horizontalLayout_4->addWidget(dateEdit_dataPrzychod);
 
@@ -201,6 +205,35 @@ public:
         Wydatki = new QWidget();
         Wydatki->setObjectName(QString::fromUtf8("Wydatki"));
         tabWidget->addTab(Wydatki, QString());
+        Kategorie = new QWidget();
+        Kategorie->setObjectName(QString::fromUtf8("Kategorie"));
+        horizontalLayout_5 = new QHBoxLayout(Kategorie);
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        verticalLayout_3 = new QVBoxLayout();
+        verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
+        label_7 = new QLabel(Kategorie);
+        label_7->setObjectName(QString::fromUtf8("label_7"));
+
+        verticalLayout_3->addWidget(label_7);
+
+        lineEdit_nowaKategoriaPrzychod = new QLineEdit(Kategorie);
+        lineEdit_nowaKategoriaPrzychod->setObjectName(QString::fromUtf8("lineEdit_nowaKategoriaPrzychod"));
+
+        verticalLayout_3->addWidget(lineEdit_nowaKategoriaPrzychod);
+
+        verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_3->addItem(verticalSpacer_2);
+
+        pushButton_dodajKategoriePrzychod = new QPushButton(Kategorie);
+        pushButton_dodajKategoriePrzychod->setObjectName(QString::fromUtf8("pushButton_dodajKategoriePrzychod"));
+
+        verticalLayout_3->addWidget(pushButton_dodajKategoriePrzychod);
+
+
+        horizontalLayout_5->addLayout(verticalLayout_3);
+
+        tabWidget->addTab(Kategorie, QString());
 
         verticalLayout->addWidget(tabWidget);
 
@@ -224,16 +257,14 @@ public:
         label_2->setText(QCoreApplication::translate("User_Panel", "Kwota", nullptr));
         label_6->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_3->setText(QCoreApplication::translate("User_Panel", "Kategoria przychodu", nullptr));
-        comboBox_kategoriaPrzychod->setItemText(0, QCoreApplication::translate("User_Panel", "Pensja", nullptr));
-        comboBox_kategoriaPrzychod->setItemText(1, QCoreApplication::translate("User_Panel", "Prezent", nullptr));
-        comboBox_kategoriaPrzychod->setItemText(2, QCoreApplication::translate("User_Panel", "Renta", nullptr));
-        comboBox_kategoriaPrzychod->setItemText(3, QCoreApplication::translate("User_Panel", "Sprzeda\305\274", nullptr));
-
         label_4->setText(QCoreApplication::translate("User_Panel", "Data", nullptr));
         label_5->setText(QCoreApplication::translate("User_Panel", "Notatka (opcjonalne)", nullptr));
         pushButton->setText(QCoreApplication::translate("User_Panel", "Dodaj przych\303\263d", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(income_expensies), QCoreApplication::translate("User_Panel", "Przychody", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(Wydatki), QCoreApplication::translate("User_Panel", "Wydatki", nullptr));
+        label_7->setText(QCoreApplication::translate("User_Panel", "Nowa kategoria przychodu:", nullptr));
+        pushButton_dodajKategoriePrzychod->setText(QCoreApplication::translate("User_Panel", "Dodaj kategori\304\231 przychodu", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(Kategorie), QCoreApplication::translate("User_Panel", "Kategorie", nullptr));
     } // retranslateUi
 
 };

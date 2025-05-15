@@ -1,13 +1,13 @@
 /********************************************************************************
-** Form generated from reading UI file 'start_log_reg.ui'
+** Form generated from reading UI file 'StartLogReg.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.13
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
 ********************************************************************************/
 
-#ifndef UI_START_LOG_REG_H
-#define UI_START_LOG_REG_H
+#ifndef UI_STARTLOGREG_H
+#define UI_STARTLOGREG_H
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
@@ -45,11 +45,11 @@ public:
     QLabel *label_2;
     QSpacerItem *verticalSpacer;
     QLabel *label_3;
-    QLineEdit *lineEdit;
+    QLineEdit *lineEdit_emailLog;
     QLabel *label_4;
     QLineEdit *lineEdit_passwordLog;
     QSpacerItem *verticalSpacer_2;
-    QPushButton *pushButton;
+    QPushButton *pushButton_zalogujSie;
     QWidget *Register_page;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_5;
@@ -65,7 +65,7 @@ public:
     QLabel *label_10;
     QLineEdit *lineEdit_passwordReg;
     QSpacerItem *verticalSpacer_4;
-    QPushButton *pushButton_2;
+    QPushButton *pushButton_zarejestrujSie;
     QHBoxLayout *horizontalLayout;
 
     void setupUi(QWidget *Start_Log_Reg)
@@ -145,10 +145,10 @@ public:
 
         verticalLayout_2->addWidget(label_3);
 
-        lineEdit = new QLineEdit(Login_page);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        lineEdit_emailLog = new QLineEdit(Login_page);
+        lineEdit_emailLog->setObjectName(QString::fromUtf8("lineEdit_emailLog"));
 
-        verticalLayout_2->addWidget(lineEdit);
+        verticalLayout_2->addWidget(lineEdit_emailLog);
 
         label_4 = new QLabel(Login_page);
         label_4->setObjectName(QString::fromUtf8("label_4"));
@@ -165,10 +165,10 @@ public:
 
         verticalLayout_2->addItem(verticalSpacer_2);
 
-        pushButton = new QPushButton(Login_page);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton_zalogujSie = new QPushButton(Login_page);
+        pushButton_zalogujSie->setObjectName(QString::fromUtf8("pushButton_zalogujSie"));
 
-        verticalLayout_2->addWidget(pushButton);
+        verticalLayout_2->addWidget(pushButton_zalogujSie);
 
         stackedWidget->addWidget(Login_page);
         Register_page = new QWidget();
@@ -239,10 +239,10 @@ public:
 
         verticalLayout_3->addItem(verticalSpacer_4);
 
-        pushButton_2 = new QPushButton(Register_page);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_zarejestrujSie = new QPushButton(Register_page);
+        pushButton_zarejestrujSie->setObjectName(QString::fromUtf8("pushButton_zarejestrujSie"));
 
-        verticalLayout_3->addWidget(pushButton_2);
+        verticalLayout_3->addWidget(pushButton_zarejestrujSie);
 
         stackedWidget->addWidget(Register_page);
 
@@ -256,7 +256,7 @@ public:
 
         retranslateUi(Start_Log_Reg);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Start_Log_Reg);
@@ -271,14 +271,14 @@ public:
         label_2->setText(QCoreApplication::translate("Start_Log_Reg", "Logowanie", nullptr));
         label_3->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_4->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
-        pushButton->setText(QCoreApplication::translate("Start_Log_Reg", "Zaloguj si\304\231", nullptr));
+        pushButton_zalogujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zaloguj si\304\231", nullptr));
         label_5->setText(QCoreApplication::translate("Start_Log_Reg", "Rejestracja", nullptr));
         label_6->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_7->setText(QCoreApplication::translate("Start_Log_Reg", "Imi\304\231", nullptr));
         label_8->setText(QCoreApplication::translate("Start_Log_Reg", "Nazwisko", nullptr));
         label_9->setText(QCoreApplication::translate("Start_Log_Reg", "Data urodzenia", nullptr));
         label_10->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Start_Log_Reg", "Zarejestruj", nullptr));
+        pushButton_zarejestrujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zarejestruj", nullptr));
     } // retranslateUi
 
 };
@@ -289,4 +289,4 @@ namespace Ui {
 
 QT_END_NAMESPACE
 
-#endif // UI_START_LOG_REG_H
+#endif // UI_STARTLOGREG_H

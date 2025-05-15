@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include "ui_user_panel.h"
+#include "IncomeForm.hpp"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
@@ -17,17 +18,21 @@ class User_Panel : public QWidget
 
 public:
     explicit User_Panel(QString email = "", QWidget *parent = nullptr);
-     void setUserEmail(const QString& email);
-     void loadUserRole();
+    void setUserEmail(const QString& email);
+    void loadUserRole();
     ~User_Panel();
+ void loadIncomeCategories();
 
 signals:
     void logoutRequested();
 
+public slots:
+    void addNewIncomeCategory();
+
 private:
     Ui::User_Panel *ui;
-     QString userEmail;  //email zalogowanego użytkownika
-
+    QString userEmail;  //email zalogowanego użytkownika
+    IncomeForm *m_incomeHandler;
 };
 
 #endif // USER_PANEL_HPP

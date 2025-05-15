@@ -7,13 +7,17 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     stackedWidget = new QStackedWidget(this);
     setCentralWidget(stackedWidget);
 
-    logRegScreen = new LogReg();
+   // logRegScreen = new LogReg();
+    logRegScreen = new Start_Log_Reg();
     stackedWidget->addWidget(logRegScreen);
 
     userPanel = nullptr; // Inicjalizujemy na nullptr
 
     // Łączymy sygnał logowania
-    connect(logRegScreen, &LogReg::loginSuccessful, this, &MainWindow::handleLogin);
+    connect(logRegScreen, &Start_Log_Reg::loginSuccessful, this, &MainWindow::handleLogin);
+
+
+
 }
 
 
@@ -36,9 +40,4 @@ void MainWindow::handleLogout() {
     qDebug() << "Wylogowywanie...";
     stackedWidget->setCurrentIndex(WidgetIndex::LogRegIndex);
 
-    // Opcjonalnie: Możesz zdecydować, czy chcesz niszczyć userPanel po wylogowaniu
-    // if (userPanel) {
-    //     userPanel->deleteLater();
-    //     userPanel = nullptr;
-    // }
 }

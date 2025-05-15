@@ -53,30 +53,30 @@ OBJECTS_DIR   = build/Obj/
 ####### Files
 
 SOURCES       = src/main.cpp \
+		StartLogReg.cpp \
 		src/IncomeForm.cpp \
 		src/MainWindow.cpp \
 		src/MainMenu.cpp \
 		src/LogReg.cpp \
-		src/user_panel.cpp \
-		start_log_reg.cpp moc_MainWindow.cpp \
+		src/user_panel.cpp moc_MainWindow.cpp \
+		moc_StartLogReg.cpp \
 		moc_IncomeForm.cpp \
 		moc_MainMenu.cpp \
 		moc_LogReg.cpp \
-		moc_user_panel.cpp \
-		moc_start_log_reg.cpp
+		moc_user_panel.cpp
 OBJECTS       = build/Obj/main.o \
+		build/Obj/StartLogReg.o \
 		build/Obj/IncomeForm.o \
 		build/Obj/MainWindow.o \
 		build/Obj/MainMenu.o \
 		build/Obj/LogReg.o \
 		build/Obj/user_panel.o \
-		build/Obj/start_log_reg.o \
 		build/Obj/moc_MainWindow.o \
+		build/Obj/moc_StartLogReg.o \
 		build/Obj/moc_IncomeForm.o \
 		build/Obj/moc_MainMenu.o \
 		build/Obj/moc_LogReg.o \
-		build/Obj/moc_user_panel.o \
-		build/Obj/moc_start_log_reg.o
+		build/Obj/moc_user_panel.o
 DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/linux.conf \
@@ -157,17 +157,17 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		BUDZET_DOMOWY.pro inc/MainWindow.hpp \
+		StartLogReg.hpp \
 		inc/IncomeForm.hpp \
 		inc/MainMenu.hpp \
 		inc/LogReg.hpp \
-		src/user_panel.hpp \
-		start_log_reg.hpp src/main.cpp \
+		src/user_panel.hpp src/main.cpp \
+		StartLogReg.cpp \
 		src/IncomeForm.cpp \
 		src/MainWindow.cpp \
 		src/MainMenu.cpp \
 		src/LogReg.cpp \
-		src/user_panel.cpp \
-		start_log_reg.cpp
+		src/user_panel.cpp
 QMAKE_TARGET  = BUDZET_APP
 DESTDIR       = 
 TARGET        = BUDZET_APP
@@ -176,7 +176,7 @@ TARGET        = BUDZET_APP
 first: all
 ####### Build rules
 
-BUDZET_APP: ui_user_panel.h ui_start_log_reg.h $(OBJECTS)  
+BUDZET_APP: ui_StartLogReg.h ui_user_panel.h $(OBJECTS)  
 	$(LINK) $(LFLAGS) -o $(TARGET) $(OBJECTS) $(OBJCOMP) $(LIBS)
 
 Makefile: BUDZET_DOMOWY.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmake.conf /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
@@ -355,9 +355,9 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents inc/MainWindow.hpp inc/IncomeForm.hpp inc/MainMenu.hpp inc/LogReg.hpp src/user_panel.hpp start_log_reg.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp src/IncomeForm.cpp src/MainWindow.cpp src/MainMenu.cpp src/LogReg.cpp src/user_panel.cpp start_log_reg.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/user_panel.ui start_log_reg.ui $(DISTDIR)/
+	$(COPY_FILE) --parents inc/MainWindow.hpp StartLogReg.hpp inc/IncomeForm.hpp inc/MainMenu.hpp inc/LogReg.hpp src/user_panel.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp StartLogReg.cpp src/IncomeForm.cpp src/MainWindow.cpp src/MainMenu.cpp src/LogReg.cpp src/user_panel.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents StartLogReg.ui src/user_panel.ui $(DISTDIR)/
 
 
 clean: compiler_clean 
@@ -389,16 +389,22 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_IncomeForm.cpp moc_MainMenu.cpp moc_LogReg.cpp moc_user_panel.cpp moc_start_log_reg.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_StartLogReg.cpp moc_IncomeForm.cpp moc_MainMenu.cpp moc_LogReg.cpp moc_user_panel.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_IncomeForm.cpp moc_MainMenu.cpp moc_LogReg.cpp moc_user_panel.cpp moc_start_log_reg.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_StartLogReg.cpp moc_IncomeForm.cpp moc_MainMenu.cpp moc_LogReg.cpp moc_user_panel.cpp
 moc_MainWindow.cpp: inc/MainWindow.hpp \
-		inc/LogReg.hpp \
+		StartLogReg.hpp \
 		src/user_panel.hpp \
 		ui_user_panel.h \
+		inc/IncomeForm.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/MainWindow.hpp -o moc_MainWindow.cpp
+
+moc_StartLogReg.cpp: StartLogReg.hpp \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include StartLogReg.hpp -o moc_StartLogReg.cpp
 
 moc_IncomeForm.cpp: inc/IncomeForm.hpp \
 		moc_predefs.h \
@@ -417,29 +423,25 @@ moc_LogReg.cpp: inc/LogReg.hpp \
 
 moc_user_panel.cpp: src/user_panel.hpp \
 		ui_user_panel.h \
+		inc/IncomeForm.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include src/user_panel.hpp -o moc_user_panel.cpp
-
-moc_start_log_reg.cpp: start_log_reg.hpp \
-		moc_predefs.h \
-		/usr/lib/qt5/bin/moc
-	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include start_log_reg.hpp -o moc_start_log_reg.cpp
 
 compiler_moc_objc_header_make_all:
 compiler_moc_objc_header_clean:
 compiler_moc_source_make_all:
 compiler_moc_source_clean:
-compiler_uic_make_all: ui_user_panel.h ui_start_log_reg.h
+compiler_uic_make_all: ui_StartLogReg.h ui_user_panel.h
 compiler_uic_clean:
-	-$(DEL_FILE) ui_user_panel.h ui_start_log_reg.h
+	-$(DEL_FILE) ui_StartLogReg.h ui_user_panel.h
+ui_StartLogReg.h: StartLogReg.ui \
+		/usr/lib/qt5/bin/uic
+	/usr/lib/qt5/bin/uic StartLogReg.ui -o ui_StartLogReg.h
+
 ui_user_panel.h: src/user_panel.ui \
 		/usr/lib/qt5/bin/uic
 	/usr/lib/qt5/bin/uic src/user_panel.ui -o ui_user_panel.h
-
-ui_start_log_reg.h: start_log_reg.ui \
-		/usr/lib/qt5/bin/uic
-	/usr/lib/qt5/bin/uic start_log_reg.ui -o ui_start_log_reg.h
 
 compiler_yacc_decl_make_all:
 compiler_yacc_decl_clean:
@@ -452,18 +454,24 @@ compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_ui
 ####### Compile
 
 build/Obj/main.o: src/main.cpp inc/MainWindow.hpp \
-		inc/LogReg.hpp \
+		StartLogReg.hpp \
 		src/user_panel.hpp \
-		ui_user_panel.h
+		ui_user_panel.h \
+		inc/IncomeForm.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/main.o src/main.cpp
+
+build/Obj/StartLogReg.o: StartLogReg.cpp StartLogReg.hpp \
+		ui_StartLogReg.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/StartLogReg.o StartLogReg.cpp
 
 build/Obj/IncomeForm.o: src/IncomeForm.cpp inc/IncomeForm.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/IncomeForm.o src/IncomeForm.cpp
 
 build/Obj/MainWindow.o: src/MainWindow.cpp inc/MainWindow.hpp \
-		inc/LogReg.hpp \
+		StartLogReg.hpp \
 		src/user_panel.hpp \
-		ui_user_panel.h
+		ui_user_panel.h \
+		inc/IncomeForm.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/MainWindow.o src/MainWindow.cpp
 
 build/Obj/MainMenu.o: src/MainMenu.cpp inc/MainMenu.hpp
@@ -473,15 +481,15 @@ build/Obj/LogReg.o: src/LogReg.cpp inc/LogReg.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/LogReg.o src/LogReg.cpp
 
 build/Obj/user_panel.o: src/user_panel.cpp src/user_panel.hpp \
-		ui_user_panel.h
+		ui_user_panel.h \
+		inc/IncomeForm.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/user_panel.o src/user_panel.cpp
-
-build/Obj/start_log_reg.o: start_log_reg.cpp start_log_reg.hpp \
-		ui_start_log_reg.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/start_log_reg.o start_log_reg.cpp
 
 build/Obj/moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_MainWindow.o moc_MainWindow.cpp
+
+build/Obj/moc_StartLogReg.o: moc_StartLogReg.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_StartLogReg.o moc_StartLogReg.cpp
 
 build/Obj/moc_IncomeForm.o: moc_IncomeForm.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_IncomeForm.o moc_IncomeForm.cpp
@@ -494,9 +502,6 @@ build/Obj/moc_LogReg.o: moc_LogReg.cpp
 
 build/Obj/moc_user_panel.o: moc_user_panel.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_user_panel.o moc_user_panel.cpp
-
-build/Obj/moc_start_log_reg.o: moc_start_log_reg.cpp 
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_start_log_reg.o moc_start_log_reg.cpp
 
 ####### Install
 

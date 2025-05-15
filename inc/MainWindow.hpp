@@ -4,7 +4,8 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
-#include "LogReg.hpp"  
+//#include "LogReg.hpp"
+#include "StartLogReg.hpp"
 #include "src/user_panel.hpp"
 
 
@@ -16,12 +17,12 @@ public:
     ~MainWindow();
 
 private slots:
-      void handleLogin(QString email);
+       void handleLogin(QString email);
        void handleLogout();
 
 private:
     QStackedWidget *stackedWidget; 
-    LogReg *logRegScreen; 
+    Start_Log_Reg *logRegScreen;
     User_Panel *userPanel=nullptr;
 
 
