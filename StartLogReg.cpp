@@ -68,7 +68,52 @@ void Start_Log_Reg::connectToDatabase() {
 void Start_Log_Reg::registerUser(){
 
 
+    if(!isValidReg())return;
 
+    QString email = ui->lineEdit_emailReg->text();
+    QString name = ui->lineEdit_firstNameReg->text();
+    QString surname = ui->lineEdit_lastNameReg->text();
+    QString birthDate = ui->dateEdit_DOB_Reg->text();
+    QString password = ui->lineEdit_passwordReg->text();
+
+    if (email.isEmpty() || name.isEmpty() || surname.isEmpty() || birthDate.isEmpty() || password.isEmpty()) {
+        QMessageBox::warning(this, "Błąd", "Wszystkie pola muszą być wypełnione!");
+        return;
+    }
+
+    // Sprawdzanie, czy użytkownik już istnieje
+    QSqlQuery checkUserQuery;
+    checkUserQuery.prepare("SELECT COUNT(*) FROM `Uzytkownik zalogowany` WHERE Email = :email");
+    checkUserQuery.bindValue(":email", email);
+
+    if (!checkUserQuery.exec()) {
+        qDebug() << "Nie udało się sprawdzić czy dany użytkownik istnieje";
+        return;
+    }
+
+    checkUserQuery.next();
+    if (checkUserQuery.value(0).toInt() > 0) {
+        QMessageBox::warning(this, "Błąd", "Użytkownik o podanym emailu już istnieje!");
+        return;
+    }
+
+    // Dodanie nowego użytkownika
+    QSqlQuery registerQuery;
+    registerQuery.prepare("INSERT INTO `Uzytkownik zalogowany` (Imie, Nazwisko, Email, Haslo, Czy_zablokowany, `Data urodzenia`, Rola) "
+                          "VALUES (:name, :surname, :email, :password, 0, :birthDate, 'Użytkownik')");
+    registerQuery.bindValue(":name", name);
+    registerQuery.bindValue(":surname", surname);
+    registerQuery.bindValue(":email", email);
+    registerQuery.bindValue(":password", password);
+    registerQuery.bindValue(":birthDate", birthDate);
+
+    if (registerQuery.exec()) {
+        QMessageBox::information(this, "Sukces", "Rejestracja zakończona pomyślnie!");
+        clear_reg();
+        ui->stackedWidget->setCurrentIndex(0);
+    } else {
+        QMessageBox::warning(this, "Błąd", "Nie udało się zarejestrować użytkownika.");
+    }
 
 }
 
@@ -102,6 +147,7 @@ void Start_Log_Reg::loginUser(){
             ui->lineEdit_emailLog->clear();
             ui->lineEdit_passwordLog->clear();
             emit loginSuccessful(email); // Sygnał o udanym logowaniu
+
         } else {
             QMessageBox::warning(this, "Błąd", "Błędny e-mail lub hasło.");
         }
@@ -109,4 +155,27 @@ void Start_Log_Reg::loginUser(){
         QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
         qDebug() << "Baza danych nie jest otwarta w loginUser.";
     }
+}
+
+bool Start_Log_Reg::isValidReg(){
+    QString email = ui->lineEdit_emailReg ->text();
+    if (!email.contains('@') || email.indexOf('@') == 0 || email.indexOf('@') == email.length() - 1) {
+        QMessageBox::warning(this, "Błąd", "Wprowadź poprawny adres e-mail.");
+        return false;
+    }
+    QString password = ui->lineEdit_passwordReg->text();
+    if (password.length() < 8) {
+        QMessageBox::warning(this, "Błąd", "Hasło musi mieć co najmniej 8 znaków.");
+        return false;
+    }
+    return true;
+}
+
+
+void Start_Log_Reg::clear_reg(){
+    ui->lineEdit_emailReg->clear();
+    ui->lineEdit_firstNameReg->clear();
+    ui->lineEdit_lastNameReg->clear();
+    ui->dateEdit_DOB_Reg->clear();
+    ui->lineEdit_passwordReg->clear();
 }

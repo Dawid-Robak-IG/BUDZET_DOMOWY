@@ -32,6 +32,8 @@ public:
 private:
     Ui::Start_Log_Reg *ui;
     void connectToDatabase();
+    bool isValidReg();
+    void clear_reg();
 
 };
 

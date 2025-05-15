@@ -17,7 +17,6 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     connect(logRegScreen, &Start_Log_Reg::loginSuccessful, this, &MainWindow::handleLogin);
 
 
-
 }
 
 
@@ -38,6 +37,5 @@ void MainWindow::handleLogin(QString email) {
 
 void MainWindow::handleLogout() {
     qDebug() << "Wylogowywanie...";
-    stackedWidget->setCurrentIndex(WidgetIndex::LogRegIndex);
 
 }
