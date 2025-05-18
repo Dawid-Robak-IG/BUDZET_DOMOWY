@@ -3,10 +3,14 @@
 
 #include <QWidget>
 #include "ui_user_panel.h"
+#include "DatabaseManager.hpp"
 #include "IncomeForm.hpp"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
+
+//zarządcy do zakładek i ich elementów
+#include "Tab_Wydatki.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -18,10 +22,15 @@ class User_Panel : public QWidget
 
 public:
     explicit User_Panel(QString email = "", QWidget *parent = nullptr);
+    ~User_Panel();
+
+    void setDatabaseManager(DatabaseManager* dbManager);
+    DatabaseManager* getDatabaseManager() const { return m_dbManager; }
+
     void setUserEmail(const QString& email);
     void loadUserRole();
-    ~User_Panel();
- void loadIncomeCategories();
+
+    void loadIncomeCategories();
 
 signals:
     void logoutRequested();
@@ -31,8 +40,14 @@ public slots:
 
 private:
     Ui::User_Panel *ui;
+    DatabaseManager* m_dbManager = nullptr;
+
+    Tab_Wydatki *wydatkiManager;
+
     QString userEmail;  //email zalogowanego użytkownika
-    IncomeForm *m_incomeHandler;
+   // IncomeForm *m_incomeHandler;
+
+    void displayUserData(const QString &email);
 };
 
 #endif // USER_PANEL_HPP

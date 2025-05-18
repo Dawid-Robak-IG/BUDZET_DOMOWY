@@ -19,16 +19,20 @@ QT+=widgets
 QT += sql
 SOURCES += src/main.cpp \
            StartLogReg.cpp \
+           src/DatabaseManager.cpp \
            src/IncomeForm.cpp \
            src/MainWindow.cpp \
            src/MainMenu.cpp \
            src/LogReg.cpp  \
+           src/Tab_Wydatki.cpp \
            src/user_panel.cpp
 HEADERS += inc/MainWindow.hpp \
     StartLogReg.hpp \
+    inc/DatabaseManager.hpp \
     inc/IncomeForm.hpp \
             inc/MainMenu.hpp \
            inc/LogReg.hpp  \
+    inc/Tab_Wydatki.hpp \
     src/user_panel.hpp
 
 FORMS += \

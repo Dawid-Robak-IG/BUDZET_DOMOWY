@@ -7,6 +7,7 @@
 //#include "LogReg.hpp"
 #include "StartLogReg.hpp"
 #include "src/user_panel.hpp"
+#include "DatabaseManager.hpp"
 
 
 class MainWindow : public QMainWindow {
@@ -16,6 +17,8 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+     DatabaseManager* getDatabaseManager() const { return m_dbManager; }
+
 private slots:
        void handleLogin(QString email);
        void handleLogout();
@@ -23,7 +26,9 @@ private slots:
 private:
     QStackedWidget *stackedWidget; 
     Start_Log_Reg *logRegScreen;
-    User_Panel *userPanel=nullptr;
+    User_Panel *m_userPanel;
+
+    DatabaseManager* m_dbManager;
 
 
     enum WidgetIndex {

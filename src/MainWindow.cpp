@@ -2,6 +2,11 @@
 #include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
+
+    m_dbManager = new DatabaseManager(this);
+    m_dbManager->openConnection();
+
+
     setWindowTitle("Budzet domowy");
 
     stackedWidget = new QStackedWidget(this);
@@ -11,7 +16,9 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     logRegScreen = new Start_Log_Reg();
     stackedWidget->addWidget(logRegScreen);
 
-    userPanel = nullptr; // Inicjalizujemy na nullptr
+    m_userPanel = nullptr; // Inicjalizujemy na nullptr
+
+    logRegScreen->setDatabaseManager(m_dbManager);
 
     // Łączymy sygnał logowania
     connect(logRegScreen, &Start_Log_Reg::loginSuccessful, this, &MainWindow::handleLogin);
@@ -21,21 +28,30 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
 
 
 MainWindow::~MainWindow() {
+    delete m_userPanel;
+    delete logRegScreen;
+    delete m_dbManager;
 }
 
 void MainWindow::handleLogin(QString email) {
-    if (!userPanel) {
-        userPanel = new User_Panel(email);
-        stackedWidget->addWidget(userPanel);
-        connect(userPanel, &User_Panel::logoutRequested, this, &MainWindow::handleLogout);
+    if (!m_userPanel) {
+        m_userPanel = new User_Panel(email,this);
+        m_userPanel->setDatabaseManager(m_dbManager);
+        m_userPanel->loadUserRole();
+        m_userPanel->loadIncomeCategories();
+
+        stackedWidget->addWidget(m_userPanel);
+        connect(m_userPanel, &User_Panel::logoutRequested, this, &MainWindow::handleLogout);
     } else {
-        userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
-        userPanel->loadUserRole();      // I przeładowujemy rolę
+        m_userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
+        m_userPanel->loadUserRole();      // I przeładowujemy rolę
     }
-    stackedWidget->setCurrentIndex(WidgetIndex::UserPanelIndex);
+    //stackedWidget->setCurrentIndex(WidgetIndex::UserPanelIndex);
+    stackedWidget->setCurrentWidget(m_userPanel);
 }
 
 void MainWindow::handleLogout() {
     qDebug() << "Wylogowywanie...";
-
+   // stackedWidget->setCurrentIndex(WidgetIndex::LogRegIndex);
+    stackedWidget->setCurrentWidget(logRegScreen);
 }

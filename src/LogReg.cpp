@@ -13,7 +13,7 @@ LogReg::LogReg(QWidget *parent): QWidget(parent) {
     connect(regButton, &QPushButton::clicked, this, &LogReg::registerUser);
     connect(logButton, &QPushButton::clicked, this, &LogReg::loginUser);
 
-    connectToDatabase();
+    //connectToDatabase();
 }
 void LogReg::setLogin(){
     logLayout = new QVBoxLayout();
@@ -63,16 +63,16 @@ void LogReg::setRegistration(){
 }
 
 void LogReg::connectToDatabase() {
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");  
-    db.setDatabaseName("BUDZET_DOMOWY");
-    db.setUserName("root");     
-    db.setPassword("admin");
+    // db = QSqlDatabase::addDatabase("QMYSQL");
+    // db.setHostName("localhost");
+    // db.setDatabaseName("BUDZET_DOMOWY");
+    // db.setUserName("root");
+    // db.setPassword("admin");
 
-    if (!db.open()) {
-        std::cout<<"Couldn't connect to database in logreg\n";
-        exit(-1);
-    }
+    // if (!db.open()) {
+    //     std::cout<<"Couldn't connect to database in logreg\n";
+    //     exit(-1);
+    // }
 }
 
 void LogReg::registerUser() {

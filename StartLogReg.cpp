@@ -13,9 +13,9 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent)
 {
     ui->setupUi(this);
 
-    // Połączenie przycisków ze Start_page do odpowiednich stron
-    connect(ui->pushButton_Zaloguj, &QPushButton::clicked, ui->stackedWidget, &QStackedWidget::setCurrentIndex);
-     connect(ui->pushButton_Zarejestruj, &QPushButton::clicked, ui->stackedWidget, &QStackedWidget::setCurrentIndex);
+    //Niepotrzebne??? Połączenie przycisków ze Start_page do odpowiednich stron
+ //   connect(ui->pushButton_Zaloguj, &QPushButton::clicked, ui->stackedWidget, &QStackedWidget::setCurrentIndex);
+   //  connect(ui->pushButton_Zarejestruj, &QPushButton::clicked, ui->stackedWidget, &QStackedWidget::setCurrentIndex);
 
     // Ustawienie indeksów stron w stackedWidget
     int loginPageIndex = 1; // Indeks strony Login_page
@@ -35,9 +35,10 @@ connect(ui->pushButton_zalogujSie, &QPushButton::clicked, this, &Start_Log_Reg::
 
 connect(ui->pushButton_zarejestrujSie, &QPushButton::clicked, this, &Start_Log_Reg::registerUser);
 
-
+ui->lineEdit_emailLog->setText("janprus@poczta.com");
+ui->lineEdit_passwordLog->setText("haslo123");
   // connect(this, &Start_Log_Reg::loginSuccessful, this, &Start_Log_Reg::switchToUserPanel);
-connectToDatabase();
+//connectToDatabase();
 }
 
 
@@ -52,23 +53,14 @@ Start_Log_Reg::~Start_Log_Reg()
 }
 
 
-void Start_Log_Reg::connectToDatabase() {
-    db = QSqlDatabase::addDatabase("QMYSQL");
-    db.setHostName("localhost");
-    db.setDatabaseName("BUDZET_DOMOWY");
-    db.setUserName("root");
-    db.setPassword("admin");
-
-    if (!db.open()) {
-        qDebug()<<"Couldn't connect to database in logreg\n";
-        exit(-1);
-    }
-}
-
 void Start_Log_Reg::registerUser(){
-
-
     if(!isValidReg())return;
+
+    if (!m_dbManager || !m_dbManager->getDatabase().isOpen()) {
+        QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
+        return;
+    }
+
 
     QString email = ui->lineEdit_emailReg->text();
     QString name = ui->lineEdit_firstNameReg->text();
@@ -81,24 +73,28 @@ void Start_Log_Reg::registerUser(){
         return;
     }
 
+    // if (!m_db.isOpen()) {
+    //     QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
+    //     return;
+    // }
+
     // Sprawdzanie, czy użytkownik już istnieje
-    QSqlQuery checkUserQuery;
+    QSqlQuery checkUserQuery(m_dbManager->getDatabase());
     checkUserQuery.prepare("SELECT COUNT(*) FROM `Uzytkownik zalogowany` WHERE Email = :email");
     checkUserQuery.bindValue(":email", email);
 
-    if (!checkUserQuery.exec()) {
+    if (!checkUserQuery.exec()|| !checkUserQuery.next()) {
         qDebug() << "Nie udało się sprawdzić czy dany użytkownik istnieje";
         return;
     }
 
-    checkUserQuery.next();
     if (checkUserQuery.value(0).toInt() > 0) {
         QMessageBox::warning(this, "Błąd", "Użytkownik o podanym emailu już istnieje!");
         return;
     }
 
     // Dodanie nowego użytkownika
-    QSqlQuery registerQuery;
+    QSqlQuery registerQuery(m_dbManager->getDatabase());
     registerQuery.prepare("INSERT INTO `Uzytkownik zalogowany` (Imie, Nazwisko, Email, Haslo, Czy_zablokowany, `Data urodzenia`, Rola) "
                           "VALUES (:name, :surname, :email, :password, 0, :birthDate, 'Użytkownik')");
     registerQuery.bindValue(":name", name);
@@ -120,6 +116,10 @@ void Start_Log_Reg::registerUser(){
 
 void Start_Log_Reg::loginUser(){
 
+    if (!m_dbManager || !m_dbManager->getDatabase().isOpen()) {
+        QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
+        return;
+    }
 
     QString email =ui->lineEdit_emailLog->text();
     QString password = ui->lineEdit_passwordLog->text();
@@ -129,8 +129,8 @@ void Start_Log_Reg::loginUser(){
         return;
     }
 
-    if (db.isOpen()) {
-        QSqlQuery query(db); // Używaj istniejącego połączenia 'db'
+
+    QSqlQuery query(m_dbManager->getDatabase()); // Używaj istniejącego połączenia 'db'
         query.prepare("SELECT Email FROM `Uzytkownik zalogowany` WHERE `Email` = :email AND `Haslo` = :haslo");
         query.bindValue(":email", email);
         query.bindValue(":haslo", password);
@@ -141,20 +141,15 @@ void Start_Log_Reg::loginUser(){
             return;
         }
 
-        query.next();
-        if (query.value(0).toString() == email) {
+        if(query.next()){
             QMessageBox::information(this, "Sukces", "Zalogowano pomyślnie!");
             ui->lineEdit_emailLog->clear();
             ui->lineEdit_passwordLog->clear();
             emit loginSuccessful(email); // Sygnał o udanym logowaniu
-
-        } else {
+         } else {
             QMessageBox::warning(this, "Błąd", "Błędny e-mail lub hasło.");
         }
-    } else {
-        QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
-        qDebug() << "Baza danych nie jest otwarta w loginUser.";
-    }
+
 }
 
 bool Start_Log_Reg::isValidReg(){
@@ -176,6 +171,8 @@ void Start_Log_Reg::clear_reg(){
     ui->lineEdit_emailReg->clear();
     ui->lineEdit_firstNameReg->clear();
     ui->lineEdit_lastNameReg->clear();
-    ui->dateEdit_DOB_Reg->clear();
+    ui->dateEdit_DOB_Reg->setDate(QDate::currentDate());
     ui->lineEdit_passwordReg->clear();
 }
+
+

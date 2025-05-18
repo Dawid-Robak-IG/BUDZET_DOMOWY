@@ -3,7 +3,7 @@
 
 #include <QWidget>
 #include <QSqlDatabase>
-
+#include "DatabaseManager.hpp"
 
 namespace Ui {
 class Start_Log_Reg;
@@ -13,7 +13,7 @@ class Start_Log_Reg : public QWidget
 {
     Q_OBJECT
 
- QSqlDatabase db;
+//może raczej private slots
 public slots:
     // void handleLogin();
   //   void handleRegister();
@@ -28,12 +28,18 @@ public:
     explicit Start_Log_Reg(QWidget *parent = nullptr);
     ~Start_Log_Reg();
 
+    void setDatabaseManager(DatabaseManager* dbManager) { m_dbManager = dbManager; }
+    DatabaseManager* getDatabaseManager() const { return m_dbManager; }
 
 private:
-    Ui::Start_Log_Reg *ui;
-    void connectToDatabase();
+     Ui::Start_Log_Reg *ui;
+    // QSqlDatabase m_db;
+DatabaseManager* m_dbManager = nullptr;
+
+    //void connectToDatabase();
     bool isValidReg();
     void clear_reg();
+   // void displayUserData(const QString &email);
 
 };
 
