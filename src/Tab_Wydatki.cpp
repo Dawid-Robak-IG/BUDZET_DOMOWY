@@ -27,7 +27,7 @@ Tab_Wydatki::Tab_Wydatki(const QString& userEmail,QWidget *root, QWidget *parent
 void Tab_Wydatki::KwotaChanged(double value)
 {
     qDebug() << "Kwota zmieniona na:" << value;
-    // Tutaj możesz zaktualizować UI, wysłać sygnał dalej itp.
+    // Tutaj można zaktualizować UI, wysłać sygnał dalej itp.
 }
 
 

@@ -56,6 +56,8 @@ public:
     QHBoxLayout *horizontalLayout_8;
     QSpacerItem *horizontalSpacer_8;
     QPushButton *pushButton_zalogujSie;
+    QSpacerItem *horizontalSpacer_13;
+    QPushButton *pushButton;
     QSpacerItem *horizontalSpacer_12;
     QSpacerItem *horizontalSpacer_9;
     QWidget *Register_page;
@@ -76,6 +78,8 @@ public:
     QHBoxLayout *horizontalLayout_9;
     QSpacerItem *horizontalSpacer_10;
     QPushButton *pushButton_zarejestrujSie;
+    QSpacerItem *horizontalSpacer_14;
+    QPushButton *pushButton_2;
     QSpacerItem *horizontalSpacer_11;
     QHBoxLayout *horizontalLayout;
 
@@ -213,6 +217,15 @@ public:
 
         horizontalLayout_8->addWidget(pushButton_zalogujSie);
 
+        horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_13);
+
+        pushButton = new QPushButton(Login_page);
+        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+
+        horizontalLayout_8->addWidget(pushButton);
+
         horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_8->addItem(horizontalSpacer_12);
@@ -311,6 +324,15 @@ public:
 
         horizontalLayout_9->addWidget(pushButton_zarejestrujSie);
 
+        horizontalSpacer_14 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_14);
+
+        pushButton_2 = new QPushButton(Register_page);
+        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+
+        horizontalLayout_9->addWidget(pushButton_2);
+
         horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_9->addItem(horizontalSpacer_11);
@@ -330,7 +352,7 @@ public:
 
         retranslateUi(Start_Log_Reg);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Start_Log_Reg);
@@ -346,6 +368,7 @@ public:
         label_3->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_4->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
         pushButton_zalogujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zaloguj si\304\231", nullptr));
+        pushButton->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
         label_5->setText(QCoreApplication::translate("Start_Log_Reg", "Rejestracja", nullptr));
         label_6->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_7->setText(QCoreApplication::translate("Start_Log_Reg", "Imi\304\231", nullptr));
@@ -353,6 +376,7 @@ public:
         label_9->setText(QCoreApplication::translate("Start_Log_Reg", "Data urodzenia", nullptr));
         label_10->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
         pushButton_zarejestrujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zarejestruj", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
     } // retranslateUi
 
 };

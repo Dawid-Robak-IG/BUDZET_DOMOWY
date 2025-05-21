@@ -1,0 +1,11 @@
+1. Na stronie użytkownicy zablokować edycję
+2. Ustawić domyślne strony, po uruchomieniu aplikacji, po zalogowaniu, po wylogowaniu
+3. Dodać obsługę przycisków powrót
+4. Przycisk dodaj nowy wydatek cykliczny żeby przełączał stronę.
+5. Logika dodawania wpisów cyklicznych
+6. Aktualizacja kwoty budżetu
+
+
+
+WAŻNE:
+1. Zmień rolę jest wrzucone w edytuj dane

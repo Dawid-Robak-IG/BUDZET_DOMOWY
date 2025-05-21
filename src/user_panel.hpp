@@ -11,6 +11,7 @@
 
 //zarządcy do zakładek i ich elementów
 #include "Tab_Wydatki.hpp"
+#include "Tab_Uzytkownicy.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -43,9 +44,10 @@ private:
     DatabaseManager* m_dbManager = nullptr;
 
     Tab_Wydatki *wydatkiManager;
+    Tab_Uzytkownicy *uzytkownicyManager;
 
     QString userEmail;  //email zalogowanego użytkownika
-   // IncomeForm *m_incomeHandler;
+
 
     void displayUserData(const QString &email);
 };

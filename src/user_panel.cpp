@@ -10,7 +10,7 @@
 User_Panel::User_Panel(QString email,QWidget *parent)
     : QWidget(parent),
     ui(new Ui::User_Panel),
-    userEmail(email),wydatkiManager(nullptr), m_dbManager(nullptr)
+    userEmail(email),wydatkiManager(nullptr),  uzytkownicyManager(nullptr),m_dbManager(nullptr)
     //m_incomeHandler(nullptr)
 {
     ui->setupUi(this);
@@ -44,11 +44,19 @@ connect(ui->pushButton_dodajKategoriePrzychod, &QPushButton::clicked, this, &Use
 
 void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
+
     if (!wydatkiManager) {
         wydatkiManager = new Tab_Wydatki(userEmail, ui->tab_Wydatki, this);
         wydatkiManager->setDatabaseManager(m_dbManager);
     } else {
         wydatkiManager->setDatabaseManager(m_dbManager);
+    }
+
+    if (!uzytkownicyManager) {
+        uzytkownicyManager = new Tab_Uzytkownicy(ui->tab_uzytkownicy, this);
+        uzytkownicyManager->setDatabaseManager(m_dbManager);
+    } else {
+        uzytkownicyManager->setDatabaseManager(m_dbManager);
     }
 }
 

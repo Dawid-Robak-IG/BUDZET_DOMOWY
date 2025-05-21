@@ -17,7 +17,7 @@ class Tab_Wydatki : public QWidget
 public:
     explicit Tab_Wydatki(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
 
-    void setDatabaseManager(DatabaseManager* dbManager) { m_dbManager = dbManager; qDebug() << "Tab_Wydatki::setDatabaseManager called, m_dbManager set to" << m_dbManager; }
+    void setDatabaseManager(DatabaseManager* dbManager) { m_dbManager = dbManager;}
 signals:
 
 private slots:

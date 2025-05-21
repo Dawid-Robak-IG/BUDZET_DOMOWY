@@ -24,6 +24,7 @@ SOURCES += src/main.cpp \
            src/MainWindow.cpp \
            src/MainMenu.cpp \
            src/LogReg.cpp  \
+           src/Tab_Uzytkownicy.cpp \
            src/Tab_Wydatki.cpp \
            src/user_panel.cpp
 HEADERS += inc/MainWindow.hpp \
@@ -32,6 +33,7 @@ HEADERS += inc/MainWindow.hpp \
     inc/IncomeForm.hpp \
             inc/MainMenu.hpp \
            inc/LogReg.hpp  \
+    inc/Tab_Uzytkownicy.hpp \
     inc/Tab_Wydatki.hpp \
     src/user_panel.hpp
 
