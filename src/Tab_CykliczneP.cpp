@@ -39,6 +39,7 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
         stacked->setCurrentIndex(0);
     });
 
+  stacked->setCurrentIndex(0);
 }
 void Tab_CykliczneP::DodajCP_Clicked(){ //toDo
     qDebug()<<"Tutaj będzie dodawanie cyklicznego przychodu";
@@ -84,3 +85,8 @@ void Tab_CykliczneP::loadKategorie() {
     kategoriaCombo->clear();
     kategoriaCombo->addItems(kategorie);
 }
+
+void Tab_CykliczneP::goToStartPage() {
+   stacked->setCurrentIndex(0);
+}
+

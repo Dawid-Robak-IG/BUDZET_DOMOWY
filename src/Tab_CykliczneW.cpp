@@ -39,6 +39,8 @@ Tab_CykliczneW::Tab_CykliczneW(const QString& userEmail,QWidget *root, QWidget *
         stacked->setCurrentIndex(0);
     });
 
+    stacked->setCurrentIndex(0);
+
 }
 void Tab_CykliczneW::DodajCW_Clicked(){ //toDo
     qDebug()<<"Tutaj będzie dodawanie cyklicznego wydatku";
@@ -83,4 +85,8 @@ void Tab_CykliczneW::loadKategorie() {
     QStringList kategorie = m_dbManager->getAllKategorie();
     kategoriaCombo->clear();
     kategoriaCombo->addItems(kategorie);
+}
+
+void Tab_CykliczneW::goToStartPage() {
+    stacked->setCurrentIndex(0);
 }

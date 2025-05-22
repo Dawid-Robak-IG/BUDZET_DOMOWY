@@ -61,13 +61,12 @@ Start_Log_Reg::~Start_Log_Reg()
 
 
 void Start_Log_Reg::registerUser(){
-    if(!isValidReg())return;
+    if (!isValidReg()) return;
 
     if (!m_dbManager || !m_dbManager->getDatabase().isOpen()) {
         QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
         return;
     }
-
 
     QString email = ui->lineEdit_emailReg->text();
     QString name = ui->lineEdit_firstNameReg->text();
@@ -85,7 +84,7 @@ void Start_Log_Reg::registerUser(){
     checkUserQuery.prepare("SELECT COUNT(*) FROM `Uzytkownik zalogowany` WHERE Email = :email");
     checkUserQuery.bindValue(":email", email);
 
-    if (!checkUserQuery.exec()|| !checkUserQuery.next()) {
+    if (!checkUserQuery.exec() || !checkUserQuery.next()) {
         qDebug() << "Nie udało się sprawdzić czy dany użytkownik istnieje";
         return;
     }
@@ -95,15 +94,18 @@ void Start_Log_Reg::registerUser(){
         return;
     }
 
-    // Dodanie nowego użytkownika
+    // Dodanie nowego użytkownika z domyślną rolą "Dziecko" i niezablokowanym statusem
     QSqlQuery registerQuery(m_dbManager->getDatabase());
-    registerQuery.prepare("INSERT INTO `Uzytkownik zalogowany` (Imie, Nazwisko, Email, Haslo, Czy_zablokowany, `Data urodzenia`, Rola) "
-                          "VALUES (:name, :surname, :email, :password, 0, :birthDate, 'Użytkownik')");
+    registerQuery.prepare("INSERT INTO `Uzytkownik zalogowany` "
+                          "(Imie, Nazwisko, Email, Haslo, Czy_zablokowany, `Data urodzenia`, Rola) "
+                          "VALUES (:name, :surname, :email, :password, :blocked, :birthDate, :role)");
     registerQuery.bindValue(":name", name);
     registerQuery.bindValue(":surname", surname);
     registerQuery.bindValue(":email", email);
     registerQuery.bindValue(":password", password);
+    registerQuery.bindValue(":blocked", 0);               // Użytkownik NIEZABLOKOWANY
     registerQuery.bindValue(":birthDate", birthDate);
+    registerQuery.bindValue(":role", "Dziecko");          // Domyślna rola: Dziecko
 
     if (registerQuery.exec()) {
         QMessageBox::information(this, "Sukces", "Rejestracja zakończona pomyślnie!");
@@ -111,6 +113,7 @@ void Start_Log_Reg::registerUser(){
         ui->stackedWidget->setCurrentIndex(startPageIndex);
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się zarejestrować użytkownika.");
+        qDebug() << "Błąd SQL:" << registerQuery.lastError().text();
     }
 
 }

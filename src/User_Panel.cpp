@@ -16,7 +16,9 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     kategorieManager(nullptr),
     daneUzytkownikaManager(nullptr),
     cyklicznePManager(nullptr),
-    cykliczneWManager(nullptr)
+    cykliczneWManager(nullptr),
+    raportyManager(nullptr),
+    dzieciManager(nullptr)
 
 {
     ui->setupUi(this);
@@ -76,6 +78,19 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
         cykliczneWManager->setDatabaseManager(m_dbManager);
     }
 
+    if (!raportyManager) {
+       raportyManager = new Tab_Raporty(userEmail, ui->tab_Raporty, this);
+        raportyManager->setDatabaseManager(m_dbManager);
+    } else {
+        raportyManager->setDatabaseManager(m_dbManager);
+    }
+
+    if (!dzieciManager) {
+       dzieciManager = new Tab_Dzieci(userEmail, ui->tab_Dzieci, this);
+        dzieciManager->setDatabaseManager(m_dbManager);
+    } else {
+        dzieciManager->setDatabaseManager(m_dbManager);
+    }
 }
 
 
@@ -121,4 +136,7 @@ void User_Panel::displayUserData(const QString &email){
 
 void User_Panel::goToStartPage() {
      ui->tabWidget->setCurrentIndex(0);
+    cykliczneWManager->goToStartPage();
+    cyklicznePManager->goToStartPage();
+    uzytkownicyManager->goToStartPage();
 }

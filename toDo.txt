@@ -7,7 +7,7 @@
 -> Zakładka relacje fajnie jakby wyświetlało kogo ma już przypisanego dziecko i rodzic
 -> Dane użytkownika rola wyświetlać i hasło 
 -> informacje o aplikacji?? strona startowa??
--> Aktyalizowanie losty kategorii w zakąłdkach gdzie jest lista do wybierania
+-> Aktualizowanie listy kategorii w zakładkach gdzie jest lista do wybierania
 -> czy pola w których coś się wpisuje są czyszczone
 ->domysłne strony w cyklicznych 
 ->przyciski powrót itp (nawigacja między stronami)

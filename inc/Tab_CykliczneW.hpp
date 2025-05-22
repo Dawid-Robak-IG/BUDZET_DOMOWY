@@ -25,6 +25,8 @@ public:
     explicit Tab_CykliczneW(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
     void showTable();
+    void goToStartPage();
+
 signals:
 
 private slots:
