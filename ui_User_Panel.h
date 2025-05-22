@@ -1,5 +1,5 @@
 /********************************************************************************
-** Form generated from reading UI file 'user_panel.ui'
+** Form generated from reading UI file 'User_Panel.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.13
 **

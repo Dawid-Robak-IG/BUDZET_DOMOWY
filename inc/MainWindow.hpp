@@ -4,9 +4,8 @@
 
 #include <QMainWindow>
 #include <QStackedWidget>
-//#include "LogReg.hpp"
-#include "StartLogReg.hpp"
-#include "src/user_panel.hpp"
+#include "Start_Log_Reg.hpp"
+#include "User_Panel.hpp"
 #include "DatabaseManager.hpp"
 
 

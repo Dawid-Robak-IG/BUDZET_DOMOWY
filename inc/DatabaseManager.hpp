@@ -25,6 +25,9 @@ public:
     //zarządzanie tablicami bazy danych
 
     bool addWydatek(const QString &email, double amount, const QDate &date, const QString &note, const QString &category);
+    bool addPrzychod(const QString &email, double amount, const QDate &date, const QString &note, const QString &category);
+
+
     bool addCategory(const QString &categoryName);
 signals:
 

@@ -4,7 +4,8 @@
 4. Przycisk dodaj nowy wydatek cykliczny żeby przełączał stronę.
 5. Logika dodawania wpisów cyklicznych
 6. Aktualizacja kwoty budżetu
-
+7. Zakładka relacje fajnie jakby wyświetlało kogo ma już przypisanego dziecko i rodzic
+8. Dane użytkownika rola wyświetlać i hasło 
 
 
 WAŻNE:

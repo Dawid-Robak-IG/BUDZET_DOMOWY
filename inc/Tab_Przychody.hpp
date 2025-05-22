@@ -1,4 +1,5 @@
-#ifndef TAB_WYDATKI_HPP
+#ifndef TAB_PRZYCHODY_HPP
+#define TAB_PRZYCHODY_HPP
 #define TAB_WYDATKI_HPP
 #include "DatabaseManager.hpp"
 
@@ -14,17 +15,18 @@
 #include <QSqlError>
 #include <QMessageBox>
 
-class Tab_Wydatki : public QWidget
+
+class Tab_Przychody : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Tab_Wydatki(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
-
+    explicit Tab_Przychody(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager) { m_dbManager = dbManager;}
+
 signals:
 
 private slots:
-    void DodajWydatekClicked();
+    void DodajPrzychodClicked();
 
 private:
     QString m_userEmail;
@@ -33,9 +35,9 @@ private:
     QLineEdit *opisLineEdit;
     QDateEdit *dataEdit;
     QComboBox *kategoriaCombo;
-    QPushButton *dodajWydatekButton;
+    QPushButton *dodajPrzychodButton;
 
     DatabaseManager* m_dbManager = nullptr;
 };
 
-#endif // TAB_WYDATKI_HPP
+#endif // TAB_PRZYCHODY_HPP

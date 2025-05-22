@@ -1,5 +1,5 @@
 /********************************************************************************
-** Form generated from reading UI file 'start_log_reg.ui'
+** Form generated from reading UI file 'Start_Log_Reg.ui'
 **
 ** Created by: Qt User Interface Compiler version 5.15.13
 **
@@ -42,14 +42,24 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QWidget *Login_page;
     QVBoxLayout *verticalLayout_2;
-    QLabel *label_2;
     QSpacerItem *verticalSpacer;
+    QLabel *label_2;
     QLabel *label_3;
-    QLineEdit *lineEdit;
+    QHBoxLayout *horizontalLayout_6;
+    QLineEdit *lineEdit_emailLog;
+    QSpacerItem *horizontalSpacer_6;
     QLabel *label_4;
+    QHBoxLayout *horizontalLayout_7;
     QLineEdit *lineEdit_passwordLog;
+    QSpacerItem *horizontalSpacer_7;
     QSpacerItem *verticalSpacer_2;
+    QHBoxLayout *horizontalLayout_8;
+    QSpacerItem *horizontalSpacer_8;
+    QPushButton *pushButton_zalogujSie;
+    QSpacerItem *horizontalSpacer_13;
     QPushButton *pushButton;
+    QSpacerItem *horizontalSpacer_12;
+    QSpacerItem *horizontalSpacer_9;
     QWidget *Register_page;
     QVBoxLayout *verticalLayout_3;
     QLabel *label_5;
@@ -65,14 +75,19 @@ public:
     QLabel *label_10;
     QLineEdit *lineEdit_passwordReg;
     QSpacerItem *verticalSpacer_4;
+    QHBoxLayout *horizontalLayout_9;
+    QSpacerItem *horizontalSpacer_10;
+    QPushButton *pushButton_zarejestrujSie;
+    QSpacerItem *horizontalSpacer_14;
     QPushButton *pushButton_2;
+    QSpacerItem *horizontalSpacer_11;
     QHBoxLayout *horizontalLayout;
 
     void setupUi(QWidget *Start_Log_Reg)
     {
         if (Start_Log_Reg->objectName().isEmpty())
             Start_Log_Reg->setObjectName(QString::fromUtf8("Start_Log_Reg"));
-        Start_Log_Reg->resize(494, 461);
+        Start_Log_Reg->resize(1100, 461);
         verticalLayout = new QVBoxLayout(Start_Log_Reg);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout_2 = new QHBoxLayout();
@@ -83,6 +98,10 @@ public:
 
         label = new QLabel(Start_Log_Reg);
         label->setObjectName(QString::fromUtf8("label"));
+        QFont font;
+        font.setPointSize(20);
+        font.setBold(true);
+        label->setFont(font);
 
         horizontalLayout_2->addWidget(label);
 
@@ -131,44 +150,92 @@ public:
         Login_page->setObjectName(QString::fromUtf8("Login_page"));
         verticalLayout_2 = new QVBoxLayout(Login_page);
         verticalLayout_2->setObjectName(QString::fromUtf8("verticalLayout_2"));
-        label_2 = new QLabel(Login_page);
-        label_2->setObjectName(QString::fromUtf8("label_2"));
-
-        verticalLayout_2->addWidget(label_2);
-
         verticalSpacer = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_2->addItem(verticalSpacer);
+
+        label_2 = new QLabel(Login_page);
+        label_2->setObjectName(QString::fromUtf8("label_2"));
+        label_2->setFont(font);
+
+        verticalLayout_2->addWidget(label_2);
 
         label_3 = new QLabel(Login_page);
         label_3->setObjectName(QString::fromUtf8("label_3"));
 
         verticalLayout_2->addWidget(label_3);
 
-        lineEdit = new QLineEdit(Login_page);
-        lineEdit->setObjectName(QString::fromUtf8("lineEdit"));
+        horizontalLayout_6 = new QHBoxLayout();
+        horizontalLayout_6->setObjectName(QString::fromUtf8("horizontalLayout_6"));
+        horizontalLayout_6->setContentsMargins(-1, 0, -1, -1);
+        lineEdit_emailLog = new QLineEdit(Login_page);
+        lineEdit_emailLog->setObjectName(QString::fromUtf8("lineEdit_emailLog"));
 
-        verticalLayout_2->addWidget(lineEdit);
+        horizontalLayout_6->addWidget(lineEdit_emailLog);
+
+        horizontalSpacer_6 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_6->addItem(horizontalSpacer_6);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_6);
 
         label_4 = new QLabel(Login_page);
         label_4->setObjectName(QString::fromUtf8("label_4"));
 
         verticalLayout_2->addWidget(label_4);
 
+        horizontalLayout_7 = new QHBoxLayout();
+        horizontalLayout_7->setObjectName(QString::fromUtf8("horizontalLayout_7"));
+        horizontalLayout_7->setContentsMargins(-1, 0, -1, -1);
         lineEdit_passwordLog = new QLineEdit(Login_page);
         lineEdit_passwordLog->setObjectName(QString::fromUtf8("lineEdit_passwordLog"));
         lineEdit_passwordLog->setEchoMode(QLineEdit::Password);
 
-        verticalLayout_2->addWidget(lineEdit_passwordLog);
+        horizontalLayout_7->addWidget(lineEdit_passwordLog);
+
+        horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_7->addItem(horizontalSpacer_7);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_7);
 
         verticalSpacer_2 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_2->addItem(verticalSpacer_2);
 
+        horizontalLayout_8 = new QHBoxLayout();
+        horizontalLayout_8->setObjectName(QString::fromUtf8("horizontalLayout_8"));
+        horizontalLayout_8->setContentsMargins(-1, 0, -1, -1);
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_8);
+
+        pushButton_zalogujSie = new QPushButton(Login_page);
+        pushButton_zalogujSie->setObjectName(QString::fromUtf8("pushButton_zalogujSie"));
+
+        horizontalLayout_8->addWidget(pushButton_zalogujSie);
+
+        horizontalSpacer_13 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_13);
+
         pushButton = new QPushButton(Login_page);
         pushButton->setObjectName(QString::fromUtf8("pushButton"));
 
-        verticalLayout_2->addWidget(pushButton);
+        horizontalLayout_8->addWidget(pushButton);
+
+        horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_12);
+
+        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_8->addItem(horizontalSpacer_9);
+
+
+        verticalLayout_2->addLayout(horizontalLayout_8);
 
         stackedWidget->addWidget(Login_page);
         Register_page = new QWidget();
@@ -191,6 +258,7 @@ public:
 
         lineEdit_emailReg = new QLineEdit(Register_page);
         lineEdit_emailReg->setObjectName(QString::fromUtf8("lineEdit_emailReg"));
+        lineEdit_emailReg->setMaximumSize(QSize(500, 16777215));
 
         verticalLayout_3->addWidget(lineEdit_emailReg);
 
@@ -201,6 +269,7 @@ public:
 
         lineEdit_firstNameReg = new QLineEdit(Register_page);
         lineEdit_firstNameReg->setObjectName(QString::fromUtf8("lineEdit_firstNameReg"));
+        lineEdit_firstNameReg->setMaximumSize(QSize(500, 16777215));
 
         verticalLayout_3->addWidget(lineEdit_firstNameReg);
 
@@ -211,6 +280,7 @@ public:
 
         lineEdit_lastNameReg = new QLineEdit(Register_page);
         lineEdit_lastNameReg->setObjectName(QString::fromUtf8("lineEdit_lastNameReg"));
+        lineEdit_lastNameReg->setMaximumSize(QSize(500, 16777215));
 
         verticalLayout_3->addWidget(lineEdit_lastNameReg);
 
@@ -221,6 +291,8 @@ public:
 
         dateEdit_DOB_Reg = new QDateEdit(Register_page);
         dateEdit_DOB_Reg->setObjectName(QString::fromUtf8("dateEdit_DOB_Reg"));
+        dateEdit_DOB_Reg->setMaximumSize(QSize(200, 16777215));
+        dateEdit_DOB_Reg->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         verticalLayout_3->addWidget(dateEdit_DOB_Reg);
 
@@ -231,6 +303,7 @@ public:
 
         lineEdit_passwordReg = new QLineEdit(Register_page);
         lineEdit_passwordReg->setObjectName(QString::fromUtf8("lineEdit_passwordReg"));
+        lineEdit_passwordReg->setMaximumSize(QSize(500, 16777215));
         lineEdit_passwordReg->setEchoMode(QLineEdit::Password);
 
         verticalLayout_3->addWidget(lineEdit_passwordReg);
@@ -239,10 +312,33 @@ public:
 
         verticalLayout_3->addItem(verticalSpacer_4);
 
+        horizontalLayout_9 = new QHBoxLayout();
+        horizontalLayout_9->setObjectName(QString::fromUtf8("horizontalLayout_9"));
+        horizontalLayout_9->setContentsMargins(-1, 0, -1, -1);
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_10);
+
+        pushButton_zarejestrujSie = new QPushButton(Register_page);
+        pushButton_zarejestrujSie->setObjectName(QString::fromUtf8("pushButton_zarejestrujSie"));
+
+        horizontalLayout_9->addWidget(pushButton_zarejestrujSie);
+
+        horizontalSpacer_14 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_14);
+
         pushButton_2 = new QPushButton(Register_page);
         pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
 
-        verticalLayout_3->addWidget(pushButton_2);
+        horizontalLayout_9->addWidget(pushButton_2);
+
+        horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_9->addItem(horizontalSpacer_11);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_9);
 
         stackedWidget->addWidget(Register_page);
 
@@ -256,7 +352,7 @@ public:
 
         retranslateUi(Start_Log_Reg);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Start_Log_Reg);
@@ -271,14 +367,16 @@ public:
         label_2->setText(QCoreApplication::translate("Start_Log_Reg", "Logowanie", nullptr));
         label_3->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_4->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
-        pushButton->setText(QCoreApplication::translate("Start_Log_Reg", "Zaloguj si\304\231", nullptr));
+        pushButton_zalogujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zaloguj si\304\231", nullptr));
+        pushButton->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
         label_5->setText(QCoreApplication::translate("Start_Log_Reg", "Rejestracja", nullptr));
         label_6->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_7->setText(QCoreApplication::translate("Start_Log_Reg", "Imi\304\231", nullptr));
         label_8->setText(QCoreApplication::translate("Start_Log_Reg", "Nazwisko", nullptr));
         label_9->setText(QCoreApplication::translate("Start_Log_Reg", "Data urodzenia", nullptr));
         label_10->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Start_Log_Reg", "Zarejestruj", nullptr));
+        pushButton_zarejestrujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zarejestruj", nullptr));
+        pushButton_2->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
     } // retranslateUi
 
 };

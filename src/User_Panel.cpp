@@ -1,8 +1,6 @@
-
-//#include "IncomeForm.hpp"
 #include<QMessageBox>
-#include "user_panel.hpp"
-#include "ui_user_panel.h"
+#include "User_Panel.hpp"
+#include "ui_User_Panel.h"
 #include "Tab_Wydatki.hpp"
 #include<QMessageBox>
 #include <QSqlDatabase>
@@ -10,25 +8,21 @@
 User_Panel::User_Panel(QString email,QWidget *parent)
     : QWidget(parent),
     ui(new Ui::User_Panel),
-    userEmail(email),wydatkiManager(nullptr),  uzytkownicyManager(nullptr),m_dbManager(nullptr)
-    //m_incomeHandler(nullptr)
+    userEmail(email),m_dbManager(nullptr),wydatkiManager(nullptr), przychodyManager(nullptr), uzytkownicyManager(nullptr)
+
 {
     ui->setupUi(this);
-
+    ui->tabWidget->setCurrentIndex(0);
     connect(ui->button_logout, &QPushButton::clicked, this, &User_Panel::logoutRequested);
     ui->label_name->setText(userEmail);
     ui->dateEdit_dataPrzychod->setDate(QDate::currentDate());
+     ui->dateEdit_dataWydatek->setDate(QDate::currentDate());
+
+
  //   loadUserRole();
 
  //    loadIncomeCategories();
 
-    //m_incomeHandler = new IncomeForm(ui->doubleSpinBox_kwotaPrzychod,
-      //                                  ui->comboBox_kategoriaPrzychod,
-        //                                ui->dateEdit_dataPrzychod,
-          //                              ui->lineEdit_Notatka,
-            //                            userEmail,
-              //                          this); // this jako parent
-    //connect(ui->pushButton, &QPushButton::clicked, m_incomeHandler, &IncomeForm::addIncome);
 
 connect(ui->pushButton_dodajKategoriePrzychod, &QPushButton::clicked, this, &User_Panel::addNewIncomeCategory);
 
@@ -53,11 +47,19 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
     }
 
     if (!uzytkownicyManager) {
-        uzytkownicyManager = new Tab_Uzytkownicy(ui->tab_uzytkownicy, this);
+        uzytkownicyManager = new Tab_Uzytkownicy(ui->tab_Uzytkownicy, this);
         uzytkownicyManager->setDatabaseManager(m_dbManager);
     } else {
         uzytkownicyManager->setDatabaseManager(m_dbManager);
     }
+
+    if (!przychodyManager) {
+        przychodyManager = new Tab_Przychody(userEmail, ui->tab_Przychody, this);
+        przychodyManager->setDatabaseManager(m_dbManager);
+    } else {
+        przychodyManager->setDatabaseManager(m_dbManager);
+    }
+
 }
 
 
@@ -89,7 +91,7 @@ void User_Panel::loadIncomeCategories()
 User_Panel::~User_Panel()
 {
     delete ui;
-  //   delete m_incomeHandler;
+
 }
 
 void User_Panel::setUserEmail(const QString& email)

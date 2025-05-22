@@ -18,25 +18,21 @@ OBJECTS_DIR = build/Obj
 QT+=widgets
 QT += sql
 SOURCES += src/main.cpp \
-           StartLogReg.cpp \
            src/DatabaseManager.cpp \
-           src/IncomeForm.cpp \
            src/MainWindow.cpp \
-           src/MainMenu.cpp \
-           src/LogReg.cpp  \
+           src/Start_Log_Reg.cpp \
+           src/Tab_Przychody.cpp \
            src/Tab_Uzytkownicy.cpp \
            src/Tab_Wydatki.cpp \
-           src/user_panel.cpp
+           src/User_Panel.cpp
 HEADERS += inc/MainWindow.hpp \
-    StartLogReg.hpp \
     inc/DatabaseManager.hpp \
-    inc/IncomeForm.hpp \
-            inc/MainMenu.hpp \
-           inc/LogReg.hpp  \
+    inc/Start_Log_Reg.hpp \
+    inc/Tab_Przychody.hpp \
     inc/Tab_Uzytkownicy.hpp \
     inc/Tab_Wydatki.hpp \
-    src/user_panel.hpp
+    inc/User_Panel.hpp
 
 FORMS += \
-    StartLogReg.ui \
-    src/user_panel.ui
+    ui/Start_Log_Reg.ui \
+    ui/User_Panel.ui

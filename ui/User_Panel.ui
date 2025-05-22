@@ -55,7 +55,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="user_data">
       <attribute name="title">
@@ -275,7 +275,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Przychody">
+     <widget class="QWidget" name="tab_Przychody">
       <attribute name="title">
        <string>Przychody</string>
       </attribute>
@@ -336,7 +336,7 @@
        <item>
         <widget class="QLabel" name="label_3">
          <property name="text">
-          <string>Kategoria przychodu</string>
+          <string>Kategoria</string>
          </property>
         </widget>
        </item>
@@ -412,7 +412,7 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_Notatka">
+        <widget class="QLineEdit" name="lineEdit_notatkaPrzychod">
          <property name="minimumSize">
           <size>
            <width>300</width>
@@ -441,7 +441,7 @@
         </spacer>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton">
+        <widget class="QPushButton" name="pushButton_dodajPrzychod">
          <property name="text">
           <string>Dodaj przychód</string>
          </property>
@@ -504,7 +504,7 @@
        <item>
         <widget class="QLabel" name="label_15">
          <property name="text">
-          <string>Kategoria wydatku</string>
+          <string>Kategoria</string>
          </property>
         </widget>
        </item>
@@ -622,36 +622,103 @@
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_3">
          <item>
-          <widget class="QLabel" name="label_7">
-           <property name="text">
-            <string>Nowa kategoria:</string>
+          <layout class="QHBoxLayout" name="horizontalLayout_31">
+           <property name="topMargin">
+            <number>9</number>
            </property>
-          </widget>
-         </item>
-         <item>
-          <widget class="QLineEdit" name="lineEdit_nowaKategoriaPrzychod"/>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_2">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_dodajKategoriePrzychod">
-           <property name="text">
-            <string>Dodaj kategorię</string>
-           </property>
-          </widget>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_8">
+             <item>
+              <widget class="QLabel" name="label_7">
+               <property name="text">
+                <string>Nowa kategoria:</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QLineEdit" name="lineEdit_nowaKategoriaPrzychod"/>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_dodajKategoriePrzychod">
+               <property name="text">
+                <string>Dodaj kategorię</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_9">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+           <item>
+            <spacer name="horizontalSpacer_26">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <layout class="QVBoxLayout" name="verticalLayout_19">
+             <property name="leftMargin">
+              <number>9</number>
+             </property>
+             <item>
+              <widget class="QLabel" name="label_46">
+               <property name="text">
+                <string>Dostępne kategorie</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QComboBox" name="comboBox_7"/>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_2">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
+           </item>
+          </layout>
          </item>
         </layout>
+       </item>
+       <item>
+        <spacer name="horizontalSpacer_27">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </widget>
@@ -663,7 +730,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget_2">
          <property name="currentIndex">
-          <number>1</number>
+          <number>0</number>
          </property>
          <widget class="QWidget" name="page_CP_lista">
           <layout class="QHBoxLayout" name="horizontalLayout_21">
@@ -1167,7 +1234,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_uzytkownicy">
+     <widget class="QWidget" name="tab_Uzytkownicy">
       <attribute name="title">
        <string>Użytkownicy</string>
       </attribute>

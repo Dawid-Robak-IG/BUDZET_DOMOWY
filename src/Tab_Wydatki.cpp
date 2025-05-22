@@ -1,6 +1,4 @@
 #include "../inc/Tab_Wydatki.hpp"
-#include <QVariant>
-#include <QSqlError>
 
 Tab_Wydatki::Tab_Wydatki(const QString& userEmail,QWidget *root, QWidget *parent)
     : QWidget{parent},m_userEmail(userEmail)
@@ -13,21 +11,10 @@ Tab_Wydatki::Tab_Wydatki(const QString& userEmail,QWidget *root, QWidget *parent
     dodajWydatekButton = root->findChild<QPushButton*>("pushButton_dodajWydatek");
 
     //podłączenie do konkretnych elementów
-    if (kwotaSpinBox) {
-        connect(kwotaSpinBox, static_cast<void (QDoubleSpinBox::*)(double)>(&QDoubleSpinBox::valueChanged),
-                this, &Tab_Wydatki::KwotaChanged);
-    }
 
     if(dodajWydatekButton){
         connect(dodajWydatekButton, &QPushButton::clicked, this, &Tab_Wydatki::DodajWydatekClicked);
     }
-}
-
-
-void Tab_Wydatki::KwotaChanged(double value)
-{
-    qDebug() << "Kwota zmieniona na:" << value;
-    // Tutaj można zaktualizować UI, wysłać sygnał dalej itp.
 }
 
 
@@ -38,6 +25,9 @@ void Tab_Wydatki::DodajWydatekClicked(){
         return;}
 
 
-    m_dbManager->addWydatek(m_userEmail,kwotaSpinBox->value(),dataEdit->date(),opisLineEdit->text(),kategoriaCombo->currentText());
-
+    if( m_dbManager->addWydatek(m_userEmail,kwotaSpinBox->value(),dataEdit->date(),opisLineEdit->text(),kategoriaCombo->currentText())){
+    QMessageBox::information(this, "Sukces", "Przychód został dodany!");
+} else {
+    QMessageBox::warning(this, "Błąd", "Nie udało się dodać wydatku.");
+}
 }

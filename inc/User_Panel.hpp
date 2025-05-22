@@ -1,10 +1,9 @@
-#ifndef USER_PANEL_HPP
-#define USER_PANEL_HPP
+#ifndef USER_PANEL_H
+#define USER_PANEL_H
 
 #include <QWidget>
-#include "ui_user_panel.h"
+#include "ui_User_Panel.h"
 #include "DatabaseManager.hpp"
-#include "IncomeForm.hpp"
 #include <QSqlQuery>
 #include <QSqlError>
 #include <QDebug>
@@ -12,6 +11,7 @@
 //zarządcy do zakładek i ich elementów
 #include "Tab_Wydatki.hpp"
 #include "Tab_Uzytkownicy.hpp"
+#include "Tab_Przychody.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -41,15 +41,15 @@ public slots:
 
 private:
     Ui::User_Panel *ui;
+    QString userEmail;  //email zalogowanego użytkownika
+
     DatabaseManager* m_dbManager = nullptr;
 
     Tab_Wydatki *wydatkiManager;
+    Tab_Przychody *przychodyManager;
     Tab_Uzytkownicy *uzytkownicyManager;
-
-    QString userEmail;  //email zalogowanego użytkownika
-
 
     void displayUserData(const QString &email);
 };
 
-#endif // USER_PANEL_HPP
+#endif // USER_PANEL_H

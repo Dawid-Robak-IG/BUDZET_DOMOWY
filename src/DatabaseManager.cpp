@@ -80,3 +80,32 @@ bool DatabaseManager::addWydatek(const QString &email, double amount, const QDat
 
     return true;}
 
+
+bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDate &date, const QString &note, const QString &category)
+{
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+
+    query.prepare(R"(
+        INSERT INTO Operacja (Kwota, Data, Notatka, `Uzytkownik zalogowanyID`, `Kategoria Nazwa`, czy_z_cyklicznego)
+        SELECT :kwota, :data, :notatka, ID, :kategoria, 0
+        FROM `Uzytkownik zalogowany`
+        WHERE Email = :email
+    )");
+
+    query.bindValue(":kwota", amount);
+    query.bindValue(":data", date);
+    query.bindValue(":notatka", note.isEmpty() ? QVariant(QVariant::String) : note);
+    query.bindValue(":kategoria", category);
+    query.bindValue(":email", email);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd dodawania wydatku:" << query.lastError().text();
+        return false;
+    }
+
+    return true;}
