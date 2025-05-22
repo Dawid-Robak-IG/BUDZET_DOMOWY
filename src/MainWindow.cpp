@@ -38,10 +38,12 @@ void MainWindow::handleLogin(QString email) {
 
         stackedWidget->addWidget(m_userPanel);
         connect(m_userPanel, &User_Panel::logoutRequested, this, &MainWindow::handleLogout);
-
+        m_userPanel->displayUserData(email);
+        m_userPanel->goToStartPage();
     } else {
         m_userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
         m_userPanel->displayUserData(email);      // I przeładowujemy rolę
+        m_userPanel->goToStartPage();
     }
 
 

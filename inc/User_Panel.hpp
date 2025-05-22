@@ -14,6 +14,7 @@
 #include "Tab_Przychody.hpp"
 #include "Tab_Kategorie.hpp"
 #include "Tab_DaneUzytkownika.hpp"
+#include "Tab_CykliczneP.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -33,6 +34,8 @@ public:
     void setUserEmail(const QString& email);
 void displayUserData(const QString &email);
 
+    void goToStartPage();
+
 signals:
     void logoutRequested();
 
@@ -47,7 +50,7 @@ private:
     Tab_Uzytkownicy *uzytkownicyManager;
     Tab_Kategorie *kategorieManager;
     Tab_DaneUzytkownika *daneUzytkownikaManager;
-
+    Tab_CykliczneP* cyklicznePManager;
 
 };
 

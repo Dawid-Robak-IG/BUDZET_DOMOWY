@@ -55,7 +55,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>4</number>
      </property>
      <widget class="QWidget" name="tab_DaneUzytkownika">
       <attribute name="title">
@@ -414,7 +414,7 @@
        <item>
         <widget class="QLabel" name="label_5">
          <property name="text">
-          <string>Notatka (opcjonalne)</string>
+          <string>Notatka (opcjonalnie)</string>
          </property>
         </widget>
        </item>
@@ -738,14 +738,14 @@
       </attribute>
       <layout class="QHBoxLayout" name="horizontalLayout_15">
        <item>
-        <widget class="QStackedWidget" name="stackedWidget_2">
+        <widget class="QStackedWidget" name="stackedWidget_CykliczneP">
          <property name="currentIndex">
           <number>0</number>
          </property>
          <widget class="QWidget" name="page_CP_lista">
           <layout class="QHBoxLayout" name="horizontalLayout_21">
            <item>
-            <widget class="QTableView" name="tableView"/>
+            <widget class="QTableView" name="tableView_listaCP"/>
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_10">
@@ -753,14 +753,14 @@
               <number>20</number>
              </property>
              <item>
-              <widget class="QPushButton" name="pushButton_3">
+              <widget class="QPushButton" name="pushButton_usunCP">
                <property name="text">
                 <string>Usuń</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_4">
+              <widget class="QPushButton" name="pushButton_edytujCP">
                <property name="text">
                 <string>Edytuj</string>
                </property>
@@ -780,7 +780,7 @@
               </spacer>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_5">
+              <widget class="QPushButton" name="pushButton_nowyCP">
                <property name="text">
                 <string>Dodaj nowy przychód cykliczny</string>
                </property>
@@ -790,12 +790,12 @@
            </item>
           </layout>
          </widget>
-         <widget class="QWidget" name="page_2">
+         <widget class="QWidget" name="page_nowyCP">
           <layout class="QVBoxLayout" name="verticalLayout_6">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_22">
              <item>
-              <widget class="QPushButton" name="pushButton_11">
+              <widget class="QPushButton" name="pushButton_powrotCP">
                <property name="text">
                 <string>Powrót</string>
                </property>
@@ -844,7 +844,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_2"/>
+            <widget class="QDoubleSpinBox" name="doubleSpinBox_kwotaCP"/>
            </item>
            <item>
             <widget class="QLabel" name="label_31">
@@ -854,7 +854,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_3"/>
+            <widget class="QComboBox" name="comboBox_kategoriaCP"/>
            </item>
            <item>
             <widget class="QLabel" name="label_28">
@@ -864,7 +864,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit_2"/>
+            <widget class="QDateEdit" name="dateEdit_CP"/>
            </item>
            <item>
             <widget class="QLabel" name="label_29">
@@ -874,7 +874,7 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_4"/>
+            <widget class="QComboBox" name="comboBox_czestotliwoscCP"/>
            </item>
            <item>
             <widget class="QLabel" name="label_30">
@@ -884,10 +884,10 @@
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_3"/>
+            <widget class="QLineEdit" name="lineEdit_notatkaCP"/>
            </item>
            <item>
-            <widget class="QPushButton" name="pushButton_12">
+            <widget class="QPushButton" name="pushButton_dodajCP">
              <property name="text">
               <string>Dodaj przychód cykliczny</string>
              </property>
@@ -1418,7 +1418,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_dzieci">
+     <widget class="QWidget" name="tab_Dzieci">
       <attribute name="title">
        <string>Dzieci</string>
       </attribute>
@@ -1504,7 +1504,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="tab_relacje">
+     <widget class="QWidget" name="tab_Relacje">
       <attribute name="title">
        <string>Relacje</string>
       </attribute>

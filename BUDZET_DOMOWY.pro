@@ -21,6 +21,7 @@ SOURCES += src/main.cpp \
            src/DatabaseManager.cpp \
            src/MainWindow.cpp \
            src/Start_Log_Reg.cpp \
+           src/Tab_CykliczneP.cpp \
            src/Tab_DaneUzytkownika.cpp \
            src/Tab_Kategorie.cpp \
            src/Tab_Przychody.cpp \
@@ -30,6 +31,7 @@ SOURCES += src/main.cpp \
 HEADERS += inc/MainWindow.hpp \
     inc/DatabaseManager.hpp \
     inc/Start_Log_Reg.hpp \
+    inc/Tab_CykliczneP.hpp \
     inc/Tab_DaneUzytkownika.hpp \
     inc/Tab_Kategorie.hpp \
     inc/Tab_Przychody.hpp \

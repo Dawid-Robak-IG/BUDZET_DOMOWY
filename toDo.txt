@@ -14,6 +14,7 @@
 ->robienie zmiany hasła
 ->aktualizacja kategorii po dodaniu nowej
 -> sprawdzanie czy dane w formularzach są pooprawnie wpisywane 
+->wyciać niektóre kolumny z zakładki użytkownicy
 
 
   MOŻNA SZUKAĆ TEGO CO JEST DO ZROBIENIA SZUKAJĄC "toDo"

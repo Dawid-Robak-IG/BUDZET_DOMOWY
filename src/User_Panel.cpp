@@ -14,16 +14,12 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     przychodyManager(nullptr),
     uzytkownicyManager(nullptr),
     kategorieManager(nullptr),
-    daneUzytkownikaManager(nullptr)
+    daneUzytkownikaManager(nullptr),
+    cyklicznePManager(nullptr)
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
     connect(ui->button_logout, &QPushButton::clicked, this, &User_Panel::logoutRequested);
-
-    // connect(ui->checkBox_showPassword, &QCheckBox::toggled, this, [this](bool checked){
-    //     ui->lineEdit_passwordUD->setEchoMode(checked ? QLineEdit::Normal : QLineEdit::Password);
-    // });
-
 
 }
 
@@ -64,8 +60,13 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
     } else {
        kategorieManager->setDatabaseManager(m_dbManager);
     }
-
-
+    if (!cyklicznePManager) {
+        cyklicznePManager = new Tab_CykliczneP(userEmail, ui->tab_CykliczneP, this);
+        cyklicznePManager->setDatabaseManager(m_dbManager);
+    } else {
+        cyklicznePManager->setDatabaseManager(m_dbManager);
+    }
+//displayUserData(userEmail);
 
 }
 
@@ -79,7 +80,6 @@ User_Panel::~User_Panel()
 void User_Panel::setUserEmail(const QString& email)
 {
     userEmail = email;
-    ui->label_name->setText(userEmail);
 }
 
 
@@ -110,3 +110,7 @@ void User_Panel::displayUserData(const QString &email){
 
 }
 
+
+void User_Panel::goToStartPage() {
+     ui->tabWidget->setCurrentIndex(0);
+}
