@@ -29,14 +29,14 @@
      <item>
       <widget class="QLabel" name="label_name">
        <property name="text">
-        <string>&quot;ROLA&quot;</string>
+        <string>&quot;IMIĘ I NAZWISKO&quot;</string>
        </property>
       </widget>
      </item>
      <item>
       <widget class="QLabel" name="label_role">
        <property name="text">
-        <string>&quot;IMIĘ NAZWISKO&quot;</string>
+        <string>&quot;ROLA&quot;</string>
        </property>
       </widget>
      </item>
@@ -57,7 +57,7 @@
      <property name="currentIndex">
       <number>2</number>
      </property>
-     <widget class="QWidget" name="user_data">
+     <widget class="QWidget" name="tab_DaneUzytkownika">
       <attribute name="title">
        <string>Dane użytkownika</string>
       </attribute>
@@ -154,7 +154,11 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_13">
          <item>
-          <widget class="QLineEdit" name="lineEdit"/>
+          <widget class="QLineEdit" name="lineEdit_roleUD">
+           <property name="readOnly">
+            <bool>true</bool>
+           </property>
+          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_12">
@@ -212,9 +216,12 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_6">
          <item>
-          <widget class="QLineEdit" name="lineEdit_hasloUD">
+          <widget class="QLineEdit" name="lineEdit_passwordUD">
            <property name="echoMode">
             <enum>QLineEdit::Password</enum>
+           </property>
+           <property name="readOnly">
+            <bool>true</bool>
            </property>
           </widget>
          </item>
@@ -232,7 +239,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QCheckBox" name="checkBox">
+          <widget class="QCheckBox" name="checkBox_showPassword">
            <property name="text">
             <string>Pokaż hasło</string>
            </property>
@@ -552,6 +559,9 @@
              <height>0</height>
             </size>
            </property>
+           <property name="calendarPopup">
+            <bool>true</bool>
+           </property>
           </widget>
          </item>
          <item>
@@ -614,7 +624,7 @@
        </item>
       </layout>
      </widget>
-     <widget class="QWidget" name="Kategorie">
+     <widget class="QWidget" name="tab_Kategorie">
       <attribute name="title">
        <string>Dodaj kategorie</string>
       </attribute>
@@ -636,10 +646,10 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_nowaKategoriaPrzychod"/>
+              <widget class="QLineEdit" name="lineEdit_nowaKategoria"/>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_dodajKategoriePrzychod">
+              <widget class="QPushButton" name="pushButton_dodajKategorie">
                <property name="text">
                 <string>Dodaj kategorię</string>
                </property>
@@ -686,7 +696,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_7"/>
+              <widget class="QComboBox" name="comboBox_dostepneKategorie"/>
              </item>
              <item>
               <spacer name="verticalSpacer_2">

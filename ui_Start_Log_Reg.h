@@ -11,6 +11,7 @@
 
 #include <QtCore/QVariant>
 #include <QtWidgets/QApplication>
+#include <QtWidgets/QCheckBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QLabel>
@@ -51,13 +52,14 @@ public:
     QLabel *label_4;
     QHBoxLayout *horizontalLayout_7;
     QLineEdit *lineEdit_passwordLog;
+    QCheckBox *checkBox_showPasswordLog;
     QSpacerItem *horizontalSpacer_7;
     QSpacerItem *verticalSpacer_2;
     QHBoxLayout *horizontalLayout_8;
     QSpacerItem *horizontalSpacer_8;
     QPushButton *pushButton_zalogujSie;
     QSpacerItem *horizontalSpacer_13;
-    QPushButton *pushButton;
+    QPushButton *pushButton_powrotLog;
     QSpacerItem *horizontalSpacer_12;
     QSpacerItem *horizontalSpacer_9;
     QWidget *Register_page;
@@ -73,13 +75,16 @@ public:
     QLabel *label_9;
     QDateEdit *dateEdit_DOB_Reg;
     QLabel *label_10;
+    QHBoxLayout *horizontalLayout_5;
     QLineEdit *lineEdit_passwordReg;
+    QCheckBox *checkBox_showPasswordReg;
+    QSpacerItem *horizontalSpacer_15;
     QSpacerItem *verticalSpacer_4;
     QHBoxLayout *horizontalLayout_9;
     QSpacerItem *horizontalSpacer_10;
     QPushButton *pushButton_zarejestrujSie;
     QSpacerItem *horizontalSpacer_14;
-    QPushButton *pushButton_2;
+    QPushButton *pushButton_powrotReg;
     QSpacerItem *horizontalSpacer_11;
     QHBoxLayout *horizontalLayout;
 
@@ -194,6 +199,11 @@ public:
 
         horizontalLayout_7->addWidget(lineEdit_passwordLog);
 
+        checkBox_showPasswordLog = new QCheckBox(Login_page);
+        checkBox_showPasswordLog->setObjectName(QString::fromUtf8("checkBox_showPasswordLog"));
+
+        horizontalLayout_7->addWidget(checkBox_showPasswordLog);
+
         horizontalSpacer_7 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_7->addItem(horizontalSpacer_7);
@@ -221,10 +231,10 @@ public:
 
         horizontalLayout_8->addItem(horizontalSpacer_13);
 
-        pushButton = new QPushButton(Login_page);
-        pushButton->setObjectName(QString::fromUtf8("pushButton"));
+        pushButton_powrotLog = new QPushButton(Login_page);
+        pushButton_powrotLog->setObjectName(QString::fromUtf8("pushButton_powrotLog"));
 
-        horizontalLayout_8->addWidget(pushButton);
+        horizontalLayout_8->addWidget(pushButton_powrotLog);
 
         horizontalSpacer_12 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -301,12 +311,27 @@ public:
 
         verticalLayout_3->addWidget(label_10);
 
+        horizontalLayout_5 = new QHBoxLayout();
+        horizontalLayout_5->setObjectName(QString::fromUtf8("horizontalLayout_5"));
+        horizontalLayout_5->setContentsMargins(-1, 20, -1, -1);
         lineEdit_passwordReg = new QLineEdit(Register_page);
         lineEdit_passwordReg->setObjectName(QString::fromUtf8("lineEdit_passwordReg"));
         lineEdit_passwordReg->setMaximumSize(QSize(500, 16777215));
         lineEdit_passwordReg->setEchoMode(QLineEdit::Password);
 
-        verticalLayout_3->addWidget(lineEdit_passwordReg);
+        horizontalLayout_5->addWidget(lineEdit_passwordReg);
+
+        checkBox_showPasswordReg = new QCheckBox(Register_page);
+        checkBox_showPasswordReg->setObjectName(QString::fromUtf8("checkBox_showPasswordReg"));
+
+        horizontalLayout_5->addWidget(checkBox_showPasswordReg);
+
+        horizontalSpacer_15 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_5->addItem(horizontalSpacer_15);
+
+
+        verticalLayout_3->addLayout(horizontalLayout_5);
 
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -328,10 +353,10 @@ public:
 
         horizontalLayout_9->addItem(horizontalSpacer_14);
 
-        pushButton_2 = new QPushButton(Register_page);
-        pushButton_2->setObjectName(QString::fromUtf8("pushButton_2"));
+        pushButton_powrotReg = new QPushButton(Register_page);
+        pushButton_powrotReg->setObjectName(QString::fromUtf8("pushButton_powrotReg"));
 
-        horizontalLayout_9->addWidget(pushButton_2);
+        horizontalLayout_9->addWidget(pushButton_powrotReg);
 
         horizontalSpacer_11 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -352,7 +377,7 @@ public:
 
         retranslateUi(Start_Log_Reg);
 
-        stackedWidget->setCurrentIndex(0);
+        stackedWidget->setCurrentIndex(1);
 
 
         QMetaObject::connectSlotsByName(Start_Log_Reg);
@@ -367,16 +392,18 @@ public:
         label_2->setText(QCoreApplication::translate("Start_Log_Reg", "Logowanie", nullptr));
         label_3->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_4->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
+        checkBox_showPasswordLog->setText(QCoreApplication::translate("Start_Log_Reg", "Poka\305\274 has\305\202o", nullptr));
         pushButton_zalogujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zaloguj si\304\231", nullptr));
-        pushButton->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
+        pushButton_powrotLog->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
         label_5->setText(QCoreApplication::translate("Start_Log_Reg", "Rejestracja", nullptr));
         label_6->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_7->setText(QCoreApplication::translate("Start_Log_Reg", "Imi\304\231", nullptr));
         label_8->setText(QCoreApplication::translate("Start_Log_Reg", "Nazwisko", nullptr));
         label_9->setText(QCoreApplication::translate("Start_Log_Reg", "Data urodzenia", nullptr));
         label_10->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));
+        checkBox_showPasswordReg->setText(QCoreApplication::translate("Start_Log_Reg", "Poka\305\274 has\305\202o", nullptr));
         pushButton_zarejestrujSie->setText(QCoreApplication::translate("Start_Log_Reg", "Zarejestruj", nullptr));
-        pushButton_2->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
+        pushButton_powrotReg->setText(QCoreApplication::translate("Start_Log_Reg", "Powr\303\263t", nullptr));
     } // retranslateUi
 
 };

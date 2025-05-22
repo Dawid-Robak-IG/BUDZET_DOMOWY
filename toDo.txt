@@ -1,12 +1,21 @@
-1. Na stronie użytkownicy zablokować edycję
-2. Ustawić domyślne strony, po uruchomieniu aplikacji, po zalogowaniu, po wylogowaniu
-3. Dodać obsługę przycisków powrót
-4. Przycisk dodaj nowy wydatek cykliczny żeby przełączał stronę.
-5. Logika dodawania wpisów cyklicznych
-6. Aktualizacja kwoty budżetu
-7. Zakładka relacje fajnie jakby wyświetlało kogo ma już przypisanego dziecko i rodzic
-8. Dane użytkownika rola wyświetlać i hasło 
+-> Na stronie użytkownicy zablokować edycję
+
+-> Dodać obsługę przycisków powrót
+-> Przycisk dodaj nowy wydatek cykliczny żeby przełączał stronę.
+-> Logika dodawania wpisów cyklicznych
+-> Aktualizacja kwoty budżetu
+-> Zakładka relacje fajnie jakby wyświetlało kogo ma już przypisanego dziecko i rodzic
+-> Dane użytkownika rola wyświetlać i hasło 
+-> informacje o aplikacji?? strona startowa??
+-> Aktyalizowanie losty kategorii w zakąłdkach gdzie jest lista do wybierania
+-> czy pola w których coś się wpisuje są czyszczone
+->domysłne strony w cyklicznych 
+->przyciski powrót itp (nawigacja między stronami)
+->robienie zmiany hasła
+->aktualizacja kategorii po dodaniu nowej
+-> sprawdzanie czy dane w formularzach są pooprawnie wpisywane 
 
 
+  MOŻNA SZUKAĆ TEGO CO JEST DO ZROBIENIA SZUKAJĄC "toDo"
 WAŻNE:
-1. Zmień rolę jest wrzucone w edytuj dane
+-> Zmień rolę jest wrzucone w edytuj dane, czyli inaczej niż w etapie 2

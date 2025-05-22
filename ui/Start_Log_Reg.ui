@@ -60,7 +60,7 @@
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
      <property name="currentIndex">
-      <number>0</number>
+      <number>1</number>
      </property>
      <widget class="QWidget" name="Start_page">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -201,6 +201,13 @@
           </widget>
          </item>
          <item>
+          <widget class="QCheckBox" name="checkBox_showPasswordLog">
+           <property name="text">
+            <string>Pokaż hasło</string>
+           </property>
+          </widget>
+         </item>
+         <item>
           <spacer name="horizontalSpacer_7">
            <property name="orientation">
             <enum>Qt::Horizontal</enum>
@@ -267,7 +274,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton">
+          <widget class="QPushButton" name="pushButton_powrotLog">
            <property name="text">
             <string>Powrót</string>
            </property>
@@ -404,17 +411,44 @@
         </widget>
        </item>
        <item>
-        <widget class="QLineEdit" name="lineEdit_passwordReg">
-         <property name="maximumSize">
-          <size>
-           <width>500</width>
-           <height>16777215</height>
-          </size>
+        <layout class="QHBoxLayout" name="horizontalLayout_5">
+         <property name="topMargin">
+          <number>20</number>
          </property>
-         <property name="echoMode">
-          <enum>QLineEdit::Password</enum>
-         </property>
-        </widget>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_passwordReg">
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
+            </size>
+           </property>
+           <property name="echoMode">
+            <enum>QLineEdit::Password</enum>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <widget class="QCheckBox" name="checkBox_showPasswordReg">
+           <property name="text">
+            <string>Pokaż hasło</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_15">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>40</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+        </layout>
        </item>
        <item>
         <spacer name="verticalSpacer_4">
@@ -468,7 +502,7 @@
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_2">
+          <widget class="QPushButton" name="pushButton_powrotReg">
            <property name="text">
             <string>Powrót</string>
            </property>

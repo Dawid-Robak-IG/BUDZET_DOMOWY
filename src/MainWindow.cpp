@@ -35,21 +35,22 @@ void MainWindow::handleLogin(QString email) {
     if (!m_userPanel) {
         m_userPanel = new User_Panel(email,this);
         m_userPanel->setDatabaseManager(m_dbManager);
-        m_userPanel->loadUserRole();
-        m_userPanel->loadIncomeCategories();
 
         stackedWidget->addWidget(m_userPanel);
         connect(m_userPanel, &User_Panel::logoutRequested, this, &MainWindow::handleLogout);
 
     } else {
         m_userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
-        m_userPanel->loadUserRole();      // I przeładowujemy rolę
+        m_userPanel->displayUserData(email);      // I przeładowujemy rolę
     }
-        stackedWidget->setCurrentWidget(m_userPanel);
+
+
+    stackedWidget->setCurrentWidget(m_userPanel);
 }
 
 
 void MainWindow::handleLogout() {
     qDebug() << "Wylogowywanie...";
+    logRegScreen->goToStartPage();
     stackedWidget->setCurrentWidget(logRegScreen);
 }

@@ -1,5 +1,6 @@
-#ifndef TAB_WYDATKI_HPP
-#define TAB_WYDATKI_HPP
+#ifndef TAB_KATEGORIE_HPP
+#define TAB_KATEGORIE_HPP
+
 #include "DatabaseManager.hpp"
 
 #include <QWidget>
@@ -14,30 +15,28 @@
 #include <QSqlError>
 #include <QMessageBox>
 
-class Tab_Wydatki : public QWidget
+
+class Tab_Kategorie : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Tab_Wydatki(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
+    explicit Tab_Kategorie(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
 
 signals:
 
 private slots:
-    void DodajWydatekClicked();
-
+    void DodajKategorieClicked();
 private:
     QString m_userEmail;
 
-    QDoubleSpinBox *kwotaSpinBox;
-    QLineEdit *opisLineEdit;
-    QDateEdit *dataEdit;
+    QLineEdit *nowaKategoriaLineEdit;
+    QPushButton *dodajKategorieButton;
     QComboBox *kategoriaCombo;
-    QPushButton *dodajWydatekButton;
 
     DatabaseManager* m_dbManager = nullptr;
 
-    void loadKategorie();
+     void loadKategorie();
 };
 
-#endif // TAB_WYDATKI_HPP
+#endif // TAB_KATEGORIE_HPP

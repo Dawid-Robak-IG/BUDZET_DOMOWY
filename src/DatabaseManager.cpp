@@ -104,8 +104,65 @@ bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDa
     query.bindValue(":email", email);
 
     if (!query.exec()) {
-        qDebug() << "Błąd dodawania wydatku:" << query.lastError().text();
+        qDebug() << "Błąd dodawania przychodu:" << query.lastError().text();
         return false;
     }
 
     return true;}
+
+
+bool DatabaseManager::addKategoria(const QString &email, const QString &nowaKategoria){
+
+
+
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+
+    if (nowaKategoria.trimmed().isEmpty()) {
+        qDebug() << "Nazwa kategorii jest pusta!";
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+
+    query.prepare(R"(
+        INSERT INTO Kategoria (Nazwa, `Uzytkownik zalogowanyID`)
+        SELECT :nazwa, ID
+        FROM `Uzytkownik zalogowany`
+        WHERE Email = :email
+    )");
+
+    query.bindValue(":nazwa", nowaKategoria);
+    query.bindValue(":email", email);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd dodawania kategorii:" << query.lastError().text();
+        return false;
+    }
+
+    return true;
+
+}
+
+QStringList DatabaseManager::getAllKategorie() {
+    QStringList kategorie;
+
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return kategorie;
+    }
+
+    QSqlQuery query("SELECT Nazwa FROM Kategoria", m_db);
+
+    if (query.exec()) {
+        while (query.next()) {
+            kategorie << query.value(0).toString();
+        }
+    } else {
+        qDebug() << "Błąd pobierania kategorii:" << query.lastError().text();
+    }
+
+    return kategorie;
+}

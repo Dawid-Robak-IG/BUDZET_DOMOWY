@@ -12,6 +12,8 @@
 #include "Tab_Wydatki.hpp"
 #include "Tab_Uzytkownicy.hpp"
 #include "Tab_Przychody.hpp"
+#include "Tab_Kategorie.hpp"
+#include "Tab_DaneUzytkownika.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -29,15 +31,10 @@ public:
     DatabaseManager* getDatabaseManager() const { return m_dbManager; }
 
     void setUserEmail(const QString& email);
-    void loadUserRole();
-
-    void loadIncomeCategories();
+void displayUserData(const QString &email);
 
 signals:
     void logoutRequested();
-
-public slots:
-    void addNewIncomeCategory();
 
 private:
     Ui::User_Panel *ui;
@@ -48,8 +45,10 @@ private:
     Tab_Wydatki *wydatkiManager;
     Tab_Przychody *przychodyManager;
     Tab_Uzytkownicy *uzytkownicyManager;
+    Tab_Kategorie *kategorieManager;
+    Tab_DaneUzytkownika *daneUzytkownikaManager;
 
-    void displayUserData(const QString &email);
+
 };
 
 #endif // USER_PANEL_H

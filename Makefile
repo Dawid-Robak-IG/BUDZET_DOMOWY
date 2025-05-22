@@ -56,12 +56,16 @@ SOURCES       = src/main.cpp \
 		src/DatabaseManager.cpp \
 		src/MainWindow.cpp \
 		src/Start_Log_Reg.cpp \
+		src/Tab_DaneUzytkownika.cpp \
+		src/Tab_Kategorie.cpp \
 		src/Tab_Przychody.cpp \
 		src/Tab_Uzytkownicy.cpp \
 		src/Tab_Wydatki.cpp \
 		src/User_Panel.cpp moc_MainWindow.cpp \
 		moc_DatabaseManager.cpp \
 		moc_Start_Log_Reg.cpp \
+		moc_Tab_DaneUzytkownika.cpp \
+		moc_Tab_Kategorie.cpp \
 		moc_Tab_Przychody.cpp \
 		moc_Tab_Uzytkownicy.cpp \
 		moc_Tab_Wydatki.cpp \
@@ -70,6 +74,8 @@ OBJECTS       = build/Obj/main.o \
 		build/Obj/DatabaseManager.o \
 		build/Obj/MainWindow.o \
 		build/Obj/Start_Log_Reg.o \
+		build/Obj/Tab_DaneUzytkownika.o \
+		build/Obj/Tab_Kategorie.o \
 		build/Obj/Tab_Przychody.o \
 		build/Obj/Tab_Uzytkownicy.o \
 		build/Obj/Tab_Wydatki.o \
@@ -77,6 +83,8 @@ OBJECTS       = build/Obj/main.o \
 		build/Obj/moc_MainWindow.o \
 		build/Obj/moc_DatabaseManager.o \
 		build/Obj/moc_Start_Log_Reg.o \
+		build/Obj/moc_Tab_DaneUzytkownika.o \
+		build/Obj/moc_Tab_Kategorie.o \
 		build/Obj/moc_Tab_Przychody.o \
 		build/Obj/moc_Tab_Uzytkownicy.o \
 		build/Obj/moc_Tab_Wydatki.o \
@@ -163,6 +171,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		BUDZET_DOMOWY.pro inc/MainWindow.hpp \
 		inc/DatabaseManager.hpp \
 		inc/Start_Log_Reg.hpp \
+		inc/Tab_DaneUzytkownika.hpp \
+		inc/Tab_Kategorie.hpp \
 		inc/Tab_Przychody.hpp \
 		inc/Tab_Uzytkownicy.hpp \
 		inc/Tab_Wydatki.hpp \
@@ -170,6 +180,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/DatabaseManager.cpp \
 		src/MainWindow.cpp \
 		src/Start_Log_Reg.cpp \
+		src/Tab_DaneUzytkownika.cpp \
+		src/Tab_Kategorie.cpp \
 		src/Tab_Przychody.cpp \
 		src/Tab_Uzytkownicy.cpp \
 		src/Tab_Wydatki.cpp \
@@ -361,8 +373,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents inc/MainWindow.hpp inc/DatabaseManager.hpp inc/Start_Log_Reg.hpp inc/Tab_Przychody.hpp inc/Tab_Uzytkownicy.hpp inc/Tab_Wydatki.hpp inc/User_Panel.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp src/DatabaseManager.cpp src/MainWindow.cpp src/Start_Log_Reg.cpp src/Tab_Przychody.cpp src/Tab_Uzytkownicy.cpp src/Tab_Wydatki.cpp src/User_Panel.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents inc/MainWindow.hpp inc/DatabaseManager.hpp inc/Start_Log_Reg.hpp inc/Tab_DaneUzytkownika.hpp inc/Tab_Kategorie.hpp inc/Tab_Przychody.hpp inc/Tab_Uzytkownicy.hpp inc/Tab_Wydatki.hpp inc/User_Panel.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp src/DatabaseManager.cpp src/MainWindow.cpp src/Start_Log_Reg.cpp src/Tab_DaneUzytkownika.cpp src/Tab_Kategorie.cpp src/Tab_Przychody.cpp src/Tab_Uzytkownicy.cpp src/Tab_Wydatki.cpp src/User_Panel.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ui/Start_Log_Reg.ui ui/User_Panel.ui $(DISTDIR)/
 
 
@@ -395,9 +407,9 @@ compiler_moc_predefs_clean:
 moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc_MainWindow.cpp moc_DatabaseManager.cpp moc_Start_Log_Reg.cpp moc_Tab_Przychody.cpp moc_Tab_Uzytkownicy.cpp moc_Tab_Wydatki.cpp moc_User_Panel.cpp
+compiler_moc_header_make_all: moc_MainWindow.cpp moc_DatabaseManager.cpp moc_Start_Log_Reg.cpp moc_Tab_DaneUzytkownika.cpp moc_Tab_Kategorie.cpp moc_Tab_Przychody.cpp moc_Tab_Uzytkownicy.cpp moc_Tab_Wydatki.cpp moc_User_Panel.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc_MainWindow.cpp moc_DatabaseManager.cpp moc_Start_Log_Reg.cpp moc_Tab_Przychody.cpp moc_Tab_Uzytkownicy.cpp moc_Tab_Wydatki.cpp moc_User_Panel.cpp
+	-$(DEL_FILE) moc_MainWindow.cpp moc_DatabaseManager.cpp moc_Start_Log_Reg.cpp moc_Tab_DaneUzytkownika.cpp moc_Tab_Kategorie.cpp moc_Tab_Przychody.cpp moc_Tab_Uzytkownicy.cpp moc_Tab_Wydatki.cpp moc_User_Panel.cpp
 moc_MainWindow.cpp: inc/MainWindow.hpp \
 		inc/Start_Log_Reg.hpp \
 		inc/DatabaseManager.hpp \
@@ -406,6 +418,7 @@ moc_MainWindow.cpp: inc/MainWindow.hpp \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
 		inc/Tab_Przychody.hpp \
+		inc/Tab_Kategorie.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/MainWindow.hpp -o moc_MainWindow.cpp
@@ -420,6 +433,18 @@ moc_Start_Log_Reg.cpp: inc/Start_Log_Reg.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/Start_Log_Reg.hpp -o moc_Start_Log_Reg.cpp
+
+moc_Tab_DaneUzytkownika.cpp: inc/Tab_DaneUzytkownika.hpp \
+		inc/DatabaseManager.hpp \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/Tab_DaneUzytkownika.hpp -o moc_Tab_DaneUzytkownika.cpp
+
+moc_Tab_Kategorie.cpp: inc/Tab_Kategorie.hpp \
+		inc/DatabaseManager.hpp \
+		moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/Tab_Kategorie.hpp -o moc_Tab_Kategorie.cpp
 
 moc_Tab_Przychody.cpp: inc/Tab_Przychody.hpp \
 		inc/DatabaseManager.hpp \
@@ -445,6 +470,7 @@ moc_User_Panel.cpp: inc/User_Panel.hpp \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
 		inc/Tab_Przychody.hpp \
+		inc/Tab_Kategorie.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/User_Panel.hpp -o moc_User_Panel.cpp
@@ -481,7 +507,8 @@ build/Obj/main.o: src/main.cpp inc/MainWindow.hpp \
 		ui_User_Panel.h \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
-		inc/Tab_Przychody.hpp
+		inc/Tab_Przychody.hpp \
+		inc/Tab_Kategorie.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/main.o src/main.cpp
 
 build/Obj/DatabaseManager.o: src/DatabaseManager.cpp inc/DatabaseManager.hpp
@@ -494,13 +521,22 @@ build/Obj/MainWindow.o: src/MainWindow.cpp inc/MainWindow.hpp \
 		ui_User_Panel.h \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
-		inc/Tab_Przychody.hpp
+		inc/Tab_Przychody.hpp \
+		inc/Tab_Kategorie.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/MainWindow.o src/MainWindow.cpp
 
 build/Obj/Start_Log_Reg.o: src/Start_Log_Reg.cpp inc/Start_Log_Reg.hpp \
 		inc/DatabaseManager.hpp \
 		ui_Start_Log_Reg.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Start_Log_Reg.o src/Start_Log_Reg.cpp
+
+build/Obj/Tab_DaneUzytkownika.o: src/Tab_DaneUzytkownika.cpp inc/Tab_DaneUzytkownika.hpp \
+		inc/DatabaseManager.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Tab_DaneUzytkownika.o src/Tab_DaneUzytkownika.cpp
+
+build/Obj/Tab_Kategorie.o: src/Tab_Kategorie.cpp inc/Tab_Kategorie.hpp \
+		inc/DatabaseManager.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Tab_Kategorie.o src/Tab_Kategorie.cpp
 
 build/Obj/Tab_Przychody.o: src/Tab_Przychody.cpp inc/Tab_Przychody.hpp \
 		inc/DatabaseManager.hpp
@@ -519,7 +555,8 @@ build/Obj/User_Panel.o: src/User_Panel.cpp inc/User_Panel.hpp \
 		inc/DatabaseManager.hpp \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
-		inc/Tab_Przychody.hpp
+		inc/Tab_Przychody.hpp \
+		inc/Tab_Kategorie.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/User_Panel.o src/User_Panel.cpp
 
 build/Obj/moc_MainWindow.o: moc_MainWindow.cpp 
@@ -530,6 +567,12 @@ build/Obj/moc_DatabaseManager.o: moc_DatabaseManager.cpp
 
 build/Obj/moc_Start_Log_Reg.o: moc_Start_Log_Reg.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_Start_Log_Reg.o moc_Start_Log_Reg.cpp
+
+build/Obj/moc_Tab_DaneUzytkownika.o: moc_Tab_DaneUzytkownika.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_Tab_DaneUzytkownika.o moc_Tab_DaneUzytkownika.cpp
+
+build/Obj/moc_Tab_Kategorie.o: moc_Tab_Kategorie.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_Tab_Kategorie.o moc_Tab_Kategorie.cpp
 
 build/Obj/moc_Tab_Przychody.o: moc_Tab_Przychody.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_Tab_Przychody.o moc_Tab_Przychody.cpp

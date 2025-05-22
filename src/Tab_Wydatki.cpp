@@ -15,6 +15,14 @@ Tab_Wydatki::Tab_Wydatki(const QString& userEmail,QWidget *root, QWidget *parent
     if(dodajWydatekButton){
         connect(dodajWydatekButton, &QPushButton::clicked, this, &Tab_Wydatki::DodajWydatekClicked);
     }
+
+    dataEdit->setDate(QDate::currentDate());
+}
+
+
+void Tab_Wydatki::setDatabaseManager(DatabaseManager* dbManager) {
+    m_dbManager = dbManager;
+    loadKategorie();
 }
 
 
@@ -26,8 +34,16 @@ void Tab_Wydatki::DodajWydatekClicked(){
 
 
     if( m_dbManager->addWydatek(m_userEmail,kwotaSpinBox->value(),dataEdit->date(),opisLineEdit->text(),kategoriaCombo->currentText())){
-    QMessageBox::information(this, "Sukces", "Przychód został dodany!");
-} else {
-    QMessageBox::warning(this, "Błąd", "Nie udało się dodać wydatku.");
+        QMessageBox::information(this, "Sukces", "Przychód został dodany!");
+    } else {
+        QMessageBox::warning(this, "Błąd", "Nie udało się dodać wydatku.");
+    }
 }
+
+void Tab_Wydatki::loadKategorie() {
+    if (!m_dbManager) return;
+
+    QStringList kategorie = m_dbManager->getAllKategorie();
+    kategoriaCombo->clear();
+    kategoriaCombo->addItems(kategorie);
 }

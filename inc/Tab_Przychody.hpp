@@ -1,6 +1,6 @@
 #ifndef TAB_PRZYCHODY_HPP
 #define TAB_PRZYCHODY_HPP
-#define TAB_WYDATKI_HPP
+
 #include "DatabaseManager.hpp"
 
 #include <QWidget>
@@ -21,7 +21,7 @@ class Tab_Przychody : public QWidget
     Q_OBJECT
 public:
     explicit Tab_Przychody(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
-    void setDatabaseManager(DatabaseManager* dbManager) { m_dbManager = dbManager;}
+    void setDatabaseManager(DatabaseManager* dbManager);
 
 signals:
 
@@ -38,6 +38,7 @@ private:
     QPushButton *dodajPrzychodButton;
 
     DatabaseManager* m_dbManager = nullptr;
+    void loadKategorie();
 };
 
 #endif // TAB_PRZYCHODY_HPP

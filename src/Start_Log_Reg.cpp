@@ -7,36 +7,49 @@
 #include <QDebug>
 
 
+
 Start_Log_Reg::Start_Log_Reg(QWidget *parent)
     : QWidget(parent)
     , ui(new Ui::Start_Log_Reg)
 {
+
     ui->setupUi(this);
-    ui->stackedWidget->setCurrentIndex(0);
+    ui->stackedWidget->setCurrentIndex(startPageIndex);
 
-    // Ustawienie indeksów stron w stackedWidget
-    int loginPageIndex = 1; // Indeks strony Login_page
-    int registerPageIndex = 2; // Indeks strony Register_page
-
-    // Przekazanie indeksów stron jako argumentów (używając lambdy)
-    connect(ui->pushButton_Zaloguj, &QPushButton::clicked, [this, loginPageIndex](){
+    connect(ui->pushButton_Zaloguj, &QPushButton::clicked, [this](){
         ui->stackedWidget->setCurrentIndex(loginPageIndex);
     });
 
-    connect(ui->pushButton_Zarejestruj, &QPushButton::clicked, [this, registerPageIndex](){
+    connect(ui->pushButton_Zarejestruj, &QPushButton::clicked, [this](){
         ui->stackedWidget->setCurrentIndex(registerPageIndex);
+    });
+
+    connect(ui->pushButton_powrotLog, &QPushButton::clicked, [this](){
+        ui->stackedWidget->setCurrentIndex(startPageIndex);
+    });
+
+    connect(ui->pushButton_powrotReg, &QPushButton::clicked, [this](){
+        ui->stackedWidget->setCurrentIndex(startPageIndex);
+    });
+
+    connect(ui->checkBox_showPasswordLog, &QCheckBox::toggled, this, [this](bool checked){
+        ui->lineEdit_passwordLog->setEchoMode(checked ? QLineEdit::Normal : QLineEdit::Password);
+    });
+
+    connect(ui->checkBox_showPasswordReg, &QCheckBox::toggled, this, [this](bool checked){
+        ui->lineEdit_passwordReg->setEchoMode(checked ? QLineEdit::Normal : QLineEdit::Password);
     });
 
 
     connect(ui->pushButton_zalogujSie, &QPushButton::clicked, this, &Start_Log_Reg::loginUser);
-
     connect(ui->pushButton_zarejestrujSie, &QPushButton::clicked, this, &Start_Log_Reg::registerUser);
+
 
     ui->lineEdit_emailLog->setText("janprus@poczta.com");
     ui->lineEdit_passwordLog->setText("haslo123");
 
-        // connect(this, &Start_Log_Reg::loginSuccessful, this, &Start_Log_Reg::switchToUserPanel);
-    //connectToDatabase();
+    ui->dateEdit_DOB_Reg->setDate(QDate::currentDate());
+
 }
 
 
@@ -59,7 +72,7 @@ void Start_Log_Reg::registerUser(){
     QString email = ui->lineEdit_emailReg->text();
     QString name = ui->lineEdit_firstNameReg->text();
     QString surname = ui->lineEdit_lastNameReg->text();
-    QString birthDate = ui->dateEdit_DOB_Reg->text();
+    QString birthDate = ui->dateEdit_DOB_Reg->date().toString("yyyy-MM-dd");
     QString password = ui->lineEdit_passwordReg->text();
 
     if (email.isEmpty() || name.isEmpty() || surname.isEmpty() || birthDate.isEmpty() || password.isEmpty()) {
@@ -95,7 +108,7 @@ void Start_Log_Reg::registerUser(){
     if (registerQuery.exec()) {
         QMessageBox::information(this, "Sukces", "Rejestracja zakończona pomyślnie!");
         clear_reg();
-        ui->stackedWidget->setCurrentIndex(0);
+        ui->stackedWidget->setCurrentIndex(startPageIndex);
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się zarejestrować użytkownika.");
     }
@@ -165,3 +178,6 @@ void Start_Log_Reg::clear_reg(){
 }
 
 
+void Start_Log_Reg::goToStartPage() {
+    ui->stackedWidget->setCurrentIndex(startPageIndex);
+}
