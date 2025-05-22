@@ -30,9 +30,18 @@ Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent)
         stacked->setCurrentIndex(0);
     });
 
+
+    connect(zapiszZmianyButton, &QPushButton::clicked, this, &Tab_Uzytkownicy::ZapiszZmianyClicked);
+
 stacked->setCurrentIndex(0);
 
+}
 
+
+
+
+void Tab_Uzytkownicy::ZapiszZmianyClicked(){  //toDo
+    qDebug()<<"Tutaj będzie zapisanie zmian";
 }
 
 void Tab_Uzytkownicy::BlokadaClicked(){ //toDo
@@ -83,7 +92,16 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager)
 
     tabelaTableView->setModel(modelUsers);
     tabelaTableView->resizeColumnsToContents();
+    tabelaTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+
+    // Ukryj wszystkie kolumny poza Imie, Nazwisko, Email
+    for (int col = 0; col < modelUsers->columnCount(); ++col) {
+        QString colName = modelUsers->headerData(col, Qt::Horizontal).toString();
+        if (colName != "Imie" && colName != "Nazwisko" && colName != "Email") {
+            tabelaTableView->hideColumn(col);
+        }
+    }
 }
 
 void Tab_Uzytkownicy::goToStartPage() {

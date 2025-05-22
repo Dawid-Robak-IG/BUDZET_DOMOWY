@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: BUDZET_DOMOWY
 -- ------------------------------------------------------
--- Server version	8.0.42
+-- Server version	8.0.42-0ubuntu0.24.04.1
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -94,6 +94,7 @@ CREATE TABLE `Kategoria` (
 
 LOCK TABLES `Kategoria` WRITE;
 /*!40000 ALTER TABLE `Kategoria` DISABLE KEYS */;
+INSERT INTO `Kategoria` VALUES ('Hobby',5),('Inne',5),('Jedzenie',5),('Pensja',5),('Podróże',5),('Prezent',5),('Renta',5),('rozrywka',5),('Sport',5),('Dywidenda',8);
 /*!40000 ALTER TABLE `Kategoria` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -120,7 +121,7 @@ CREATE TABLE `Operacja` (
   CONSTRAINT `FKOperacja232880` FOREIGN KEY (`Operacja cyklicznaID`) REFERENCES `Operacja cykliczna` (`ID`),
   CONSTRAINT `FKOperacja368305` FOREIGN KEY (`Kategoria Nazwa`) REFERENCES `Kategoria` (`Nazwa`),
   CONSTRAINT `FKOperacja423377` FOREIGN KEY (`Uzytkownik zalogowanyID`) REFERENCES `Uzytkownik zalogowany` (`ID`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -129,6 +130,7 @@ CREATE TABLE `Operacja` (
 
 LOCK TABLES `Operacja` WRITE;
 /*!40000 ALTER TABLE `Operacja` DISABLE KEYS */;
+INSERT INTO `Operacja` VALUES (2,0,'2025-05-15',1234,5,'Pensja',_binary '\0',NULL),(3,0,'2025-05-15',123,5,'Pensja',_binary '\0',NULL),(4,20,'2025-05-15',123334,5,'Prezent',_binary '\0',NULL),(5,15,'2025-05-12',635,5,'Prezent',_binary '\0',NULL),(6,2,'2025-05-15',111,5,'Pensja',_binary '\0',NULL),(7,123,'2025-05-09',NULL,8,'Dywidenda',_binary '\0',NULL),(8,3,'2025-05-08',NULL,5,'Renta',_binary '\0',NULL),(9,6,'2000-01-04',NULL,5,'Prezent',_binary '\0',NULL),(10,-8,'2009-01-01',NULL,5,'Prezent',_binary '\0',NULL),(11,9,'2025-05-04',NULL,5,'Prezent',_binary '\0',NULL),(12,0,'2009-01-01',NULL,5,'Prezent',_binary '\0',NULL),(13,7,'2025-05-21',NULL,5,'Prezent',_binary '\0',NULL),(14,0,'2025-05-22',NULL,5,'Inne',_binary '\0',NULL),(15,7,'2025-05-22',NULL,5,'Sport',_binary '\0',NULL),(16,10,'2025-05-22',1,11,'Inne',_binary '\0',NULL);
 /*!40000 ALTER TABLE `Operacja` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -182,7 +184,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
   `Rola` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -191,7 +193,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
 
 LOCK TABLES `Uzytkownik zalogowany` WRITE;
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` DISABLE KEYS */;
-INSERT INTO `Uzytkownik zalogowany` VALUES (1,'Janusz','Januszewski','januszek@gmail.com','taktoja',_binary '\0','2021-01-20','Użytkownik'),(2,'mikolaj','wielki','mikolajek@gmail.com','asdasdasd',_binary '\0','2025-05-10','Użytkownik'),(3,'Baska','Maczna','chamia@playa.com','makabasi',_binary '\0','2025-05-10','Użytkownik'),(4,'AS','DO','asd@asd.com','asdasdasdasdasd',_binary '\0','2025-05-10','Użytkownik');
+INSERT INTO `Uzytkownik zalogowany` VALUES (1,'Janusz','Januszewski','januszek@gmail.com','taktoja',_binary '\0','2021-01-20','Użytkownik'),(2,'mikolaj','wielki','mikolajek@gmail.com','asdasdasd',_binary '\0','2025-05-10','Użytkownik'),(3,'Baska','Maczna','chamia@playa.com','makabasi',_binary '\0','2025-05-10','Rodzic'),(4,'AS','DO','asd@asd.com','asdasdasdasdasd',_binary '\0','2025-05-10','Użytkownik'),(5,'Jan','Prus','janprus@poczta.com','haslo123',_binary '\0','2025-05-14','Rodzic'),(6,'Jakub','Test','jakub.test@gmail.com','testjakub',_binary '\0','2005-03-20','Użytkownik'),(7,'Aleksandra','Gral','ola.gral@wp.pl','aleksandra',_binary '\0','2009-01-20','Dziecko'),(8,'Jan','Nowak','abc@gmail.com','haslo123',_binary '\0','2001-01-20','Użytkownik'),(9,'Teresa','Sad','teresa@gmail.com','sad54321',_binary '\0','1955-05-22','Użytkownik'),(10,'Elżbieta','Kot','elakot@wp.pl','abcabc123',_binary '\0','1979-05-22','Dziecko'),(11,'Szaralinda','Łączka','krzysztof222@o2.pl','popopoko',_binary '\0','2000-03-01','Dziecko');
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -204,4 +206,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-10 20:27:58
+-- Dump completed on 2025-05-22 23:07:05

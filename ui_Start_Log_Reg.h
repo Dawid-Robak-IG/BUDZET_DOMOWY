@@ -303,6 +303,7 @@ public:
         dateEdit_DOB_Reg->setObjectName(QString::fromUtf8("dateEdit_DOB_Reg"));
         dateEdit_DOB_Reg->setMaximumSize(QSize(200, 16777215));
         dateEdit_DOB_Reg->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        dateEdit_DOB_Reg->setCalendarPopup(true);
 
         verticalLayout_3->addWidget(dateEdit_DOB_Reg);
 
@@ -377,7 +378,7 @@ public:
 
         retranslateUi(Start_Log_Reg);
 
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget->setCurrentIndex(2);
 
 
         QMetaObject::connectSlotsByName(Start_Log_Reg);

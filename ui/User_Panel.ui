@@ -55,7 +55,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>9</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="tab_DaneUzytkownika">
       <attribute name="title">
@@ -883,7 +883,28 @@
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_kategoriaCP"/>
+            <widget class="QComboBox" name="comboBox_kategoriaCP">
+             <item>
+              <property name="text">
+               <string>codziennie</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>co tydzień</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>co miesiąc</string>
+              </property>
+             </item>
+             <item>
+              <property name="text">
+               <string>co rok</string>
+              </property>
+             </item>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_28">
@@ -893,7 +914,11 @@
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit_CP"/>
+            <widget class="QDateEdit" name="dateEdit_CP">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_29">
@@ -1096,7 +1121,28 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_kategoriaCW"/>
+              <widget class="QComboBox" name="comboBox_kategoriaCW">
+               <item>
+                <property name="text">
+                 <string>codziennie</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>co tydzień</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>co miesiąc</string>
+                </property>
+               </item>
+               <item>
+                <property name="text">
+                 <string>co rok</string>
+                </property>
+               </item>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_22">
@@ -1106,7 +1152,11 @@
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="dateEdit_CW"/>
+              <widget class="QDateEdit" name="dateEdit_CW">
+               <property name="calendarPopup">
+                <bool>true</bool>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_23">

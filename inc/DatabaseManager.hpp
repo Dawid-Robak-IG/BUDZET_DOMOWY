@@ -26,6 +26,7 @@ public:
     bool addKategoria(const QString &email, const QString &nowaKategoria);
 
 signals:
+    void nowaKategoriaDodana();
 
 private:
      QSqlDatabase m_db;

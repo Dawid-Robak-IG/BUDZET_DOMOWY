@@ -25,6 +25,10 @@ Tab_Przychody::Tab_Przychody(const QString& userEmail,QWidget *root, QWidget *pa
 void Tab_Przychody::setDatabaseManager(DatabaseManager* dbManager){
     m_dbManager = dbManager;
     loadKategorie();
+
+
+    connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
+            this, &Tab_Przychody::loadKategorie);
 }
 
 

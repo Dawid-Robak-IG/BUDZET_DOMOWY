@@ -1,21 +1,24 @@
--> Na stronie użytkownicy zablokować edycję
-
--> Dodać obsługę przycisków powrót
--> Przycisk dodaj nowy wydatek cykliczny żeby przełączał stronę.
 -> Logika dodawania wpisów cyklicznych
 -> Aktualizacja kwoty budżetu
--> Zakładka relacje fajnie jakby wyświetlało kogo ma już przypisanego dziecko i rodzic
--> Dane użytkownika rola wyświetlać i hasło 
+-> Zakładka relacje -> wyświetlanie dzieci z ich rodzicami czyli z bazy danych tabela Dzieco zamiast Uzytkownik zalogowany 
 -> informacje o aplikacji?? strona startowa??
 -> Aktualizowanie listy kategorii w zakładkach gdzie jest lista do wybierania
 -> czy pola w których coś się wpisuje są czyszczone
 ->robienie zmiany hasła
--> sprawdzanie czy dane w formularzach są pooprawnie wpisywane 
-->wyciać niektóre kolumny z zakładki użytkownicy
-->formularz do edycji cyklcznych
-->filtrowanie tabelek czyli np same przychody bez ywdatków albo bez kolumny hasło
+-> sprawdzanie czy dane w formularzach są poprawnie wpisywane 
+->kolumny typu hasło są domyślnie wycinane ale trzeba dodać że jeśli to admin to nie trzeba wycinać tylko można wszystko pokazać
+->filtrowanie tabelek czyli np same przychody bez wydatków
 -> jak to jest z tym dzieckiem, bo dałam że rola dziecko ale czy wtedy nie powinien być wpis do tablicy Dziecko i co z przejsciem do innej roli?
+->zmienić kwotę na float i notatkę na string
+->tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
+POTĘŻNE NARZĘDZIE, JAK JEST MOŻLIWOŚĆ EDYCJI TO OD RAZU MOŻNA ZMIENIAĆ DANE W TABELACH W BAZIE DAYCH czyli przycisk może włączać i wyłączać dostęp do edycji bez uciążliwych formularzy można od razu w tablei edytować (dotyczy danych użytkowników i operacji cyklicznych np)
+->formularz do edycji cyklcznych lub tak jak wyżej
+-> może dziecko domyślnie jak ma mniej niż 18lat a później jako dorosły
 
-  MOŻNA SZUKAĆ TEGO CO JEST DO ZROBIENIA SZUKAJĄC "toDo"
+
 WAŻNE:
--> Zmień rolę jest wrzucone w edytuj dane, czyli inaczej niż w etapie 2
+-> MOŻNA SZUKAĆ TEGO CO JEST DO ZROBIENIA SZUKAJĄC "toDo"
+  
+-> CHCIAŁABYM, ŻEBY RZECZY KTÓRE ROBIĄ COŚ Z DANYMI W BAZIE    	DANYCH (OPRÓCZ CZYTANIA) UŻYWAŁY FUNKCJI STWORZONYCH W KLASIE
+  DatabaseManager
+

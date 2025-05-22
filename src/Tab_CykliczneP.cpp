@@ -39,6 +39,7 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
         stacked->setCurrentIndex(0);
     });
 
+ startCP_Data->setDate(QDate::currentDate());
   stacked->setCurrentIndex(0);
 }
 void Tab_CykliczneP::DodajCP_Clicked(){ //toDo
@@ -57,6 +58,11 @@ void Tab_CykliczneP::setDatabaseManager(DatabaseManager* dbManager) {
     loadKategorie();
 
 showTable();
+
+
+connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
+        this, &Tab_CykliczneP::loadKategorie);
+
 
 }
 

@@ -23,10 +23,10 @@ public:
     explicit Tab_Kategorie(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
 
-signals:
 
 private slots:
     void DodajKategorieClicked();
+
 private:
     QString m_userEmail;
 
@@ -36,7 +36,7 @@ private:
 
     DatabaseManager* m_dbManager = nullptr;
 
-     void loadKategorie();
+    void loadKategorie();
 };
 
 #endif // TAB_KATEGORIE_HPP

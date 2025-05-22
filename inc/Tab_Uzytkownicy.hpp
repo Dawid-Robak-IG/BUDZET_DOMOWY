@@ -25,6 +25,7 @@ public:
 signals:
 private slots:
     void BlokadaClicked();
+    void ZapiszZmianyClicked();
 
 private:
     QTableView *tabelaTableView;

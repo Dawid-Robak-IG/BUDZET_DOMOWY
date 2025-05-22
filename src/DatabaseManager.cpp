@@ -142,6 +142,7 @@ bool DatabaseManager::addKategoria(const QString &email, const QString &nowaKate
         return false;
     }
 
+  emit nowaKategoriaDodana();  // rozesłanie informacji, żeby listy się zaktualizowały
     return true;
 
 }

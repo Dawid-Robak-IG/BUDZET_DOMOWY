@@ -30,7 +30,7 @@ void Tab_Relacje::setDatabaseManager(DatabaseManager* dbManager)
 }
 
 void Tab_Relacje::showTables(){
-
+//Tablica dzieci
     if (!dzieciTable) {
         qDebug() << "Brak dzieciTable - nie można ustawić modelu";
         return;
@@ -46,6 +46,7 @@ void Tab_Relacje::showTables(){
 
     dzieciTable->setModel(dzieciModelUsers);
     dzieciTable->resizeColumnsToContents();
+    dzieciTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     // Ukryj wszystkie inne kolumny oprócz Imie, Nazwisko, Email
     for (int col = 0; col < dzieciModelUsers->columnCount(); ++col) {
@@ -55,6 +56,8 @@ void Tab_Relacje::showTables(){
         }
     }
 
+
+    //Tablica Rodzice
     if (!rodziceTable) {
         qDebug() << "Brak rodziceTable - nie można ustawić modelu";
         return;
@@ -63,6 +66,7 @@ void Tab_Relacje::showTables(){
     rodziceModelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
     rodziceModelUsers->setTable("Uzytkownik zalogowany");
     rodziceModelUsers->setFilter("Rola = 'Rodzic'");
+    rodziceTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
     if (!rodziceModelUsers->select()) {
         qDebug() << "Błąd ładowania danych rodziców:" << rodziceModelUsers->lastError().text();
     }

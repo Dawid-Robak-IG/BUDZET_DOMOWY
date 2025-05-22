@@ -788,6 +788,10 @@ public:
         verticalLayout_6->addWidget(label_31);
 
         comboBox_kategoriaCP = new QComboBox(page_nowyCP);
+        comboBox_kategoriaCP->addItem(QString());
+        comboBox_kategoriaCP->addItem(QString());
+        comboBox_kategoriaCP->addItem(QString());
+        comboBox_kategoriaCP->addItem(QString());
         comboBox_kategoriaCP->setObjectName(QString::fromUtf8("comboBox_kategoriaCP"));
 
         verticalLayout_6->addWidget(comboBox_kategoriaCP);
@@ -940,6 +944,10 @@ public:
         verticalLayout_9->addWidget(label_21);
 
         comboBox_kategoriaCW = new QComboBox(page_CW_nowy);
+        comboBox_kategoriaCW->addItem(QString());
+        comboBox_kategoriaCW->addItem(QString());
+        comboBox_kategoriaCW->addItem(QString());
+        comboBox_kategoriaCW->addItem(QString());
         comboBox_kategoriaCW->setObjectName(QString::fromUtf8("comboBox_kategoriaCW"));
 
         verticalLayout_9->addWidget(comboBox_kategoriaCW);
@@ -1300,7 +1308,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(9);
+        tabWidget->setCurrentIndex(4);
         stackedWidget_CykliczneP->setCurrentIndex(1);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(1);
@@ -1351,6 +1359,11 @@ public:
         label_27->setText(QCoreApplication::translate("User_Panel", "Kwota", nullptr));
         label_47->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_31->setText(QCoreApplication::translate("User_Panel", "Kategoria", nullptr));
+        comboBox_kategoriaCP->setItemText(0, QCoreApplication::translate("User_Panel", "codziennie", nullptr));
+        comboBox_kategoriaCP->setItemText(1, QCoreApplication::translate("User_Panel", "co tydzie\305\204", nullptr));
+        comboBox_kategoriaCP->setItemText(2, QCoreApplication::translate("User_Panel", "co miesi\304\205c", nullptr));
+        comboBox_kategoriaCP->setItemText(3, QCoreApplication::translate("User_Panel", "co rok", nullptr));
+
         label_28->setText(QCoreApplication::translate("User_Panel", "Data rozpocz\304\231cia", nullptr));
         label_29->setText(QCoreApplication::translate("User_Panel", "Cz\304\231stotliwo\305\233\304\207", nullptr));
         label_30->setText(QCoreApplication::translate("User_Panel", "Notatka (opcjonalnie)", nullptr));
@@ -1364,6 +1377,11 @@ public:
         label_19->setText(QCoreApplication::translate("User_Panel", "Kwota", nullptr));
         label_20->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_21->setText(QCoreApplication::translate("User_Panel", "Kategoria", nullptr));
+        comboBox_kategoriaCW->setItemText(0, QCoreApplication::translate("User_Panel", "codziennie", nullptr));
+        comboBox_kategoriaCW->setItemText(1, QCoreApplication::translate("User_Panel", "co tydzie\305\204", nullptr));
+        comboBox_kategoriaCW->setItemText(2, QCoreApplication::translate("User_Panel", "co miesi\304\205c", nullptr));
+        comboBox_kategoriaCW->setItemText(3, QCoreApplication::translate("User_Panel", "co rok", nullptr));
+
         label_22->setText(QCoreApplication::translate("User_Panel", "Data rozpocz\304\231cia", nullptr));
         label_23->setText(QCoreApplication::translate("User_Panel", "Cz\304\231stotliwo\305\233\304\207", nullptr));
         label_24->setText(QCoreApplication::translate("User_Panel", "Notatka (opcjonalnie)", nullptr));

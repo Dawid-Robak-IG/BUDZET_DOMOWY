@@ -23,6 +23,10 @@ Tab_Wydatki::Tab_Wydatki(const QString& userEmail,QWidget *root, QWidget *parent
 void Tab_Wydatki::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
     loadKategorie();
+
+
+    connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
+            this, &Tab_Wydatki::loadKategorie);
 }
 
 
