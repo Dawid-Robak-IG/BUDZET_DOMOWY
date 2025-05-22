@@ -5,7 +5,6 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
 {
 
     kieszonkoweTable=root->findChild<QTableView*>("tableView_aktualneKieszonkowe");
-    modelUsers; //potrzebne do tabelki
 
     aktualneSaldoLineEdit= root->findChild<QLineEdit*>("lineEdit_aktualneSaldo");
     generujRaportButton= root->findChild<QPushButton*>("pushButton_generujRaportD");

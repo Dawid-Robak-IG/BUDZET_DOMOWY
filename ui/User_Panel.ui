@@ -55,7 +55,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>8</number>
+      <number>9</number>
      </property>
      <widget class="QWidget" name="tab_DaneUzytkownika">
       <attribute name="title">
@@ -1548,7 +1548,7 @@
           </widget>
          </item>
          <item>
-          <widget class="QTableView" name="tableView_3"/>
+          <widget class="QTableView" name="tableView_dzieciRelacje"/>
          </item>
          <item>
           <widget class="QLabel" name="label_38">
@@ -1558,12 +1558,12 @@
           </widget>
          </item>
          <item>
-          <widget class="QTableView" name="tableView_4"/>
+          <widget class="QTableView" name="tableView_rodziceRelacje"/>
          </item>
         </layout>
        </item>
        <item>
-        <widget class="QPushButton" name="pushButton_13">
+        <widget class="QPushButton" name="pushButton_przypiszRodzica">
          <property name="text">
           <string>Przypisz rodzica</string>
          </property>

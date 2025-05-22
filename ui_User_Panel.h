@@ -249,10 +249,10 @@ public:
     QHBoxLayout *horizontalLayout_26;
     QVBoxLayout *verticalLayout_13;
     QLabel *label_37;
-    QTableView *tableView_3;
+    QTableView *tableView_dzieciRelacje;
     QLabel *label_38;
-    QTableView *tableView_4;
-    QPushButton *pushButton_13;
+    QTableView *tableView_rodziceRelacje;
+    QPushButton *pushButton_przypiszRodzica;
 
     void setupUi(QWidget *User_Panel)
     {
@@ -1270,28 +1270,28 @@ public:
 
         verticalLayout_13->addWidget(label_37);
 
-        tableView_3 = new QTableView(tab_Relacje);
-        tableView_3->setObjectName(QString::fromUtf8("tableView_3"));
+        tableView_dzieciRelacje = new QTableView(tab_Relacje);
+        tableView_dzieciRelacje->setObjectName(QString::fromUtf8("tableView_dzieciRelacje"));
 
-        verticalLayout_13->addWidget(tableView_3);
+        verticalLayout_13->addWidget(tableView_dzieciRelacje);
 
         label_38 = new QLabel(tab_Relacje);
         label_38->setObjectName(QString::fromUtf8("label_38"));
 
         verticalLayout_13->addWidget(label_38);
 
-        tableView_4 = new QTableView(tab_Relacje);
-        tableView_4->setObjectName(QString::fromUtf8("tableView_4"));
+        tableView_rodziceRelacje = new QTableView(tab_Relacje);
+        tableView_rodziceRelacje->setObjectName(QString::fromUtf8("tableView_rodziceRelacje"));
 
-        verticalLayout_13->addWidget(tableView_4);
+        verticalLayout_13->addWidget(tableView_rodziceRelacje);
 
 
         horizontalLayout_26->addLayout(verticalLayout_13);
 
-        pushButton_13 = new QPushButton(tab_Relacje);
-        pushButton_13->setObjectName(QString::fromUtf8("pushButton_13"));
+        pushButton_przypiszRodzica = new QPushButton(tab_Relacje);
+        pushButton_przypiszRodzica->setObjectName(QString::fromUtf8("pushButton_przypiszRodzica"));
 
-        horizontalLayout_26->addWidget(pushButton_13);
+        horizontalLayout_26->addWidget(pushButton_przypiszRodzica);
 
         tabWidget->addTab(tab_Relacje, QString());
 
@@ -1300,7 +1300,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(8);
+        tabWidget->setCurrentIndex(9);
         stackedWidget_CykliczneP->setCurrentIndex(1);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(1);
@@ -1393,7 +1393,7 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_Dzieci), QCoreApplication::translate("User_Panel", "Dzieci", nullptr));
         label_37->setText(QCoreApplication::translate("User_Panel", "Dzieci", nullptr));
         label_38->setText(QCoreApplication::translate("User_Panel", "Rodzice", nullptr));
-        pushButton_13->setText(QCoreApplication::translate("User_Panel", "Przypisz rodzica", nullptr));
+        pushButton_przypiszRodzica->setText(QCoreApplication::translate("User_Panel", "Przypisz rodzica", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Relacje), QCoreApplication::translate("User_Panel", "Relacje", nullptr));
     } // retranslateUi
 

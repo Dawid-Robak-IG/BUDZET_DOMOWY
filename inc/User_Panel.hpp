@@ -18,6 +18,7 @@
 #include "Tab_CykliczneW.hpp"
 #include "Tab_Raporty.hpp"
 #include "Tab_Dzieci.hpp"
+#include "Tab_Relacje.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -57,6 +58,7 @@ private:
     Tab_CykliczneW* cykliczneWManager;
     Tab_Raporty* raportyManager;
     Tab_Dzieci* dzieciManager;
+    Tab_Relacje* relacjeManager;
 };
 
 #endif // USER_PANEL_H

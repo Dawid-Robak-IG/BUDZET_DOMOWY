@@ -9,15 +9,12 @@
 -> informacje o aplikacji?? strona startowa??
 -> Aktualizowanie listy kategorii w zakładkach gdzie jest lista do wybierania
 -> czy pola w których coś się wpisuje są czyszczone
-->domysłne strony w cyklicznych 
-->przyciski powrót itp (nawigacja między stronami)
 ->robienie zmiany hasła
-->aktualizacja kategorii po dodaniu nowej
 -> sprawdzanie czy dane w formularzach są pooprawnie wpisywane 
 ->wyciać niektóre kolumny z zakładki użytkownicy
 ->formularz do edycji cyklcznych
 ->filtrowanie tabelek czyli np same przychody bez ywdatków albo bez kolumny hasło
-
+-> jak to jest z tym dzieckiem, bo dałam że rola dziecko ale czy wtedy nie powinien być wpis do tablicy Dziecko i co z przejsciem do innej roli?
 
   MOŻNA SZUKAĆ TEGO CO JEST DO ZROBIENIA SZUKAJĄC "toDo"
 WAŻNE:

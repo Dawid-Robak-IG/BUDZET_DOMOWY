@@ -18,7 +18,8 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     cyklicznePManager(nullptr),
     cykliczneWManager(nullptr),
     raportyManager(nullptr),
-    dzieciManager(nullptr)
+    dzieciManager(nullptr),
+    relacjeManager(nullptr)
 
 {
     ui->setupUi(this);
@@ -91,6 +92,13 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
     } else {
         dzieciManager->setDatabaseManager(m_dbManager);
     }
+    if (!relacjeManager) {
+        relacjeManager = new Tab_Relacje(userEmail, ui->tab_Relacje, this);
+        relacjeManager->setDatabaseManager(m_dbManager);
+    } else {
+        relacjeManager->setDatabaseManager(m_dbManager);
+    }
+
 }
 
 
