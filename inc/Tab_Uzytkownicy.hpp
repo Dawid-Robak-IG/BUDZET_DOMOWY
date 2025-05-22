@@ -19,7 +19,7 @@ signals:
 
 private:
     QTableView *tabelaTableView;
- QSqlTableModel* modelUsers;
+    QSqlTableModel* modelUsers;
     DatabaseManager* m_dbManager = nullptr;
 
  void setupModel();

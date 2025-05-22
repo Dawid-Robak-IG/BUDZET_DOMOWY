@@ -127,8 +127,8 @@ public:
     QHBoxLayout *horizontalLayout_21;
     QTableView *tableView_listaCP;
     QVBoxLayout *verticalLayout_10;
-    QPushButton *pushButton_usunCP;
     QPushButton *pushButton_edytujCP;
+    QPushButton *pushButton_usunCP;
     QSpacerItem *verticalSpacer_4;
     QPushButton *pushButton_nowyCP;
     QWidget *page_nowyCP;
@@ -152,36 +152,36 @@ public:
     QWidget *tab_CykliczneW;
     QHBoxLayout *horizontalLayout_16;
     QHBoxLayout *horizontalLayout_17;
-    QStackedWidget *stackedWidget;
+    QStackedWidget *stackedWidget_CykliczneW;
     QWidget *page_CW_lista;
     QHBoxLayout *horizontalLayout_18;
-    QTableView *tableView_2;
+    QTableView *tableView_listaCW;
     QVBoxLayout *verticalLayout_7;
-    QPushButton *pushButton_7;
-    QPushButton *pushButton_6;
+    QPushButton *pushButton_edytujCW;
+    QPushButton *pushButton_usunCW;
     QSpacerItem *verticalSpacer_5;
-    QPushButton *pushButton_8;
+    QPushButton *pushButton_nowyCW;
     QWidget *page_CW_nowy;
     QVBoxLayout *verticalLayout_9;
     QHBoxLayout *horizontalLayout_19;
-    QPushButton *pushButton_9;
+    QPushButton *pushButton_powrotCW;
     QSpacerItem *horizontalSpacer_14;
     QLabel *label_25;
     QSpacerItem *horizontalSpacer_16;
     QLabel *label_19;
     QHBoxLayout *horizontalLayout_20;
-    QDoubleSpinBox *doubleSpinBox;
+    QDoubleSpinBox *doubleSpinBox_kwotaCW;
     QLabel *label_20;
     QSpacerItem *horizontalSpacer_15;
     QLabel *label_21;
-    QComboBox *comboBox;
+    QComboBox *comboBox_kategoriaCW;
     QLabel *label_22;
-    QDateEdit *dateEdit;
+    QDateEdit *dateEdit_CW;
     QLabel *label_23;
-    QComboBox *comboBox_2;
+    QComboBox *comboBox_czestotliwoscCW;
     QLabel *label_24;
-    QLineEdit *lineEdit_2;
-    QPushButton *pushButton_10;
+    QLineEdit *lineEdit_notatkaCW;
+    QPushButton *pushButton_dodajCW;
     QWidget *tab_Raporty;
     QVBoxLayout *verticalLayout_16;
     QLabel *label_43;
@@ -702,15 +702,15 @@ public:
         verticalLayout_10 = new QVBoxLayout();
         verticalLayout_10->setObjectName(QString::fromUtf8("verticalLayout_10"));
         verticalLayout_10->setContentsMargins(20, -1, -1, -1);
-        pushButton_usunCP = new QPushButton(page_CP_lista);
-        pushButton_usunCP->setObjectName(QString::fromUtf8("pushButton_usunCP"));
-
-        verticalLayout_10->addWidget(pushButton_usunCP);
-
         pushButton_edytujCP = new QPushButton(page_CP_lista);
         pushButton_edytujCP->setObjectName(QString::fromUtf8("pushButton_edytujCP"));
 
         verticalLayout_10->addWidget(pushButton_edytujCP);
+
+        pushButton_usunCP = new QPushButton(page_CP_lista);
+        pushButton_usunCP->setObjectName(QString::fromUtf8("pushButton_usunCP"));
+
+        verticalLayout_10->addWidget(pushButton_usunCP);
 
         verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
@@ -818,8 +818,8 @@ public:
         horizontalLayout_16->setObjectName(QString::fromUtf8("horizontalLayout_16"));
         horizontalLayout_17 = new QHBoxLayout();
         horizontalLayout_17->setObjectName(QString::fromUtf8("horizontalLayout_17"));
-        stackedWidget = new QStackedWidget(tab_CykliczneW);
-        stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
+        stackedWidget_CykliczneW = new QStackedWidget(tab_CykliczneW);
+        stackedWidget_CykliczneW->setObjectName(QString::fromUtf8("stackedWidget_CykliczneW"));
         page_CW_lista = new QWidget();
         page_CW_lista->setObjectName(QString::fromUtf8("page_CW_lista"));
         QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -830,47 +830,47 @@ public:
         page_CW_lista->setMinimumSize(QSize(200, 200));
         horizontalLayout_18 = new QHBoxLayout(page_CW_lista);
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
-        tableView_2 = new QTableView(page_CW_lista);
-        tableView_2->setObjectName(QString::fromUtf8("tableView_2"));
+        tableView_listaCW = new QTableView(page_CW_lista);
+        tableView_listaCW->setObjectName(QString::fromUtf8("tableView_listaCW"));
 
-        horizontalLayout_18->addWidget(tableView_2);
+        horizontalLayout_18->addWidget(tableView_listaCW);
 
         verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(20, -1, -1, -1);
-        pushButton_7 = new QPushButton(page_CW_lista);
-        pushButton_7->setObjectName(QString::fromUtf8("pushButton_7"));
+        pushButton_edytujCW = new QPushButton(page_CW_lista);
+        pushButton_edytujCW->setObjectName(QString::fromUtf8("pushButton_edytujCW"));
 
-        verticalLayout_7->addWidget(pushButton_7);
+        verticalLayout_7->addWidget(pushButton_edytujCW);
 
-        pushButton_6 = new QPushButton(page_CW_lista);
-        pushButton_6->setObjectName(QString::fromUtf8("pushButton_6"));
+        pushButton_usunCW = new QPushButton(page_CW_lista);
+        pushButton_usunCW->setObjectName(QString::fromUtf8("pushButton_usunCW"));
 
-        verticalLayout_7->addWidget(pushButton_6);
+        verticalLayout_7->addWidget(pushButton_usunCW);
 
         verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_7->addItem(verticalSpacer_5);
 
-        pushButton_8 = new QPushButton(page_CW_lista);
-        pushButton_8->setObjectName(QString::fromUtf8("pushButton_8"));
+        pushButton_nowyCW = new QPushButton(page_CW_lista);
+        pushButton_nowyCW->setObjectName(QString::fromUtf8("pushButton_nowyCW"));
 
-        verticalLayout_7->addWidget(pushButton_8);
+        verticalLayout_7->addWidget(pushButton_nowyCW);
 
 
         horizontalLayout_18->addLayout(verticalLayout_7);
 
-        stackedWidget->addWidget(page_CW_lista);
+        stackedWidget_CykliczneW->addWidget(page_CW_lista);
         page_CW_nowy = new QWidget();
         page_CW_nowy->setObjectName(QString::fromUtf8("page_CW_nowy"));
         verticalLayout_9 = new QVBoxLayout(page_CW_nowy);
         verticalLayout_9->setObjectName(QString::fromUtf8("verticalLayout_9"));
         horizontalLayout_19 = new QHBoxLayout();
         horizontalLayout_19->setObjectName(QString::fromUtf8("horizontalLayout_19"));
-        pushButton_9 = new QPushButton(page_CW_nowy);
-        pushButton_9->setObjectName(QString::fromUtf8("pushButton_9"));
+        pushButton_powrotCW = new QPushButton(page_CW_nowy);
+        pushButton_powrotCW->setObjectName(QString::fromUtf8("pushButton_powrotCW"));
 
-        horizontalLayout_19->addWidget(pushButton_9);
+        horizontalLayout_19->addWidget(pushButton_powrotCW);
 
         horizontalSpacer_14 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
@@ -899,10 +899,10 @@ public:
 
         horizontalLayout_20 = new QHBoxLayout();
         horizontalLayout_20->setObjectName(QString::fromUtf8("horizontalLayout_20"));
-        doubleSpinBox = new QDoubleSpinBox(page_CW_nowy);
-        doubleSpinBox->setObjectName(QString::fromUtf8("doubleSpinBox"));
+        doubleSpinBox_kwotaCW = new QDoubleSpinBox(page_CW_nowy);
+        doubleSpinBox_kwotaCW->setObjectName(QString::fromUtf8("doubleSpinBox_kwotaCW"));
 
-        horizontalLayout_20->addWidget(doubleSpinBox);
+        horizontalLayout_20->addWidget(doubleSpinBox_kwotaCW);
 
         label_20 = new QLabel(page_CW_nowy);
         label_20->setObjectName(QString::fromUtf8("label_20"));
@@ -921,49 +921,49 @@ public:
 
         verticalLayout_9->addWidget(label_21);
 
-        comboBox = new QComboBox(page_CW_nowy);
-        comboBox->setObjectName(QString::fromUtf8("comboBox"));
+        comboBox_kategoriaCW = new QComboBox(page_CW_nowy);
+        comboBox_kategoriaCW->setObjectName(QString::fromUtf8("comboBox_kategoriaCW"));
 
-        verticalLayout_9->addWidget(comboBox);
+        verticalLayout_9->addWidget(comboBox_kategoriaCW);
 
         label_22 = new QLabel(page_CW_nowy);
         label_22->setObjectName(QString::fromUtf8("label_22"));
 
         verticalLayout_9->addWidget(label_22);
 
-        dateEdit = new QDateEdit(page_CW_nowy);
-        dateEdit->setObjectName(QString::fromUtf8("dateEdit"));
+        dateEdit_CW = new QDateEdit(page_CW_nowy);
+        dateEdit_CW->setObjectName(QString::fromUtf8("dateEdit_CW"));
 
-        verticalLayout_9->addWidget(dateEdit);
+        verticalLayout_9->addWidget(dateEdit_CW);
 
         label_23 = new QLabel(page_CW_nowy);
         label_23->setObjectName(QString::fromUtf8("label_23"));
 
         verticalLayout_9->addWidget(label_23);
 
-        comboBox_2 = new QComboBox(page_CW_nowy);
-        comboBox_2->setObjectName(QString::fromUtf8("comboBox_2"));
+        comboBox_czestotliwoscCW = new QComboBox(page_CW_nowy);
+        comboBox_czestotliwoscCW->setObjectName(QString::fromUtf8("comboBox_czestotliwoscCW"));
 
-        verticalLayout_9->addWidget(comboBox_2);
+        verticalLayout_9->addWidget(comboBox_czestotliwoscCW);
 
         label_24 = new QLabel(page_CW_nowy);
         label_24->setObjectName(QString::fromUtf8("label_24"));
 
         verticalLayout_9->addWidget(label_24);
 
-        lineEdit_2 = new QLineEdit(page_CW_nowy);
-        lineEdit_2->setObjectName(QString::fromUtf8("lineEdit_2"));
+        lineEdit_notatkaCW = new QLineEdit(page_CW_nowy);
+        lineEdit_notatkaCW->setObjectName(QString::fromUtf8("lineEdit_notatkaCW"));
 
-        verticalLayout_9->addWidget(lineEdit_2);
+        verticalLayout_9->addWidget(lineEdit_notatkaCW);
 
-        pushButton_10 = new QPushButton(page_CW_nowy);
-        pushButton_10->setObjectName(QString::fromUtf8("pushButton_10"));
+        pushButton_dodajCW = new QPushButton(page_CW_nowy);
+        pushButton_dodajCW->setObjectName(QString::fromUtf8("pushButton_dodajCW"));
 
-        verticalLayout_9->addWidget(pushButton_10);
+        verticalLayout_9->addWidget(pushButton_dodajCW);
 
-        stackedWidget->addWidget(page_CW_nowy);
+        stackedWidget_CykliczneW->addWidget(page_CW_nowy);
 
-        horizontalLayout_17->addWidget(stackedWidget);
+        horizontalLayout_17->addWidget(stackedWidget_CykliczneW);
 
 
         horizontalLayout_16->addLayout(horizontalLayout_17);
@@ -1282,9 +1282,9 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(4);
+        tabWidget->setCurrentIndex(5);
         stackedWidget_CykliczneP->setCurrentIndex(0);
-        stackedWidget->setCurrentIndex(1);
+        stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_3->setCurrentIndex(0);
 
 
@@ -1325,8 +1325,8 @@ public:
         pushButton_dodajKategorie->setText(QCoreApplication::translate("User_Panel", "Dodaj kategori\304\231", nullptr));
         label_46->setText(QCoreApplication::translate("User_Panel", "Dost\304\231pne kategorie", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Kategorie), QCoreApplication::translate("User_Panel", "Dodaj kategorie", nullptr));
-        pushButton_usunCP->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
         pushButton_edytujCP->setText(QCoreApplication::translate("User_Panel", "Edytuj", nullptr));
+        pushButton_usunCP->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
         pushButton_nowyCP->setText(QCoreApplication::translate("User_Panel", "Dodaj nowy przych\303\263d cykliczny", nullptr));
         pushButton_powrotCP->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
         label_26->setText(QCoreApplication::translate("User_Panel", "Nowy przych\303\263d cykliczny", nullptr));
@@ -1337,10 +1337,10 @@ public:
         label_30->setText(QCoreApplication::translate("User_Panel", "Notatka (opcjonalnie)", nullptr));
         pushButton_dodajCP->setText(QCoreApplication::translate("User_Panel", "Dodaj przych\303\263d cykliczny", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_CykliczneP), QCoreApplication::translate("User_Panel", "Cykliczne przychody", nullptr));
-        pushButton_7->setText(QCoreApplication::translate("User_Panel", "Edytuj", nullptr));
-        pushButton_6->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
-        pushButton_8->setText(QCoreApplication::translate("User_Panel", "Dodaj nowy wydatek cykliczny", nullptr));
-        pushButton_9->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
+        pushButton_edytujCW->setText(QCoreApplication::translate("User_Panel", "Edytuj", nullptr));
+        pushButton_usunCW->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
+        pushButton_nowyCW->setText(QCoreApplication::translate("User_Panel", "Dodaj nowy wydatek cykliczny", nullptr));
+        pushButton_powrotCW->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
         label_25->setText(QCoreApplication::translate("User_Panel", "Nowy wydatek cykliczny", nullptr));
         label_19->setText(QCoreApplication::translate("User_Panel", "Kwota", nullptr));
         label_20->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
@@ -1348,7 +1348,7 @@ public:
         label_22->setText(QCoreApplication::translate("User_Panel", "Data rozpocz\304\231cia", nullptr));
         label_23->setText(QCoreApplication::translate("User_Panel", "Cz\304\231stotliowo\305\233\304\207", nullptr));
         label_24->setText(QCoreApplication::translate("User_Panel", "Notatka (opcjonalnie)", nullptr));
-        pushButton_10->setText(QCoreApplication::translate("User_Panel", "Dodaj wydatek cykliczny", nullptr));
+        pushButton_dodajCW->setText(QCoreApplication::translate("User_Panel", "Dodaj wydatek cykliczny", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_CykliczneW), QCoreApplication::translate("User_Panel", "Cykliczne wydatki", nullptr));
         label_43->setText(QCoreApplication::translate("User_Panel", "Generuj raport", nullptr));
         label_44->setText(QCoreApplication::translate("User_Panel", "Od:", nullptr));

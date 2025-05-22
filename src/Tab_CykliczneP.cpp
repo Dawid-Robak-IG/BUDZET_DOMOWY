@@ -9,13 +9,14 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
     edytujCP_Button= root->findChild<QPushButton*>("pushButton_edytujCP");
     nowyCP_Button= root->findChild<QPushButton*>("pushButton_nowyCP");
     usunCP_Button= root->findChild<QPushButton*>("pushButton_usunCP");
+    //zeby dodać nowy:
     kategoriaCombo= root->findChild<QComboBox*>("comboBox_kategoriaCP");
     czestotliwoscCombo =root->findChild<QComboBox*>("comboBox_czestotliwoscCP");
     startCP_Data = root->findChild<QDateEdit*>("dateEdit_CP");
     kwotaCP= root->findChild<QDoubleSpinBox*>("doubleSpinBox_kwotaCP");
+    notatkaCP_LineEdit= root->findChild<QLineEdit*>("lineEdit_notatkaCP");
     powrotCP_Button= root->findChild<QPushButton*>("pushButton_powrotCP");
     dodajCP_Button= root->findChild<QPushButton*>("pushButton_dodajCP");
-    notatkaCP_LineEdit= root->findChild<QLineEdit*>("lineEdit_notatkaCP");
 
     //podłączenie do konkretnych elementów
     if(dodajCP_Button){
@@ -40,19 +41,38 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
 
 }
 void Tab_CykliczneP::DodajCP_Clicked(){ //toDo
-
+    qDebug()<<"Tutaj będzie dodawanie cyklicznego przychodu";
 }
 void Tab_CykliczneP::EdytujCP_Clicked(){//toDo
-
+qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
 }
 void Tab_CykliczneP::UsunCP_Clicked(){//toDo
-
+qDebug()<<"Tutaj będzie usuwanie cyklicznego przychodu";
 }
 
 
 void Tab_CykliczneP::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
     loadKategorie();
+
+showTable();
+
+}
+
+void Tab_CykliczneP::showTable(){
+    if (!cyklicznePTable) {
+        qDebug() << "Brak cyklicznePTable - nie można ustawić modelu";
+        return;
+    }
+
+    modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
+    modelUsers->setTable("Operacja cykliczna");  // toDo trzeba dać tylko przychody cykliczne tutaj
+     if (!modelUsers->select()) {
+        qDebug() << "Błąd ładowania danych:" << modelUsers->lastError().text();
+    }
+
+   cyklicznePTable->setModel(modelUsers);
+    cyklicznePTable->resizeColumnsToContents();
 }
 
 

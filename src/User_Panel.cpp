@@ -15,7 +15,9 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     uzytkownicyManager(nullptr),
     kategorieManager(nullptr),
     daneUzytkownikaManager(nullptr),
-    cyklicznePManager(nullptr)
+    cyklicznePManager(nullptr),
+    cykliczneWManager(nullptr)
+
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
@@ -66,7 +68,13 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
     } else {
         cyklicznePManager->setDatabaseManager(m_dbManager);
     }
-//displayUserData(userEmail);
+
+    if (!cykliczneWManager) {
+        cykliczneWManager = new Tab_CykliczneW(userEmail, ui->tab_CykliczneW, this);
+        cykliczneWManager->setDatabaseManager(m_dbManager);
+    } else {
+        cykliczneWManager->setDatabaseManager(m_dbManager);
+    }
 
 }
 

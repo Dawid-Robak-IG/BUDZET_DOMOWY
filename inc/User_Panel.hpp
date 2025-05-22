@@ -15,6 +15,7 @@
 #include "Tab_Kategorie.hpp"
 #include "Tab_DaneUzytkownika.hpp"
 #include "Tab_CykliczneP.hpp"
+#include "Tab_CykliczneW.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -51,7 +52,7 @@ private:
     Tab_Kategorie *kategorieManager;
     Tab_DaneUzytkownika *daneUzytkownikaManager;
     Tab_CykliczneP* cyklicznePManager;
-
+Tab_CykliczneW* cykliczneWManager;
 };
 
 #endif // USER_PANEL_H

@@ -27,17 +27,20 @@ SOURCES += src/main.cpp \
            src/Tab_Przychody.cpp \
            src/Tab_Uzytkownicy.cpp \
            src/Tab_Wydatki.cpp \
-           src/User_Panel.cpp
+           src/User_Panel.cpp\
+           src/Tab_CykliczneW.cpp
 HEADERS += inc/MainWindow.hpp \
     inc/DatabaseManager.hpp \
     inc/Start_Log_Reg.hpp \
     inc/Tab_CykliczneP.hpp \
+    inc/Tab_CykliczneW.hpp \
     inc/Tab_DaneUzytkownika.hpp \
     inc/Tab_Kategorie.hpp \
     inc/Tab_Przychody.hpp \
     inc/Tab_Uzytkownicy.hpp \
     inc/Tab_Wydatki.hpp \
-    inc/User_Panel.hpp
+    inc/User_Panel.hpp \
+
 
 FORMS += \
     ui/Start_Log_Reg.ui \

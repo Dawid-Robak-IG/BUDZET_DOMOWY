@@ -740,7 +740,7 @@
        <item>
         <widget class="QStackedWidget" name="stackedWidget_CykliczneP">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page_CP_lista">
           <layout class="QHBoxLayout" name="horizontalLayout_21">
@@ -750,19 +750,19 @@
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_10">
              <property name="leftMargin">
-              <number>20</number>
+              <number>0</number>
              </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_usunCP">
-               <property name="text">
-                <string>Usuń</string>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="QPushButton" name="pushButton_edytujCP">
                <property name="text">
                 <string>Edytuj</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QPushButton" name="pushButton_usunCP">
+               <property name="text">
+                <string>Usuń</string>
                </property>
               </widget>
              </item>
@@ -844,7 +844,31 @@
             </widget>
            </item>
            <item>
-            <widget class="QDoubleSpinBox" name="doubleSpinBox_kwotaCP"/>
+            <layout class="QHBoxLayout" name="horizontalLayout_32">
+             <item>
+              <widget class="QDoubleSpinBox" name="doubleSpinBox_kwotaCP"/>
+             </item>
+             <item>
+              <widget class="QLabel" name="label_47">
+               <property name="text">
+                <string>zł</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="horizontalSpacer_28">
+               <property name="orientation">
+                <enum>Qt::Horizontal</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>40</width>
+                 <height>20</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
+            </layout>
            </item>
            <item>
             <widget class="QLabel" name="label_31">
@@ -907,7 +931,7 @@
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_17">
          <item>
-          <widget class="QStackedWidget" name="stackedWidget">
+          <widget class="QStackedWidget" name="stackedWidget_CykliczneW">
            <property name="currentIndex">
             <number>1</number>
            </property>
@@ -926,22 +950,22 @@
             </property>
             <layout class="QHBoxLayout" name="horizontalLayout_18">
              <item>
-              <widget class="QTableView" name="tableView_2"/>
+              <widget class="QTableView" name="tableView_listaCW"/>
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_7">
                <property name="leftMargin">
-                <number>20</number>
+                <number>0</number>
                </property>
                <item>
-                <widget class="QPushButton" name="pushButton_7">
+                <widget class="QPushButton" name="pushButton_edytujCW">
                  <property name="text">
                   <string>Edytuj</string>
                  </property>
                 </widget>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_6">
+                <widget class="QPushButton" name="pushButton_usunCW">
                  <property name="text">
                   <string>Usuń</string>
                  </property>
@@ -961,7 +985,7 @@
                 </spacer>
                </item>
                <item>
-                <widget class="QPushButton" name="pushButton_8">
+                <widget class="QPushButton" name="pushButton_nowyCW">
                  <property name="text">
                   <string>Dodaj nowy wydatek cykliczny</string>
                  </property>
@@ -976,7 +1000,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_19">
                <item>
-                <widget class="QPushButton" name="pushButton_9">
+                <widget class="QPushButton" name="pushButton_powrotCW">
                  <property name="text">
                   <string>Powrót</string>
                  </property>
@@ -1035,7 +1059,7 @@
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_20">
                <item>
-                <widget class="QDoubleSpinBox" name="doubleSpinBox"/>
+                <widget class="QDoubleSpinBox" name="doubleSpinBox_kwotaCW"/>
                </item>
                <item>
                 <widget class="QLabel" name="label_20">
@@ -1067,7 +1091,7 @@
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox"/>
+              <widget class="QComboBox" name="comboBox_kategoriaCW"/>
              </item>
              <item>
               <widget class="QLabel" name="label_22">
@@ -1077,17 +1101,17 @@
               </widget>
              </item>
              <item>
-              <widget class="QDateEdit" name="dateEdit"/>
+              <widget class="QDateEdit" name="dateEdit_CW"/>
              </item>
              <item>
               <widget class="QLabel" name="label_23">
                <property name="text">
-                <string>Częstotliowość</string>
+                <string>Częstotliwość</string>
                </property>
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_2"/>
+              <widget class="QComboBox" name="comboBox_czestotliwoscCW"/>
              </item>
              <item>
               <widget class="QLabel" name="label_24">
@@ -1097,10 +1121,10 @@
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_2"/>
+              <widget class="QLineEdit" name="lineEdit_notatkaCW"/>
              </item>
              <item>
-              <widget class="QPushButton" name="pushButton_10">
+              <widget class="QPushButton" name="pushButton_dodajCW">
                <property name="text">
                 <string>Dodaj wydatek cykliczny</string>
                </property>

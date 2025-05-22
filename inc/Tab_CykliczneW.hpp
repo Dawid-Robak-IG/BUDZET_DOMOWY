@@ -1,5 +1,5 @@
-#ifndef TAB_CYKLICZNEP_HPP
-#define TAB_CYKLICZNEP_HPP
+#ifndef TAB_CYKLICZNEW_HPP
+#define TAB_CYKLICZNEW_HPP
 
 #include "DatabaseManager.hpp"
 
@@ -18,40 +18,39 @@
 #include <QTableView>
 #include <QSqlTableModel>
 
-class Tab_CykliczneP : public QWidget
+class Tab_CykliczneW : public QWidget
 {
     Q_OBJECT
 public:
-    explicit Tab_CykliczneP(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
+    explicit Tab_CykliczneW(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
     void showTable();
 signals:
 
 private slots:
-    void DodajCP_Clicked();
-    void EdytujCP_Clicked();
-    void UsunCP_Clicked();
+    void DodajCW_Clicked();
+    void EdytujCW_Clicked();
+    void UsunCW_Clicked();
 
 private:
     QString m_userEmail;
 
     QStackedWidget *stacked;
-    QTableView *cyklicznePTable;
-    QPushButton *edytujCP_Button;
-    QPushButton *nowyCP_Button;
-    QPushButton *usunCP_Button;
+    QTableView *cykliczneWTable;
+    QPushButton *edytujCW_Button;
+    QPushButton *nowyCW_Button;
+    QPushButton *usunCW_Button;
     QComboBox *kategoriaCombo;
     QComboBox *czestotliwoscCombo;
-    QDateEdit *startCP_Data;
-    QDoubleSpinBox *kwotaCP;
-    QPushButton *powrotCP_Button;
-    QPushButton *dodajCP_Button;
-    QLineEdit *notatkaCP_LineEdit;
+    QDateEdit *startCW_Data;
+    QDoubleSpinBox *kwotaCW;
+    QPushButton *powrotCW_Button;
+    QPushButton *dodajCW_Button;
+    QLineEdit *notatkaCW_LineEdit;
 
     QSqlTableModel* modelUsers; //potrzebne do tabelki
     DatabaseManager* m_dbManager = nullptr;
     void loadKategorie();
 };
 
-
-#endif // TAB_CYKLICZNEP_HPP
+#endif // TAB_CYKLICZNEW_HPP
