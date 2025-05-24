@@ -16,9 +16,26 @@ Tab_Relacje::Tab_Relacje(const QString& userEmail,QWidget *root, QWidget *parent
 }
 
 
-void Tab_Relacje::PrzypiszRodzicaClicked(){ //toDo
+void Tab_Relacje::PrzypiszRodzicaClicked() {
+    QModelIndex dzieckoIndex = dzieciTable->currentIndex();
+    QModelIndex rodzicIndex = rodziceTable->currentIndex();
 
-    qDebug()<<"Tutaj będzie dodanie relacji dziecko-rodzic";
+    if (!dzieckoIndex.isValid() || !rodzicIndex.isValid()) {
+        QMessageBox::warning(this, "Błąd", "Wybierz dziecko i rodzica.");
+        return;
+    }
+
+    int dzieckoID = dzieciModelUsers->data(dzieciModelUsers->index(dzieckoIndex.row(), dzieciModelUsers->fieldIndex("ID"))).toInt();
+    int rodzicID = rodziceModelUsers->data(rodziceModelUsers->index(rodzicIndex.row(), rodziceModelUsers->fieldIndex("ID"))).toInt();
+
+    qDebug()<<"Wybrano dziecko: "<<dzieckoID<<" | oraz Rodzica: "<<rodzicID;
+
+    if (m_dbManager->addRelation(dzieckoID, rodzicID, -1)) {
+        QMessageBox::information(this, "Sukces", "Relacja została dodana.");
+        dzieciModelUsers->select();
+    } else {
+        QMessageBox::warning(this, "Błąd", "Nie udało się dodać relacji.");
+    }
 }
 
 

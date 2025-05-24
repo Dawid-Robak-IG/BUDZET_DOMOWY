@@ -409,3 +409,101 @@ QDate DatabaseManager::get_update_Date() {
 
     return QDate(); // pusty obiekt jeśli brak wyniku
 }
+bool DatabaseManager::addRelation(int IDchild, int IDparent1, int IDparent2){
+    bool success = false;
+    if(IDparent1!=-1){
+        if(addFirstParent(IDchild,IDparent1)){
+            qDebug()<< "Dodano pierwszego rodzica";
+            success = true;
+        }
+    }
+    if(IDparent2!=-1){
+        if(addSecondParent(IDchild,IDparent2)){
+            qDebug()<< "Dodano drugiego rodzica";
+            success = true;
+        }
+    }
+    return success;
+}
+bool DatabaseManager::addFirstParent(int IDchild, int IDparent1) {
+    if (!m_db.isOpen()) return false;
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        UPDATE Dziecko
+        SET ID_Rodzic1 = :id_rodzica
+        WHERE `Uzytkownik zalogowanyID` = :id_dziecka
+    )");
+
+    query.bindValue(":id_rodzica", IDparent1);
+    query.bindValue(":id_dziecka", IDchild);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd dodawania Rodzica1:" << query.lastError().text();
+        return false;
+    }
+
+    return query.numRowsAffected() > 0;
+}
+
+bool DatabaseManager::addSecondParent(int IDchild, int IDparent2) {
+    if (!m_db.isOpen()) return false;
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        UPDATE Dziecko
+        SET ID_Rodzic2 = :id_rodzica
+        WHERE `Uzytkownik zalogowanyID` = :id_dziecka
+    )");
+
+    query.bindValue(":id_rodzica", IDparent2);
+    query.bindValue(":id_dziecka", IDchild);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd dodawania Rodzica2:" << query.lastError().text();
+        return false;
+    }
+
+    return query.numRowsAffected() > 0;
+}
+bool DatabaseManager::update_Children() {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+
+    QSqlQuery selectQuery(m_db);
+    selectQuery.prepare(R"(
+        SELECT ID FROM `Uzytkownik zalogowany`
+        WHERE Rola = 'Dziecko' AND ID NOT IN (
+            SELECT `Uzytkownik zalogowanyID` FROM Dziecko
+        )
+    )");
+
+    if (!selectQuery.exec()) {
+        qDebug() << "Błąd pobierania dzieci do dodania:" << selectQuery.lastError().text();
+        return false;
+    }
+
+    QSqlQuery insertQuery(m_db);
+    int dodano = 0;
+
+    while (selectQuery.next()) {
+        int userId = selectQuery.value(0).toInt();
+
+        insertQuery.prepare(R"(
+            INSERT INTO Dziecko (`Uzytkownik zalogowanyID`)
+            VALUES (:id)
+        )");
+        insertQuery.bindValue(":id", userId);
+
+        if (!insertQuery.exec()) {
+            qDebug() << "Błąd dodawania dziecka (ID:" << userId << "):" << insertQuery.lastError().text();
+            continue;
+        }
+        ++dodano;
+    }
+
+    qDebug() << "Dodano nowych dzieci:" << dodano;
+    return true;
+}
