@@ -113,7 +113,7 @@ void Start_Log_Reg::loginUser(){
         return;
     }
 
-    QString email =ui->lineEdit_emailLog->text();
+    QString email = ui->lineEdit_emailLog->text();
     QString password = ui->lineEdit_passwordLog->text();
 
     if (email.isEmpty() || password.isEmpty()) {
@@ -121,9 +121,8 @@ void Start_Log_Reg::loginUser(){
         return;
     }
 
-
-    QSqlQuery query(m_dbManager->getDatabase()); // Używaj istniejącego połączenia 'db'
-    query.prepare("SELECT ID FROM `Uzytkownik zalogowany` WHERE `Email` = :email AND `Haslo` = :haslo");
+    QSqlQuery query(m_dbManager->getDatabase()); 
+    query.prepare("SELECT ID, Czy_zablokowany FROM `Uzytkownik zalogowany` WHERE `Email` = :email AND `Haslo` = :haslo");
     query.bindValue(":email", email);
     query.bindValue(":haslo", password);
 
@@ -134,14 +133,20 @@ void Start_Log_Reg::loginUser(){
     }
 
     if(query.next()){
+        int blockedStatus = query.value("Czy_zablokowany").toInt();
+        if (blockedStatus == 1) {
+            QMessageBox::warning(this, "Zablokowany", "Twoje konto jest zablokowane. Skontaktuj się z administratorem.");
+            return;
+        }
+
         QMessageBox::information(this, "Sukces", "Zalogowano pomyślnie!");
         int userID = query.value("ID").toInt();
-        qDebug() << "ID zalogowanego usera: "<<userID;
+        qDebug() << "ID zalogowanego usera: " << userID;
         m_dbManager->set_logged_user(userID); 
 
         ui->lineEdit_emailLog->clear();
         ui->lineEdit_passwordLog->clear();
-        emit loginSuccessful(email); // Sygnał o udanym logowaniu
+        emit loginSuccessful(email);
     } else {
         QMessageBox::warning(this, "Błąd", "Błędny e-mail lub hasło.");
     }
