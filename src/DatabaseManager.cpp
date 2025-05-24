@@ -383,3 +383,29 @@ bool DatabaseManager::update_budzet_domowy(int ID_operacji, double kwota){
     reload_whole_budzet();
     return true;
 }
+QDate DatabaseManager::get_update_Date() {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return QDate();
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT o.Data 
+        FROM `Budzet domowy` b
+        JOIN `Operacja` o ON b.OperacjaID = o.ID
+        ORDER BY b.ID DESC
+        LIMIT 1
+    )");
+
+    if (!query.exec()) {
+        qDebug() << "Błąd zapytania get_update_Date:" << query.lastError().text();
+        return QDate();
+    }
+
+    if (query.next()) {
+        return query.value(0).toDate();
+    }
+
+    return QDate(); // pusty obiekt jeśli brak wyniku
+}

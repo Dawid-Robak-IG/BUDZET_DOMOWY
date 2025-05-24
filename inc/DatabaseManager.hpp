@@ -5,6 +5,7 @@
 #include <QSqlDatabase>
 #include <QSqlQuery>
 #include <QVariant>
+#include <QDate>
 
 class DatabaseManager : public QObject
 {
@@ -38,6 +39,7 @@ public:
     bool deleteCykliczny(int ID);
     void reload_whole_budzet();
     double get_whole_budzet();
+    QDate get_update_Date();
 
 signals:
     void nowaKategoriaDodana();
