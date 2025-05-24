@@ -6,12 +6,7 @@
 #include <QSqlError>
 #include <QDebug>
 
-
-
-Start_Log_Reg::Start_Log_Reg(QWidget *parent)
-    : QWidget(parent)
-    , ui(new Ui::Start_Log_Reg)
-{
+Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start_Log_Reg){
 
     ui->setupUi(this);
     ui->stackedWidget->setCurrentIndex(startPageIndex);
@@ -49,17 +44,10 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent)
     ui->lineEdit_passwordLog->setText("haslo123");
 
     ui->dateEdit_DOB_Reg->setDate(QDate::currentDate());
-
 }
-
-
-
-Start_Log_Reg::~Start_Log_Reg()
-{
+Start_Log_Reg::~Start_Log_Reg(){
     delete ui;
 }
-
-
 void Start_Log_Reg::registerUser(){
     if (!isValidReg()) return;
 
@@ -120,7 +108,6 @@ void Start_Log_Reg::registerUser(){
 
 
 void Start_Log_Reg::loginUser(){
-
     if (!m_dbManager || !m_dbManager->getDatabase().isOpen()) {
         QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
         return;
@@ -136,7 +123,7 @@ void Start_Log_Reg::loginUser(){
 
 
     QSqlQuery query(m_dbManager->getDatabase()); // Używaj istniejącego połączenia 'db'
-    query.prepare("SELECT Email FROM `Uzytkownik zalogowany` WHERE `Email` = :email AND `Haslo` = :haslo");
+    query.prepare("SELECT ID FROM `Uzytkownik zalogowany` WHERE `Email` = :email AND `Haslo` = :haslo");
     query.bindValue(":email", email);
     query.bindValue(":haslo", password);
 
@@ -148,13 +135,16 @@ void Start_Log_Reg::loginUser(){
 
     if(query.next()){
         QMessageBox::information(this, "Sukces", "Zalogowano pomyślnie!");
+        int userID = query.value("ID").toInt();
+        qDebug() << "ID zalogowanego usera: "<<userID;
+        m_dbManager->set_logged_user(userID); 
+
         ui->lineEdit_emailLog->clear();
         ui->lineEdit_passwordLog->clear();
         emit loginSuccessful(email); // Sygnał o udanym logowaniu
     } else {
         QMessageBox::warning(this, "Błąd", "Błędny e-mail lub hasło.");
     }
-
 }
 
 bool Start_Log_Reg::isValidReg(){

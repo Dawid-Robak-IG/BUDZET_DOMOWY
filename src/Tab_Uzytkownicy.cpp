@@ -1,8 +1,6 @@
 #include "../inc/Tab_Uzytkownicy.hpp"
 
-Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent)
-    : QWidget{parent}
-{
+Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent): QWidget{parent}{
 
     tabelaTableView = root->findChild<QTableView*>("tableView_uzytkownicy");
    stacked= root->findChild<QStackedWidget*>("stackedWidget_uzytkownicy");
@@ -34,7 +32,6 @@ Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent)
     connect(zapiszZmianyButton, &QPushButton::clicked, this, &Tab_Uzytkownicy::ZapiszZmianyClicked);
 
 stacked->setCurrentIndex(0);
-
 }
 
 
@@ -70,8 +67,7 @@ void Tab_Uzytkownicy::BlokadaClicked(){ //toDo
 }
 
 
-void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager)
-{
+void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
      m_dbManager = dbManager;
 
     if (!m_dbManager || !m_dbManager->getDatabase().isOpen()) {

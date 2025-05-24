@@ -42,8 +42,6 @@ private:
     int startPageIndex = 0;
     int loginPageIndex = 1;    // Indeks strony Login_page
     int registerPageIndex = 2; // Indeks strony Register_page
-
-
 };
 
 #endif // STARTLOGREG_H

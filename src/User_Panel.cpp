@@ -20,7 +20,6 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     raportyManager(nullptr),
     dzieciManager(nullptr),
     relacjeManager(nullptr)
-
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
@@ -147,4 +146,7 @@ void User_Panel::goToStartPage() {
     cykliczneWManager->goToStartPage();
     cyklicznePManager->goToStartPage();
     uzytkownicyManager->goToStartPage();
+}
+void User_Panel::setTablesByNewUser(){
+    cyklicznePManager->setTableStrategy();
 }

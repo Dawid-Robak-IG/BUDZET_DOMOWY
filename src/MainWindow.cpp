@@ -31,7 +31,6 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::handleLogin(QString email) {
-
     if (!m_userPanel) {
         m_userPanel = new User_Panel(email,this);
         m_userPanel->setDatabaseManager(m_dbManager);
@@ -44,9 +43,8 @@ void MainWindow::handleLogin(QString email) {
         m_userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
         m_userPanel->displayUserData(email);      // I przeładowujemy rolę
         m_userPanel->goToStartPage();
+        m_userPanel->setTablesByNewUser();
     }
-
-
     stackedWidget->setCurrentWidget(m_userPanel);
 }
 

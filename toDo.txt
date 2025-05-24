@@ -2,7 +2,6 @@
 -> Aktualizacja kwoty budżetu
 -> Zakładka relacje -> wyświetlanie dzieci z ich rodzicami czyli z bazy danych tabela Dzieco zamiast Uzytkownik zalogowany 
 -> informacje o aplikacji?? strona startowa??
--> Aktualizowanie listy kategorii w zakładkach gdzie jest lista do wybierania
 -> czy pola w których coś się wpisuje są czyszczone
 ->robienie zmiany hasła
 -> sprawdzanie czy dane w formularzach są poprawnie wpisywane 
@@ -11,7 +10,8 @@
 -> jak to jest z tym dzieckiem, bo dałam że rola dziecko ale czy wtedy nie powinien być wpis do tablicy Dziecko i co z przejsciem do innej roli?
 ->zmienić kwotę na float i notatkę na string
 ->tabela->setEditTriggers(QAbstractItemView::NoEditTriggers);
-POTĘŻNE NARZĘDZIE, JAK JEST MOŻLIWOŚĆ EDYCJI TO OD RAZU MOŻNA ZMIENIAĆ DANE W TABELACH W BAZIE DAYCH czyli przycisk może włączać i wyłączać dostęp do edycji bez uciążliwych formularzy można od razu w tablei edytować (dotyczy danych użytkowników i operacji cyklicznych np)
+POTĘŻNE NARZĘDZIE, JAK JEST MOŻLIWOŚĆ EDYCJI TO OD RAZU MOŻNA ZMIENIAĆ DANE W TABELACH W BAZIE DAYCH czyli przycisk może włączać i 
+wyłączać dostęp do edycji bez uciążliwych formularzy można od razu w tablei edytować (dotyczy danych użytkowników i operacji cyklicznych np)
 ->formularz do edycji cyklcznych lub tak jak wyżej
 -> może dziecko domyślnie jak ma mniej niż 18lat a później jako dorosły
 
@@ -19,6 +19,6 @@ POTĘŻNE NARZĘDZIE, JAK JEST MOŻLIWOŚĆ EDYCJI TO OD RAZU MOŻNA ZMIENIAĆ D
 WAŻNE:
 -> MOŻNA SZUKAĆ TEGO CO JEST DO ZROBIENIA SZUKAJĄC "toDo"
   
--> CHCIAŁABYM, ŻEBY RZECZY KTÓRE ROBIĄ COŚ Z DANYMI W BAZIE    	DANYCH (OPRÓCZ CZYTANIA) UŻYWAŁY FUNKCJI STWORZONYCH W KLASIE
+-> CHCIAŁABYM, ŻEBY RZECZY KTÓRE ROBIĄ COŚ Z DANYMI W BAZIE DANYCH (OPRÓCZ CZYTANIA) UŻYWAŁY FUNKCJI STWORZONYCH W KLASIE
   DatabaseManager
 

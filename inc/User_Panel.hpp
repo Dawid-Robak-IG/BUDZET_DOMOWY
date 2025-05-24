@@ -36,6 +36,8 @@ public:
     DatabaseManager* getDatabaseManager() const { return m_dbManager; }
 
     void setUserEmail(const QString& email);
+
+    void setTablesByNewUser();
 void displayUserData(const QString &email);
 
     void goToStartPage();

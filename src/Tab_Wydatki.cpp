@@ -1,8 +1,6 @@
 #include "../inc/Tab_Wydatki.hpp"
 
-Tab_Wydatki::Tab_Wydatki(const QString& userEmail,QWidget *root, QWidget *parent)
-    : QWidget{parent},m_userEmail(userEmail)
-{
+Tab_Wydatki::Tab_Wydatki(const QString& userEmail,QWidget *root, QWidget *parent): QWidget{parent},m_userEmail(userEmail){
 
     kwotaSpinBox = root->findChild<QDoubleSpinBox*>("doubleSpinBox_kwotaWydatek");
     opisLineEdit = root->findChild<QLineEdit*>("lineEdit_notatkaWydatek");
@@ -31,10 +29,10 @@ void Tab_Wydatki::setDatabaseManager(DatabaseManager* dbManager) {
 
 
 void Tab_Wydatki::DodajWydatekClicked(){
-
     if (!m_dbManager){
         qWarning() << "Nie ustawiono DatabaseManager!";
-        return;}
+        return;
+    }
 
 
     if( m_dbManager->addWydatek(m_userEmail,kwotaSpinBox->value(),dataEdit->date(),opisLineEdit->text(),kategoriaCombo->currentText())){

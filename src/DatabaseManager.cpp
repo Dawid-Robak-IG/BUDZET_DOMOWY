@@ -3,13 +3,11 @@
 #include <QMessageBox>
 #include <QSqlError>
 
-DatabaseManager::DatabaseManager(QObject *parent)
-    : QObject{parent}
-{
+DatabaseManager::DatabaseManager(QObject *parent) : QObject{parent}{
     if (!openConnection()) {
         QMessageBox::warning(nullptr, "Uwaga", "Nie udało się połączyć z bazą danych. Niektóre funkcje mogą nie działać poprawnie.");
-
     }
+    logged_user_ID = -1;
 }
 
 DatabaseManager::~DatabaseManager() {
@@ -51,8 +49,7 @@ void DatabaseManager::closeConnection() {
     // QSqlDatabase::removeDatabase("main_connection");
 }
 
-bool DatabaseManager::addWydatek(const QString &email, double amount, const QDate &date, const QString &note, const QString &category)
-{
+bool DatabaseManager::addWydatek(const QString &email, double amount, const QDate &date, const QString &note, const QString &category){
     if (!m_db.isOpen()) {
         qDebug() << "Baza danych nie jest otwarta!";
         return false;
@@ -112,9 +109,6 @@ bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDa
 
 
 bool DatabaseManager::addKategoria(const QString &email, const QString &nowaKategoria){
-
-
-
     if (!m_db.isOpen()) {
         qDebug() << "Baza danych nie jest otwarta!";
         return false;
@@ -142,7 +136,7 @@ bool DatabaseManager::addKategoria(const QString &email, const QString &nowaKate
         return false;
     }
 
-  emit nowaKategoriaDodana();  // rozesłanie informacji, żeby listy się zaktualizowały
+    emit nowaKategoriaDodana();  // rozesłanie informacji, żeby listy się zaktualizowały
     return true;
 
 }
@@ -166,4 +160,80 @@ QStringList DatabaseManager::getAllKategorie() {
     }
 
     return kategorie;
+}
+bool DatabaseManager::addCykliczny(double amount, const QDate &date, const QString &note,const QString &frequency, const QString &category){
+    qDebug() << "Rozpoczęcie procesu nowego przychodu cyklicznego";
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+    if(amount==0){
+        qDebug() << "Nie można dodać zerowej wartości\n";
+        return false;
+    }
+    QSqlQuery query(m_db);
+
+    query.prepare(R"(
+        INSERT INTO `Operacja cykliczna` 
+        (Kwota, Data, Notatka, Czestotliwosc, `Uzytkownik zalogowanyID`, `Kategoria Nazwa`)
+        VALUES (:kwota, :data, :notatka, :czestotliwosc, :uzytkownikID, :kategoria)
+    )");
+
+    query.bindValue(":kwota", amount);
+    query.bindValue(":data", date);
+    query.bindValue(":notatka", note);
+    query.bindValue(":czestotliwosc", frequency);
+    query.bindValue(":uzytkownikID", logged_user_ID);
+    query.bindValue(":kategoria", category);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd dodawania operacji cyklicznej:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}   
+bool DatabaseManager::changeCykliczny(int ID_cykl,double amount, const QDate &date, const QString &note, const QString &frequency,const QString &category){
+    return true;
+}
+bool DatabaseManager::changePassword(const QString &newPass){
+    return true;
+}
+bool DatabaseManager::changeStatusUser(int ID_user){
+    return true;
+}
+bool DatabaseManager::generateReport(){
+    return true;
+}
+void DatabaseManager::set_logged_user(int ID){
+    logged_user_ID = ID;
+}
+int DatabaseManager::get_user_ID(){
+    return logged_user_ID;
+}
+bool DatabaseManager::amI_admin(){
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+
+    if (logged_user_ID <= 0) {
+        qDebug() << "Nieprawidłowy ID użytkownika!";
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT Rola FROM `Uzytkownik zalogowany` WHERE ID = :id");
+    query.bindValue(":id", logged_user_ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd zapytania SQL:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        QString rola = query.value("Rola").toString().toLower();
+        return (rola == "admin");
+    }
+
+    return false;
 }

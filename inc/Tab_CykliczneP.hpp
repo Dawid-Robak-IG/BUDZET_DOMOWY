@@ -26,6 +26,7 @@ public:
     void setDatabaseManager(DatabaseManager* dbManager);
     void showTable();
     void goToStartPage();
+    void setTableStrategy();
 signals:
 
 private slots:
@@ -51,6 +52,9 @@ private:
 
     QSqlTableModel* modelUsers; //potrzebne do tabelki
     DatabaseManager* m_dbManager = nullptr;
+
+    QSqlTableModel* modelTabeli;
+
     void loadKategorie();
 };
 

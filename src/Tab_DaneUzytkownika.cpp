@@ -1,9 +1,6 @@
 #include "../inc/Tab_DaneUzytkownika.hpp"
 
-Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,QWidget *parent)
-    : QWidget{parent},m_userEmail(userEmail)
-{
-
+Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,QWidget *parent) : QWidget{parent},m_userEmail(userEmail){
     dataEdit= root->findChild<QDateEdit*>("dateEdit_DOB_UD");
     imieLineEdit= root->findChild<QLineEdit*>("lineEdit_nameUD");
     nazwiskoLineEdit= root->findChild<QLineEdit*>("lineEdit_surnameUD");
@@ -25,28 +22,24 @@ Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,
     if (zmienHasloButton) {
         connect(zmienHasloButton, &QPushButton::clicked, this, &Tab_DaneUzytkownika::ZmienHasloClicked);
     }
-
-
 }
 
-void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager)
-{
+void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager){
     m_dbManager = dbManager;
   loadUserData();
 }
 
 
 void Tab_DaneUzytkownika::ZmienHasloClicked(){  //toDo
-
     qDebug()<<"Tutaj będzie zmienianie hasła";
 
+
+    
 }
 
 
 
-void Tab_DaneUzytkownika::loadUserData()
-{
-
+void Tab_DaneUzytkownika::loadUserData(){
     if (!m_dbManager) {
         qDebug() << "Brak DatabaseManagera!";
         return;

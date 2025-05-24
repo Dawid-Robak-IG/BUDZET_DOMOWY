@@ -12,6 +12,9 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
     //zeby dodać nowy:
     kategoriaCombo= root->findChild<QComboBox*>("comboBox_kategoriaCP");
     czestotliwoscCombo =root->findChild<QComboBox*>("comboBox_czestotliwoscCP");
+    if (czestotliwoscCombo) {
+    czestotliwoscCombo->addItems({"Codziennie", "Co tydzień", "Co miesiąc", "Co rok"});
+    }
     startCP_Data = root->findChild<QDateEdit*>("dateEdit_CP");
     kwotaCP= root->findChild<QDoubleSpinBox*>("doubleSpinBox_kwotaCP");
     notatkaCP_LineEdit= root->findChild<QLineEdit*>("lineEdit_notatkaCP");
@@ -39,31 +42,42 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
         stacked->setCurrentIndex(0);
     });
 
- startCP_Data->setDate(QDate::currentDate());
+  startCP_Data->setDate(QDate::currentDate());
   stacked->setCurrentIndex(0);
 }
 void Tab_CykliczneP::DodajCP_Clicked(){ //toDo
-    qDebug()<<"Tutaj będzie dodawanie cyklicznego przychodu";
+    qDebug() << "Dodawanie cyklicznego przychodu";
+
+    QString kategoria = kategoriaCombo->currentText();
+    QString czestotliwosc = czestotliwoscCombo->currentText();
+    QDate data = startCP_Data->date();
+    double kwota = kwotaCP->value();
+    QString notatka = notatkaCP_LineEdit->text();
+
+
+    if (m_dbManager->addCykliczny(kwota, data, notatka, czestotliwosc, kategoria)) {
+        qDebug() << "Cykliczny przychód został dodany.";
+        modelTabeli->select();
+    } else {
+        qDebug() << "Nie udało się dodać cyklicznego przychodu.";
+    }
 }
 void Tab_CykliczneP::EdytujCP_Clicked(){//toDo
-qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
+    qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
 }
 void Tab_CykliczneP::UsunCP_Clicked(){//toDo
-qDebug()<<"Tutaj będzie usuwanie cyklicznego przychodu";
+    qDebug()<<"Tutaj będzie usuwanie cyklicznego przychodu";
 }
 
 
 void Tab_CykliczneP::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
     loadKategorie();
-
-showTable();
-
-
-connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
+    showTable();
+    connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
         this, &Tab_CykliczneP::loadKategorie);
 
-
+    setTableStrategy();
 }
 
 void Tab_CykliczneP::showTable(){
@@ -95,4 +109,20 @@ void Tab_CykliczneP::loadKategorie() {
 void Tab_CykliczneP::goToStartPage() {
    stacked->setCurrentIndex(0);
 }
+void Tab_CykliczneP::setTableStrategy(){
+    if(!modelTabeli){
+        modelTabeli = new QSqlTableModel(this, m_dbManager->getDatabase());
+    }
+    modelTabeli->setTable("`Operacja cykliczna`");
+    modelTabeli->setEditStrategy(QSqlTableModel::OnFieldChange);
 
+    if(!m_dbManager->amI_admin()){
+        modelTabeli->setFilter(QString("`Uzytkownik zalogowanyID` = %1").arg(m_dbManager->get_user_ID()));
+    }
+
+    modelTabeli->select();  
+
+    cyklicznePTable->setModel(modelTabeli);
+    cyklicznePTable->hideColumn(modelTabeli->fieldIndex("ID"));
+    cyklicznePTable->hideColumn(modelTabeli->fieldIndex("Uzytkownik zalogowanyID"));
+}
