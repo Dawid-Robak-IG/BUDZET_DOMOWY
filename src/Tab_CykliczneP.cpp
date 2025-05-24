@@ -145,6 +145,19 @@ void Tab_CykliczneP::setTableStrategy(){
     cyklicznePTable->setModel(modelUsers);
     cyklicznePTable->hideColumn(modelUsers->fieldIndex("ID"));
     //cyklicznePTable->hideColumn(modelUsers->fieldIndex("Uzytkownik zalogowanyID"));
+
+    cyklicznePTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    connect(cyklicznePTable, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
+        QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
+
+        if (colName == "Uzytkownik zalogowanyID") {
+            qDebug() << "Edycja zabroniona dla kolumny:" << colName;
+            return;
+        }
+
+        cyklicznePTable->edit(index);
+    });
 }
 void Tab_CykliczneP::reset_Tab(){
     kategoriaCombo->setCurrentIndex(0);

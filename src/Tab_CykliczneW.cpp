@@ -153,6 +153,19 @@ void Tab_CykliczneW::setTableStrategy(){
     cykliczneWTable->setModel(modelUsers);
     cykliczneWTable->hideColumn(modelUsers->fieldIndex("ID"));
     //cykliczneWTable->hideColumn(modelUsers->fieldIndex("Uzytkownik zalogowanyID"));
+
+    cykliczneWTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+
+    connect(cykliczneWTable, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
+        QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
+
+        if (colName == "Uzytkownik zalogowanyID") {
+            qDebug() << "Edycja zabroniona dla kolumny:" << colName;
+            return;
+        }
+
+        cykliczneWTable->edit(index);
+    });
 }
 void Tab_CykliczneW::reset_Tab(){
     kategoriaCombo->setCurrentIndex(0);

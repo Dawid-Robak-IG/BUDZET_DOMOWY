@@ -16,14 +16,13 @@
 ##ASD
 - generacja raportu
 - funkcjonalność dziecka 
-- czyszczenie tego co wypełnimy (chya już?)
-- poprawność formularzy (chyba jest)
 
 
-## nwm
+## What to do on May 25 for PP
 - kwota jest tylko max 99.99 :/
-- ta tabelke z cyklicznymi trzeba by zrobic zenie z palca tylko wybieramy se wartosci
+- ta tabelke z cyklicznymi trzeba by zrobic ze nie z palca tylko wybieramy se wartosci i dla kategorii tak samo
 - haszowniae hasel? XDD
 - dodaj kategorie -> na kategorie i normalnie ta tabelka z wypisanymi kategoriami co możemy edytować i przycisk na usuwanie
 - dodanie ukrywania hasel w tabeli uzytkownikow dla admina
 - dodanie wyswietlania aktualnego budzetu i daty jego aktualizacji (juz sa funckej do tego w DatabaseManager)
+- tabelki dla przychodow, wydatkow
