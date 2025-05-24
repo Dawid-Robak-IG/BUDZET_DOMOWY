@@ -8,6 +8,8 @@ DatabaseManager::DatabaseManager(QObject *parent) : QObject{parent}{
         QMessageBox::warning(nullptr, "Uwaga", "Nie udało się połączyć z bazą danych. Niektóre funkcje mogą nie działać poprawnie.");
     }
     logged_user_ID = -1;
+
+    reload_whole_budzet();
 }
 
 DatabaseManager::~DatabaseManager() {
@@ -75,9 +77,23 @@ bool DatabaseManager::addWydatek(const QString &email, double amount, const QDat
         return false;
     }
 
-    return true;}
-
-
+    QSqlQuery idQuery(m_db);
+    if (!idQuery.exec("SELECT LAST_INSERT_ID();")) {
+        qDebug() << "Błąd pobierania ID ostatniej operacji:" << idQuery.lastError().text();
+        return false;
+    }
+    int operacjaID = -1;
+    if (idQuery.next()) {
+        operacjaID = idQuery.value(0).toInt();
+    }
+    if (operacjaID == -1) {
+        qDebug() << "Nie udało się pobrać ID nowej operacji.";
+    }
+    if (!update_budzet_domowy(operacjaID,-amount)) {
+        qDebug() << "Błąd dodawania wpisu do budżetu domowego.";
+    }
+    return true;
+}
 bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDate &date, const QString &note, const QString &category)
 {
     if (!m_db.isOpen()) {
@@ -105,7 +121,23 @@ bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDa
         return false;
     }
 
-    return true;}
+    QSqlQuery idQuery(m_db);
+    if (!idQuery.exec("SELECT LAST_INSERT_ID();")) {
+        qDebug() << "Błąd pobierania ID ostatniej operacji:" << idQuery.lastError().text();
+        return false;
+    }
+    int operacjaID = -1;
+    if (idQuery.next()) {
+        operacjaID = idQuery.value(0).toInt();
+    }
+    if (operacjaID == -1) {
+        qDebug() << "Nie udało się pobrać ID nowej operacji.";
+    }
+    if (!update_budzet_domowy(operacjaID,amount)) {
+        qDebug() << "Błąd dodawania wpisu do budżetu domowego.";
+    }
+    return true;
+}
 
 
 bool DatabaseManager::addKategoria(const QString &email, const QString &nowaKategoria){
@@ -303,5 +335,51 @@ bool DatabaseManager::deleteCykliczny(int ID){
         qDebug() << "Błąd usuwania operacji cyklicznej:" << query.lastError().text();
         return false;
     }
+    return true;
+}
+void DatabaseManager::reload_whole_budzet() {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return;
+    }
+    QSqlQuery query(m_db);
+
+    query.prepare("SELECT `Kwota` FROM `Budzet domowy` ORDER BY `ID` DESC LIMIT 1");
+
+    if (!query.exec()) {
+        qDebug() << "Błąd zapytania SELECT:" << query.lastError().text();
+        return;
+    }
+    if (query.next()) {
+        whole_budzet = query.value(0).toDouble();
+        qDebug() << "Najnowsza kwota budżetu domowego:" << whole_budzet;
+    } else {
+        whole_budzet=0;
+        qDebug() << "Brak wpisów w tabeli 'Budzet domowy'";
+    }
+}
+double DatabaseManager::get_whole_budzet(){
+    return whole_budzet;
+}
+bool DatabaseManager::update_budzet_domowy(int ID_operacji, double kwota){
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+    double nowaKwota = whole_budzet + kwota; 
+
+    QSqlQuery insertQuery(m_db);
+    insertQuery.prepare(R"(
+        INSERT INTO `Budzet domowy` (`Kwota`, `OperacjaID`)
+        VALUES (:kwota, :operacjaID)
+    )");
+    insertQuery.bindValue(":kwota", nowaKwota);
+    insertQuery.bindValue(":operacjaID", ID_operacji);
+
+    if (!insertQuery.exec()) {
+        qDebug() << "Błąd podczas dodawania wpisu do Budzet domowy:" << insertQuery.lastError().text();
+        return false;
+    }
+    reload_whole_budzet();
     return true;
 }

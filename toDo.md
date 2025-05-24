@@ -15,11 +15,9 @@
 
 ##ASD
 - generacja raportu
-- edytowanie danych uzytkownikow
-- funkcjonalność dziecka
-- czyszczenie tego co wypełnimy
-- cały budzet
-- poprawność formularzy
+- funkcjonalność dziecka 
+- czyszczenie tego co wypełnimy (chya już?)
+- poprawność formularzy (chyba jest)
 
 
 ## nwm
@@ -27,3 +25,5 @@
 - ta tabelke z cyklicznymi trzeba by zrobic zenie z palca tylko wybieramy se wartosci
 - haszowniae hasel? XDD
 - dodaj kategorie -> na kategorie i normalnie ta tabelka z wypisanymi kategoriami co możemy edytować i przycisk na usuwanie
+- dodanie ukrywania hasel w tabeli uzytkownikow dla admina
+- dodanie wyswietlania aktualnego budzetu i daty jego aktualizacji (juz sa funckej do tego w DatabaseManager)

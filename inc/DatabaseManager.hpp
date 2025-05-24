@@ -10,6 +10,7 @@ class DatabaseManager : public QObject
 {
     Q_OBJECT
     int logged_user_ID;
+    double whole_budzet;
 public:
     void set_logged_user(int ID);
     int get_user_ID();
@@ -35,13 +36,16 @@ public:
     bool generateReport();
     bool amI_admin();
     bool deleteCykliczny(int ID);
-
+    void reload_whole_budzet();
+    double get_whole_budzet();
 
 signals:
     void nowaKategoriaDodana();
 
 private:
      QSqlDatabase m_db;
+
+    bool update_budzet_domowy(int ID_operacji, double kwota);
 };
 
 #endif // DATABASEMANAGER_HPP
