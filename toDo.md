@@ -14,7 +14,6 @@
 
 
 ##ASD
-- zmiana hasla
 - dodawanie kategorii tylko administrator
 - blokowanie, odblokowywanie
 - generacja raportu
@@ -29,3 +28,4 @@
 - kwota jest tylko max 99.99 :/
 - ta tabelke z cyklicznymi trzeba by zrobic zenie z palca tylko wybieramy se wartosci
 - haszowniae hasel? XDD
+- dodaj kategorie -> na kategorie i normalnie ta tabelka z wypisanymi kategoriami co możemy edytować i przycisk na usuwanie

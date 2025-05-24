@@ -27,18 +27,15 @@ void Tab_Kategorie::setDatabaseManager(DatabaseManager* dbManager) {
 }
 
 void Tab_Kategorie::DodajKategorieClicked(){
-
-
     if (!m_dbManager){
         qWarning() << "Nie ustawiono DatabaseManager!";
         return;}
-
-
+    if(!m_dbManager->amI_admin()){
+        QMessageBox::warning(this, "Błąd", "Tylko admin może dodawać nowe kategorie!");
+        return; 
+    }
     if ( m_dbManager->addKategoria(m_userEmail, nowaKategoriaLineEdit->text())) {
         QMessageBox::information(this, "Sukces", "Kategoria została dodana!");
-
-
-
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się dodać kategorii.");
     }
