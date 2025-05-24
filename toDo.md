@@ -16,7 +16,6 @@
 ##ASD
 - zmiana hasla
 - dodawanie kategorii tylko administrator
-- dodawanie, edycja cyklicznych
 - blokowanie, odblokowywanie
 - generacja raportu
 - edytowanie danych uzytkownikow
@@ -29,3 +28,4 @@
 ## nwm
 - kwota jest tylko max 99.99 :/
 - ta tabelke z cyklicznymi trzeba by zrobic zenie z palca tylko wybieramy se wartosci
+- haszowniae hasel? XDD

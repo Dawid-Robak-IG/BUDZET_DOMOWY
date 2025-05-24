@@ -28,16 +28,24 @@ void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager){
     m_dbManager = dbManager;
   loadUserData();
 }
+void Tab_DaneUzytkownika::ZmienHasloClicked() {
+    qDebug() << "Uruchamiam zmianę hasła";
 
+    bool ok;
 
-void Tab_DaneUzytkownika::ZmienHasloClicked(){  //toDo
-    qDebug()<<"Tutaj będzie zmienianie hasła";
-
-
-    
+    QString noweHaslo = QInputDialog::getText(this, "Zmiana hasła",
+        "Podaj nowe hasło:", QLineEdit::Password, "", &ok);
+    if (!ok) return;
+    if (noweHaslo.length() < 8) {
+        QMessageBox::warning(this, "Błąd", "Hasło musi mieć co najmniej 8 znaków.");
+        return;
+    }
+    if (m_dbManager->changePassword(noweHaslo)) {
+        QMessageBox::information(this, "Sukces", "Hasło zostało zmienione.");
+    } else {
+        QMessageBox::warning(this, "Błąd", "Nie udało się zmienić hasła. Sprawdź stare hasło.");
+    }
 }
-
-
 
 void Tab_DaneUzytkownika::loadUserData(){
     if (!m_dbManager) {

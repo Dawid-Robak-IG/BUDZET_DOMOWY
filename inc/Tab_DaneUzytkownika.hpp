@@ -14,6 +14,7 @@
 #include <QSqlError>
 #include <QMessageBox>
 #include <QCheckBox>
+#include <QInputDialog>
 
 
 class Tab_DaneUzytkownika : public QWidget

@@ -198,7 +198,21 @@ bool DatabaseManager::addCykliczny(double amount, const QDate &date, const QStri
 bool DatabaseManager::changeCykliczny(int ID_cykl,double amount, const QDate &date, const QString &note, const QString &frequency,const QString &category){
     return true;
 }
-bool DatabaseManager::changePassword(const QString &newPass){
+bool DatabaseManager::changePassword(const QString &newPass) {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza nie jest otwarta!";
+        return false;
+    }
+    QSqlQuery query(m_db);
+    query.prepare("UPDATE `Uzytkownik zalogowany` SET Haslo = :newPass WHERE ID = :userID");
+    query.bindValue(":newPass", newPass);
+    query.bindValue(":userID", logged_user_ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd podczas zmiany hasła:" << query.lastError().text();
+        return false;
+    }
+
     return true;
 }
 bool DatabaseManager::changeStatusUser(int ID_user){
