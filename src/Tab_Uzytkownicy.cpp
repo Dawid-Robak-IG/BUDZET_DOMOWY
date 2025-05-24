@@ -79,7 +79,14 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
         return;
     }
 
-    modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
+    setTableStrategy();
+}
+
+void Tab_Uzytkownicy::goToStartPage() {
+    stacked->setCurrentIndex(0);
+}
+void Tab_Uzytkownicy::setTableStrategy(){
+    if(!modelUsers)modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
     modelUsers->setTable("Uzytkownik zalogowany");  // toDo  trzeba wyrzucić wyświetlanie niektórych kolumn
     if (!modelUsers->select()) {
         qDebug() << "Błąd ładowania danych:" << modelUsers->lastError().text();
@@ -87,7 +94,6 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
 
     tabelaTableView->setModel(modelUsers);
     tabelaTableView->resizeColumnsToContents();
-    tabelaTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
 
     // Ukryj wszystkie kolumny poza Imie, Nazwisko, Email
@@ -98,10 +104,27 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
     //     }
     // }
 
-    tabelaTableView->hideColumn(modelUsers->fieldIndex("Haslo"));
-    tabelaTableView->hideColumn(modelUsers->fieldIndex("Data urodzenia"));
-}
+    //tabelaTableView->hideColumn(modelUsers->fieldIndex("Data urodzenia"));
 
-void Tab_Uzytkownicy::goToStartPage() {
-    stacked->setCurrentIndex(0);
+    tabelaTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    tabelaTableView->hideColumn(modelUsers->fieldIndex("Haslo"));
+
+    // Odłącz poprzednie połączenia (zapobiega pozostaniu trybu edycji po zmianie użytkownika)
+    disconnect(tabelaTableView, &QTableView::doubleClicked, nullptr, nullptr);
+
+    if (m_dbManager->amI_admin()) {
+        tabelaTableView->showColumn(modelUsers->fieldIndex("Haslo"));
+        tabelaTableView->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::EditKeyPressed);
+
+        connect(tabelaTableView, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
+            QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
+
+            if (colName == "ID" || colName == "Data urodzenia" || colName == "Czy_zablokowany") {
+                qDebug() << "Edycja zabroniona dla kolumny:" << colName;
+                return;
+            }
+
+            tabelaTableView->edit(index);
+        });
+    }
 }

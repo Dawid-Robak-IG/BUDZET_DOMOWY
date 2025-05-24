@@ -14,8 +14,6 @@
 
 
 ##ASD
-- dodawanie kategorii tylko administrator
-- blokowanie, odblokowywanie
 - generacja raportu
 - edytowanie danych uzytkownikow
 - funkcjonalność dziecka

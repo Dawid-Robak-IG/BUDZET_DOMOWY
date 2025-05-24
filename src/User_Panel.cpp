@@ -150,4 +150,5 @@ void User_Panel::goToStartPage() {
 void User_Panel::setTablesByNewUser(){
     cyklicznePManager->setTableStrategy();
     cykliczneWManager->setTableStrategy();
+    uzytkownicyManager->setTableStrategy();
 }

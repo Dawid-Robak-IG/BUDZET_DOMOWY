@@ -20,7 +20,8 @@ class Tab_Uzytkownicy : public QWidget
 public:
     explicit Tab_Uzytkownicy(QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
-      void goToStartPage();
+    void goToStartPage();
+    void setTableStrategy();
 
 signals:
 private slots:

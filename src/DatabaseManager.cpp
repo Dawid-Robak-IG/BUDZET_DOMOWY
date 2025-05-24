@@ -286,6 +286,7 @@ bool DatabaseManager::amI_admin(){
         return (rola == "admin");
     }
 
+    qDebug()<<"User not admin";
     return false;
 }
 bool DatabaseManager::deleteCykliczny(int ID){
