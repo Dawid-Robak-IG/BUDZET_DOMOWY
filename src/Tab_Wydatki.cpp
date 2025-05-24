@@ -28,15 +28,25 @@ void Tab_Wydatki::setDatabaseManager(DatabaseManager* dbManager) {
 }
 
 
-void Tab_Wydatki::DodajWydatekClicked(){
-    if (!m_dbManager){
+void Tab_Wydatki::DodajWydatekClicked() {
+    if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
         return;
     }
+    if(kwotaSpinBox->value()<=0){
+        qWarning() << "Wstawiono złą kwotę";
+        QMessageBox::warning(this, "Błąd", "Wstawiono kwotę <=0");
+        return;
+    }
 
+    if (m_dbManager->addWydatek(m_userEmail, kwotaSpinBox->value(), dataEdit->date(), opisLineEdit->text(), kategoriaCombo->currentText())) {
+        QMessageBox::information(this, "Sukces", "Wydatek został dodany!");
 
-    if( m_dbManager->addWydatek(m_userEmail,kwotaSpinBox->value(),dataEdit->date(),opisLineEdit->text(),kategoriaCombo->currentText())){
-        QMessageBox::information(this, "Sukces", "Przychód został dodany!");
+        // Czyść formularz
+        kwotaSpinBox->setValue(0.00);
+        opisLineEdit->clear();
+        dataEdit->setDate(QDate::currentDate());
+        kategoriaCombo->setCurrentIndex(0);
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się dodać wydatku.");
     }

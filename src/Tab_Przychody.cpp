@@ -1,10 +1,6 @@
 #include "../inc/Tab_Przychody.hpp"
 
-Tab_Przychody::Tab_Przychody(const QString& userEmail,QWidget *root, QWidget *parent)
-                             : QWidget{parent},m_userEmail(userEmail)
-{
-
-
+Tab_Przychody::Tab_Przychody(const QString& userEmail,QWidget *root, QWidget *parent) : QWidget{parent},m_userEmail(userEmail){
     kwotaSpinBox = root->findChild<QDoubleSpinBox*>("doubleSpinBox_kwotaPrzychod");
     opisLineEdit = root->findChild<QLineEdit*>("lineEdit_notatkaPrzychod");
     dataEdit     = root->findChild<QDateEdit*>("dateEdit_dataPrzychod");
@@ -18,36 +14,35 @@ Tab_Przychody::Tab_Przychody(const QString& userEmail,QWidget *root, QWidget *pa
     }
 
    dataEdit->setDate(QDate::currentDate());
-
 }
-
-
 void Tab_Przychody::setDatabaseManager(DatabaseManager* dbManager){
     m_dbManager = dbManager;
     loadKategorie();
-
-
     connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
             this, &Tab_Przychody::loadKategorie);
 }
-
-
-void Tab_Przychody::DodajPrzychodClicked(){
-
-    if (!m_dbManager){
+void Tab_Przychody::DodajPrzychodClicked() {
+    if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
-        return;}
+        return;
+    }
+    if(kwotaSpinBox->value()<=0){
+        qWarning() << "Wstawiono złą kwotę";
+        QMessageBox::warning(this, "Błąd", "Wstawiono kwotę <=0");
+        return;
+    }
 
-
-    if ( m_dbManager->addPrzychod(m_userEmail,kwotaSpinBox->value(),dataEdit->date(),opisLineEdit->text(),kategoriaCombo->currentText())) {
+    if (m_dbManager->addPrzychod(m_userEmail, kwotaSpinBox->value(), dataEdit->date(), opisLineEdit->text(), kategoriaCombo->currentText())) {
         QMessageBox::information(this, "Sukces", "Przychód został dodany!");
+
+        kwotaSpinBox->setValue(0.00);
+        opisLineEdit->clear();
+        dataEdit->setDate(QDate::currentDate());
+        kategoriaCombo->setCurrentIndex(0);
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się dodać przychodu.");
     }
-
-
 }
-
 
 void Tab_Przychody::loadKategorie() {
     if (!m_dbManager) return;
