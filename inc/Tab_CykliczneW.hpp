@@ -26,7 +26,7 @@ public:
     void setDatabaseManager(DatabaseManager* dbManager);
     void showTable();
     void goToStartPage();
-
+    void setTableStrategy();
 signals:
 
 private slots:
@@ -53,6 +53,7 @@ private:
     QSqlTableModel* modelUsers; //potrzebne do tabelki
     DatabaseManager* m_dbManager = nullptr;
     void loadKategorie();
+    void reset_Tab();
 };
 
 #endif // TAB_CYKLICZNEW_HPP

@@ -24,3 +24,8 @@
 - czyszczenie tego co wypełnimy
 - cały budzet
 - poprawność formularzy
+
+
+## nwm
+- kwota jest tylko max 99.99 :/
+- ta tabelke z cyklicznymi trzeba by zrobic zenie z palca tylko wybieramy se wartosci

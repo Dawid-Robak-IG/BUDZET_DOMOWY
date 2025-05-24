@@ -34,6 +34,7 @@ public:
     bool changeStatusUser(int ID_user);
     bool generateReport();
     bool amI_admin();
+    bool deleteCykliczny(int ID);
 
 
 signals:

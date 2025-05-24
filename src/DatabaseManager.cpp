@@ -171,6 +171,9 @@ bool DatabaseManager::addCykliczny(double amount, const QDate &date, const QStri
         qDebug() << "Nie można dodać zerowej wartości\n";
         return false;
     }
+    if(frequency.isEmpty()){
+        qDebug()<< "Brak częstotliwości";
+    }
     QSqlQuery query(m_db);
 
     query.prepare(R"(
@@ -236,4 +239,20 @@ bool DatabaseManager::amI_admin(){
     }
 
     return false;
+}
+bool DatabaseManager::deleteCykliczny(int ID){
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare("DELETE FROM `Operacja cykliczna` WHERE ID = :id");
+    query.bindValue(":id", ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd usuwania operacji cyklicznej:" << query.lastError().text();
+        return false;
+    }
+    return true;
 }

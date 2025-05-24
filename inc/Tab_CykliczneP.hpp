@@ -53,9 +53,8 @@ private:
     QSqlTableModel* modelUsers; //potrzebne do tabelki
     DatabaseManager* m_dbManager = nullptr;
 
-    QSqlTableModel* modelTabeli;
-
     void loadKategorie();
+    void reset_Tab();
 };
 
 
