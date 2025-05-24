@@ -215,7 +215,41 @@ bool DatabaseManager::changePassword(const QString &newPass) {
 
     return true;
 }
-bool DatabaseManager::changeStatusUser(int ID_user){
+bool DatabaseManager::changeStatusUser(int ID_user) {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza nie jest otwarta!";
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+
+    query.prepare("SELECT `Czy_zablokowany` FROM `Uzytkownik zalogowany` WHERE ID = :id");
+    query.bindValue(":id", ID_user);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd zapytania SELECT:" << query.lastError().text();
+        return false;
+    }
+
+    if (!query.next()) {
+        qDebug() << "Nie znaleziono użytkownika o ID:" << ID_user;
+        return false;
+    }
+
+    int currentStatus = query.value(0).toInt();
+    qDebug()<< "Stary status zablokowania: "<<currentStatus;
+    int newStatus = (currentStatus == 0) ? 1 : 0;
+    qDebug()<< "Próba nowego statusu zablokowania: "<<newStatus;
+
+    query.prepare("UPDATE `Uzytkownik zalogowany` SET `Czy_zablokowany` = :newStatus WHERE ID = :id");
+    query.bindValue(":newStatus", newStatus);
+    query.bindValue(":id", ID_user);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd zapytania UPDATE:" << query.lastError().text();
+        return false;
+    }
+
     return true;
 }
 bool DatabaseManager::generateReport(){

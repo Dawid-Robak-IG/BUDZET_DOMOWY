@@ -42,27 +42,26 @@ void Tab_Uzytkownicy::ZapiszZmianyClicked(){  //toDo
 }
 
 void Tab_Uzytkownicy::BlokadaClicked(){ //toDo
-    qDebug()<<"Tutaj będzie blokowanie/odblokowanie użytkownika";
+    if(!m_dbManager->amI_admin()){
+        QMessageBox::warning(this, "Błąd", "Tylko admin może dodawać nowe kategorie!");
+        return; 
+    }
+    qDebug() << "Blokowanie/Odblokowywanie";
 
-    QModelIndexList selected = tabelaTableView->selectionModel()->selectedRows();
+    QModelIndex index = tabelaTableView->currentIndex();
 
-    if (selected.isEmpty()) {
-        qDebug() << "Nie zaznaczono żadnego użytkownika.";
+    if (!index.isValid()) {
+        QMessageBox::warning(this, "Brak wyboru", "Wybierz użytkownika do Odblokowania/Zablokowania");
         return;
     }
+    int row = index.row();
+    int id = modelUsers->data(modelUsers->index(row, 0)).toInt();
 
-    qDebug() << "Zaznaczono" << selected.count() << "wiersze:";
-
-    for (const QModelIndex &index : selected) {
-        int row = index.row();
-        QStringList rowData;
-
-        for (int col = 0; col < modelUsers->columnCount(); ++col) {
-            QModelIndex cellIndex = modelUsers->index(row, col);
-            rowData << modelUsers->data(cellIndex).toString();
-        }
-
-        qDebug() << "->" << rowData.join(" | ");
+    if (m_dbManager->changeStatusUser(id)) {
+        QMessageBox::information(this, "Sukces", "Zablokowano/Odblokowano użytkownika");
+        modelUsers->select();
+    } else {
+        QMessageBox::warning(this, "Błąd", "Akcja nie powiodła się");
     }
 }
 
@@ -92,12 +91,15 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
 
 
     // Ukryj wszystkie kolumny poza Imie, Nazwisko, Email
-    for (int col = 0; col < modelUsers->columnCount(); ++col) {
-        QString colName = modelUsers->headerData(col, Qt::Horizontal).toString();
-        if (colName != "Imie" && colName != "Nazwisko" && colName != "Email") {
-            tabelaTableView->hideColumn(col);
-        }
-    }
+    // for (int col = 0; col < modelUsers->columnCount(); ++col) {
+    //     QString colName = modelUsers->headerData(col, Qt::Horizontal).toString();
+    //     if (colName != "Imie" && colName != "Nazwisko" && colName != "Email") {
+    //         tabelaTableView->hideColumn(col);
+    //     }
+    // }
+
+    tabelaTableView->hideColumn(modelUsers->fieldIndex("Haslo"));
+    tabelaTableView->hideColumn(modelUsers->fieldIndex("Data urodzenia"));
 }
 
 void Tab_Uzytkownicy::goToStartPage() {
