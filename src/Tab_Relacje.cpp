@@ -20,6 +20,11 @@ void Tab_Relacje::PrzypiszRodzicaClicked() {
     QModelIndex dzieckoIndex = dzieciTable->currentIndex();
     QModelIndex rodzicIndex = rodziceTable->currentIndex();
 
+    if(!m_dbManager->amI_admin()){
+        QMessageBox::warning(this, "Błąd", "Tylko admin może przypisywać rodziców do dzieci");
+        return;
+    }
+
     if (!dzieckoIndex.isValid() || !rodzicIndex.isValid()) {
         QMessageBox::warning(this, "Błąd", "Wybierz dziecko i rodzica.");
         return;

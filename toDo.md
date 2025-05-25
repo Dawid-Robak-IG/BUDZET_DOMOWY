@@ -11,11 +11,17 @@
 - czyszczenie tego co wypełnimy
 - cały budzet
 - poprawność formularzy
+- tylko admin rodzica do dzieci
 
 
 ##ASD
 - generacja raportu
 - funkcjonalność dziecka 
+- zmiana kieszonkowego
+- widocznosc tylko swoich dzieci,
+- dziecko nie moze cyklicznych
+- dziecko przychody wydatki do swojego salda
+- implementacja systemu
 
 
 ## What to do on May 25 for PP
