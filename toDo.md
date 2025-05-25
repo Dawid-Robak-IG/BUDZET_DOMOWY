@@ -23,7 +23,6 @@
 
 
 ## Jeszcze nie zrealizowane dla DR on May 25
-- zmiana kieszonkowego
 - implementacja systemu
 
 ## Zastanawianie sie

@@ -461,7 +461,7 @@ bool DatabaseManager::addFirstParent(int IDchild, int IDparent1) {
         return false;
     }
 
-    return query.numRowsAffected() > 0;
+    return true;
 }
 
 bool DatabaseManager::addSecondParent(int IDchild, int IDparent2) {
@@ -482,7 +482,7 @@ bool DatabaseManager::addSecondParent(int IDchild, int IDparent2) {
         return false;
     }
 
-    return query.numRowsAffected() > 0;
+    return true;
 }
 bool DatabaseManager::update_Children() {
     if (!m_db.isOpen()) {
