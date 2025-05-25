@@ -28,7 +28,6 @@
 
 
 ## Jeszcze nie zrealizowane dla DR on May 25
-- implementacja systemu
 - Generowanie raportów o przyszłych stanach budżetu na podstawie dostępnych rekordów i wybranych typów regresji.
 - Generowanie raportów dotyczących tylko konkretnych użytkowników. 
 - Generowanie raportów dla określonych kategorii dla zadanego okresu. Uwzględnienie podziału raportów na takie generowane przez dzieci (dotyczące tylko ich konta) oraz raporty dotyczące całego budżetu rodzinnego. 
@@ -39,6 +38,7 @@
 - co z edycją xd (czy jest ok?)
 - czym jest generuj raport w sekcji dzieci? xd
 - uporządkowanie wpisów do bazy danych
+- co z raportami? xd -- chcesz pomóc? xd
 
 ## What to do on May 25 for PP
 - tak by kwoty były większe niż 99.99 dla przychodow i wydatków cyklicznych (dla tych zwyklych jest ok),
