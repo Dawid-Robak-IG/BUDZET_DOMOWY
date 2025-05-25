@@ -22,27 +22,46 @@
 - kieszonkowe
 
 
-##ASD
+## Jeszcze nie zrealizowane dla DR on May 25
 - funkcjonalność dziecka 
 - zmiana kieszonkowego
 - widocznosc tylko swoich dzieci,
 - dziecko przychody wydatki do swojego salda
 - implementacja systemu
 
-
-
-## What to do on May 25 for PP
-- kwota jest tylko max 99.99 :/
-- ta tabelke z cyklicznymi trzeba by zrobic ze nie z palca tylko wybieramy se wartosci i dla kategorii tak samo
-- dodaj kategorie -> na kategorie i normalnie ta tabelka z wypisanymi kategoriami co możemy edytować i przycisk na usuwanie
-- dodanie ukrywania hasel w tabeli uzytkownikow dla admina (przycisk xd)
-- dodanie wyswietlania aktualnego budzetu i daty jego aktualizacji (juz sa funckej do tego w DatabaseManager)
-- tabelki dla przychodow, wydatkow
-- dodaj guzik pod tytułem dodaj rodzica nr.2 bo latwiej tym zarzadzac bedzie
-- dodaj przycisk "update Children" bedzie on tworzyl te encje dzieci.
-- dodaj zeby dla uzytkownikow rola nie byla z palca tylko wybierane
-- do danych uzytkownika saldo i kieszonkowe jesli dziecko
-
 ## Pomysły
 - haszowniae hasel? XDD
 - co z edycją xd (czy jest ok?)
+
+## What to do on May 25 for PP
+- tak by kwoty były większe niż 99.99 dla przychodow i wydatków cyklicznych (dla tych zwyklych jest ok),
+- edytowanie cyklicznych: tak by czestotliwosc i kategoria były listami, bo teraz mozna z pacla zmnienic a to psuje baze,
+- dla kategorii: by była tabelka z tymi kategoriami,
+- dodaj przycisk usun kategorie i mozliwosc tylko dla admina -- patrz usuwanie cyklicznych:
+```cpp
+bool deleteCategory(const QString &nazwa);
+bool mIadmin();
+```
+- przycisk na ukrywanie hasel dla tabelki z uzytkownikami dla admina (ze mozesz pokazac hasla i ukryc),
+- wartość aktualnego budzetu i daty aktualizacji:
+```cpp
+double get_whole_budzet();
+QDate get_update_Date();
+```
+- tabelki dla przychodow i wydatkow (bez edycji ale z taką samą widocznością jak cykliczne -- patrz cykliczne),
+- przycisk dodaj rodzica nr.2 -- patrz przcisk dodaj rodzica (nr.1):
+```cpp
+bool addFirstParent(int IDchild, int IDparent1);
+bool addSecondParent(int IDchild, int IDparent2);
+```
+- dodaj przycisk "update Children" bedzie on tworzyl te encje dzieci dla uzytkownikow z rola dziecko jesli nie ma on encji dzieci (poki co podpiąłem pod wylogowywanie):
+```cpp
+bool update_Children();
+```
+- dodaj zeby dla uzytkownikow rola nie byla z palca tylko wybierane (żeby było rozwijane i wybieram z dostępnych),
+- do danych uzytkownika saldo i kieszonkowe jesli dziecko:
+```cpp
+bool amIChild();
+float get_kieszonkowe();
+float get_saldo();
+```
