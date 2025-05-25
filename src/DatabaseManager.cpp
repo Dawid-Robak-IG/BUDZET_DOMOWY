@@ -77,6 +77,15 @@ bool DatabaseManager::addWydatek(const QString &email, double amount, const QDat
         return false;
     }
 
+    if(amIChild()){
+        if(update_my_saldo(-amount)){
+            qDebug() << "Zaaktualizowano saldo dla zalogwanego dziecka";
+        } else{
+            qDebug() << "Nie udało się zaaktualizować salda dla zalogwanego dziecka";
+        }
+        return true;
+    } // żeby nie dodawać do budzetu domowego już
+
     QSqlQuery idQuery(m_db);
     if (!idQuery.exec("SELECT LAST_INSERT_ID();")) {
         qDebug() << "Błąd pobierania ID ostatniej operacji:" << idQuery.lastError().text();
@@ -120,6 +129,15 @@ bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDa
         qDebug() << "Błąd dodawania przychodu:" << query.lastError().text();
         return false;
     }
+
+    if(amIChild()){
+        if(update_my_saldo(amount)){
+            qDebug() << "Zaaktualizowano saldo dla zalogwanego dziecka";
+        } else{
+            qDebug() << "Nie udało się zaaktualizować salda dla zalogwanego dziecka";
+        }
+        return true;
+    } // żeby nie dodawać do budzetu domowego już
 
     QSqlQuery idQuery(m_db);
     if (!idQuery.exec("SELECT LAST_INSERT_ID();")) {
@@ -611,6 +629,34 @@ bool DatabaseManager::deleteCategory(const QString &nazwa) {
 
     if (!query.exec()) {
         qWarning() << "Błąd usuwania kategorii:" << query.lastError().text();
+        return false;
+    }
+
+    return query.numRowsAffected() > 0;
+}
+bool DatabaseManager::update_my_saldo(double amount) {
+    if (!m_db.isOpen()) {
+        qWarning() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+
+    if (logged_user_ID == -1) {
+        qWarning() << "Brak ID zalogowanego użytkownika!";
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        UPDATE Dziecko
+        SET Saldo = Saldo + :amount
+        WHERE `Uzytkownik zalogowanyID` = :id
+    )");
+
+    query.bindValue(":amount", amount);
+    query.bindValue(":id", logged_user_ID);
+
+    if (!query.exec()) {
+        qWarning() << "Błąd aktualizacji salda:" << query.lastError().text();
         return false;
     }
 

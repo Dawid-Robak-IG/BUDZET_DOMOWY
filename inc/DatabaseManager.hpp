@@ -50,6 +50,7 @@ public:
     bool amIChild();
     float get_kieszonkowe();
     float get_saldo();
+    bool update_my_saldo(double amount);
     
     QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate);
 
