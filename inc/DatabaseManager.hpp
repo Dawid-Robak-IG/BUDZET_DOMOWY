@@ -44,6 +44,7 @@ public:
     bool addFirstParent(int IDchild, int IDparent1);
     bool addSecondParent(int IDchild, int IDparent2);
     bool update_Children();
+    bool deleteCategory(const QString &nazwa);
 
 
     bool amIChild();

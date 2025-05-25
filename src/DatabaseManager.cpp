@@ -599,3 +599,20 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetData(const QDat
 
     return {dates, values};
 }
+bool DatabaseManager::deleteCategory(const QString &nazwa) {
+    if (!m_db.isOpen()) {
+        qWarning() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare("DELETE FROM Kategoria WHERE Nazwa = :nazwa");
+    query.bindValue(":nazwa", nazwa);
+
+    if (!query.exec()) {
+        qWarning() << "Błąd usuwania kategorii:" << query.lastError().text();
+        return false;
+    }
+
+    return query.numRowsAffected() > 0;
+}

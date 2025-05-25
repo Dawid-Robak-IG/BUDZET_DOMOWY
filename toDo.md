@@ -23,11 +23,9 @@
 
 
 ##ASD
-- generacja raportu
 - funkcjonalność dziecka 
 - zmiana kieszonkowego
 - widocznosc tylko swoich dzieci,
-- dziecko nie moze cyklicznych
 - dziecko przychody wydatki do swojego salda
 - implementacja systemu
 
@@ -44,7 +42,7 @@
 - dodaj przycisk "update Children" bedzie on tworzyl te encje dzieci.
 - dodaj zeby dla uzytkownikow rola nie byla z palca tylko wybierane
 - do danych uzytkownika saldo i kieszonkowe jesli dziecko
-- jakeiś dziwne są daty domyślne chyba
 
 ## Pomysły
 - haszowniae hasel? XDD
+- co z edycją xd (czy jest ok?)
