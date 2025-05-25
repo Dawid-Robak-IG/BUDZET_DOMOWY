@@ -29,7 +29,6 @@
 
 ## Jeszcze nie zrealizowane dla DR on May 25
 - Generowanie raportów o przyszłych stanach budżetu na podstawie dostępnych rekordów i wybranych typów regresji.
-- Generowanie raportów dotyczących tylko konkretnych użytkowników. 
 - Generowanie raportów dla określonych kategorii dla zadanego okresu. Uwzględnienie podziału raportów na takie generowane przez dzieci (dotyczące tylko ich konta) oraz raporty dotyczące całego budżetu rodzinnego. 
 
 
@@ -38,7 +37,7 @@
 - co z edycją xd (czy jest ok?)
 - czym jest generuj raport w sekcji dzieci? xd
 - uporządkowanie wpisów do bazy danych
-- co z raportami? xd -- chcesz pomóc? xd
+- co z raportami? xd 
 
 ## What to do on May 25 for PP
 - tak by kwoty były większe niż 99.99 dla przychodow i wydatków cyklicznych (dla tych zwyklych jest ok),
@@ -75,4 +74,5 @@ int get_user_ID();
 ```
 - dodaj guzik go generowania raportów tylko dla własnych wpisów (już zrobiłem sot w Tab_Raporty),
 - dodaj miejsce na wyświetlanie kieszokowego bo na razie wszzystko dalem do salda (saldo i kieszonkowe) w zakładce dzieci, albo usun ten wielki prostokat dla kieosznkowego.
+- dodaj wybór kategorii od czego chemy mieć raport,
 - sprawdzenie czy wszystko jest i jest ok,

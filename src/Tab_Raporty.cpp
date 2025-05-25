@@ -28,6 +28,7 @@ void Tab_Raporty::GenerujRaportClicked() {
     GenerujMyRaportClicked();
     return;
 
+
     if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
         return;
@@ -45,7 +46,7 @@ void Tab_Raporty::GenerujRaportClicked() {
 
     RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->setData(data.first, data.second);
+    raport->addChart(data.first, data.second);
     raport->setWindowTitle("Raport budżetu domowego");
     raport->show();
 }
@@ -67,7 +68,12 @@ void Tab_Raporty::GenerujMyRaportClicked() {
 
     RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->setData(data.first, data.second);
+    raport->addChart(data.first, data.second);
+
+    // data = m_dbManager->getMyPrzychody(startDate, endDate);
+    // raport->addChart(data.first, data.second);
+
+
     raport->setWindowTitle("Raport mojego budżetu");
     raport->show();
 }

@@ -1,16 +1,23 @@
-#pragma once
+#ifndef RAPORTWINDOW_HPP
+#define RAPORTWINDOW_HPP
+
 #include <QWidget>
-#include <QtCharts>
+#include <QVector>
 #include <QDate>
-#include <QDateTime>
+#include <QPushButton>
+#include <QVBoxLayout>
+#include <QtCharts/QChartView>
 
 class RaportWindow : public QWidget {
     Q_OBJECT
-public:
-    RaportWindow(QWidget *parent = nullptr);
 
-    void setData(const QVector<QDate>& dates, const QVector<double>& values);
+public:
+    explicit RaportWindow(QWidget *parent = nullptr);
+    void addChart(const QVector<QDate>& dates, const QVector<double>& values);
 
 private:
-    QtCharts::QChartView* chartView;
+    QVBoxLayout* mainLayout;
+    QVector<QtCharts::QChartView*> chartViews;
 };
+
+#endif // RAPORTWINDOW_HPP

@@ -1,17 +1,23 @@
 #include "../inc/RaportWindow.hpp"
 
+#include <QtCharts/QChart>
+#include <QtCharts/QLineSeries>
+#include <QtCharts/QDateTimeAxis>
+#include <QtCharts/QValueAxis>
+#include <QDateTime>
+#include <algorithm>
+
 RaportWindow::RaportWindow(QWidget *parent) : QWidget(parent) {
-    chartView = new QtCharts::QChartView(this);
-    auto layout = new QVBoxLayout(this);
-    layout->addWidget(chartView);
-    setLayout(layout);
-    resize(600, 400);
+    mainLayout = new QVBoxLayout(this);
+
+    setLayout(mainLayout);
+    resize(800, 600);
 }
 
-void RaportWindow::setData(const QVector<QDate>& dates, const QVector<double>& values) {
-    auto series = new QtCharts::QLineSeries();
+void RaportWindow::addChart(const QVector<QDate>& dates, const QVector<double>& values) {
+    if (dates.isEmpty() || values.isEmpty()) return;
 
-    // Dodaj punkty do serii: X to timestamp w ms, Y to wartość
+    auto series = new QtCharts::QLineSeries();
     for (int i = 0; i < dates.size(); ++i) {
         QDateTime dt(dates[i]);
         series->append(dt.toMSecsSinceEpoch(), values[i]);
@@ -21,7 +27,6 @@ void RaportWindow::setData(const QVector<QDate>& dates, const QVector<double>& v
     chart->addSeries(series);
     chart->legend()->hide();
 
-    // Oś X: QDateTimeAxis
     auto axisX = new QtCharts::QDateTimeAxis();
     axisX->setFormat("dd.MM.yyyy");
     axisX->setTitleText("Data");
@@ -30,16 +35,16 @@ void RaportWindow::setData(const QVector<QDate>& dates, const QVector<double>& v
     chart->addAxis(axisX, Qt::AlignBottom);
     series->attachAxis(axisX);
 
-    // Oś Y: QValueAxis
     auto axisY = new QtCharts::QValueAxis();
     axisY->setTitleText("Kwota");
-    // Opcjonalnie ustaw zakres osi Y na podstawie wartości:
     double minVal = *std::min_element(values.constBegin(), values.constEnd());
     double maxVal = *std::max_element(values.constBegin(), values.constEnd());
     axisY->setRange(minVal, maxVal);
     chart->addAxis(axisY, Qt::AlignLeft);
     series->attachAxis(axisY);
 
-    chartView->setChart(chart);
+    auto chartView = new QtCharts::QChartView(chart);
     chartView->setRenderHint(QPainter::Antialiasing);
+    chartViews.append(chartView);
+    mainLayout->addWidget(chartView);
 }

@@ -870,3 +870,15 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QD
 
     return result;
 }
+// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyPrzychody(const QDate& startDate, const QDate& endDate){
+
+// }
+// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyWydatki(const QDate& startDate, const QDate& endDate){
+
+// }
+// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetPrzychody(const QDate& startDate, const QDate& endDate){
+
+// }
+// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetWydatki(const QDate& startDate, const QDate& endDate){
+
+// }
