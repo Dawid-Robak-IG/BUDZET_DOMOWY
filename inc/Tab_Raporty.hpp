@@ -15,6 +15,8 @@
 #include <QSqlError>
 #include <QMessageBox>
 
+#include "../inc/RaportWindow.hpp"
+
 
 class Tab_Raporty : public QWidget
 {

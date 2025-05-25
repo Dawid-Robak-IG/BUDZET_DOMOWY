@@ -50,6 +50,7 @@ public:
     float get_kieszonkowe();
     float get_saldo();
     
+    QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate);
 
 signals:
     void nowaKategoriaDodana();

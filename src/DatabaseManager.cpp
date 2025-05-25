@@ -567,3 +567,35 @@ float DatabaseManager::get_saldo() {
     }
     return -1.0f;
 }
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetData(const QDate& startDate, const QDate& endDate) {
+    QVector<QDate> dates;
+    QVector<double> values;
+
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return {dates, values};
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT Data, `Budzet domowy`.Kwota FROM `Budzet domowy`
+        JOIN Operacja ON `Budzet domowy`.OperacjaID = Operacja.ID
+        WHERE Data BETWEEN :startDate AND :endDate
+        ORDER BY Data ASC
+    )");
+
+    query.bindValue(":startDate", startDate);
+    query.bindValue(":endDate", endDate);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd pobierania danych budzet domowy:" << query.lastError().text();
+        return {dates, values};
+    }
+
+    while (query.next()) {
+        dates.append(query.value(0).toDate());
+        values.append(query.value(1).toDouble());
+    }
+
+    return {dates, values};
+}

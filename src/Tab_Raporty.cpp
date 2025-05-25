@@ -17,8 +17,6 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
      startDataEdit->setDate(QDate::currentDate());
      stopDataEdit->setDate(QDate::currentDate());
 
-
-
 }
 
 void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
@@ -27,6 +25,26 @@ void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
 }
 
 
-void Tab_Raporty::GenerujRaportClicked(){ //toDo
-    qDebug()<<"Tutaj będzie generowanie raportu";
+
+void Tab_Raporty::GenerujRaportClicked() {
+    if (!m_dbManager) {
+        qWarning() << "Nie ustawiono DatabaseManager!";
+        return;
+    }
+
+    QDate startDate = startDataEdit->date();
+    QDate endDate = stopDataEdit->date();
+
+    auto data = m_dbManager->getBudzetData(startDate, endDate);
+
+    if (data.first.isEmpty()) {
+        QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
+        return;
+    }
+
+    RaportWindow* raport = new RaportWindow();
+    raport->setAttribute(Qt::WA_DeleteOnClose);
+    raport->setData(data.first, data.second);
+    raport->setWindowTitle("Raport budżetu domowego");
+    raport->show();
 }

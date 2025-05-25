@@ -17,6 +17,7 @@ OBJECTS_DIR = build/Obj
 # Input
 QT+=widgets
 QT += sql
+QT += core gui widgets charts
 SOURCES += src/main.cpp \
            src/DatabaseManager.cpp \
            src/MainWindow.cpp \
@@ -27,6 +28,7 @@ SOURCES += src/main.cpp \
            src/Tab_Kategorie.cpp \
            src/Tab_Przychody.cpp \
            src/Tab_Raporty.cpp \
+           src/RaportWindow.cpp \
            src/Tab_Relacje.cpp \
            src/Tab_Uzytkownicy.cpp \
            src/Tab_Wydatki.cpp \
@@ -42,6 +44,7 @@ HEADERS += inc/MainWindow.hpp \
     inc/Tab_Kategorie.hpp \
     inc/Tab_Przychody.hpp \
     inc/Tab_Raporty.hpp \
+    inc/RaportWindow.hpp \
     inc/Tab_Relacje.hpp \
     inc/Tab_Uzytkownicy.hpp \
     inc/Tab_Wydatki.hpp \
