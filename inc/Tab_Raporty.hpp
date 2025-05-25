@@ -28,6 +28,7 @@ signals:
 
 private slots:
     void GenerujRaportClicked();
+    void GenerujMyRaportClicked();
 
 private:
     QString m_userEmail;

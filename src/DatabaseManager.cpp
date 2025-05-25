@@ -228,12 +228,27 @@ bool DatabaseManager::addCykliczny(double amount, const QDate &date, const QStri
     if(frequency.isEmpty()){
         qDebug()<< "Brak częstotliwości";
     }
+
+    QDate dataKolejna = date;
+    if (frequency == "Codziennie")
+        dataKolejna = date.addDays(1);
+    else if (frequency == "Co tydzien")
+        dataKolejna = date.addDays(7);
+    else if (frequency == "Co miesiąc")
+        dataKolejna = date.addMonths(1);
+    else if (frequency == "Co rok")
+        dataKolejna = date.addYears(1);
+    else {
+        qDebug() << "Nieznana częstotliwość:" << frequency;
+        return false;
+    }
+
     QSqlQuery query(m_db);
 
     query.prepare(R"(
         INSERT INTO `Operacja cykliczna` 
-        (Kwota, Data, Notatka, Czestotliwosc, `Uzytkownik zalogowanyID`, `Kategoria Nazwa`)
-        VALUES (:kwota, :data, :notatka, :czestotliwosc, :uzytkownikID, :kategoria)
+        (Kwota, Data,DataKolejna, Notatka, Czestotliwosc, `Uzytkownik zalogowanyID`, `Kategoria`)
+        VALUES (:kwota, :data,:datKolejna ,:notatka, :czestotliwosc, :uzytkownikID, :kategoria)
     )");
 
     query.bindValue(":kwota", amount);
@@ -242,6 +257,7 @@ bool DatabaseManager::addCykliczny(double amount, const QDate &date, const QStri
     query.bindValue(":czestotliwosc", frequency);
     query.bindValue(":uzytkownikID", logged_user_ID);
     query.bindValue(":kategoria", category);
+    query.bindValue(":datKolejna", dataKolejna);
 
     if (!query.exec()) {
         qDebug() << "Błąd dodawania operacji cyklicznej:" << query.lastError().text();
@@ -491,13 +507,17 @@ bool DatabaseManager::update_Children() {
     while (selectQuery.next()) {
         int userId = selectQuery.value(0).toInt();
 
+        QDate today = QDate::currentDate();
+        QDate nextPocketMoneyDate = QDate(today.year(), today.month(), 1).addMonths(1);
+
         insertQuery.prepare(R"(
-            INSERT INTO Dziecko (`Uzytkownik zalogowanyID`,Saldo,Kieszonkowe)
-            VALUES (:id,:saldo,:kiesz)
+            INSERT INTO Dziecko (`Uzytkownik zalogowanyID`,Saldo,Kieszonkowe,DataKolejnaKieszonkowego)
+            VALUES (:id,:saldo,:kiesz,:datKol)
         )");
         insertQuery.bindValue(":id", userId);
         insertQuery.bindValue(":saldo", 0);
         insertQuery.bindValue(":kiesz", 0);
+        insertQuery.bindValue(":datKol", nextPocketMoneyDate);
 
         if (!insertQuery.exec()) {
             qDebug() << "Błąd dodawania dziecka (ID:" << userId << "):" << insertQuery.lastError().text();
@@ -805,4 +825,48 @@ bool DatabaseManager::startSystemCykl(){
         return true;
     }
     return false;
+}
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QDate& startDate, const QDate& endDate) {
+    QPair<QVector<QDate>, QVector<double>> result;
+
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return result;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT Data, Kwota
+        FROM Operacja
+        WHERE `Uzytkownik zalogowanyID` = :userId
+          AND Data BETWEEN :start AND :end
+        ORDER BY Data ASC
+    )");
+
+    query.bindValue(":userId", logged_user_ID);
+    query.bindValue(":start", startDate);
+    query.bindValue(":end", endDate);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd SELECT budżetu użytkownika:" << query.lastError().text();
+        return result;
+    }
+
+    QMap<QDate, double> sumaDzienna;
+
+    while (query.next()) {
+        QDate data = query.value("Data").toDate();
+        double kwota = query.value("Kwota").toDouble();
+        sumaDzienna[data] += kwota;
+    }
+
+    // Oblicz sumę skumulowaną
+    double suma = 0.0;
+    for (const QDate& data : sumaDzienna.keys()) {
+        suma += sumaDzienna[data];
+        result.first.append(data);
+        result.second.append(suma);
+    }
+
+    return result;
 }

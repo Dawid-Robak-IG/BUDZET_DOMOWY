@@ -54,6 +54,7 @@ public:
     bool change_kieszonkowe(int child_ID, float new_kieszonkowe);
     
     QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate);
+    QPair<QVector<QDate>, QVector<double>> getMyBudzetData(const QDate& startDate, const QDate& endDate);
 
     bool startSystemCykl();
     bool generujZCyklicznych();

@@ -73,5 +73,6 @@ float get_kieszonkowe(int child_ID);
 float get_saldo(int child_ID);
 int get_user_ID();
 ```
+- dodaj guzik go generowania raportów tylko dla własnych wpisów (już zrobiłem sot w Tab_Raporty),
 - dodaj miejsce na wyświetlanie kieszokowego bo na razie wszzystko dalem do salda (saldo i kieszonkowe) w zakładce dzieci, albo usun ten wielki prostokat dla kieosznkowego.
 - sprawdzenie czy wszystko jest i jest ok,

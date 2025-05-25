@@ -50,10 +50,9 @@ void MainWindow::handleLogin(QString email) {
 
 
 void MainWindow::handleLogout() {
-    // qDebug() << "Wylogowywanie... i SUPER DUPER NOWE ENCJE DZIECI";
-    // m_dbManager->update_Children();
-    // logRegScreen->goToStartPage();
-    // stackedWidget->setCurrentWidget(logRegScreen);
-
+    qDebug() << "Wylogowywanie... i SUPER DUPER NOWE ENCJE DZIECI ORAZ ZADZIAŁANIE SYSTEMU";
+    m_dbManager->update_Children();
     m_dbManager->startSystemCykl();
+    logRegScreen->goToStartPage();
+    stackedWidget->setCurrentWidget(logRegScreen);
 }

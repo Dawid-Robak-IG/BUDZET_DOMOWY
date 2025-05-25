@@ -24,9 +24,10 @@ void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
 
 }
 
-
-
 void Tab_Raporty::GenerujRaportClicked() {
+    GenerujMyRaportClicked();
+    return;
+
     if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
         return;
@@ -46,5 +47,27 @@ void Tab_Raporty::GenerujRaportClicked() {
     raport->setAttribute(Qt::WA_DeleteOnClose);
     raport->setData(data.first, data.second);
     raport->setWindowTitle("Raport budżetu domowego");
+    raport->show();
+}
+void Tab_Raporty::GenerujMyRaportClicked() {
+    if (!m_dbManager) {
+        qWarning() << "Nie ustawiono DatabaseManager!";
+        return;
+    }
+
+    QDate startDate = startDataEdit->date();
+    QDate endDate = stopDataEdit->date();
+
+    auto data = m_dbManager->getMyBudzetData(startDate, endDate);
+
+    if (data.first.isEmpty()) {
+        QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
+        return;
+    }
+
+    RaportWindow* raport = new RaportWindow();
+    raport->setAttribute(Qt::WA_DeleteOnClose);
+    raport->setData(data.first, data.second);
+    raport->setWindowTitle("Raport mojego budżetu");
     raport->show();
 }
