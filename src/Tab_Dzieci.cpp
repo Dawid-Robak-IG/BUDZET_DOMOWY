@@ -8,7 +8,7 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
 
     aktualneSaldoLineEdit= root->findChild<QLineEdit*>("lineEdit_aktualneSaldo");
     aktualneSaldoLineEdit->setReadOnly(true);
-    
+
     generujRaportButton= root->findChild<QPushButton*>("pushButton_generujRaportD");
     zmienKieszonkoweButton= root->findChild<QPushButton*>("pushButton_zmienKieszonkowe");
     listaDzieciCombo=root->findChild<QComboBox*>("comboBox_dzieciLista");
@@ -39,8 +39,31 @@ void Tab_Dzieci::GenerujRaportClicked(){ //toDo
     qDebug()<<"Tu będzie generowanie raportu dla dziecka";
 }
 
-void Tab_Dzieci::ZmienKieszonkoweClicked(){ //toDo
-    qDebug()<<"Tu będzie zmiana kieszonkowego";
+void Tab_Dzieci::ZmienKieszonkoweClicked() {
+    if (!m_dbManager) return;
+
+    int currentIndex = listaDzieciCombo->currentIndex();
+    if (currentIndex < 0) {
+        QMessageBox::warning(this, "Błąd", "Nie wybrano dziecka!");
+        return;
+    }
+
+    int childID = listaDzieciCombo->itemData(currentIndex).toInt();
+
+    bool ok;
+    double newKieszonkowe = QInputDialog::getDouble(this,
+                                "Nowe kieszonkowe",
+                                "Podaj nową kwotę kieszonkowego:",
+                                0.0, 0.0, 100000.0, 2, &ok);
+
+    if (!ok) return;
+
+    if (!m_dbManager->change_kieszonkowe(childID, newKieszonkowe)) {
+        QMessageBox::critical(this, "Błąd", "Nie udało się zmienić kieszonkowego!");
+    } else {
+        QMessageBox::information(this, "Sukces", "Kieszonkowe zostało zaktualizowane.");
+        updateSaldoIKieszonkoweLabel(childID);
+    }
 }
 
 
@@ -121,4 +144,16 @@ void Tab_Dzieci::onDzieckoSelected(int index) {
                        .arg(saldo, 0, 'f', 2)
                        .arg(kieszonkowe, 0, 'f', 2);
     aktualneSaldoLineEdit->setText(text);
+}
+void Tab_Dzieci::updateSaldoIKieszonkoweLabel(int childID) {
+    float saldo = m_dbManager->get_saldo(childID);
+    float kieszonkowe = m_dbManager->get_kieszonkowe(childID);
+
+    if (aktualneSaldoLineEdit) {
+        aktualneSaldoLineEdit->setText(
+            QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
+            .arg(saldo, 0, 'f', 2)
+            .arg(kieszonkowe, 0, 'f', 2)
+        );
+    }
 }

@@ -24,7 +24,6 @@
 
 ## Jeszcze nie zrealizowane dla DR on May 25
 - zmiana kieszonkowego
-- widocznosc tylko swoich dzieci,
 - implementacja systemu
 
 ## Zastanawianie sie

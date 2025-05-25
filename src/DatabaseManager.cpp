@@ -662,3 +662,18 @@ bool DatabaseManager::update_my_saldo(double amount) {
 
     return query.numRowsAffected() > 0;
 }
+bool DatabaseManager::change_kieszonkowe(int child_ID, float new_kieszonkowe) {
+    if (!m_db.isOpen()) return false;
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        UPDATE Dziecko
+        SET Kieszonkowe = :kieszonkowe
+        WHERE `Uzytkownik zalogowanyID` = :id
+    )");
+
+    query.bindValue(":kieszonkowe", new_kieszonkowe);
+    query.bindValue(":id", child_ID);
+
+    return query.exec();
+}

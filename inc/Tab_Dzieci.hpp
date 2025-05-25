@@ -16,6 +16,7 @@
 #include <QMessageBox>
 #include <QTableView>
 #include <QSqlTableModel>
+#include <QInputDialog>
 
 class Tab_Dzieci : public QWidget
 {
@@ -47,6 +48,7 @@ private:
     void showTable();
 
     void onDzieckoSelected(int index);
+    void updateSaldoIKieszonkoweLabel(int childID);
 };
 
 
