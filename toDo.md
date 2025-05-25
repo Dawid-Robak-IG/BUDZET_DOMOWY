@@ -21,9 +21,18 @@
 - saldo
 - kieszonkowe
 
+## What to do on May 25 for DR
+- Generowanie raportów o przyszłych stanach budżetu na podstawie dostępnych rekordów i wybranych typów regresji.
+- Generowanie raportów dotyczących tylko konkretnych użytkowników. 
+- Generowanie raportów dla określonych kategorii dla zadanego okresu. Uwzględnienie podziału raportów na takie generowane przez dzieci (dotyczące tylko ich konta) oraz raporty dotyczące całego budżetu rodzinnego. 
+
 
 ## Jeszcze nie zrealizowane dla DR on May 25
 - implementacja systemu
+- Generowanie raportów o przyszłych stanach budżetu na podstawie dostępnych rekordów i wybranych typów regresji.
+- Generowanie raportów dotyczących tylko konkretnych użytkowników. 
+- Generowanie raportów dla określonych kategorii dla zadanego okresu. Uwzględnienie podziału raportów na takie generowane przez dzieci (dotyczące tylko ich konta) oraz raporty dotyczące całego budżetu rodzinnego. 
+
 
 ## Zastanawianie sie
 - haszowniae hasel? XDD

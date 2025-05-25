@@ -86,21 +86,9 @@ bool DatabaseManager::addWydatek(const QString &email, double amount, const QDat
         return true;
     } // żeby nie dodawać do budzetu domowego już
 
-    QSqlQuery idQuery(m_db);
-    if (!idQuery.exec("SELECT LAST_INSERT_ID();")) {
-        qDebug() << "Błąd pobierania ID ostatniej operacji:" << idQuery.lastError().text();
-        return false;
-    }
-    int operacjaID = -1;
-    if (idQuery.next()) {
-        operacjaID = idQuery.value(0).toInt();
-    }
-    if (operacjaID == -1) {
-        qDebug() << "Nie udało się pobrać ID nowej operacji.";
-    }
-    if (!update_budzet_domowy(operacjaID,-amount)) {
-        qDebug() << "Błąd dodawania wpisu do budżetu domowego.";
-    }
+    int operacjaID = query.lastInsertId().toLongLong();
+
+    create_new_Budzet_Domowy(operacjaID,-amount);
     return true;
 }
 bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDate &date, const QString &note, const QString &category)
@@ -139,25 +127,41 @@ bool DatabaseManager::addPrzychod(const QString &email, double amount, const QDa
         return true;
     } // żeby nie dodawać do budzetu domowego już
 
-    QSqlQuery idQuery(m_db);
-    if (!idQuery.exec("SELECT LAST_INSERT_ID();")) {
-        qDebug() << "Błąd pobierania ID ostatniej operacji:" << idQuery.lastError().text();
-        return false;
-    }
-    int operacjaID = -1;
-    if (idQuery.next()) {
-        operacjaID = idQuery.value(0).toInt();
-    }
-    if (operacjaID == -1) {
-        qDebug() << "Nie udało się pobrać ID nowej operacji.";
-    }
-    if (!update_budzet_domowy(operacjaID,amount)) {
+    int operacjaID = query.lastInsertId().toLongLong();
+
+    create_new_Budzet_Domowy(operacjaID,amount);
+    return true;
+}
+bool DatabaseManager::create_new_Budzet_Domowy(int operacjaID, double amount){
+    if (!update_budzet_domowy(operacjaID, amount)) {
         qDebug() << "Błąd dodawania wpisu do budżetu domowego.";
+        return false;
     }
     return true;
 }
 
+bool DatabaseManager::update_budzet_domowy(int ID_operacji, double kwota) {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return false;
+    }
+    double nowaKwota = whole_budzet + kwota;  
 
+    QSqlQuery insertQuery(m_db);
+    insertQuery.prepare(R"(
+        INSERT INTO `Budzet domowy` (`Kwota`, `OperacjaID`)
+        VALUES (:kwota, :operacjaID)
+    )");
+    insertQuery.bindValue(":kwota", nowaKwota);
+    insertQuery.bindValue(":operacjaID", ID_operacji);
+
+    if (!insertQuery.exec()) {
+        qDebug() << "Błąd podczas dodawania wpisu do Budzet domowy:" << insertQuery.lastError().text();
+        return false;
+    }
+    reload_whole_budzet();
+    return true;
+}
 bool DatabaseManager::addKategoria(const QString &email, const QString &nowaKategoria){
     if (!m_db.isOpen()) {
         qDebug() << "Baza danych nie jest otwarta!";
@@ -378,28 +382,6 @@ void DatabaseManager::reload_whole_budzet() {
 }
 double DatabaseManager::get_whole_budzet(){
     return whole_budzet;
-}
-bool DatabaseManager::update_budzet_domowy(int ID_operacji, double kwota){
-    if (!m_db.isOpen()) {
-        qDebug() << "Baza danych nie jest otwarta!";
-        return false;
-    }
-    double nowaKwota = whole_budzet + kwota; 
-
-    QSqlQuery insertQuery(m_db);
-    insertQuery.prepare(R"(
-        INSERT INTO `Budzet domowy` (`Kwota`, `OperacjaID`)
-        VALUES (:kwota, :operacjaID)
-    )");
-    insertQuery.bindValue(":kwota", nowaKwota);
-    insertQuery.bindValue(":operacjaID", ID_operacji);
-
-    if (!insertQuery.exec()) {
-        qDebug() << "Błąd podczas dodawania wpisu do Budzet domowy:" << insertQuery.lastError().text();
-        return false;
-    }
-    reload_whole_budzet();
-    return true;
 }
 QDate DatabaseManager::get_update_Date() {
     if (!m_db.isOpen()) {
@@ -676,4 +658,100 @@ bool DatabaseManager::change_kieszonkowe(int child_ID, float new_kieszonkowe) {
     query.bindValue(":id", child_ID);
 
     return query.exec();
+}
+
+bool DatabaseManager::generujZCyklicznych() {
+    qDebug()<<"Generuje przychody i wydatki z cyklicznych";
+    if (!m_db.isOpen()) return false;
+
+    QSqlQuery select(m_db);
+    select.prepare(R"(
+        SELECT ID, `Uzytkownik zalogowanyID`, Kwota, Notatka, Czestotliwosc, Kategoria, DataKolejna
+        FROM `Operacja cykliczna`
+        WHERE DataKolejna <= CURDATE()
+    )");
+
+    if (!select.exec()) {
+        qDebug() << "Błąd SELECT cyklicznych operacji:" << select.lastError().text();
+        return false;
+    }
+
+    QSqlQuery insert(m_db);
+    QSqlQuery updateCykliczna(m_db);
+
+    if (!select.first()) {
+        qDebug() << "Brak cyklicznych operacji do wykonania";
+        return true;
+    } else {
+        select.previous(); // wróć na pozycję przed pierwszą do pętli while
+    }
+
+    while (select.next()) {
+        int id = select.value("ID").toInt();
+        int userId = select.value("Uzytkownik zalogowanyID").toInt();
+        double kwota = select.value("Kwota").toDouble();
+        QString opis = select.value("Notatka").toString();
+        QString czest = select.value("Czestotliwosc").toString();
+        QDate dataKolejna = select.value("DataKolejna").toDate();
+        QString kategoria = select.value("Kategoria").toString();
+
+
+        // qDebug()<<"=====================================";
+        // qDebug() << "Dodaję operację z cyklicznej:";
+        // qDebug() << "ID cyklicznej:" << id;
+        // qDebug() << "Użytkownik ID:" << userId;
+        // qDebug() << "Kwota:" << kwota;
+        // qDebug() << "Opis:" << opis;
+        // qDebug() << "Częstotliwość:" << czest;
+        // qDebug() << "DataKolejna:" << dataKolejna.toString("yyyy-MM-dd");
+        // qDebug()<<"=====================================";
+
+        insert.prepare(R"(
+            INSERT INTO Operacja (`Uzytkownik zalogowanyID`, Kwota, Notatka, Data, czy_z_cyklicznego, `Operacja cyklicznaID`, `Kategoria Nazwa`)
+            VALUES (:uid, :kwota, :opis, CURDATE(), :czy_cykl, :ID_cykl, :kat)
+        )");
+        insert.bindValue(":uid", userId);
+        insert.bindValue(":kwota", kwota);
+        insert.bindValue(":opis", opis);
+        insert.bindValue(":czy_cykl", 1);
+        insert.bindValue(":ID_cykl", id);
+        insert.bindValue(":kat", kategoria);
+
+
+        if (!insert.exec()) {
+            qDebug() << "Błąd dodawania operacji:" << insert.lastError().text();
+            continue;
+        }
+        int operacjaID = insert.lastInsertId().toLongLong();
+
+        if (!create_new_Budzet_Domowy(operacjaID, kwota)) {
+            qDebug() << "Błąd tworzenia wpisu w budżecie domowym";
+        }
+
+
+
+        QDate nowaData = dataKolejna;
+        if (czest == "Codziennie")
+            nowaData = dataKolejna.addDays(1);
+        else if (czest == "Co tydzien")
+            nowaData = dataKolejna.addDays(7);
+        else if (czest == "Co miesiąc")
+            nowaData = dataKolejna.addMonths(1);
+        else if (czest == "Co rok")
+            nowaData = dataKolejna.addYears(1);
+
+        updateCykliczna.prepare(R"(
+            UPDATE `Operacja cykliczna` SET DataKolejna = :nowa WHERE ID = :id
+        )");
+        updateCykliczna.bindValue(":nowa", nowaData);
+        updateCykliczna.bindValue(":id", id);
+        if (!updateCykliczna.exec()) {
+            qDebug() << "Błąd aktualizacji daty cyklicznej:" << updateCykliczna.lastError().text();
+        }
+
+
+    }
+
+    qDebug()<<"Zakończono proces obsługi cyklicznych operacji";
+    return true;
 }

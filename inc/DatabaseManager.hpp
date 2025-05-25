@@ -55,6 +55,8 @@ public:
     
     QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate);
 
+    bool generujZCyklicznych();
+
 signals:
     void nowaKategoriaDodana();
 
@@ -62,6 +64,7 @@ private:
      QSqlDatabase m_db;
 
     bool update_budzet_domowy(int ID_operacji, double kwota);
+    bool create_new_Budzet_Domowy(int operacjaID,double amount);
 };
 
 #endif // DATABASEMANAGER_HPP
