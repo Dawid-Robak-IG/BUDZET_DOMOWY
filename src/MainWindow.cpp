@@ -55,5 +55,5 @@ void MainWindow::handleLogout() {
     // logRegScreen->goToStartPage();
     // stackedWidget->setCurrentWidget(logRegScreen);
 
-    m_dbManager->generujZCyklicznych();
+    m_dbManager->startSystemCykl();
 }

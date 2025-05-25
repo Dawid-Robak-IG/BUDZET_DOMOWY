@@ -741,3 +741,68 @@ bool DatabaseManager::generujZCyklicznych() {
     qDebug()<<"Zakończono proces obsługi cyklicznych operacji";
     return true;
 }
+bool DatabaseManager::generujKieszonkoweDlaDzieci() {
+    qDebug() << "Generuję kieszonkowe dla dzieci";
+
+    if (!m_db.isOpen()) return false;
+
+    QSqlQuery select(m_db);
+    select.prepare(R"(
+        SELECT `Uzytkownik zalogowanyID`, Kieszonkowe, DataKolejnaKieszonkowego
+        FROM Dziecko
+        WHERE DataKolejnaKieszonkowego IS NOT NULL AND DataKolejnaKieszonkowego <= CURDATE()
+    )");
+
+    if (!select.exec()) {
+        qDebug() << "Błąd SELECT kieszonkowego dzieci:" << select.lastError().text();
+        return false;
+    }
+
+    QSqlQuery update(m_db);
+    QDate dzis = QDate::currentDate();
+
+    while (select.next()) {
+        int dzieckoId = select.value("Uzytkownik zalogowanyID").toInt();
+        double kwota = select.value("Kieszonkowe").toDouble();
+        QDate dataKolejna = select.value("DataKolejnaKieszonkowego").toDate();
+
+        while (dataKolejna <= dzis) {
+            if (!zwiekszSaldoDziecka(dzieckoId, kwota)) {
+                qDebug() << "Błąd aktualizacji salda dziecka ID:" << dzieckoId;
+                break;
+            }
+            dataKolejna = dataKolejna.addMonths(1);
+        }
+
+        update.prepare(R"(
+            UPDATE Dziecko SET DataKolejnaKieszonkowego = :nowa WHERE `Uzytkownik zalogowanyID` = :id
+        )");
+        update.bindValue(":nowa", dataKolejna);
+        update.bindValue(":id", dzieckoId);
+
+        if (!update.exec()) {
+            qDebug() << "Błąd aktualizacji daty kieszonkowego dziecka:" << update.lastError().text();
+        }
+    }
+
+    qDebug() << "Zakończono proces generowania kieszonkowego dla dzieci";
+    return true;
+}
+bool DatabaseManager::zwiekszSaldoDziecka(int dzieckoID, double kwota) {
+    QSqlQuery query(m_db);
+    query.prepare("UPDATE Dziecko SET Saldo = Saldo + :kwota WHERE `Uzytkownik zalogowanyID` = :id");
+    query.bindValue(":kwota", kwota);
+    query.bindValue(":id", dzieckoID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd aktualizacji salda dziecka:" << query.lastError().text();
+        return false;
+    }
+    return true;
+}
+bool DatabaseManager::startSystemCykl(){
+    if(generujZCyklicznych() && generujKieszonkoweDlaDzieci()){
+        return true;
+    }
+    return false;
+}
