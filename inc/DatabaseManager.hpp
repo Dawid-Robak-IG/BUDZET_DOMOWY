@@ -45,6 +45,12 @@ public:
     bool addSecondParent(int IDchild, int IDparent2);
     bool update_Children();
 
+
+    bool amIChild();
+    float get_kieszonkowe();
+    float get_saldo();
+    
+
 signals:
     void nowaKategoriaDodana();
 

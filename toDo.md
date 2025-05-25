@@ -11,7 +11,15 @@
 - czyszczenie tego co wypełnimy
 - cały budzet
 - poprawność formularzy
+- zmiana kieszonkowego
+- widocznosc tylko swoich dzieci,
+- dziecko nie moze cyklicznych
+- dziecko przychody wydatki do swojego salda
+- implementacja systemu
 - tylko admin rodzica do dzieci
+- czy ktos jest dzieckiem
+- saldo
+- kieszonkowe
 
 
 ##ASD
@@ -22,6 +30,11 @@
 - dziecko nie moze cyklicznych
 - dziecko przychody wydatki do swojego salda
 - implementacja systemu
+- tylko admin rodzica do dzieci
+- czy ktos jest dzieckiem
+- saldo
+- kieszonkowe
+
 
 
 ## What to do on May 25 for PP
@@ -34,6 +47,7 @@
 - dodaj guzik pod tytułem dodaj rodzica nr.2 bo latwiej tym zarzadzac bedzie
 - dodaj przycisk "update Children" bedzie on tworzyl te encje dzieci.
 - dodaj zeby dla uzytkownikow rola nie byla z palca tylko wybierane
+- do danych uzytkownika saldo i kieszonkowe jesli dziecko
 
 ## Pomysły
 - haszowniae hasel? XDD

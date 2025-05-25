@@ -46,7 +46,12 @@ Tab_CykliczneW::Tab_CykliczneW(const QString& userEmail,QWidget *root, QWidget *
     stacked->setCurrentIndex(0);
 
 }
-void Tab_CykliczneW::DodajCW_Clicked(){ //toDo
+void Tab_CykliczneW::DodajCW_Clicked(){ 
+    if(m_dbManager->amIChild()){
+        QMessageBox::warning(this, "Błąd", "Dzieci i niezdefiniowani użytkownicy nie mogą dodawać wydatków");
+        return;
+    }
+
     qDebug() << "Dodawanie cyklicznego przychodu";
 
     QString kategoria = kategoriaCombo->currentText();
