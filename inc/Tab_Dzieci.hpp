@@ -24,6 +24,8 @@ public:
     explicit Tab_Dzieci(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
 
+    void loadDzieciListComboBox();
+
 signals:
 private slots:
     void GenerujRaportClicked();
@@ -42,8 +44,9 @@ private:
 
     DatabaseManager* m_dbManager = nullptr;
 
-    void loadDzieciListComboBox();
     void showTable();
+
+    void onDzieckoSelected(int index);
 };
 
 

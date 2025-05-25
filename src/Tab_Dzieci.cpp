@@ -7,6 +7,8 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
     kieszonkoweTable=root->findChild<QTableView*>("tableView_aktualneKieszonkowe");
 
     aktualneSaldoLineEdit= root->findChild<QLineEdit*>("lineEdit_aktualneSaldo");
+    aktualneSaldoLineEdit->setReadOnly(true);
+    
     generujRaportButton= root->findChild<QPushButton*>("pushButton_generujRaportD");
     zmienKieszonkoweButton= root->findChild<QPushButton*>("pushButton_zmienKieszonkowe");
     listaDzieciCombo=root->findChild<QComboBox*>("comboBox_dzieciLista");
@@ -20,7 +22,10 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
         connect(zmienKieszonkoweButton, &QPushButton::clicked, this, &Tab_Dzieci::ZmienKieszonkoweClicked);
     }
 
-
+    if (listaDzieciCombo) {
+    connect(listaDzieciCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &Tab_Dzieci::onDzieckoSelected);
+    }
 }
 
 void Tab_Dzieci::setDatabaseManager(DatabaseManager* dbManager) {
@@ -43,36 +48,77 @@ void Tab_Dzieci::showTable(){ //toDo wyświetlenie konkretnego wpisu z cykliczny
 
 }
 
-void Tab_Dzieci::loadDzieciListComboBox(){
-
+void Tab_Dzieci::loadDzieciListComboBox() {
     if (!m_dbManager || !m_dbManager->getDatabase().isOpen()) {
         qDebug() << "Baza danych nie jest dostępna!";
         return;
     }
 
     if (!listaDzieciCombo) {
-        qDebug() << "listaDzieciCombo nie została znaleziona (nullptr)!";
+        qDebug() << "listaDzieciCombo nie została znaleziona!";
         return;
     }
-    listaDzieciCombo->clear();  // Wyczyść przed dodaniem
+
+    listaDzieciCombo->clear();
+
+    QSqlQuery rolaQuery(m_dbManager->getDatabase());
+    rolaQuery.prepare("SELECT Rola FROM `Uzytkownik zalogowany` WHERE ID = :id");
+    rolaQuery.bindValue(":id", m_dbManager->get_user_ID());
+
+    if (!rolaQuery.exec() || !rolaQuery.next()) {
+        qDebug() << "Nie udało się pobrać roli użytkownika!";
+        return;
+    }
+
+    QString rola = rolaQuery.value("Rola").toString();
 
     QSqlQuery query(m_dbManager->getDatabase());
-    query.prepare("SELECT Imie, Nazwisko FROM `Uzytkownik zalogowany` WHERE Rola = 'Dziecko'");
+
+    if (rola == "Admin") {
+        query.prepare(R"(
+            SELECT uz.ID, uz.Imie, uz.Nazwisko
+            FROM `Uzytkownik zalogowany` uz
+            WHERE uz.Rola = 'Dziecko'
+        )");
+    } else {
+        query.prepare(R"(
+            SELECT uz.ID, uz.Imie, uz.Nazwisko
+            FROM `Uzytkownik zalogowany` uz
+            JOIN Dziecko d ON uz.ID = d.`Uzytkownik zalogowanyID`
+            WHERE uz.Rola = 'Dziecko'
+              AND (d.ID_Rodzic1 = :myID OR d.ID_Rodzic2 = :myID)
+        )");
+        query.bindValue(":myID", m_dbManager->get_user_ID());
+    }
 
     if (!query.exec()) {
-        qDebug() << "Błąd przy pobieraniu dzieci:" << query.lastError().text();
+        qDebug() << "Błąd zapytania dzieci:" << query.lastError().text();
         return;
     }
 
     while (query.next()) {
         QString imie = query.value("Imie").toString();
         QString nazwisko = query.value("Nazwisko").toString();
-        QString pelneImie = imie + " " + nazwisko;
-        listaDzieciCombo->addItem(pelneImie);
+        int id = query.value("ID").toInt();
+        listaDzieciCombo->addItem(imie + " " + nazwisko, id);  // dodaj ID jako userData
     }
 
     if (listaDzieciCombo->count() == 0) {
-        listaDzieciCombo->addItem("Brak dzieci w bazie");
+        listaDzieciCombo->addItem("Brak przypisanych dzieci");
     }
+}
+void Tab_Dzieci::onDzieckoSelected(int index) {
+    if (index < 0 || !m_dbManager || !aktualneSaldoLineEdit) return;
 
+    bool ok = false;
+    int dzieckoID = listaDzieciCombo->currentData().toInt(&ok);
+    if (!ok) return;
+
+    float saldo = m_dbManager->get_saldo(dzieckoID);
+    float kieszonkowe = m_dbManager->get_kieszonkowe(dzieckoID);
+
+    QString text = QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
+                       .arg(saldo, 0, 'f', 2)
+                       .arg(kieszonkowe, 0, 'f', 2);
+    aktualneSaldoLineEdit->setText(text);
 }

@@ -551,12 +551,12 @@ bool DatabaseManager::amIChild() {
 
     return false;
 }
-float DatabaseManager::get_kieszonkowe() {
+float DatabaseManager::get_kieszonkowe(int child_ID) {
     if (!m_db.isOpen()) return -1.0f;
 
     QSqlQuery query(m_db);
     query.prepare("SELECT kieszonkowe FROM Dziecko WHERE `Uzytkownik zalogowanyID` = :id");
-    query.bindValue(":id", logged_user_ID);
+    query.bindValue(":id", child_ID);
 
     if (!query.exec()) {
         qDebug() << "Błąd pobierania kieszonkowego:" << query.lastError().text();
@@ -568,15 +568,15 @@ float DatabaseManager::get_kieszonkowe() {
     }
     return -1.0f;
 }
-float DatabaseManager::get_saldo() {
+float DatabaseManager::get_saldo(int child_ID) {
     if (!m_db.isOpen()) return -1.0f;
 
     QSqlQuery query(m_db);
-    query.prepare("SELECT SUM(Kwota) FROM Operacja WHERE `Uzytkownik zalogowanyID` = :id");
-    query.bindValue(":id", logged_user_ID);
+    query.prepare("SELECT Saldo FROM Dziecko WHERE `Uzytkownik zalogowanyID` = :id");
+    query.bindValue(":id", child_ID);
 
     if (!query.exec()) {
-        qDebug() << "Błąd pobierania salda:" << query.lastError().text();
+        qDebug() << "Błąd pobierania kieszonkowego:" << query.lastError().text();
         return -1.0f;
     }
 

@@ -151,4 +151,5 @@ void User_Panel::setTablesByNewUser(){
     cyklicznePManager->setTableStrategy();
     cykliczneWManager->setTableStrategy();
     uzytkownicyManager->setTableStrategy();
+    dzieciManager->loadDzieciListComboBox();
 }

@@ -48,8 +48,8 @@ public:
 
 
     bool amIChild();
-    float get_kieszonkowe();
-    float get_saldo();
+    float get_kieszonkowe(int child_ID);
+    float get_saldo(int child_ID);
     bool update_my_saldo(double amount);
     
     QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate);

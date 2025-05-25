@@ -23,15 +23,15 @@
 
 
 ## Jeszcze nie zrealizowane dla DR on May 25
-- funkcjonalność dziecka 
 - zmiana kieszonkowego
 - widocznosc tylko swoich dzieci,
-- dziecko przychody wydatki do swojego salda
 - implementacja systemu
 
-## Pomysły
+## Zastanawianie sie
 - haszowniae hasel? XDD
 - co z edycją xd (czy jest ok?)
+- czym jest generuj raport w sekcji dzieci? xd
+- uporządkowanie wpisów do bazy danych
 
 ## What to do on May 25 for PP
 - tak by kwoty były większe niż 99.99 dla przychodow i wydatków cyklicznych (dla tych zwyklych jest ok),
@@ -62,6 +62,9 @@ bool update_Children();
 - do danych uzytkownika saldo i kieszonkowe jesli dziecko:
 ```cpp
 bool amIChild();
-float get_kieszonkowe();
-float get_saldo();
+float get_kieszonkowe(int child_ID);
+float get_saldo(int child_ID);
+int get_user_ID();
 ```
+- dodaj miejsce na wyświetlanie kieszokowego bo na razie wszzystko dalem do salda (saldo i kieszonkowe) w zakładce dzieci, albo usun ten wielki prostokat dla kieosznkowego.
+- sprawdzenie czy wszystko jest i jest ok,
