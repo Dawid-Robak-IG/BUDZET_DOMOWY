@@ -492,10 +492,12 @@ bool DatabaseManager::update_Children() {
         int userId = selectQuery.value(0).toInt();
 
         insertQuery.prepare(R"(
-            INSERT INTO Dziecko (`Uzytkownik zalogowanyID`)
-            VALUES (:id)
+            INSERT INTO Dziecko (`Uzytkownik zalogowanyID`,Saldo,Kieszonkowe)
+            VALUES (:id,:saldo,:kiesz)
         )");
         insertQuery.bindValue(":id", userId);
+        insertQuery.bindValue(":saldo", 0);
+        insertQuery.bindValue(":kiesz", 0);
 
         if (!insertQuery.exec()) {
             qDebug() << "Błąd dodawania dziecka (ID:" << userId << "):" << insertQuery.lastError().text();
