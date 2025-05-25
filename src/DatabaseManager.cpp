@@ -679,13 +679,6 @@ bool DatabaseManager::generujZCyklicznych() {
     QSqlQuery insert(m_db);
     QSqlQuery updateCykliczna(m_db);
 
-    if (!select.first()) {
-        qDebug() << "Brak cyklicznych operacji do wykonania";
-        return true;
-    } else {
-        select.previous(); // wróć na pozycję przed pierwszą do pętli while
-    }
-
     while (select.next()) {
         int id = select.value("ID").toInt();
         int userId = select.value("Uzytkownik zalogowanyID").toInt();
@@ -695,61 +688,54 @@ bool DatabaseManager::generujZCyklicznych() {
         QDate dataKolejna = select.value("DataKolejna").toDate();
         QString kategoria = select.value("Kategoria").toString();
 
+        QDate dzis = QDate::currentDate();
 
-        // qDebug()<<"=====================================";
-        // qDebug() << "Dodaję operację z cyklicznej:";
-        // qDebug() << "ID cyklicznej:" << id;
-        // qDebug() << "Użytkownik ID:" << userId;
-        // qDebug() << "Kwota:" << kwota;
-        // qDebug() << "Opis:" << opis;
-        // qDebug() << "Częstotliwość:" << czest;
-        // qDebug() << "DataKolejna:" << dataKolejna.toString("yyyy-MM-dd");
-        // qDebug()<<"=====================================";
+        while (dataKolejna <= dzis) {
+            insert.prepare(R"(
+                INSERT INTO Operacja (`Uzytkownik zalogowanyID`, Kwota, Notatka, Data, czy_z_cyklicznego, `Operacja cyklicznaID`, `Kategoria Nazwa`)
+                VALUES (:uid, :kwota, :opis, :data, :czy_cykl, :ID_cykl, :kat)
+            )");
+            insert.bindValue(":uid", userId);
+            insert.bindValue(":kwota", kwota);
+            insert.bindValue(":opis", opis);
+            insert.bindValue(":data", dataKolejna); 
+            insert.bindValue(":czy_cykl", 1);
+            insert.bindValue(":ID_cykl", id);
+            insert.bindValue(":kat", kategoria);
 
-        insert.prepare(R"(
-            INSERT INTO Operacja (`Uzytkownik zalogowanyID`, Kwota, Notatka, Data, czy_z_cyklicznego, `Operacja cyklicznaID`, `Kategoria Nazwa`)
-            VALUES (:uid, :kwota, :opis, CURDATE(), :czy_cykl, :ID_cykl, :kat)
-        )");
-        insert.bindValue(":uid", userId);
-        insert.bindValue(":kwota", kwota);
-        insert.bindValue(":opis", opis);
-        insert.bindValue(":czy_cykl", 1);
-        insert.bindValue(":ID_cykl", id);
-        insert.bindValue(":kat", kategoria);
+            if (!insert.exec()) {
+                qDebug() << "Błąd dodawania operacji:" << insert.lastError().text();
+                break; 
+            }
 
+            int operacjaID = insert.lastInsertId().toLongLong();
+            if (!create_new_Budzet_Domowy(operacjaID, kwota)) {
+                qDebug() << "Błąd tworzenia wpisu w budżecie domowym";
+            }
 
-        if (!insert.exec()) {
-            qDebug() << "Błąd dodawania operacji:" << insert.lastError().text();
-            continue;
+            // Aktualizujemy dataKolejna o kolejny okres:
+            if (czest == "Codziennie")
+                dataKolejna = dataKolejna.addDays(1);
+            else if (czest == "Co tydzien")
+                dataKolejna = dataKolejna.addDays(7);
+            else if (czest == "Co miesiąc")
+                dataKolejna = dataKolejna.addMonths(1);
+            else if (czest == "Co rok")
+                dataKolejna = dataKolejna.addYears(1);
+            else {
+                qDebug() << "Nieznana częstotliwość:" << czest;
+                break;
+            }
         }
-        int operacjaID = insert.lastInsertId().toLongLong();
-
-        if (!create_new_Budzet_Domowy(operacjaID, kwota)) {
-            qDebug() << "Błąd tworzenia wpisu w budżecie domowym";
-        }
-
-
-
-        QDate nowaData = dataKolejna;
-        if (czest == "Codziennie")
-            nowaData = dataKolejna.addDays(1);
-        else if (czest == "Co tydzien")
-            nowaData = dataKolejna.addDays(7);
-        else if (czest == "Co miesiąc")
-            nowaData = dataKolejna.addMonths(1);
-        else if (czest == "Co rok")
-            nowaData = dataKolejna.addYears(1);
 
         updateCykliczna.prepare(R"(
             UPDATE `Operacja cykliczna` SET DataKolejna = :nowa WHERE ID = :id
         )");
-        updateCykliczna.bindValue(":nowa", nowaData);
+        updateCykliczna.bindValue(":nowa", dataKolejna);
         updateCykliczna.bindValue(":id", id);
         if (!updateCykliczna.exec()) {
             qDebug() << "Błąd aktualizacji daty cyklicznej:" << updateCykliczna.lastError().text();
         }
-
-
     }
 
     qDebug()<<"Zakończono proces obsługi cyklicznych operacji";
