@@ -25,10 +25,8 @@ void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
 }
 
 void Tab_Raporty::GenerujRaportClicked() {
-    GenerujMyRaportClicked();
-    return;
-
-
+    // GenerujMyRaportClicked();
+    // return;
     if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
         return;
