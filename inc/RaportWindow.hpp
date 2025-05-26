@@ -13,7 +13,7 @@ class RaportWindow : public QWidget {
 
 public:
     explicit RaportWindow(QWidget *parent = nullptr);
-    void addChart(const QVector<QDate>& dates, const QVector<double>& values);
+    void addChart(const QVector<QDate>& dates, const QVector<double>& values, const QString& title);
 
 private:
     QVBoxLayout* mainLayout;

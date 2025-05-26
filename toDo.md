@@ -72,7 +72,18 @@ float get_kieszonkowe(int child_ID);
 float get_saldo(int child_ID);
 int get_user_ID();
 ```
-- dodaj guzik go generowania raportów tylko dla własnych wpisów (już zrobiłem sot w Tab_Raporty),
+- dodaj guzik go generowania raportów tylko dla własnych wpisów (już zrobiłem sot w Tab_Raporty):
+```cpp
+Tab_Raporty::GenerujMyRaportClicked()
+```
 - dodaj miejsce na wyświetlanie kieszokowego bo na razie wszzystko dalem do salda (saldo i kieszonkowe) w zakładce dzieci, albo usun ten wielki prostokat dla kieosznkowego.
+- dodaj w sekcji raport możliwość wyboru użytkownika (dla admina) dla którego chce on wygenerować raport. Wybieramy po mailu, ale chcemy dostać ID.Każdy inny będzie generował tylko dla siebie:
+```cpp
+int get_ID_by_mail(QString mail);
+m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID());
+m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID()); 
+m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());
+```
+
 - dodaj wybór kategorii od czego chemy mieć raport,
 - sprawdzenie czy wszystko jest i jest ok,

@@ -14,7 +14,7 @@ RaportWindow::RaportWindow(QWidget *parent) : QWidget(parent) {
     resize(800, 600);
 }
 
-void RaportWindow::addChart(const QVector<QDate>& dates, const QVector<double>& values) {
+void RaportWindow::addChart(const QVector<QDate>& dates, const QVector<double>& values, const QString& title) {
     if (dates.isEmpty() || values.isEmpty()) return;
 
     auto series = new QtCharts::QLineSeries();
@@ -25,6 +25,7 @@ void RaportWindow::addChart(const QVector<QDate>& dates, const QVector<double>& 
 
     auto chart = new QtCharts::QChart();
     chart->addSeries(series);
+    chart->setTitle(title);  // <-- tutaj ustawiamy tytuł
     chart->legend()->hide();
 
     auto axisX = new QtCharts::QDateTimeAxis();

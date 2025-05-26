@@ -826,7 +826,7 @@ bool DatabaseManager::startSystemCykl(){
     }
     return false;
 }
-QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QDate& startDate, const QDate& endDate) {
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QDate& startDate, const QDate& endDate, int user_ID) {
     QPair<QVector<QDate>, QVector<double>> result;
 
     if (!m_db.isOpen()) {
@@ -843,7 +843,7 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QD
         ORDER BY Data ASC
     )");
 
-    query.bindValue(":userId", logged_user_ID);
+    query.bindValue(":userId", user_ID);
     query.bindValue(":start", startDate);
     query.bindValue(":end", endDate);
 
@@ -870,15 +870,142 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QD
 
     return result;
 }
-// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyPrzychody(const QDate& startDate, const QDate& endDate){
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyPrzychody(const QDate& startDate, const QDate& endDate, int user_ID) {
+    QPair<QVector<QDate>, QVector<double>> result;
 
-// }
-// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyWydatki(const QDate& startDate, const QDate& endDate){
+    if (!m_db.isOpen()) return result;
 
-// }
-// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetPrzychody(const QDate& startDate, const QDate& endDate){
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT Data, SUM(Kwota)
+        FROM Operacja
+        WHERE `Uzytkownik zalogowanyID` = :uid
+          AND Kwota > 0
+          AND Data BETWEEN :start AND :end
+        GROUP BY Data
+        ORDER BY Data ASC
+    )");
+    query.bindValue(":uid", user_ID);
+    query.bindValue(":start", startDate);
+    query.bindValue(":end", endDate);
 
-// }
-// QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetWydatki(const QDate& startDate, const QDate& endDate){
+    if (query.exec()) {
+        while (query.next()) {
+            result.first.append(query.value(0).toDate());
+            result.second.append(query.value(1).toDouble());
+        }
+    }
 
-// }
+    return result;
+}
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyWydatki(const QDate& startDate, const QDate& endDate, int user_ID) {
+    QPair<QVector<QDate>, QVector<double>> result;
+
+    if (!m_db.isOpen()) return result;
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT Data, SUM(Kwota)
+        FROM Operacja
+        WHERE `Uzytkownik zalogowanyID` = :uid
+          AND Kwota < 0
+          AND Data BETWEEN :start AND :end
+        GROUP BY Data
+        ORDER BY Data ASC
+    )");
+    query.bindValue(":uid", user_ID);
+    query.bindValue(":start", startDate);
+    query.bindValue(":end", endDate);
+
+    if (query.exec()) {
+        while (query.next()) {
+            result.first.append(query.value(0).toDate());
+            result.second.append(-1.0*query.value(1).toDouble());
+        }
+    }
+
+    return result;
+}
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetPrzychody(const QDate& startDate, const QDate& endDate) {
+    QPair<QVector<QDate>, QVector<double>> result;
+
+    if (!m_db.isOpen()) return result;
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT o.Data, SUM(o.Kwota)
+        FROM Operacja o
+        JOIN `Budzet domowy` b ON o.ID = b.OperacjaID
+        WHERE o.Kwota > 0
+          AND o.Data BETWEEN :start AND :end
+        GROUP BY o.Data
+        ORDER BY o.Data ASC
+    )");
+    query.bindValue(":start", startDate);
+    query.bindValue(":end", endDate);
+
+    if (query.exec()) {
+        while (query.next()) {
+            result.first.append(query.value(0).toDate());
+            result.second.append(query.value(1).toDouble());
+        }
+    } else {
+        qDebug() << "Błąd zapytania getBudzetPrzychody:" << query.lastError().text();
+    }
+
+    return result;
+}
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetWydatki(const QDate& startDate, const QDate& endDate){
+    QPair<QVector<QDate>, QVector<double>> result;
+
+    if (!m_db.isOpen()) return result;
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT o.Data, SUM(o.Kwota)
+        FROM Operacja o
+        JOIN `Budzet domowy` b ON o.ID = b.OperacjaID
+        WHERE o.Kwota < 0
+          AND o.Data BETWEEN :start AND :end
+        GROUP BY o.Data
+        ORDER BY o.Data ASC
+    )");
+    query.bindValue(":start", startDate);
+    query.bindValue(":end", endDate);
+
+    if (query.exec()) {
+        while (query.next()) {
+            result.first.append(query.value(0).toDate());
+            result.second.append(-1.0*query.value(1).toDouble());
+        }
+    } else {
+        qDebug() << "Błąd zapytania getBudzetPrzychody:" << query.lastError().text();
+    }
+
+    return result;
+}
+int DatabaseManager::get_ID_by_mail(QString mail) {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return -1;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT ID FROM `Uzytkownik zalogowany`
+        WHERE Email = :mail
+    )");
+    query.bindValue(":mail", mail);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd zapytania get_ID_by_mail:" << query.lastError().text();
+        return -1;
+    }
+
+    if (query.next()) {
+        return query.value(0).toInt();
+    } else {
+        qDebug() << "Nie znaleziono użytkownika o mailu:" << mail;
+        return -1;
+    }
+}

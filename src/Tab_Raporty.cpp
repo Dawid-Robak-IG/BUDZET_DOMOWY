@@ -25,12 +25,17 @@ void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
 }
 
 void Tab_Raporty::GenerujRaportClicked() {
-    GenerujMyRaportClicked();
-    return;
+    // GenerujMyRaportClicked();
+    // return;
 
 
     if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
+        return;
+    }
+    if(m_dbManager->amIChild()){
+        qDebug() << "Dziecko nie może raportu dla budżetu";
+        QMessageBox::warning(this, "Błąd", "Tylko dorośli użytkownicy mogą generować raport dla całego budżetu");
         return;
     }
 
@@ -46,7 +51,14 @@ void Tab_Raporty::GenerujRaportClicked() {
 
     RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->addChart(data.first, data.second);
+    raport->addChart(data.first, data.second,"Budżet domowy");
+
+    data = m_dbManager->getBudzetPrzychody(startDate, endDate); 
+    raport->addChart(data.first, data.second,"Przychody budżetu domowego");
+
+    data = m_dbManager->getBudzetWydatki(startDate, endDate);
+    raport->addChart(data.first, data.second, "Wydatki Budżetu domowego");
+
     raport->setWindowTitle("Raport budżetu domowego");
     raport->show();
 }
@@ -59,7 +71,7 @@ void Tab_Raporty::GenerujMyRaportClicked() {
     QDate startDate = startDataEdit->date();
     QDate endDate = stopDataEdit->date();
 
-    auto data = m_dbManager->getMyBudzetData(startDate, endDate);
+    auto data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
 
     if (data.first.isEmpty()) {
         QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
@@ -68,11 +80,13 @@ void Tab_Raporty::GenerujMyRaportClicked() {
 
     RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->addChart(data.first, data.second);
+    raport->addChart(data.first, data.second, "Budżet wybranego użytkownika");
 
-    // data = m_dbManager->getMyPrzychody(startDate, endDate);
-    // raport->addChart(data.first, data.second);
+    data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID()); // toDo -- tu trzeba dać to co wybierzemy w UI
+    raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
 
+    data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
+    raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
 
     raport->setWindowTitle("Raport mojego budżetu");
     raport->show();
