@@ -29,7 +29,7 @@
 
 ## Jeszcze nie zrealizowane dla DR on May 25
 - Generowanie raportów o przyszłych stanach budżetu na podstawie dostępnych rekordów i wybranych typów regresji.
-- Generowanie raportów dla określonych kategorii dla zadanego okresu. Uwzględnienie podziału raportów na takie generowane przez dzieci (dotyczące tylko ich konta) oraz raporty dotyczące całego budżetu rodzinnego. 
+
 
 
 ## Zastanawianie sie
@@ -84,6 +84,16 @@ m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID());
 m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID()); 
 m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());
 ```
-
-- dodaj wybór kategorii od czego chemy mieć raport,
+- dodaj wybór kategorii od czego chemy mieć raport. Jeśli wybierzemy kategorię to powinnaś dawać wtedy ( i tylko wtedy) nazwe kategorii do wywołania tych funkcji:
+```cpp
+int get_ID_by_mail(QString mail);
+m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID(),"Pensja");
+m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID(),"Pensja"); 
+m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID(),"Pensja");
+```
+-dodaj wybor daty dla generowania przyszlego stanu konta (zależne też to będzie od tego wyboru uzytkownika dla admina) można tez dodać przycisk który otworzy okienko z do wyobru datą i użytkownikiem jak wolisz, jak nie wybierzemy uzytkownika to dla calego budzetu (lae wtedy dziecko nie moze) to mozesz dodac do wyboru budzet np:
+```cpp
+double user_future_Budzet(int user_ID, QDate future_Date);
+double whole_future_Budzet(QDate future_Date);
+```
 - sprawdzenie czy wszystko jest i jest ok,

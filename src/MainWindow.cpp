@@ -50,9 +50,11 @@ void MainWindow::handleLogin(QString email) {
 
 
 void MainWindow::handleLogout() {
-    qDebug() << "Wylogowywanie... i SUPER DUPER NOWE ENCJE DZIECI ORAZ ZADZIAŁANIE SYSTEMU";
+    // qDebug() << "Wylogowywanie... i SUPER DUPER NOWE ENCJE DZIECI ORAZ ZADZIAŁANIE SYSTEMU";
     m_dbManager->update_Children();
-    m_dbManager->startSystemCykl();
-    logRegScreen->goToStartPage();
-    stackedWidget->setCurrentWidget(logRegScreen);
+    // m_dbManager->startSystemCykl();
+    // logRegScreen->goToStartPage();
+    // stackedWidget->setCurrentWidget(logRegScreen);
+
+    qDebug()<<"Przewidywany dla uzytkownika: "<<m_dbManager->user_future_Budzet(m_dbManager->get_user_ID(),QDate::fromString("2025-07-01", "yyyy-MM-dd")) <<" zl";
 }

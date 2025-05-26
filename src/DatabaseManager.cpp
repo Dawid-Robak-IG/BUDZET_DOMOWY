@@ -1085,3 +1085,86 @@ int DatabaseManager::get_ID_by_mail(QString mail) {
         return -1;
     }
 }
+double DatabaseManager::user_future_Budzet(int user_ID, QDate future_Date) {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return 0.0;
+    }
+
+    // 🔹 Krok 1: znajdź najstarszą datę operacji użytkownika
+    QSqlQuery minDateQuery(m_db);
+    minDateQuery.prepare(R"(
+        SELECT MIN(Data)
+        FROM Operacja
+        WHERE `Uzytkownik zalogowanyID` = :userID
+    )");
+    minDateQuery.bindValue(":userID", user_ID);
+
+    QDate historyStart;
+    if (minDateQuery.exec() && minDateQuery.next()) {
+        historyStart = minDateQuery.value(0).toDate();
+        if (!historyStart.isValid()) {
+            qDebug() << "Brak danych dla użytkownika.";
+            return 0.0;
+        }
+    } else {
+        qDebug() << "Błąd przy pobieraniu najstarszej daty operacji:" << minDateQuery.lastError().text();
+        return 0.0;
+    }
+    qDebug()<<"Dla przewidywanego budzetu uzytkownika pierwszy znaleziony wpis (data): "<< historyStart;
+
+    QDate today = QDate::currentDate();
+
+    // 🔹 Krok 2: oblicz sumę i liczbę miesięcy
+    QSqlQuery historyQuery(m_db);
+    historyQuery.prepare(R"(
+        SELECT Kwota
+        FROM Operacja
+        WHERE `Uzytkownik zalogowanyID` = :userID
+          AND Data BETWEEN :startDate AND :endDate
+    )");
+
+    historyQuery.bindValue(":userID", user_ID);
+    historyQuery.bindValue(":startDate", historyStart);
+    historyQuery.bindValue(":endDate", today);
+
+    if (!historyQuery.exec()) {
+        qDebug() << "Błąd pobierania historii operacji:" << historyQuery.lastError().text();
+        return 0.0;
+    }
+
+    double historySum = 0.0;
+    while (historyQuery.next()) {
+        historySum += historyQuery.value(0).toDouble();
+    }
+
+    int months = static_cast<int>(historyStart.daysTo(today) / 30)+1;
+    qDebug()<<"Dla przewidywanego budzetu uzytkownika liczba miesiecy: "<< months;
+    double monthlyAverage = historySum / months;
+    qDebug()<<"Dla przewidywanego budzetu uzytkownika sredni zarobek na miesiac: "<< monthlyAverage;
+
+    QSqlQuery currentQuery(m_db);
+    currentQuery.prepare(R"(
+        SELECT SUM(Kwota)
+        FROM Operacja
+        WHERE `Uzytkownik zalogowanyID` = :userID
+          AND Data <= :today
+    )");
+
+    currentQuery.bindValue(":userID", user_ID);
+    currentQuery.bindValue(":today", today);
+
+    double currentBalance = 0.0;
+    if (currentQuery.exec() && currentQuery.next()) {
+        currentBalance = currentQuery.value(0).toDouble();
+    }
+
+    // 🔹 Krok 4: prognoza
+    int futureMonths = (today.year() - future_Date.year()) * 12 + (future_Date.month() - today.month());
+    futureMonths = std::max(0, futureMonths);  // zabezpieczenie przed ujemną wartością
+
+    double futureDelta = monthlyAverage * futureMonths;
+    qDebug()<<"Dla przewidywanego budzetu uzytkownika przewidywany zarobek: "<< futureDelta;
+
+    return currentBalance + futureDelta;
+}

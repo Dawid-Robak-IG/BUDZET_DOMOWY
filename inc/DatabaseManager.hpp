@@ -6,6 +6,7 @@
 #include <QSqlQuery>
 #include <QVariant>
 #include <QDate>
+#include <cmath>
 
 class DatabaseManager : public QObject
 {
@@ -66,6 +67,9 @@ public:
     bool generujKieszonkoweDlaDzieci();
 
     int get_ID_by_mail(QString mail);
+
+    double user_future_Budzet(int user_ID, QDate future_Date);
+    double whole_future_Budzet(QDate future_Date);
 
 signals:
     void nowaKategoriaDodana();
