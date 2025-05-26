@@ -31,6 +31,9 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::handleLogin(QString email) {
+    m_dbManager->update_Children();
+    m_dbManager->startSystemCykl();
+
     if (!m_userPanel) {
         m_userPanel = new User_Panel(email,this);
         m_userPanel->setDatabaseManager(m_dbManager);
@@ -50,11 +53,12 @@ void MainWindow::handleLogin(QString email) {
 
 
 void MainWindow::handleLogout() {
-    // qDebug() << "Wylogowywanie... i SUPER DUPER NOWE ENCJE DZIECI ORAZ ZADZIAŁANIE SYSTEMU";
-    m_dbManager->update_Children();
+    qDebug() << "Wylogowywanie... i SUPER DUPER NOWE ENCJE DZIECI ORAZ ZADZIAŁANIE SYSTEMU";
+    // m_dbManager->update_Children();
     // m_dbManager->startSystemCykl();
-    // logRegScreen->goToStartPage();
-    // stackedWidget->setCurrentWidget(logRegScreen);
+    logRegScreen->goToStartPage();
+    stackedWidget->setCurrentWidget(logRegScreen);
 
     qDebug()<<"Przewidywany dla uzytkownika: "<<m_dbManager->user_future_Budzet(m_dbManager->get_user_ID(),QDate::fromString("2025-07-01", "yyyy-MM-dd")) <<" zl";
+    qDebug()<<"Przewidywany dla budzetu: "<<m_dbManager->user_future_Budzet(m_dbManager->get_user_ID(),QDate::fromString("2025-07-01", "yyyy-MM-dd")) <<" zl";
 }

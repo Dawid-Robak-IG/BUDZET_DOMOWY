@@ -28,8 +28,7 @@
 
 
 ## Jeszcze nie zrealizowane dla DR on May 25
-- Generowanie raportów o przyszłych stanach budżetu na podstawie dostępnych rekordów i wybranych typów regresji.
-
+- sprawdzenie działania przyszlego calego budzetu
 
 
 ## Zastanawianie sie

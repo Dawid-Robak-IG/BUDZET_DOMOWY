@@ -29,7 +29,7 @@ CREATE TABLE `Budzet domowy` (
   PRIMARY KEY (`ID`),
   KEY `FKBud¿et dom282223` (`OperacjaID`),
   CONSTRAINT `FKBud¿et dom282223` FOREIGN KEY (`OperacjaID`) REFERENCES `Operacja` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=26 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=38 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -38,7 +38,7 @@ CREATE TABLE `Budzet domowy` (
 
 LOCK TABLES `Budzet domowy` WRITE;
 /*!40000 ALTER TABLE `Budzet domowy` DISABLE KEYS */;
-INSERT INTO `Budzet domowy` VALUES (1,10,18),(2,5,19),(3,22,20),(4,22,21),(5,12322,22),(6,11122,23),(7,11142,24),(8,11265,25),(9,11365,26),(10,11368,29),(12,11371,30),(13,11374,31),(14,11377,32),(15,11380,33),(16,11383,34),(17,11386,35),(18,11390,36),(19,11385,37),(20,11380,38),(21,11375,39),(22,11370,40),(23,11380,41),(24,11377,42),(25,11375,43);
+INSERT INTO `Budzet domowy` VALUES (1,10,18),(2,5,19),(3,22,20),(4,22,21),(5,12322,22),(6,11122,23),(7,11142,24),(8,11265,25),(9,11365,26),(10,11368,29),(12,11371,30),(13,11374,31),(14,11377,32),(15,11380,33),(16,11383,34),(17,11386,35),(18,11390,36),(19,11385,37),(20,11380,38),(21,11375,39),(22,11370,40),(23,11380,41),(24,11377,42),(25,11375,43),(26,11360,44),(27,11340,45),(28,11343,46),(29,11338,47),(30,11335,48),(31,11345,49),(32,11340,50),(33,11325,51),(34,11340,52),(35,11328,53),(36,11316,54),(37,11276,55);
 /*!40000 ALTER TABLE `Budzet domowy` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -71,7 +71,7 @@ CREATE TABLE `Dziecko` (
 
 LOCK TABLES `Dziecko` WRITE;
 /*!40000 ALTER TABLE `Dziecko` DISABLE KEYS */;
-INSERT INTO `Dziecko` VALUES (7,17,10,3,NULL,'2025-06-20'),(8,0,0,NULL,NULL,'2025-06-01'),(10,0,5,3,NULL,NULL),(11,0,0,3,NULL,NULL);
+INSERT INTO `Dziecko` VALUES (7,17,10,3,NULL,'2025-06-20'),(8,0,0,NULL,NULL,'2025-06-01'),(10,0,5,3,NULL,NULL),(11,0,0,3,NULL,NULL),(12,0,0,NULL,NULL,'2025-06-01');
 /*!40000 ALTER TABLE `Dziecko` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -124,7 +124,7 @@ CREATE TABLE `Operacja` (
   CONSTRAINT `FKOperacja232880` FOREIGN KEY (`Operacja cyklicznaID`) REFERENCES `Operacja cykliczna` (`ID`),
   CONSTRAINT `FKOperacja368305` FOREIGN KEY (`Kategoria Nazwa`) REFERENCES `Kategoria` (`Nazwa`),
   CONSTRAINT `FKOperacja423377` FOREIGN KEY (`Uzytkownik zalogowanyID`) REFERENCES `Uzytkownik zalogowany` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=44 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=60 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -133,7 +133,7 @@ CREATE TABLE `Operacja` (
 
 LOCK TABLES `Operacja` WRITE;
 /*!40000 ALTER TABLE `Operacja` DISABLE KEYS */;
-INSERT INTO `Operacja` VALUES (2,0,'2025-05-15','1234',5,'Pensja',0,NULL),(3,0,'2025-05-15','123',5,'Pensja',0,NULL),(4,20,'2025-05-15','123334',5,'Prezent',0,NULL),(5,15,'2025-05-12','635',5,'Prezent',0,NULL),(6,2,'2025-05-15','111',5,'Pensja',0,NULL),(16,10,'2025-05-22','1',11,'Inne',0,NULL),(17,14,'2025-05-24','cudowna notatka',5,'Hobby',0,NULL),(18,10,'2025-05-25','na budzet',5,'Hobby',0,NULL),(19,-5,'2025-05-25','z budzetu',5,'Hobby',0,NULL),(20,17,'2025-05-25','wielki przychod do buzdetu',5,'Sport',0,NULL),(21,0,'2025-05-25',NULL,5,'Hobby',0,NULL),(22,12300,'2025-05-25','wielkie piniądze',5,'Pensja',0,NULL),(23,-1200,'2025-05-25','psychiatra po AiR',5,'rozrywka',0,NULL),(24,20,'2025-02-25',NULL,5,'Hobby',0,NULL),(25,123,'2025-05-20',NULL,5,'Hobby',0,NULL),(26,100,'2025-05-22',NULL,5,'Hobby',0,NULL),(27,12,'2025-05-25','dziecinne przychodeszki',7,'Hobby',0,NULL),(28,-5,'2025-05-25','lizaki i inne toskyczne wynalazki',7,'Jedzenie',0,NULL),(29,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(30,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(31,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(32,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(33,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(34,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(35,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(36,4,'2025-05-25','test2',5,'Hobby',0,NULL),(37,-5,'2025-05-22','wielkie grzybobranie',5,'Hobby',1,30),(38,-5,'2025-05-23','wielkie grzybobranie',5,'Hobby',1,30),(39,-5,'2025-05-24','wielkie grzybobranie',5,'Hobby',1,30),(40,-5,'2025-05-25','wielkie grzybobranie',5,'Hobby',1,30),(41,10,'2025-05-20','test_raportu',1,'Hobby',0,NULL),(42,-3,'2025-05-20','test_raport',1,'Hobby',0,NULL),(43,-2,'2025-05-25','test_raport3',1,'Hobby',0,NULL);
+INSERT INTO `Operacja` VALUES (2,0,'2025-05-15','1234',5,'Pensja',0,NULL),(3,0,'2025-05-15','123',5,'Pensja',0,NULL),(4,20,'2025-05-15','123334',5,'Prezent',0,NULL),(5,15,'2025-05-12','635',5,'Prezent',0,NULL),(6,2,'2025-05-15','111',5,'Pensja',0,NULL),(16,10,'2025-05-22','1',11,'Inne',0,NULL),(17,14,'2025-05-24','cudowna notatka',5,'Hobby',0,NULL),(18,10,'2025-05-25','na budzet',5,'Hobby',0,NULL),(19,-5,'2025-05-25','z budzetu',5,'Hobby',0,NULL),(20,17,'2025-05-25','wielki przychod do buzdetu',5,'Sport',0,NULL),(21,0,'2025-05-25',NULL,5,'Hobby',0,NULL),(22,12300,'2025-05-25','wielkie piniądze',5,'Pensja',0,NULL),(23,-1200,'2025-05-25','psychiatra po AiR',5,'rozrywka',0,NULL),(24,20,'2025-02-25',NULL,5,'Hobby',0,NULL),(25,123,'2025-05-20',NULL,5,'Hobby',0,NULL),(26,100,'2025-05-22',NULL,5,'Hobby',0,NULL),(27,12,'2025-05-25','dziecinne przychodeszki',7,'Hobby',0,NULL),(28,-5,'2025-05-25','lizaki i inne toskyczne wynalazki',7,'Jedzenie',0,NULL),(29,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(30,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(31,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(32,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(33,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(34,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(35,3,'2025-05-25','małe co nie co',5,'Hobby',1,26),(36,4,'2025-05-25','test2',5,'Hobby',0,NULL),(37,-5,'2025-05-22','wielkie grzybobranie',5,'Hobby',1,30),(38,-5,'2025-05-23','wielkie grzybobranie',5,'Hobby',1,30),(39,-5,'2025-05-24','wielkie grzybobranie',5,'Hobby',1,30),(40,-5,'2025-05-25','wielkie grzybobranie',5,'Hobby',1,30),(41,10,'2025-05-20','test_raportu',1,'Hobby',0,NULL),(42,-3,'2025-05-20','test_raport',1,'Hobby',0,NULL),(43,-2,'2025-05-25','test_raport3',1,'Hobby',0,NULL),(44,-15,'2025-05-21','test_dla_raportu',5,'Hobby',0,NULL),(45,-20,'2025-05-23','test2_raport',5,'Hobby',0,NULL),(46,3,'2025-05-26','małe co nie co',5,'Hobby',1,26),(47,-5,'2025-05-26','wielkie grzybobranie',5,'Hobby',1,30),(48,-3,'2025-05-26','test_cykl',5,'Hobby',1,31),(49,10,'2025-05-22',NULL,5,'Pensja',0,NULL),(50,-5,'2025-05-26',NULL,5,'Hobby',0,NULL),(51,-15,'2025-05-23','sznur na szyje',5,'Sport',0,NULL),(52,15,'2025-05-23','sznur na szyje',5,'Sport',0,NULL),(53,-12,'2025-05-24','zal i rozpacz',5,'Pensja',0,NULL),(54,-12,'2025-05-26','moze teraz',5,'Pensja',0,NULL),(55,-40,'2025-05-22','teraz?',5,'Pensja',0,NULL),(56,30,'2025-03-01','me1_przychod',12,'Hobby',0,NULL),(57,50,'2025-04-01','me2_przychod',12,'Hobby',0,NULL),(58,-10,'2025-03-01','me1_wydatek',12,'Hobby',0,NULL),(59,-10,'2025-05-01','me2_wydatek',12,'Hobby',0,NULL);
 /*!40000 ALTER TABLE `Operacja` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -158,7 +158,7 @@ CREATE TABLE `Operacja cykliczna` (
   KEY `FKOperacja c719323` (`Kategoria`),
   CONSTRAINT `FKOperacja c719323` FOREIGN KEY (`Kategoria`) REFERENCES `Kategoria` (`Nazwa`),
   CONSTRAINT `FKOperacja c774395` FOREIGN KEY (`Uzytkownik zalogowanyID`) REFERENCES `Uzytkownik zalogowany` (`ID`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=33 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -167,7 +167,7 @@ CREATE TABLE `Operacja cykliczna` (
 
 LOCK TABLES `Operacja cykliczna` WRITE;
 /*!40000 ALTER TABLE `Operacja cykliczna` DISABLE KEYS */;
-INSERT INTO `Operacja cykliczna` VALUES (8,3,'2025-05-24','pieniążki','Codziennie',5,'Hobby',NULL),(10,3,'2025-05-24','edycja','Codziennie',5,'Hobby',NULL),(12,0.25,'2025-05-24','stypendium od pwr','Co miesiąc',5,'Pensja',NULL),(13,4,'2025-05-24','moje wielkie inwestycje','Co rok',1,'Dywidenda',NULL),(14,2,'2025-05-24','ranczo','Co rok',5,'Podróże',NULL),(15,2,'2025-05-24','ranczo2','Co rok',5,'Podróże',NULL),(16,7,'2025-05-24','miodowe lata','Co rok',5,'Renta',NULL),(17,6,'2025-05-24','wielka polska nieśmiertelna :P','Co rok',5,'Podróże',NULL),(23,1.01,'2025-05-24','Czego się boi Jarek? Pieczarek','Codziennie',5,'Hobby',NULL),(26,3,'2025-05-24','małe co nie co','Codziennie',5,'Hobby','2025-05-26'),(27,10,'2025-05-24','smutek żal i rozpacz','Codziennie',5,'Dywidenda',NULL),(28,3,'2025-05-24','kiedy koniec','Codziennie',5,'Hobby',NULL),(29,-4,'2025-05-24','dżuma','Codziennie',5,'Hobby',NULL),(30,-5,'2025-05-25','wielkie grzybobranie','Codziennie',5,'Hobby','2025-05-26'),(31,-3,'2025-05-25','test_cykl','Codziennie',5,'Hobby','2025-05-26');
+INSERT INTO `Operacja cykliczna` VALUES (8,3,'2025-05-24','pieniążki','Codziennie',5,'Hobby',NULL),(10,3,'2025-05-24','edycja','Codziennie',5,'Hobby',NULL),(12,0.25,'2025-05-24','stypendium od pwr','Co miesiąc',5,'Pensja',NULL),(13,4,'2025-05-24','moje wielkie inwestycje','Co rok',1,'Dywidenda',NULL),(14,2,'2025-05-24','ranczo','Co rok',5,'Podróże',NULL),(15,2,'2025-05-24','ranczo2','Co rok',5,'Podróże',NULL),(16,7,'2025-05-24','miodowe lata','Co rok',5,'Renta',NULL),(17,6,'2025-05-24','wielka polska nieśmiertelna :P','Co rok',5,'Podróże',NULL),(23,1.01,'2025-05-24','Czego się boi Jarek? Pieczarek','Codziennie',5,'Hobby',NULL),(26,3,'2025-05-24','małe co nie co','Codziennie',5,'Hobby','2025-05-27'),(27,10,'2025-05-24','smutek żal i rozpacz','Codziennie',5,'Dywidenda',NULL),(28,3,'2025-05-24','kiedy koniec','Codziennie',5,'Hobby',NULL),(29,-4,'2025-05-24','dżuma','Codziennie',5,'Hobby',NULL),(30,-5,'2025-05-25','wielkie grzybobranie','Codziennie',5,'Hobby','2025-05-27'),(31,-3,'2025-05-25','test_cykl','Codziennie',5,'Hobby','2025-05-27'),(32,3,'2025-05-26','test','Co tydzień',5,'Hobby','2025-06-02');
 /*!40000 ALTER TABLE `Operacja cykliczna` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +189,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
   `Rola` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +198,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
 
 LOCK TABLES `Uzytkownik zalogowany` WRITE;
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` DISABLE KEYS */;
-INSERT INTO `Uzytkownik zalogowany` VALUES (1,'JanuszEK','Janski','januszek@gmail.com','haslo123',0,'2021-01-20','Admin'),(2,'mikolaj','wielki','mikolaj96@gmail.com','asdasdasd',0,'2025-05-10','Użytkownik'),(3,'Basia','Maczna','chamia@playa.com','makabasi',0,'2025-05-10','Rodzic'),(4,'AS','DO','asd@asd.com','asdasdasdasdasd',0,'2025-05-10','Rodzic'),(5,'Jan','Prus','janprus@poczta.com','haslo123',0,'2025-05-14','Admin'),(6,'Jakub','Test','jakub.test@gmail.com','testjakub',0,'2005-03-20','Rodzic'),(7,'Aleksandra','Gral','ola.gral@wp.pl','aleksandra',0,'2009-01-20','Dziecko'),(8,'Jan','Nowak','abc@gmail.com','haslo123',1,'2001-01-20','Dziecko'),(9,'Teresa','Sad','teresa@gmail.com','sad54321',0,'1955-05-22','Użytkownik'),(10,'','Kot','elakot@wp.pl','abcabc123',1,'1979-05-22','Dziecko'),(11,'Szaralinda','Łączka','krzysztof222@o2.pl','popopoko',1,'2000-03-01','Dziecko');
+INSERT INTO `Uzytkownik zalogowany` VALUES (1,'JanuszEK','Janski','januszek@gmail.com','haslo123',0,'2021-01-20','Admin'),(2,'mikolaj','wielki','mikolaj96@gmail.com','asdasdasd',0,'2025-05-10','Użytkownik'),(3,'Basia','Maczna','chamia@playa.com','makabasi',0,'2025-05-10','Rodzic'),(4,'AS','DO','asd@asd.com','asdasdasdasdasd',0,'2025-05-10','Rodzic'),(5,'Jan','Prus','janprus@poczta.com','haslo123',0,'2025-05-14','Admin'),(6,'Jakub','Test','jakub.test@gmail.com','testjakub',0,'2005-03-20','Rodzic'),(7,'Aleksandra','Gral','ola.gral@wp.pl','aleksandra',0,'2009-01-20','Dziecko'),(8,'Jan','Nowak','abc@gmail.com','haslo123',1,'2001-01-20','Dziecko'),(9,'Teresa','Sad','teresa@gmail.com','sad54321',0,'1955-05-22','Użytkownik'),(10,'','Kot','elakot@wp.pl','abcabc123',1,'1979-05-22','Dziecko'),(11,'Szaralinda','Łączka','krzysztof222@o2.pl','popopoko',1,'2000-03-01','Dziecko'),(12,'ME','MO','me@gmail.com','haslo123',0,'2025-05-26','Dziecko');
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
@@ -211,4 +211,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-25 23:44:40
+-- Dump completed on 2025-05-26 15:42:54

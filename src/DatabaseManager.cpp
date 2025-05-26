@@ -232,7 +232,7 @@ bool DatabaseManager::addCykliczny(double amount, const QDate &date, const QStri
     QDate dataKolejna = date;
     if (frequency == "Codziennie")
         dataKolejna = date.addDays(1);
-    else if (frequency == "Co tydzien")
+    else if (frequency == "Co tydzień")
         dataKolejna = date.addDays(7);
     else if (frequency == "Co miesiąc")
         dataKolejna = date.addMonths(1);
@@ -1165,6 +1165,67 @@ double DatabaseManager::user_future_Budzet(int user_ID, QDate future_Date) {
 
     double futureDelta = monthlyAverage * futureMonths;
     qDebug()<<"Dla przewidywanego budzetu uzytkownika przewidywany zarobek: "<< futureDelta;
+
+    return currentBalance + futureDelta;
+}
+double DatabaseManager::whole_future_Budzet(QDate future_Date) {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return 0.0;
+    }
+
+    QDate today = QDate::currentDate();
+    QDate historyStart = today.addMonths(-6);
+
+    QSqlQuery historyQuery(m_db);
+    historyQuery.prepare(R"(
+        SELECT o.Kwota
+        FROM Operacja o
+        JOIN `Budzet domowy` b ON o.ID = b.OperacjaID
+        WHERE o.Data BETWEEN :startDate AND :endDate
+    )");
+
+    historyQuery.bindValue(":startDate", historyStart);
+    historyQuery.bindValue(":endDate", today);
+
+    if (!historyQuery.exec()) {
+        qDebug() << "Błąd pobierania historii operacji (budżet domowy):" << historyQuery.lastError().text();
+        return 0.0;
+    }
+
+    double historySum = 0.0;
+    int count = 0;
+
+    while (historyQuery.next()) {
+        historySum += historyQuery.value(0).toDouble();
+        ++count;
+    }
+
+    int months = static_cast<int>(historyStart.daysTo(today) / 30) +1;
+    double monthlyAverage = historySum / months;
+
+    QSqlQuery currentQuery(m_db);
+    currentQuery.prepare(R"(
+        SELECT SUM(o.Kwota)
+        FROM Operacja o
+        JOIN `Budzet domowy` b ON o.ID = b.OperacjaID
+        WHERE o.Data <= :today
+    )");
+
+    currentQuery.bindValue(":today", today);
+
+    double currentBalance = 0.0;
+    if (currentQuery.exec() && currentQuery.next()) {
+        currentBalance = currentQuery.value(0).toDouble();
+    } else {
+        qDebug() << "Błąd pobierania bieżącego salda (budżet domowy):" << currentQuery.lastError().text();
+    }
+
+    // Krok 3: Oszacuj przyszły budżet
+    int futureMonths = (today.year() - future_Date.year()) * 12 + (future_Date.month() - today.month());
+    futureMonths = std::max(0, futureMonths);
+
+    double futureDelta = monthlyAverage * futureMonths;
 
     return currentBalance + futureDelta;
 }
