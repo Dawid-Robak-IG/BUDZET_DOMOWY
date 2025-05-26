@@ -95,4 +95,6 @@ m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID(),"Pensja
 double user_future_Budzet(int user_ID, QDate future_Date);
 double whole_future_Budzet(QDate future_Date);
 ```
+- pierwszy uzytkownik ma byc adminem,
+- nowi maja bc uzytkownikiem,
 - sprawdzenie czy wszystko jest i jest ok,
