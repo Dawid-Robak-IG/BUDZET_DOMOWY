@@ -587,7 +587,7 @@ float DatabaseManager::get_saldo(int child_ID) {
     }
     return -1.0f;
 }
-QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetData(const QDate& startDate, const QDate& endDate) {
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetData(const QDate& startDate, const QDate& endDate, const QString& category) {
     QVector<QDate> dates;
     QVector<double> values;
 
@@ -596,16 +596,28 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetData(const QDat
         return {dates, values};
     }
 
+    QString queryStr = R"(
+    SELECT Data, `Budzet domowy`.Kwota 
+    FROM `Budzet domowy`
+    JOIN Operacja ON `Budzet domowy`.OperacjaID = Operacja.ID
+    WHERE Data BETWEEN :startDate AND :endDate
+    )";
+
+    if (!category.isEmpty()) {
+        qDebug()<<"wykryto kategorie: " <<category;
+        queryStr += " AND `Kategoria Nazwa` = :cat";
+    }
+
+    queryStr += " ORDER BY Data ASC";
+
     QSqlQuery query(m_db);
-    query.prepare(R"(
-        SELECT Data, `Budzet domowy`.Kwota FROM `Budzet domowy`
-        JOIN Operacja ON `Budzet domowy`.OperacjaID = Operacja.ID
-        WHERE Data BETWEEN :startDate AND :endDate
-        ORDER BY Data ASC
-    )");
+    query.prepare(queryStr);
 
     query.bindValue(":startDate", startDate);
     query.bindValue(":endDate", endDate);
+    if (!category.isEmpty()) {
+        query.bindValue(":cat", category);
+    }
 
     if (!query.exec()) {
         qDebug() << "Błąd pobierania danych budzet domowy:" << query.lastError().text();
@@ -826,7 +838,7 @@ bool DatabaseManager::startSystemCykl(){
     }
     return false;
 }
-QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QDate& startDate, const QDate& endDate, int user_ID) {
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category) {
     QPair<QVector<QDate>, QVector<double>> result;
 
     if (!m_db.isOpen()) {
@@ -834,18 +846,29 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QD
         return result;
     }
 
-    QSqlQuery query(m_db);
-    query.prepare(R"(
+    QString queryStr = R"(
         SELECT Data, Kwota
         FROM Operacja
         WHERE `Uzytkownik zalogowanyID` = :userId
           AND Data BETWEEN :start AND :end
-        ORDER BY Data ASC
-    )");
+    )";
+
+    if (!category.isEmpty()) {
+        qDebug()<<"wykryto kategorie: " <<category;
+        queryStr += " AND `Kategoria Nazwa` = :cat";
+    }
+
+    queryStr += " ORDER BY Data ASC";
+
+    QSqlQuery query(m_db);
+    query.prepare(queryStr);
 
     query.bindValue(":userId", user_ID);
     query.bindValue(":start", startDate);
     query.bindValue(":end", endDate);
+    if(!category.isEmpty()){
+        query.bindValue(":cat",category);
+    }
 
     if (!query.exec()) {
         qDebug() << "Błąd SELECT budżetu użytkownika:" << query.lastError().text();
@@ -870,24 +893,38 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyBudzetData(const QD
 
     return result;
 }
-QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyPrzychody(const QDate& startDate, const QDate& endDate, int user_ID) {
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyPrzychody(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category) {
     QPair<QVector<QDate>, QVector<double>> result;
 
     if (!m_db.isOpen()) return result;
 
-    QSqlQuery query(m_db);
-    query.prepare(R"(
+    QString queryStr = R"(
         SELECT Data, SUM(Kwota)
         FROM Operacja
         WHERE `Uzytkownik zalogowanyID` = :uid
           AND Kwota > 0
           AND Data BETWEEN :start AND :end
+    )";
+
+    if (!category.isEmpty()) {
+        qDebug()<<"wykryto kategorie: " <<category;
+        queryStr += " AND `Kategoria Nazwa` = :cat";
+    }
+
+    queryStr += R"(
         GROUP BY Data
         ORDER BY Data ASC
-    )");
+    )";
+    
+
+    QSqlQuery query(m_db);
+    query.prepare(queryStr);
     query.bindValue(":uid", user_ID);
     query.bindValue(":start", startDate);
     query.bindValue(":end", endDate);
+    if(!category.isEmpty()){
+        query.bindValue(":cat",category);
+    }
 
     if (query.exec()) {
         while (query.next()) {
@@ -898,24 +935,37 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyPrzychody(const QDa
 
     return result;
 }
-QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyWydatki(const QDate& startDate, const QDate& endDate, int user_ID) {
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyWydatki(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category) {
     QPair<QVector<QDate>, QVector<double>> result;
 
     if (!m_db.isOpen()) return result;
 
-    QSqlQuery query(m_db);
-    query.prepare(R"(
+    QString queryStr = R"(
         SELECT Data, SUM(Kwota)
         FROM Operacja
         WHERE `Uzytkownik zalogowanyID` = :uid
           AND Kwota < 0
           AND Data BETWEEN :start AND :end
+    )";
+
+    if (!category.isEmpty()) {
+        qDebug()<<"wykryto kategorie: " <<category;
+        queryStr += " AND `Kategoria Nazwa` = :cat";
+    }
+
+    queryStr += R"(
         GROUP BY Data
         ORDER BY Data ASC
-    )");
+    )";
+
+    QSqlQuery query(m_db);
+    query.prepare(queryStr);
     query.bindValue(":uid", user_ID);
     query.bindValue(":start", startDate);
     query.bindValue(":end", endDate);
+    if(!category.isEmpty()){
+        query.bindValue(":cat",category);
+    }
 
     if (query.exec()) {
         while (query.next()) {
@@ -926,23 +976,36 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getMyWydatki(const QDate
 
     return result;
 }
-QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetPrzychody(const QDate& startDate, const QDate& endDate) {
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetPrzychody(const QDate& startDate, const QDate& endDate, const QString& category) {
     QPair<QVector<QDate>, QVector<double>> result;
 
     if (!m_db.isOpen()) return result;
 
-    QSqlQuery query(m_db);
-    query.prepare(R"(
+    QString queryStr = R"(
         SELECT o.Data, SUM(o.Kwota)
         FROM Operacja o
         JOIN `Budzet domowy` b ON o.ID = b.OperacjaID
         WHERE o.Kwota > 0
           AND o.Data BETWEEN :start AND :end
+    )";
+
+    if (!category.isEmpty()) {
+        qDebug()<<"wykryto kategorie dla przychodow budzetu: " <<category;
+        queryStr += " AND `Kategoria Nazwa` = :cat";
+    }
+
+    queryStr += R"(
         GROUP BY o.Data
         ORDER BY o.Data ASC
-    )");
+    )";
+
+    QSqlQuery query(m_db);
+    query.prepare(queryStr);
     query.bindValue(":start", startDate);
     query.bindValue(":end", endDate);
+    if(!category.isEmpty()){
+        query.bindValue(":cat",category);
+    }
 
     if (query.exec()) {
         while (query.next()) {
@@ -955,23 +1018,36 @@ QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetPrzychody(const
 
     return result;
 }
-QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetWydatki(const QDate& startDate, const QDate& endDate){
+QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetWydatki(const QDate& startDate, const QDate& endDate, const QString& category){
     QPair<QVector<QDate>, QVector<double>> result;
 
     if (!m_db.isOpen()) return result;
 
-    QSqlQuery query(m_db);
-    query.prepare(R"(
-        SELECT o.Data, SUM(o.Kwota)
+    QString queryStr = R"(
+    SELECT o.Data, SUM(o.Kwota)
         FROM Operacja o
         JOIN `Budzet domowy` b ON o.ID = b.OperacjaID
         WHERE o.Kwota < 0
           AND o.Data BETWEEN :start AND :end
+    )";
+
+    if (!category.isEmpty()) {
+        qDebug()<<"wykryto kategorie dla wydatkow budzetu: " <<category;
+        queryStr += " AND `Kategoria Nazwa` = :cat";
+    }
+
+    queryStr += R"(
         GROUP BY o.Data
-        ORDER BY o.Data ASC
-    )");
+        ORDER BY o.Data 
+    )";
+
+    QSqlQuery query(m_db);
+    query.prepare(queryStr);
     query.bindValue(":start", startDate);
     query.bindValue(":end", endDate);
+    if(!category.isEmpty()){
+        query.bindValue(":cat",category);
+    }
 
     if (query.exec()) {
         while (query.next()) {

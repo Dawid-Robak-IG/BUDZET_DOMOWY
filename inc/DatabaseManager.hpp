@@ -53,12 +53,13 @@ public:
     bool update_my_saldo(double amount);
     bool change_kieszonkowe(int child_ID, float new_kieszonkowe);
     
-    QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate);
-    QPair<QVector<QDate>, QVector<double>> getMyBudzetData(const QDate& startDate, const QDate& endDate, int user_ID);
-    QPair<QVector<QDate>, QVector<double>> getMyPrzychody(const QDate& startDate, const QDate& endDate, int user_ID);
-    QPair<QVector<QDate>, QVector<double>> getMyWydatki(const QDate& startDate, const QDate& endDate, int user_ID);
-    QPair<QVector<QDate>, QVector<double>> getBudzetPrzychody(const QDate& startDate, const QDate& endDate);
-    QPair<QVector<QDate>, QVector<double>> getBudzetWydatki(const QDate& startDate, const QDate& endDate);
+    QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate, const QString& category = QString());
+    QPair<QVector<QDate>, QVector<double>> getMyBudzetData(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category = QString());
+    QPair<QVector<QDate>, QVector<double>> getMyPrzychody(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category = QString());
+    QPair<QVector<QDate>, QVector<double>> getMyWydatki(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category = QString());
+    QPair<QVector<QDate>, QVector<double>> getBudzetPrzychody(const QDate& startDate, const QDate& endDate, const QString& category = QString());
+    QPair<QVector<QDate>, QVector<double>> getBudzetWydatki(const QDate& startDate, const QDate& endDate, const QString& category = QString());
+
 
     bool startSystemCykl();
     bool generujZCyklicznych();
