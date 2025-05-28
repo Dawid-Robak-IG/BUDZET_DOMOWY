@@ -2,6 +2,7 @@
 #define TAB_CYKLICZNEW_HPP
 
 #include "DatabaseManager.hpp"
+#include "ComboBoxDelegate.hpp"
 
 #include <QWidget>
 #include <QDoubleSpinBox>

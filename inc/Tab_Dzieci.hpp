@@ -35,10 +35,12 @@ private slots:
 private:
     QString m_userEmail;
 
-    QTableView *kieszonkoweTable;
-    QSqlTableModel* modelUsers; //potrzebne do tabelki
+    // QTableView *kieszonkoweTable;
+    // QSqlTableModel* modelUsers; //potrzebne do tabelki
 
     QLineEdit *aktualneSaldoLineEdit;
+    QLineEdit *aktualneKieszonkoweLineEdit;
+
     QPushButton *generujRaportButton;
     QPushButton *zmienKieszonkoweButton;
     QComboBox *listaDzieciCombo;

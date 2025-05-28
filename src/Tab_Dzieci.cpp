@@ -4,9 +4,11 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
     : QWidget{parent},m_userEmail(userEmail)
 {
 
-    kieszonkoweTable=root->findChild<QTableView*>("tableView_aktualneKieszonkowe");
+    //kieszonkoweTable=root->findChild<QTableView*>("tableView_aktualneKieszonkowe");
 
     aktualneSaldoLineEdit= root->findChild<QLineEdit*>("lineEdit_aktualneSaldo");
+    aktualneKieszonkoweLineEdit = root->findChild<QLineEdit*>("lineEdit_aktualneKieszonkoweKwota");
+
     aktualneSaldoLineEdit->setReadOnly(true);
 
     generujRaportButton= root->findChild<QPushButton*>("pushButton_generujRaportD");
@@ -140,20 +142,29 @@ void Tab_Dzieci::onDzieckoSelected(int index) {
     float saldo = m_dbManager->get_saldo(dzieckoID);
     float kieszonkowe = m_dbManager->get_kieszonkowe(dzieckoID);
 
-    QString text = QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
-                       .arg(saldo, 0, 'f', 2)
-                       .arg(kieszonkowe, 0, 'f', 2);
-    aktualneSaldoLineEdit->setText(text);
+    // QString text = QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
+    //                    .arg(saldo, 0, 'f', 2)
+    //                    .arg(kieszonkowe, 0, 'f', 2);
+    // aktualneSaldoLineEdit->setText(text);
+    aktualneKieszonkoweLineEdit->setText(QString::number(kieszonkowe, 'f', 2));
+    aktualneSaldoLineEdit->setText(QString::number(saldo, 'f', 2));
 }
+
+
 void Tab_Dzieci::updateSaldoIKieszonkoweLabel(int childID) {
     float saldo = m_dbManager->get_saldo(childID);
     float kieszonkowe = m_dbManager->get_kieszonkowe(childID);
 
     if (aktualneSaldoLineEdit) {
-        aktualneSaldoLineEdit->setText(
-            QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
-            .arg(saldo, 0, 'f', 2)
-            .arg(kieszonkowe, 0, 'f', 2)
-        );
+        aktualneKieszonkoweLineEdit->setText(QString::number(kieszonkowe, 'f', 2));
+        aktualneSaldoLineEdit->setText(QString::number(saldo, 'f', 2));
+
+        // aktualneSaldoLineEdit->setText(
+        //     QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
+        //     .arg(saldo, 0, 'f', 2)
+        //     .arg(kieszonkowe, 0, 'f', 2)
+        // );
+
+
     }
 }

@@ -19,6 +19,7 @@ QT+=widgets
 QT += sql
 QT += core gui widgets charts
 SOURCES += src/main.cpp \
+           src/ComboBoxDelegate.cpp \
            src/DatabaseManager.cpp \
            src/MainWindow.cpp \
            src/Start_Log_Reg.cpp \
@@ -35,6 +36,7 @@ SOURCES += src/main.cpp \
            src/User_Panel.cpp\
            src/Tab_CykliczneW.cpp
 HEADERS += inc/MainWindow.hpp \
+    inc/ComboBoxDelegate.hpp \
     inc/DatabaseManager.hpp \
     inc/Start_Log_Reg.hpp \
     inc/Tab_CykliczneP.hpp \

@@ -82,6 +82,20 @@ void Start_Log_Reg::registerUser(){
         return;
     }
 
+
+    // Ustalenie roli - jeśli to pierwszy użytkownik, przypisz rolę "Admin"
+    QString role = "Dziecko"; // Domyślna rola
+    QSqlQuery countQuery(m_dbManager->getDatabase());
+    if (countQuery.exec("SELECT COUNT(*) FROM `Uzytkownik zalogowany`") && countQuery.next()) {
+        if (countQuery.value(0).toInt() == 0) {
+            role = "Admin";
+        }
+    } else {
+        qDebug() << "Błąd podczas sprawdzania liczby użytkowników:" << countQuery.lastError().text();
+    }
+
+
+
     // Dodanie nowego użytkownika z domyślną rolą "Dziecko" i niezablokowanym statusem
     QSqlQuery registerQuery(m_dbManager->getDatabase());
     registerQuery.prepare("INSERT INTO `Uzytkownik zalogowany` "
@@ -93,7 +107,7 @@ void Start_Log_Reg::registerUser(){
     registerQuery.bindValue(":password", password);
     registerQuery.bindValue(":blocked", 0);               // Użytkownik NIEZABLOKOWANY
     registerQuery.bindValue(":birthDate", birthDate);
-    registerQuery.bindValue(":role", "Dziecko");          // Domyślna rola: Dziecko
+    registerQuery.bindValue(":role", role);          // Domyślna rola: Dziecko
 
     if (registerQuery.exec()) {
         QMessageBox::information(this, "Sukces", "Rejestracja zakończona pomyślnie!");

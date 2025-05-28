@@ -15,6 +15,7 @@
 #include <QtWidgets/QComboBox>
 #include <QtWidgets/QDateEdit>
 #include <QtWidgets/QDoubleSpinBox>
+#include <QtWidgets/QFrame>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -120,6 +121,7 @@ public:
     QComboBox *comboBox_dostepneKategorie;
     QSpacerItem *verticalSpacer_2;
     QSpacerItem *horizontalSpacer_27;
+    QTableView *tableView_Kategorie;
     QWidget *tab_CykliczneP;
     QHBoxLayout *horizontalLayout_15;
     QStackedWidget *stackedWidget_CykliczneP;
@@ -196,12 +198,15 @@ public:
     QVBoxLayout *verticalLayout_18;
     QLabel *label_45;
     QDateEdit *dateEdit_R_Do;
+    QSpacerItem *horizontalSpacer_31;
     QSpacerItem *verticalSpacer_6;
     QHBoxLayout *horizontalLayout_30;
-    QSpacerItem *horizontalSpacer_25;
     QPushButton *pushButton_generujRaport;
     QSpacerItem *horizontalSpacer_24;
-    QSpacerItem *verticalSpacer_8;
+    QHBoxLayout *horizontalLayout_33;
+    QPushButton *pushButton_generujRaportOsobisty;
+    QSpacerItem *horizontalSpacer_30;
+    QSpacerItem *verticalSpacer_10;
     QWidget *tab_Uzytkownicy;
     QHBoxLayout *horizontalLayout_10;
     QStackedWidget *stackedWidget_uzytkownicy;
@@ -234,14 +239,22 @@ public:
     QHBoxLayout *horizontalLayout_27;
     QVBoxLayout *verticalLayout_15;
     QLabel *label_39;
+    QHBoxLayout *horizontalLayout_35;
     QComboBox *comboBox_dzieciLista;
+    QSpacerItem *horizontalSpacer_29;
+    QSpacerItem *verticalSpacer_11;
     QLabel *label_40;
-    QTableView *tableView_aktualneKieszonkowe;
+    QHBoxLayout *horizontalLayout_34;
+    QLineEdit *lineEdit_aktualneKieszonkoweKwota;
+    QLabel *label_48;
+    QSpacerItem *horizontalSpacer_25;
     QLabel *label_41;
     QHBoxLayout *horizontalLayout_28;
     QLineEdit *lineEdit_aktualneSaldo;
     QLabel *label_42;
     QSpacerItem *horizontalSpacer_23;
+    QSpacerItem *verticalSpacer_8;
+    QFrame *line;
     QVBoxLayout *verticalLayout_14;
     QPushButton *pushButton_zmienKieszonkowe;
     QPushButton *pushButton_generujRaportD;
@@ -686,6 +699,11 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_27);
 
+        tableView_Kategorie = new QTableView(tab_Kategorie);
+        tableView_Kategorie->setObjectName(QString::fromUtf8("tableView_Kategorie"));
+
+        horizontalLayout_5->addWidget(tableView_Kategorie);
+
         tabWidget->addTab(tab_Kategorie, QString());
         tab_CykliczneP = new QWidget();
         tab_CykliczneP->setObjectName(QString::fromUtf8("tab_CykliczneP"));
@@ -767,6 +785,7 @@ public:
         horizontalLayout_32->setObjectName(QString::fromUtf8("horizontalLayout_32"));
         doubleSpinBox_kwotaCP = new QDoubleSpinBox(page_nowyCP);
         doubleSpinBox_kwotaCP->setObjectName(QString::fromUtf8("doubleSpinBox_kwotaCP"));
+        doubleSpinBox_kwotaCP->setMaximum(999999.989999999990687);
 
         horizontalLayout_32->addWidget(doubleSpinBox_kwotaCP);
 
@@ -803,6 +822,7 @@ public:
 
         dateEdit_CP = new QDateEdit(page_nowyCP);
         dateEdit_CP->setObjectName(QString::fromUtf8("dateEdit_CP"));
+        dateEdit_CP->setCalendarPopup(true);
 
         verticalLayout_6->addWidget(dateEdit_CP);
 
@@ -923,6 +943,7 @@ public:
         horizontalLayout_20->setObjectName(QString::fromUtf8("horizontalLayout_20"));
         doubleSpinBox_kwotaCW = new QDoubleSpinBox(page_CW_nowy);
         doubleSpinBox_kwotaCW->setObjectName(QString::fromUtf8("doubleSpinBox_kwotaCW"));
+        doubleSpinBox_kwotaCW->setMaximum(999999.989999999990687);
 
         horizontalLayout_20->addWidget(doubleSpinBox_kwotaCW);
 
@@ -959,6 +980,7 @@ public:
 
         dateEdit_CW = new QDateEdit(page_CW_nowy);
         dateEdit_CW->setObjectName(QString::fromUtf8("dateEdit_CW"));
+        dateEdit_CW->setCalendarPopup(true);
 
         verticalLayout_9->addWidget(dateEdit_CW);
 
@@ -998,6 +1020,7 @@ public:
         tab_Raporty = new QWidget();
         tab_Raporty->setObjectName(QString::fromUtf8("tab_Raporty"));
         verticalLayout_16 = new QVBoxLayout(tab_Raporty);
+        verticalLayout_16->setSpacing(20);
         verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
         label_43 = new QLabel(tab_Raporty);
         label_43->setObjectName(QString::fromUtf8("label_43"));
@@ -1044,6 +1067,10 @@ public:
 
         horizontalLayout_29->addLayout(verticalLayout_18);
 
+        horizontalSpacer_31 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_29->addItem(horizontalSpacer_31);
+
 
         verticalLayout_16->addLayout(horizontalLayout_29);
 
@@ -1053,10 +1080,6 @@ public:
 
         horizontalLayout_30 = new QHBoxLayout();
         horizontalLayout_30->setObjectName(QString::fromUtf8("horizontalLayout_30"));
-        horizontalSpacer_25 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_30->addItem(horizontalSpacer_25);
-
         pushButton_generujRaport = new QPushButton(tab_Raporty);
         pushButton_generujRaport->setObjectName(QString::fromUtf8("pushButton_generujRaport"));
 
@@ -1069,9 +1092,24 @@ public:
 
         verticalLayout_16->addLayout(horizontalLayout_30);
 
-        verticalSpacer_8 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        horizontalLayout_33 = new QHBoxLayout();
+        horizontalLayout_33->setObjectName(QString::fromUtf8("horizontalLayout_33"));
+        horizontalLayout_33->setContentsMargins(-1, 0, -1, -1);
+        pushButton_generujRaportOsobisty = new QPushButton(tab_Raporty);
+        pushButton_generujRaportOsobisty->setObjectName(QString::fromUtf8("pushButton_generujRaportOsobisty"));
 
-        verticalLayout_16->addItem(verticalSpacer_8);
+        horizontalLayout_33->addWidget(pushButton_generujRaportOsobisty);
+
+        horizontalSpacer_30 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_33->addItem(horizontalSpacer_30);
+
+
+        verticalLayout_16->addLayout(horizontalLayout_33);
+
+        verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_16->addItem(verticalSpacer_10);
 
         tabWidget->addTab(tab_Raporty, QString());
         tab_Uzytkownicy = new QWidget();
@@ -1203,25 +1241,56 @@ public:
         horizontalLayout_27->setObjectName(QString::fromUtf8("horizontalLayout_27"));
         verticalLayout_15 = new QVBoxLayout();
         verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
+        verticalLayout_15->setContentsMargins(-1, 20, -1, -1);
         label_39 = new QLabel(tab_Dzieci);
         label_39->setObjectName(QString::fromUtf8("label_39"));
 
         verticalLayout_15->addWidget(label_39);
 
+        horizontalLayout_35 = new QHBoxLayout();
+        horizontalLayout_35->setObjectName(QString::fromUtf8("horizontalLayout_35"));
+        horizontalLayout_35->setContentsMargins(-1, 0, -1, -1);
         comboBox_dzieciLista = new QComboBox(tab_Dzieci);
         comboBox_dzieciLista->setObjectName(QString::fromUtf8("comboBox_dzieciLista"));
 
-        verticalLayout_15->addWidget(comboBox_dzieciLista);
+        horizontalLayout_35->addWidget(comboBox_dzieciLista);
+
+        horizontalSpacer_29 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_35->addItem(horizontalSpacer_29);
+
+
+        verticalLayout_15->addLayout(horizontalLayout_35);
+
+        verticalSpacer_11 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_15->addItem(verticalSpacer_11);
 
         label_40 = new QLabel(tab_Dzieci);
         label_40->setObjectName(QString::fromUtf8("label_40"));
 
         verticalLayout_15->addWidget(label_40);
 
-        tableView_aktualneKieszonkowe = new QTableView(tab_Dzieci);
-        tableView_aktualneKieszonkowe->setObjectName(QString::fromUtf8("tableView_aktualneKieszonkowe"));
+        horizontalLayout_34 = new QHBoxLayout();
+        horizontalLayout_34->setObjectName(QString::fromUtf8("horizontalLayout_34"));
+        lineEdit_aktualneKieszonkoweKwota = new QLineEdit(tab_Dzieci);
+        lineEdit_aktualneKieszonkoweKwota->setObjectName(QString::fromUtf8("lineEdit_aktualneKieszonkoweKwota"));
+        lineEdit_aktualneKieszonkoweKwota->setMaximumSize(QSize(200, 16777215));
+        lineEdit_aktualneKieszonkoweKwota->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
-        verticalLayout_15->addWidget(tableView_aktualneKieszonkowe);
+        horizontalLayout_34->addWidget(lineEdit_aktualneKieszonkoweKwota);
+
+        label_48 = new QLabel(tab_Dzieci);
+        label_48->setObjectName(QString::fromUtf8("label_48"));
+
+        horizontalLayout_34->addWidget(label_48);
+
+        horizontalSpacer_25 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_34->addItem(horizontalSpacer_25);
+
+
+        verticalLayout_15->addLayout(horizontalLayout_34);
 
         label_41 = new QLabel(tab_Dzieci);
         label_41->setObjectName(QString::fromUtf8("label_41"));
@@ -1233,6 +1302,8 @@ public:
         horizontalLayout_28->setContentsMargins(-1, 9, -1, -1);
         lineEdit_aktualneSaldo = new QLineEdit(tab_Dzieci);
         lineEdit_aktualneSaldo->setObjectName(QString::fromUtf8("lineEdit_aktualneSaldo"));
+        lineEdit_aktualneSaldo->setMaximumSize(QSize(200, 16777215));
+        lineEdit_aktualneSaldo->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
 
         horizontalLayout_28->addWidget(lineEdit_aktualneSaldo);
 
@@ -1248,8 +1319,19 @@ public:
 
         verticalLayout_15->addLayout(horizontalLayout_28);
 
+        verticalSpacer_8 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_15->addItem(verticalSpacer_8);
+
 
         horizontalLayout_27->addLayout(verticalLayout_15);
+
+        line = new QFrame(tab_Dzieci);
+        line->setObjectName(QString::fromUtf8("line"));
+        line->setFrameShape(QFrame::VLine);
+        line->setFrameShadow(QFrame::Sunken);
+
+        horizontalLayout_27->addWidget(line);
 
         verticalLayout_14 = new QVBoxLayout();
         verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
@@ -1308,8 +1390,8 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(4);
-        stackedWidget_CykliczneP->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(3);
+        stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(1);
 
@@ -1390,7 +1472,8 @@ public:
         label_43->setText(QCoreApplication::translate("User_Panel", "Generuj raport", nullptr));
         label_44->setText(QCoreApplication::translate("User_Panel", "Od:", nullptr));
         label_45->setText(QCoreApplication::translate("User_Panel", "Do:", nullptr));
-        pushButton_generujRaport->setText(QCoreApplication::translate("User_Panel", "Generuj raport", nullptr));
+        pushButton_generujRaport->setText(QCoreApplication::translate("User_Panel", "Generuj raport dla ca\305\202ego bud\305\274etu", nullptr));
+        pushButton_generujRaportOsobisty->setText(QCoreApplication::translate("User_Panel", "Generuj raport osobisty", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
         pushButton_edytujDane->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));
         pushButton_zablokuj_odblokuj->setText(QCoreApplication::translate("User_Panel", "Zablokuj/odblokuj", nullptr));
@@ -1404,6 +1487,7 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_Uzytkownicy), QCoreApplication::translate("User_Panel", "U\305\274ytkownicy", nullptr));
         label_39->setText(QCoreApplication::translate("User_Panel", "Wybierz dziecko:", nullptr));
         label_40->setText(QCoreApplication::translate("User_Panel", "Aktualne kieszonkowe:", nullptr));
+        label_48->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_41->setText(QCoreApplication::translate("User_Panel", "Aktualne saldo:", nullptr));
         label_42->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         pushButton_zmienKieszonkowe->setText(QCoreApplication::translate("User_Panel", "Zmie\305\204 kieszonkowe", nullptr));

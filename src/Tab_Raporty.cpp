@@ -8,9 +8,14 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
     startDataEdit= root->findChild<QDateEdit*>("dateEdit_R_Od");
     stopDataEdit= root->findChild<QDateEdit*>("dateEdit_R_Do");
     generujRaportButton= root->findChild<QPushButton*>("pushButton_generujRaport");
+    generujRaportOsobisty=root->findChild<QPushButton*>("pushButton_generujRaportOsobisty");
 
     if(generujRaportButton){
         connect(generujRaportButton, &QPushButton::clicked, this, &Tab_Raporty::GenerujRaportClicked);
+    }
+
+    if( generujRaportOsobisty){
+        connect( generujRaportOsobisty, &QPushButton::clicked, this, &Tab_Raporty::GenerujMyRaportClicked);
     }
 
 

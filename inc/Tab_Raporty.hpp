@@ -30,12 +30,14 @@ private slots:
     void GenerujRaportClicked();
     void GenerujMyRaportClicked();
 
+
 private:
     QString m_userEmail;
 
     QDateEdit *startDataEdit;
     QDateEdit *stopDataEdit;
     QPushButton *generujRaportButton;
+    QPushButton *generujRaportOsobisty;
 
     DatabaseManager* m_dbManager = nullptr;
 };

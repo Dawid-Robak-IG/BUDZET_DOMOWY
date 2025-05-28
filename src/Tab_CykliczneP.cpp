@@ -108,6 +108,23 @@ void Tab_CykliczneP::setDatabaseManager(DatabaseManager* dbManager) {
     connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
         this, &Tab_CykliczneP::loadKategorie);
     setTableStrategy();
+
+
+    // Ustaw edycję po kliknięciu
+    cyklicznePTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
+
+    cyklicznePTable->setModel(modelUsers);
+    cyklicznePTable->resizeColumnsToContents();
+
+    // Delegat dla "Częstotliwość"
+    QStringList czestotliwoscList = {"Codziennie", "Co tydzień", "Co miesiąc", "Co rok"};
+    int czestCol = modelUsers->fieldIndex("Czestotliwosc");
+    cyklicznePTable->setItemDelegateForColumn(czestCol, new ComboBoxDelegate(czestotliwoscList, this));
+
+    // Delegat dla "Kategoria"
+    QStringList kategorie = m_dbManager->getAllKategorie();
+    int katCol = modelUsers->fieldIndex("Kategoria");
+    cyklicznePTable->setItemDelegateForColumn(katCol, new ComboBoxDelegate(kategorie, this));
 }
 
 void Tab_CykliczneP::showTable(){

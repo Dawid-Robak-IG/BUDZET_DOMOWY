@@ -73,9 +73,17 @@ void Tab_CykliczneW::DodajCW_Clicked(){
         QMessageBox::warning(this, "Błąd", "Nie udało się dodać cyklicznego przychodu.");
     }
 }
+
+
+
+
 void Tab_CykliczneW::EdytujCW_Clicked(){//toDo
     qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
 }
+
+
+
+
 void Tab_CykliczneW::UsunCW_Clicked(){
     qDebug() << "Usuwanie cyklicznego przychodu";
 
@@ -122,6 +130,22 @@ void Tab_CykliczneW::showTable(){
         return;
     }
     setTableStrategy();
+
+    cykliczneWTable->setModel(modelUsers);
+    cykliczneWTable->resizeColumnsToContents();
+
+    // Delegat dla "Częstotliwość"
+    QStringList czestotliwoscList = {"Codziennie", "Co tydzień", "Co miesiąc", "Co rok"};
+    int czestCol = modelUsers->fieldIndex("Czestotliwosc");
+    cykliczneWTable->setItemDelegateForColumn(czestCol, new ComboBoxDelegate(czestotliwoscList, this));
+
+    // Delegat dla "Kategoria" - pobieramy dynamicznie z bazy
+    QStringList kategorie = m_dbManager->getAllKategorie();  // zakładam, że masz to
+    int katCol = modelUsers->fieldIndex("Kategoria");
+    cykliczneWTable->setItemDelegateForColumn(katCol, new ComboBoxDelegate(kategorie, this));
+
+
+
     cykliczneWTable->resizeColumnsToContents();
 }
 
