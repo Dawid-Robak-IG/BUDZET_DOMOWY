@@ -14,6 +14,7 @@
 #include <QVariant>
 #include <QSqlError>
 #include <QMessageBox>
+#include <QCheckBox>
 
 #include "../inc/RaportWindow.hpp"
 
@@ -39,7 +40,13 @@ private:
     QPushButton *generujRaportButton;
     QPushButton *generujRaportOsobisty;
 
+    QPushButton *generujRaportOsobistyAdmin;
+    QComboBox *comboKategoriaRaport;
+    QCheckBox* checkBoxKategoria;
+
     DatabaseManager* m_dbManager = nullptr;
+
+    void loadKategorie();
 };
 
 #endif // TAB_RAPORTY_HPP

@@ -237,6 +237,14 @@ public:
     QHBoxLayout *horizontalLayout_33;
     QPushButton *pushButton_generujRaportOsobisty;
     QSpacerItem *horizontalSpacer_30;
+    QHBoxLayout *horizontalLayout_43;
+    QCheckBox *checkBox_tylkoKategoria;
+    QComboBox *comboBox_kategoriaRaport;
+    QSpacerItem *horizontalSpacer_37;
+    QHBoxLayout *horizontalLayout_44;
+    QPushButton *pushButton_adminRaportOneUser;
+    QComboBox *comboBox_adminRaportOneUser;
+    QSpacerItem *horizontalSpacer_38;
     QSpacerItem *verticalSpacer_10;
     QWidget *tab_Uzytkownicy;
     QHBoxLayout *horizontalLayout_10;
@@ -1302,6 +1310,46 @@ public:
 
         verticalLayout_16->addLayout(horizontalLayout_33);
 
+        horizontalLayout_43 = new QHBoxLayout();
+        horizontalLayout_43->setObjectName(QString::fromUtf8("horizontalLayout_43"));
+        horizontalLayout_43->setContentsMargins(-1, 0, -1, -1);
+        checkBox_tylkoKategoria = new QCheckBox(tab_Raporty);
+        checkBox_tylkoKategoria->setObjectName(QString::fromUtf8("checkBox_tylkoKategoria"));
+
+        horizontalLayout_43->addWidget(checkBox_tylkoKategoria);
+
+        comboBox_kategoriaRaport = new QComboBox(tab_Raporty);
+        comboBox_kategoriaRaport->setObjectName(QString::fromUtf8("comboBox_kategoriaRaport"));
+
+        horizontalLayout_43->addWidget(comboBox_kategoriaRaport);
+
+        horizontalSpacer_37 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_43->addItem(horizontalSpacer_37);
+
+
+        verticalLayout_16->addLayout(horizontalLayout_43);
+
+        horizontalLayout_44 = new QHBoxLayout();
+        horizontalLayout_44->setObjectName(QString::fromUtf8("horizontalLayout_44"));
+        horizontalLayout_44->setContentsMargins(-1, 0, -1, -1);
+        pushButton_adminRaportOneUser = new QPushButton(tab_Raporty);
+        pushButton_adminRaportOneUser->setObjectName(QString::fromUtf8("pushButton_adminRaportOneUser"));
+
+        horizontalLayout_44->addWidget(pushButton_adminRaportOneUser);
+
+        comboBox_adminRaportOneUser = new QComboBox(tab_Raporty);
+        comboBox_adminRaportOneUser->setObjectName(QString::fromUtf8("comboBox_adminRaportOneUser"));
+
+        horizontalLayout_44->addWidget(comboBox_adminRaportOneUser);
+
+        horizontalSpacer_38 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_44->addItem(horizontalSpacer_38);
+
+
+        verticalLayout_16->addLayout(horizontalLayout_44);
+
         verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_16->addItem(verticalSpacer_10);
@@ -1610,7 +1658,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(7);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
@@ -1703,6 +1751,8 @@ public:
         label_45->setText(QCoreApplication::translate("User_Panel", "Do:", nullptr));
         pushButton_generujRaport->setText(QCoreApplication::translate("User_Panel", "Generuj raport dla ca\305\202ego bud\305\274etu", nullptr));
         pushButton_generujRaportOsobisty->setText(QCoreApplication::translate("User_Panel", "Generuj raport osobisty", nullptr));
+        checkBox_tylkoKategoria->setText(QCoreApplication::translate("User_Panel", "Tylko dla wybranej kategorii:", nullptr));
+        pushButton_adminRaportOneUser->setText(QCoreApplication::translate("User_Panel", "Generuj raport dla u\305\274ytkownika:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
         pushButton_edytujDane->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));
         checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
