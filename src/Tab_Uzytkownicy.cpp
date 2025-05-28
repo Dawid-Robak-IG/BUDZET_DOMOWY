@@ -87,7 +87,7 @@ void Tab_Uzytkownicy::goToStartPage() {
 }
 void Tab_Uzytkownicy::setTableStrategy(){
     if(!modelUsers)modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
-    modelUsers->setTable("Uzytkownik zalogowany");  // toDo  trzeba wyrzucić wyświetlanie niektórych kolumn
+    modelUsers->setTable("Uzytkownik zalogowany");
     if (!modelUsers->select()) {
         qDebug() << "Błąd ładowania danych:" << modelUsers->lastError().text();
     }
@@ -116,11 +116,7 @@ void Tab_Uzytkownicy::setTableStrategy(){
 
     //tabelaTableView->hideColumn(modelUsers->fieldIndex("Data urodzenia"));
 
-    // int kolumnaHasla = modelUsers->fieldIndex("Haslo");
 
-    // if (kolumnaHasla != -1) {
-    //     tabelaTableView->setItemDelegateForColumn(kolumnaHasla, new PasswordDelegate(tabelaTableView));
-    // }
 
     tabelaTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabelaTableView->hideColumn(modelUsers->fieldIndex("Haslo"));
@@ -144,8 +140,6 @@ void Tab_Uzytkownicy::setTableStrategy(){
         });
     }
 
-
-    //kolumnaHasla = modelUsers->fieldIndex("Haslo");
     tabelaTableView->setItemDelegateForColumn(kolumnaHasla, new PasswordDelegate(this));
 
 }

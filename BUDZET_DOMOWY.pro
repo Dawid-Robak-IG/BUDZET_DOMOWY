@@ -23,6 +23,7 @@ SOURCES += src/main.cpp \
            src/DatabaseManager.cpp \
            src/MainWindow.cpp \
            src/Start_Log_Reg.cpp \
+           src/Tab_Budzet.cpp \
            src/Tab_CykliczneP.cpp \
            src/Tab_DaneUzytkownika.cpp \
            src/Tab_Dzieci.cpp \
@@ -34,13 +35,13 @@ SOURCES += src/main.cpp \
            src/Tab_Uzytkownicy.cpp \
            src/Tab_Wydatki.cpp \
            src/User_Panel.cpp\
-           src/Tab_CykliczneW.cpp \
-           src/passworddelegate.cpp
+           src/Tab_CykliczneW.cpp
 HEADERS += inc/MainWindow.hpp \
     inc/ComboBoxDelegate.hpp \
     inc/DatabaseManager.hpp \
     inc/PasswordDelegate.hpp \
     inc/Start_Log_Reg.hpp \
+    inc/Tab_Budzet.hpp \
     inc/Tab_CykliczneP.hpp \
     inc/Tab_CykliczneW.hpp \
     inc/Tab_DaneUzytkownika.hpp \

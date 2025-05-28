@@ -19,6 +19,7 @@
 #include "Tab_Raporty.hpp"
 #include "Tab_Dzieci.hpp"
 #include "Tab_Relacje.hpp"
+#include "Tab_Budzet.hpp"
 
 namespace Ui {
 class User_Panel;
@@ -61,6 +62,7 @@ private:
     Tab_Raporty* raportyManager;
     Tab_Dzieci* dzieciManager;
     Tab_Relacje* relacjeManager;
+    Tab_Budzet* budzetManager;
 };
 
 #endif // USER_PANEL_H

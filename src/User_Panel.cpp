@@ -19,7 +19,8 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     cykliczneWManager(nullptr),
     raportyManager(nullptr),
     dzieciManager(nullptr),
-    relacjeManager(nullptr)
+    relacjeManager(nullptr),
+      budzetManager(nullptr)
 {
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
@@ -97,7 +98,12 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
     } else {
         relacjeManager->setDatabaseManager(m_dbManager);
     }
-
+    if (!budzetManager) {
+        budzetManager = new Tab_Budzet(ui->tab_Budzet, this);
+       budzetManager->setDatabaseManager(m_dbManager);
+    } else {
+        budzetManager->setDatabaseManager(m_dbManager);
+    }
 }
 
 

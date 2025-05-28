@@ -26,8 +26,8 @@ public:
     explicit Tab_Kategorie(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
 
- void setTableStrategy();
- void showTable();
+ // void setTableStrategy();
+ // void showTable();
 
 private slots:
     void DodajKategorieClicked();
@@ -36,8 +36,8 @@ private slots:
 private:
     QString m_userEmail;
 
-   QTableView *tabelaKategorie;
-   QSqlTableModel* modelUsersX;
+   // QTableView *tabelaKategorie;
+   // QSqlTableModel* modelUsersX;
 
     QLineEdit *nowaKategoriaLineEdit;
     QPushButton *dodajKategorieButton;

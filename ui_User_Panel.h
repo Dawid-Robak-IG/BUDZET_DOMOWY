@@ -68,6 +68,23 @@ public:
     QSpacerItem *horizontalSpacer_8;
     QPushButton *pushButton_zmienHaslo;
     QSpacerItem *horizontalSpacer_4;
+    QWidget *tab_Budzet;
+    QHBoxLayout *horizontalLayout_38;
+    QHBoxLayout *horizontalLayout_37;
+    QVBoxLayout *verticalLayout_21;
+    QSpacerItem *verticalSpacer_14;
+    QLabel *label_49;
+    QHBoxLayout *horizontalLayout_39;
+    QLineEdit *lineEdit_stanBudzet;
+    QLabel *label_50;
+    QSpacerItem *horizontalSpacer_33;
+    QLabel *label_51;
+    QHBoxLayout *horizontalLayout_40;
+    QLineEdit *lineEdit_dataBudzet;
+    QSpacerItem *horizontalSpacer_34;
+    QSpacerItem *verticalSpacer_13;
+    QTableView *tableView_budzet;
+    QHBoxLayout *horizontalLayout_36;
     QWidget *tab_Przychody;
     QVBoxLayout *verticalLayout_2;
     QLabel *label_2;
@@ -444,6 +461,89 @@ public:
         verticalLayout_4->addLayout(horizontalLayout_6);
 
         tabWidget->addTab(tab_DaneUzytkownika, QString());
+        tab_Budzet = new QWidget();
+        tab_Budzet->setObjectName(QString::fromUtf8("tab_Budzet"));
+        horizontalLayout_38 = new QHBoxLayout(tab_Budzet);
+        horizontalLayout_38->setObjectName(QString::fromUtf8("horizontalLayout_38"));
+        horizontalLayout_37 = new QHBoxLayout();
+        horizontalLayout_37->setObjectName(QString::fromUtf8("horizontalLayout_37"));
+        verticalLayout_21 = new QVBoxLayout();
+        verticalLayout_21->setObjectName(QString::fromUtf8("verticalLayout_21"));
+        verticalLayout_21->setContentsMargins(0, -1, -1, 0);
+        verticalSpacer_14 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_21->addItem(verticalSpacer_14);
+
+        label_49 = new QLabel(tab_Budzet);
+        label_49->setObjectName(QString::fromUtf8("label_49"));
+
+        verticalLayout_21->addWidget(label_49);
+
+        horizontalLayout_39 = new QHBoxLayout();
+        horizontalLayout_39->setObjectName(QString::fromUtf8("horizontalLayout_39"));
+        lineEdit_stanBudzet = new QLineEdit(tab_Budzet);
+        lineEdit_stanBudzet->setObjectName(QString::fromUtf8("lineEdit_stanBudzet"));
+        lineEdit_stanBudzet->setMaximumSize(QSize(200, 16777215));
+        lineEdit_stanBudzet->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lineEdit_stanBudzet->setReadOnly(true);
+
+        horizontalLayout_39->addWidget(lineEdit_stanBudzet);
+
+        label_50 = new QLabel(tab_Budzet);
+        label_50->setObjectName(QString::fromUtf8("label_50"));
+
+        horizontalLayout_39->addWidget(label_50);
+
+        horizontalSpacer_33 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_39->addItem(horizontalSpacer_33);
+
+
+        verticalLayout_21->addLayout(horizontalLayout_39);
+
+        label_51 = new QLabel(tab_Budzet);
+        label_51->setObjectName(QString::fromUtf8("label_51"));
+
+        verticalLayout_21->addWidget(label_51);
+
+        horizontalLayout_40 = new QHBoxLayout();
+        horizontalLayout_40->setObjectName(QString::fromUtf8("horizontalLayout_40"));
+        lineEdit_dataBudzet = new QLineEdit(tab_Budzet);
+        lineEdit_dataBudzet->setObjectName(QString::fromUtf8("lineEdit_dataBudzet"));
+        lineEdit_dataBudzet->setMaximumSize(QSize(200, 16777215));
+        lineEdit_dataBudzet->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lineEdit_dataBudzet->setReadOnly(true);
+
+        horizontalLayout_40->addWidget(lineEdit_dataBudzet);
+
+        horizontalSpacer_34 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_40->addItem(horizontalSpacer_34);
+
+
+        verticalLayout_21->addLayout(horizontalLayout_40);
+
+        verticalSpacer_13 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_21->addItem(verticalSpacer_13);
+
+
+        horizontalLayout_37->addLayout(verticalLayout_21);
+
+        tableView_budzet = new QTableView(tab_Budzet);
+        tableView_budzet->setObjectName(QString::fromUtf8("tableView_budzet"));
+
+        horizontalLayout_37->addWidget(tableView_budzet);
+
+
+        horizontalLayout_38->addLayout(horizontalLayout_37);
+
+        horizontalLayout_36 = new QHBoxLayout();
+        horizontalLayout_36->setObjectName(QString::fromUtf8("horizontalLayout_36"));
+
+        horizontalLayout_38->addLayout(horizontalLayout_36);
+
+        tabWidget->addTab(tab_Budzet, QString());
         tab_Przychody = new QWidget();
         tab_Przychody->setObjectName(QString::fromUtf8("tab_Przychody"));
         verticalLayout_2 = new QVBoxLayout(tab_Przychody);
@@ -1419,7 +1519,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(1);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
@@ -1444,6 +1544,10 @@ public:
         checkBox_showPassword->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202o", nullptr));
         pushButton_zmienHaslo->setText(QCoreApplication::translate("User_Panel", "Zmie\305\204 has\305\202o", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_DaneUzytkownika), QCoreApplication::translate("User_Panel", "Dane u\305\274ytkownika", nullptr));
+        label_49->setText(QCoreApplication::translate("User_Panel", "Aktualny stan bud\305\274etu:", nullptr));
+        label_50->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
+        label_51->setText(QCoreApplication::translate("User_Panel", "Data ostatniej aktualizacji:", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_Budzet), QCoreApplication::translate("User_Panel", "Bud\305\274et", nullptr));
         label_2->setText(QCoreApplication::translate("User_Panel", "Kwota", nullptr));
         label_6->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_3->setText(QCoreApplication::translate("User_Panel", "Kategoria", nullptr));
