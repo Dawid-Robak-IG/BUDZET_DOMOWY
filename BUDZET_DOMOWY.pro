@@ -34,10 +34,12 @@ SOURCES += src/main.cpp \
            src/Tab_Uzytkownicy.cpp \
            src/Tab_Wydatki.cpp \
            src/User_Panel.cpp\
-           src/Tab_CykliczneW.cpp
+           src/Tab_CykliczneW.cpp \
+           src/passworddelegate.cpp
 HEADERS += inc/MainWindow.hpp \
     inc/ComboBoxDelegate.hpp \
     inc/DatabaseManager.hpp \
+    inc/PasswordDelegate.hpp \
     inc/Start_Log_Reg.hpp \
     inc/Tab_CykliczneP.hpp \
     inc/Tab_CykliczneW.hpp \

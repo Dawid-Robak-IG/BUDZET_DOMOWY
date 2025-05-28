@@ -13,7 +13,7 @@ Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent): QWidget{parent}
     imie = root->findChild<QLineEdit*>("lineEdit_imieE");
     nazwisko = root->findChild<QLineEdit*>("lineEdit_nazwiskoE");
     mail = root->findChild<QLineEdit*>("lineEdit_mailE");
-
+    checkBox_pokazHasla=root->findChild<QCheckBox*>("checkBox_pokazHasla");
 
     //podłączenie do konkretnych elementów
     if(blokadaButton){
@@ -95,6 +95,16 @@ void Tab_Uzytkownicy::setTableStrategy(){
     tabelaTableView->setModel(modelUsers);
     tabelaTableView->resizeColumnsToContents();
 
+    int kolumnaHasla = modelUsers->fieldIndex("Haslo");
+
+    connect(checkBox_pokazHasla, &QCheckBox::toggled, this, [=](bool zaznaczone) {
+        if (zaznaczone) {
+            tabelaTableView->setItemDelegateForColumn(kolumnaHasla, nullptr); // Pokazuje normalnie
+        } else {
+            tabelaTableView->setItemDelegateForColumn(kolumnaHasla, new PasswordDelegate(this)); // Ukrywa hasła
+        }
+    });
+
 
     // Ukryj wszystkie kolumny poza Imie, Nazwisko, Email
     // for (int col = 0; col < modelUsers->columnCount(); ++col) {
@@ -105,6 +115,12 @@ void Tab_Uzytkownicy::setTableStrategy(){
     // }
 
     //tabelaTableView->hideColumn(modelUsers->fieldIndex("Data urodzenia"));
+
+    // int kolumnaHasla = modelUsers->fieldIndex("Haslo");
+
+    // if (kolumnaHasla != -1) {
+    //     tabelaTableView->setItemDelegateForColumn(kolumnaHasla, new PasswordDelegate(tabelaTableView));
+    // }
 
     tabelaTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabelaTableView->hideColumn(modelUsers->fieldIndex("Haslo"));
@@ -127,4 +143,9 @@ void Tab_Uzytkownicy::setTableStrategy(){
             tabelaTableView->edit(index);
         });
     }
+
+
+    //kolumnaHasla = modelUsers->fieldIndex("Haslo");
+    tabelaTableView->setItemDelegateForColumn(kolumnaHasla, new PasswordDelegate(this));
+
 }

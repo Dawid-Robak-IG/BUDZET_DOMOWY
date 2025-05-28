@@ -2,6 +2,7 @@
 #define TAB_UZYTKOWNICY_HPP
 
 #include "DatabaseManager.hpp"
+#include "PasswordDelegate.hpp"
 
 #include <QWidget>
 #include <QTableView>
@@ -13,6 +14,7 @@
 #include <QStackedWidget>
 #include <QLineEdit>
 #include <QMessageBox>
+#include <QCheckBox>
 
 class Tab_Uzytkownicy : public QWidget
 {
@@ -33,6 +35,7 @@ private:
     QSqlTableModel* modelUsers;
     QStackedWidget *stacked;
 
+    QCheckBox* checkBox_pokazHasla;
     QPushButton* blokadaButton;
     QPushButton* edytujButton;
     QPushButton* powrotButton;

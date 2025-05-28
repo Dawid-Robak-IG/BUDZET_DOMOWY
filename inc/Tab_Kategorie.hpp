@@ -3,6 +3,7 @@
 
 #include "DatabaseManager.hpp"
 
+
 #include <QWidget>
 #include <QDoubleSpinBox>
 #include <QDateEdit>
@@ -24,25 +25,29 @@ class Tab_Kategorie : public QWidget
 public:
     explicit Tab_Kategorie(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
- //void setTableStrategy();
+
+ void setTableStrategy();
+ void showTable();
 
 private slots:
     void DodajKategorieClicked();
+    void UsunKategorieClicked();
 
 private:
     QString m_userEmail;
 
-   // QTableView *tabelaKategorie;
-   // QSqlTableModel* modelUsersX=nullptr;
+   QTableView *tabelaKategorie;
+   QSqlTableModel* modelUsersX;
 
     QLineEdit *nowaKategoriaLineEdit;
     QPushButton *dodajKategorieButton;
+    QPushButton *usunKategorieButton;
     QComboBox *kategoriaCombo;
 
     DatabaseManager* m_dbManager = nullptr;
 
     void loadKategorie();
-  // void showTable();
+
 };
 
 #endif // TAB_KATEGORIE_HPP

@@ -11,7 +11,7 @@ MainWindow::MainWindow(QWidget *parent) : QMainWindow(parent) {
     stackedWidget = new QStackedWidget(this);
     setCentralWidget(stackedWidget);
 
-    logRegScreen = new Start_Log_Reg();
+    logRegScreen = new Start_Log_Reg(this);
     stackedWidget->addWidget(logRegScreen);
 
     m_userPanel = nullptr; // Inicjalizujemy na nullptr
@@ -34,10 +34,13 @@ void MainWindow::handleLogin(QString email) {
     m_dbManager->update_Children();
     m_dbManager->startSystemCykl();
 
-    if (!m_userPanel) {
-        m_userPanel = new User_Panel(email,this);
-        m_userPanel->setDatabaseManager(m_dbManager);
 
+    if (!m_userPanel) {
+
+        m_userPanel = new User_Panel(email,this);
+
+        m_userPanel->setDatabaseManager(m_dbManager);
+ qDebug()<<"Nowy userPanel";
         stackedWidget->addWidget(m_userPanel);
         connect(m_userPanel, &User_Panel::logoutRequested, this, &MainWindow::handleLogout);
         m_userPanel->displayUserData(email);

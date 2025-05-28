@@ -68,7 +68,8 @@ SOURCES       = src/main.cpp \
 		src/Tab_Uzytkownicy.cpp \
 		src/Tab_Wydatki.cpp \
 		src/User_Panel.cpp \
-		src/Tab_CykliczneW.cpp moc_MainWindow.cpp \
+		src/Tab_CykliczneW.cpp \
+		src/passworddelegate.cpp moc_MainWindow.cpp \
 		moc_ComboBoxDelegate.cpp \
 		moc_DatabaseManager.cpp \
 		moc_Start_Log_Reg.cpp \
@@ -101,6 +102,7 @@ OBJECTS       = build/Obj/main.o \
 		build/Obj/Tab_Wydatki.o \
 		build/Obj/User_Panel.o \
 		build/Obj/Tab_CykliczneW.o \
+		build/Obj/passworddelegate.o \
 		build/Obj/moc_MainWindow.o \
 		build/Obj/moc_ComboBoxDelegate.o \
 		build/Obj/moc_DatabaseManager.o \
@@ -200,6 +202,7 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		BUDZET_DOMOWY.pro inc/MainWindow.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/DatabaseManager.hpp \
+		inc/PasswordDelegate.hpp \
 		inc/Start_Log_Reg.hpp \
 		inc/Tab_CykliczneP.hpp \
 		inc/Tab_CykliczneW.hpp \
@@ -228,7 +231,8 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		src/Tab_Uzytkownicy.cpp \
 		src/Tab_Wydatki.cpp \
 		src/User_Panel.cpp \
-		src/Tab_CykliczneW.cpp
+		src/Tab_CykliczneW.cpp \
+		src/passworddelegate.cpp
 QMAKE_TARGET  = BUDZET_APP
 DESTDIR       = 
 TARGET        = BUDZET_APP
@@ -418,8 +422,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents inc/MainWindow.hpp inc/ComboBoxDelegate.hpp inc/DatabaseManager.hpp inc/Start_Log_Reg.hpp inc/Tab_CykliczneP.hpp inc/Tab_CykliczneW.hpp inc/Tab_DaneUzytkownika.hpp inc/Tab_Dzieci.hpp inc/Tab_Kategorie.hpp inc/Tab_Przychody.hpp inc/Tab_Raporty.hpp inc/RaportWindow.hpp inc/Tab_Relacje.hpp inc/Tab_Uzytkownicy.hpp inc/Tab_Wydatki.hpp inc/User_Panel.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp src/ComboBoxDelegate.cpp src/DatabaseManager.cpp src/MainWindow.cpp src/Start_Log_Reg.cpp src/Tab_CykliczneP.cpp src/Tab_DaneUzytkownika.cpp src/Tab_Dzieci.cpp src/Tab_Kategorie.cpp src/Tab_Przychody.cpp src/Tab_Raporty.cpp src/RaportWindow.cpp src/Tab_Relacje.cpp src/Tab_Uzytkownicy.cpp src/Tab_Wydatki.cpp src/User_Panel.cpp src/Tab_CykliczneW.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents inc/MainWindow.hpp inc/ComboBoxDelegate.hpp inc/DatabaseManager.hpp inc/PasswordDelegate.hpp inc/Start_Log_Reg.hpp inc/Tab_CykliczneP.hpp inc/Tab_CykliczneW.hpp inc/Tab_DaneUzytkownika.hpp inc/Tab_Dzieci.hpp inc/Tab_Kategorie.hpp inc/Tab_Przychody.hpp inc/Tab_Raporty.hpp inc/RaportWindow.hpp inc/Tab_Relacje.hpp inc/Tab_Uzytkownicy.hpp inc/Tab_Wydatki.hpp inc/User_Panel.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp src/ComboBoxDelegate.cpp src/DatabaseManager.cpp src/MainWindow.cpp src/Start_Log_Reg.cpp src/Tab_CykliczneP.cpp src/Tab_DaneUzytkownika.cpp src/Tab_Dzieci.cpp src/Tab_Kategorie.cpp src/Tab_Przychody.cpp src/Tab_Raporty.cpp src/RaportWindow.cpp src/Tab_Relacje.cpp src/Tab_Uzytkownicy.cpp src/Tab_Wydatki.cpp src/User_Panel.cpp src/Tab_CykliczneW.cpp src/passworddelegate.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ui/Start_Log_Reg.ui ui/User_Panel.ui $(DISTDIR)/
 
 
@@ -715,6 +719,9 @@ build/Obj/Tab_CykliczneW.o: src/Tab_CykliczneW.cpp inc/Tab_CykliczneW.hpp \
 		inc/DatabaseManager.hpp \
 		inc/ComboBoxDelegate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Tab_CykliczneW.o src/Tab_CykliczneW.cpp
+
+build/Obj/passworddelegate.o: src/passworddelegate.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/passworddelegate.o src/passworddelegate.cpp
 
 build/Obj/moc_MainWindow.o: moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_MainWindow.o moc_MainWindow.cpp

@@ -120,6 +120,10 @@ public:
     QLabel *label_46;
     QComboBox *comboBox_dostepneKategorie;
     QSpacerItem *verticalSpacer_2;
+    QSpacerItem *horizontalSpacer_32;
+    QVBoxLayout *verticalLayout_20;
+    QPushButton *pushButton_usunKategorie;
+    QSpacerItem *verticalSpacer_12;
     QSpacerItem *horizontalSpacer_27;
     QTableView *tableView_Kategorie;
     QWidget *tab_CykliczneP;
@@ -215,6 +219,7 @@ public:
     QTableView *tableView_uzytkownicy;
     QVBoxLayout *verticalLayout_11;
     QPushButton *pushButton_edytujDane;
+    QCheckBox *checkBox_pokazHasla;
     QPushButton *pushButton_zablokuj_odblokuj;
     QWidget *page_3;
     QVBoxLayout *verticalLayout_12;
@@ -640,7 +645,7 @@ public:
         verticalLayout_3->setObjectName(QString::fromUtf8("verticalLayout_3"));
         horizontalLayout_31 = new QHBoxLayout();
         horizontalLayout_31->setObjectName(QString::fromUtf8("horizontalLayout_31"));
-        horizontalLayout_31->setContentsMargins(-1, 9, -1, -1);
+        horizontalLayout_31->setContentsMargins(-1, 9, 0, -1);
         verticalLayout_8 = new QVBoxLayout();
         verticalLayout_8->setObjectName(QString::fromUtf8("verticalLayout_8"));
         label_7 = new QLabel(tab_Kategorie);
@@ -671,7 +676,7 @@ public:
 
         verticalLayout_19 = new QVBoxLayout();
         verticalLayout_19->setObjectName(QString::fromUtf8("verticalLayout_19"));
-        verticalLayout_19->setContentsMargins(9, -1, -1, -1);
+        verticalLayout_19->setContentsMargins(0, -1, -1, -1);
         label_46 = new QLabel(tab_Kategorie);
         label_46->setObjectName(QString::fromUtf8("label_46"));
 
@@ -688,6 +693,25 @@ public:
 
 
         horizontalLayout_31->addLayout(verticalLayout_19);
+
+        horizontalSpacer_32 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_31->addItem(horizontalSpacer_32);
+
+        verticalLayout_20 = new QVBoxLayout();
+        verticalLayout_20->setObjectName(QString::fromUtf8("verticalLayout_20"));
+        verticalLayout_20->setContentsMargins(-1, -1, 0, -1);
+        pushButton_usunKategorie = new QPushButton(tab_Kategorie);
+        pushButton_usunKategorie->setObjectName(QString::fromUtf8("pushButton_usunKategorie"));
+
+        verticalLayout_20->addWidget(pushButton_usunKategorie);
+
+        verticalSpacer_12 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_20->addItem(verticalSpacer_12);
+
+
+        horizontalLayout_31->addLayout(verticalLayout_20);
 
 
         verticalLayout_3->addLayout(horizontalLayout_31);
@@ -1136,6 +1160,11 @@ public:
 
         verticalLayout_11->addWidget(pushButton_edytujDane);
 
+        checkBox_pokazHasla = new QCheckBox(page);
+        checkBox_pokazHasla->setObjectName(QString::fromUtf8("checkBox_pokazHasla"));
+
+        verticalLayout_11->addWidget(checkBox_pokazHasla);
+
         pushButton_zablokuj_odblokuj = new QPushButton(page);
         pushButton_zablokuj_odblokuj->setObjectName(QString::fromUtf8("pushButton_zablokuj_odblokuj"));
 
@@ -1390,10 +1419,10 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(7);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(1);
-        stackedWidget_uzytkownicy->setCurrentIndex(1);
+        stackedWidget_uzytkownicy->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(User_Panel);
@@ -1432,6 +1461,7 @@ public:
         label_7->setText(QCoreApplication::translate("User_Panel", "Nowa kategoria:", nullptr));
         pushButton_dodajKategorie->setText(QCoreApplication::translate("User_Panel", "Dodaj kategori\304\231", nullptr));
         label_46->setText(QCoreApplication::translate("User_Panel", "Dost\304\231pne kategorie", nullptr));
+        pushButton_usunKategorie->setText(QCoreApplication::translate("User_Panel", "Usu\305\204 kategori\304\231", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Kategorie), QCoreApplication::translate("User_Panel", "Dodaj kategorie", nullptr));
         pushButton_edytujCP->setText(QCoreApplication::translate("User_Panel", "Edytuj", nullptr));
         pushButton_usunCP->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
@@ -1476,6 +1506,7 @@ public:
         pushButton_generujRaportOsobisty->setText(QCoreApplication::translate("User_Panel", "Generuj raport osobisty", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
         pushButton_edytujDane->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));
+        checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
         pushButton_zablokuj_odblokuj->setText(QCoreApplication::translate("User_Panel", "Zablokuj/odblokuj", nullptr));
         pushButton_powrotE->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
         label_32->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));

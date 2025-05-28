@@ -645,7 +645,7 @@ bool DatabaseManager::deleteCategory(const QString &nazwa) {
         qWarning() << "Błąd usuwania kategorii:" << query.lastError().text();
         return false;
     }
-
+    emit nowaKategoriaDodana();
     return query.numRowsAffected() > 0;
 }
 bool DatabaseManager::update_my_saldo(double amount) {

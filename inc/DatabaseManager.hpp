@@ -72,7 +72,7 @@ public:
     double whole_future_Budzet(QDate future_Date);
 
 signals:
-    void nowaKategoriaDodana();
+    void nowaKategoriaDodana();  //w sumie to też działa na usuniętą
 
 private:
      QSqlDatabase m_db;
