@@ -480,6 +480,7 @@ moc_MainWindow.cpp: inc/MainWindow.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
 		inc/Tab_Relacje.hpp \
+		inc/Tab_Budzet.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/MainWindow.hpp -o moc_MainWindow.cpp
@@ -501,6 +502,7 @@ moc_Start_Log_Reg.cpp: inc/Start_Log_Reg.hpp \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/Start_Log_Reg.hpp -o moc_Start_Log_Reg.cpp
 
 moc_Tab_Budzet.cpp: inc/Tab_Budzet.hpp \
+		inc/DatabaseManager.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/Tab_Budzet.hpp -o moc_Tab_Budzet.cpp
@@ -590,6 +592,7 @@ moc_User_Panel.cpp: inc/User_Panel.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
 		inc/Tab_Relacje.hpp \
+		inc/Tab_Budzet.hpp \
 		moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/User_Panel.hpp -o moc_User_Panel.cpp
@@ -636,7 +639,8 @@ build/Obj/main.o: src/main.cpp inc/MainWindow.hpp \
 		inc/Tab_Raporty.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
-		inc/Tab_Relacje.hpp
+		inc/Tab_Relacje.hpp \
+		inc/Tab_Budzet.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/main.o src/main.cpp
 
 build/Obj/ComboBoxDelegate.o: src/ComboBoxDelegate.cpp inc/ComboBoxDelegate.hpp
@@ -662,7 +666,8 @@ build/Obj/MainWindow.o: src/MainWindow.cpp inc/MainWindow.hpp \
 		inc/Tab_Raporty.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
-		inc/Tab_Relacje.hpp
+		inc/Tab_Relacje.hpp \
+		inc/Tab_Budzet.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/MainWindow.o src/MainWindow.cpp
 
 build/Obj/Start_Log_Reg.o: src/Start_Log_Reg.cpp inc/Start_Log_Reg.hpp \
@@ -670,7 +675,8 @@ build/Obj/Start_Log_Reg.o: src/Start_Log_Reg.cpp inc/Start_Log_Reg.hpp \
 		ui_Start_Log_Reg.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Start_Log_Reg.o src/Start_Log_Reg.cpp
 
-build/Obj/Tab_Budzet.o: src/Tab_Budzet.cpp inc/Tab_Budzet.hpp
+build/Obj/Tab_Budzet.o: src/Tab_Budzet.cpp inc/Tab_Budzet.hpp \
+		inc/DatabaseManager.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Tab_Budzet.o src/Tab_Budzet.cpp
 
 build/Obj/Tab_CykliczneP.o: src/Tab_CykliczneP.cpp inc/Tab_CykliczneP.hpp \
@@ -730,7 +736,8 @@ build/Obj/User_Panel.o: src/User_Panel.cpp inc/User_Panel.hpp \
 		inc/Tab_Raporty.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
-		inc/Tab_Relacje.hpp
+		inc/Tab_Relacje.hpp \
+		inc/Tab_Budzet.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/User_Panel.o src/User_Panel.cpp
 
 build/Obj/Tab_CykliczneW.o: src/Tab_CykliczneW.cpp inc/Tab_CykliczneW.hpp \

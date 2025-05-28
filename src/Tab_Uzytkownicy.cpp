@@ -80,6 +80,7 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
     }
 
     setTableStrategy();
+    checkBox_pokazHasla->setVisible(m_dbManager->amI_admin());
 }
 
 void Tab_Uzytkownicy::goToStartPage() {

@@ -8,10 +8,15 @@ Tab_Relacje::Tab_Relacje(const QString& userEmail,QWidget *root, QWidget *parent
 
 
     dodajRelacjeButton=root->findChild<QPushButton*>("pushButton_przypiszRodzica");
-
+    dodaj2RelacjeButton=root->findChild<QPushButton*>("pushButton_przypisz2Rodzica");
     if(dodajRelacjeButton){
         connect(dodajRelacjeButton, &QPushButton::clicked, this, &Tab_Relacje::PrzypiszRodzicaClicked);
     }
+
+    if(dodaj2RelacjeButton){
+        connect(dodaj2RelacjeButton, &QPushButton::clicked, this, &Tab_Relacje::Przypisz2RodzicaClicked);
+    }
+
 
 }
 
@@ -36,6 +41,34 @@ void Tab_Relacje::PrzypiszRodzicaClicked() {
     qDebug()<<"Wybrano dziecko: "<<dzieckoID<<" | oraz Rodzica: "<<rodzicID;
 
     if (m_dbManager->addRelation(dzieckoID, rodzicID, -1)) {
+        QMessageBox::information(this, "Sukces", "Relacja została dodana.");
+        dzieciModelUsers->select();
+    } else {
+        QMessageBox::warning(this, "Błąd", "Nie udało się dodać relacji.");
+    }
+}
+
+
+void Tab_Relacje::Przypisz2RodzicaClicked() {
+    QModelIndex dzieckoIndex = dzieciTable->currentIndex();
+    QModelIndex rodzicIndex = rodziceTable->currentIndex();
+
+    if(!m_dbManager->amI_admin()){
+        QMessageBox::warning(this, "Błąd", "Tylko admin może przypisywać rodziców do dzieci");
+        return;
+    }
+
+    if (!dzieckoIndex.isValid() || !rodzicIndex.isValid()) {
+        QMessageBox::warning(this, "Błąd", "Wybierz dziecko i rodzica.");
+        return;
+    }
+
+    int dzieckoID = dzieciModelUsers->data(dzieciModelUsers->index(dzieckoIndex.row(), dzieciModelUsers->fieldIndex("ID"))).toInt();
+    int rodzicID = rodziceModelUsers->data(rodziceModelUsers->index(rodzicIndex.row(), rodziceModelUsers->fieldIndex("ID"))).toInt();
+
+    qDebug()<<"Wybrano dziecko: "<<dzieckoID<<" | oraz Rodzica: "<<rodzicID;
+
+    if (m_dbManager->addRelation(dzieckoID, -1,rodzicID)) {
         QMessageBox::information(this, "Sukces", "Relacja została dodana.");
         dzieciModelUsers->select();
     } else {

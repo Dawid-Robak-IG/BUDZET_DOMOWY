@@ -68,6 +68,16 @@ public:
     QSpacerItem *horizontalSpacer_8;
     QPushButton *pushButton_zmienHaslo;
     QSpacerItem *horizontalSpacer_4;
+    QLabel *label_kieszonkowe;
+    QHBoxLayout *horizontalLayout_41;
+    QLineEdit *lineEdit_kieszonkoweDU;
+    QLabel *label_zl1;
+    QSpacerItem *horizontalSpacer_35;
+    QLabel *label_saldo;
+    QHBoxLayout *horizontalLayout_42;
+    QLineEdit *lineEdit_saldoDU;
+    QLabel *label_zl2;
+    QSpacerItem *horizontalSpacer_36;
     QWidget *tab_Budzet;
     QHBoxLayout *horizontalLayout_38;
     QHBoxLayout *horizontalLayout_37;
@@ -287,7 +297,11 @@ public:
     QTableView *tableView_dzieciRelacje;
     QLabel *label_38;
     QTableView *tableView_rodziceRelacje;
+    QVBoxLayout *verticalLayout_22;
+    QSpacerItem *verticalSpacer_15;
     QPushButton *pushButton_przypiszRodzica;
+    QPushButton *pushButton_przypisz2Rodzica;
+    QSpacerItem *verticalSpacer_16;
 
     void setupUi(QWidget *User_Panel)
     {
@@ -329,6 +343,7 @@ public:
         tab_DaneUzytkownika->setObjectName(QString::fromUtf8("tab_DaneUzytkownika"));
         verticalLayout_4 = new QVBoxLayout(tab_DaneUzytkownika);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
+        verticalLayout_4->setContentsMargins(-1, -1, -1, 6);
         label_8 = new QLabel(tab_DaneUzytkownika);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
@@ -459,6 +474,62 @@ public:
 
 
         verticalLayout_4->addLayout(horizontalLayout_6);
+
+        label_kieszonkowe = new QLabel(tab_DaneUzytkownika);
+        label_kieszonkowe->setObjectName(QString::fromUtf8("label_kieszonkowe"));
+
+        verticalLayout_4->addWidget(label_kieszonkowe);
+
+        horizontalLayout_41 = new QHBoxLayout();
+        horizontalLayout_41->setObjectName(QString::fromUtf8("horizontalLayout_41"));
+        lineEdit_kieszonkoweDU = new QLineEdit(tab_DaneUzytkownika);
+        lineEdit_kieszonkoweDU->setObjectName(QString::fromUtf8("lineEdit_kieszonkoweDU"));
+        lineEdit_kieszonkoweDU->setMaximumSize(QSize(200, 16777215));
+        lineEdit_kieszonkoweDU->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lineEdit_kieszonkoweDU->setReadOnly(true);
+
+        horizontalLayout_41->addWidget(lineEdit_kieszonkoweDU);
+
+        label_zl1 = new QLabel(tab_DaneUzytkownika);
+        label_zl1->setObjectName(QString::fromUtf8("label_zl1"));
+
+        horizontalLayout_41->addWidget(label_zl1);
+
+        horizontalSpacer_35 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_41->addItem(horizontalSpacer_35);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_41);
+
+        label_saldo = new QLabel(tab_DaneUzytkownika);
+        label_saldo->setObjectName(QString::fromUtf8("label_saldo"));
+
+        verticalLayout_4->addWidget(label_saldo);
+
+        horizontalLayout_42 = new QHBoxLayout();
+        horizontalLayout_42->setSpacing(6);
+        horizontalLayout_42->setObjectName(QString::fromUtf8("horizontalLayout_42"));
+        horizontalLayout_42->setContentsMargins(-1, 0, 0, -1);
+        lineEdit_saldoDU = new QLineEdit(tab_DaneUzytkownika);
+        lineEdit_saldoDU->setObjectName(QString::fromUtf8("lineEdit_saldoDU"));
+        lineEdit_saldoDU->setMaximumSize(QSize(200, 16777215));
+        lineEdit_saldoDU->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        lineEdit_saldoDU->setReadOnly(true);
+
+        horizontalLayout_42->addWidget(lineEdit_saldoDU);
+
+        label_zl2 = new QLabel(tab_DaneUzytkownika);
+        label_zl2->setObjectName(QString::fromUtf8("label_zl2"));
+
+        horizontalLayout_42->addWidget(label_zl2);
+
+        horizontalSpacer_36 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_42->addItem(horizontalSpacer_36);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_42);
 
         tabWidget->addTab(tab_DaneUzytkownika, QString());
         tab_Budzet = new QWidget();
@@ -1507,10 +1578,30 @@ public:
 
         horizontalLayout_26->addLayout(verticalLayout_13);
 
+        verticalLayout_22 = new QVBoxLayout();
+        verticalLayout_22->setSpacing(50);
+        verticalLayout_22->setObjectName(QString::fromUtf8("verticalLayout_22"));
+        verticalLayout_22->setContentsMargins(0, -1, -1, -1);
+        verticalSpacer_15 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_22->addItem(verticalSpacer_15);
+
         pushButton_przypiszRodzica = new QPushButton(tab_Relacje);
         pushButton_przypiszRodzica->setObjectName(QString::fromUtf8("pushButton_przypiszRodzica"));
 
-        horizontalLayout_26->addWidget(pushButton_przypiszRodzica);
+        verticalLayout_22->addWidget(pushButton_przypiszRodzica);
+
+        pushButton_przypisz2Rodzica = new QPushButton(tab_Relacje);
+        pushButton_przypisz2Rodzica->setObjectName(QString::fromUtf8("pushButton_przypisz2Rodzica"));
+
+        verticalLayout_22->addWidget(pushButton_przypisz2Rodzica);
+
+        verticalSpacer_16 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_22->addItem(verticalSpacer_16);
+
+
+        horizontalLayout_26->addLayout(verticalLayout_22);
 
         tabWidget->addTab(tab_Relacje, QString());
 
@@ -1519,7 +1610,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
@@ -1543,6 +1634,10 @@ public:
         label_12->setText(QCoreApplication::translate("User_Panel", "Has\305\202o", nullptr));
         checkBox_showPassword->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202o", nullptr));
         pushButton_zmienHaslo->setText(QCoreApplication::translate("User_Panel", "Zmie\305\204 has\305\202o", nullptr));
+        label_kieszonkowe->setText(QCoreApplication::translate("User_Panel", "Kieszonkowe:", nullptr));
+        label_zl1->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
+        label_saldo->setText(QCoreApplication::translate("User_Panel", "Saldo:", nullptr));
+        label_zl2->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_DaneUzytkownika), QCoreApplication::translate("User_Panel", "Dane u\305\274ytkownika", nullptr));
         label_49->setText(QCoreApplication::translate("User_Panel", "Aktualny stan bud\305\274etu:", nullptr));
         label_50->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
@@ -1630,7 +1725,8 @@ public:
         tabWidget->setTabText(tabWidget->indexOf(tab_Dzieci), QCoreApplication::translate("User_Panel", "Dzieci", nullptr));
         label_37->setText(QCoreApplication::translate("User_Panel", "Dzieci", nullptr));
         label_38->setText(QCoreApplication::translate("User_Panel", "Rodzice", nullptr));
-        pushButton_przypiszRodzica->setText(QCoreApplication::translate("User_Panel", "Przypisz rodzica", nullptr));
+        pushButton_przypiszRodzica->setText(QCoreApplication::translate("User_Panel", "Przypisz 1. rodzica", nullptr));
+        pushButton_przypisz2Rodzica->setText(QCoreApplication::translate("User_Panel", "Przypisz 2. rodzica", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Relacje), QCoreApplication::translate("User_Panel", "Relacje", nullptr));
     } // retranslateUi
 

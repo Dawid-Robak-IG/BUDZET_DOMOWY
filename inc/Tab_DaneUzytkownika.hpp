@@ -15,6 +15,7 @@
 #include <QMessageBox>
 #include <QCheckBox>
 #include <QInputDialog>
+#include <QLabel>
 
 
 class Tab_DaneUzytkownika : public QWidget
@@ -40,6 +41,15 @@ signals:
       QLineEdit *hasloLineEdit;
       QPushButton *zmienHasloButton;
       QCheckBox *pokazHasloCheckBox;
+
+
+      QLabel *salodLabel;
+      QLabel *kieszonkoweLabel;
+      QLabel *zl1Label;
+      QLabel *zl2Label;
+
+      QLineEdit *kieszonkoweLineEdit;
+      QLineEdit *saldoLineEdit;
 
       DatabaseManager* m_dbManager = nullptr;
 

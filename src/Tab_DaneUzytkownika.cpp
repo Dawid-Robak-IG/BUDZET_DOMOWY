@@ -11,6 +11,16 @@ Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,
     zmienHasloButton=root->findChild<QPushButton*>("pushButton_zmienHaslo");
     pokazHasloCheckBox= root->findChild<QCheckBox*>("checkBox_showPassword");
 
+
+
+    salodLabel=root->findChild<QLabel*>("label_saldo");
+   kieszonkoweLabel=root->findChild<QLabel*>("label_kieszonkowe");
+   kieszonkoweLineEdit= root->findChild<QLineEdit*>("lineEdit_kieszonkoweDU");
+   saldoLineEdit= root->findChild<QLineEdit*>("lineEdit_saldoDU");
+
+   zl1Label=root->findChild<QLabel*>("label_zl1");
+   zl2Label=root->findChild<QLabel*>("label_zl2");
+
     if (pokazHasloCheckBox && hasloLineEdit) {
         // Obsługa checkboxa do widoczności hasła
         connect(pokazHasloCheckBox, &QCheckBox::toggled, this, [this](bool checked) {
@@ -22,11 +32,33 @@ Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,
     if (zmienHasloButton) {
         connect(zmienHasloButton, &QPushButton::clicked, this, &Tab_DaneUzytkownika::ZmienHasloClicked);
     }
+
+
+
+
 }
 
 void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager){
     m_dbManager = dbManager;
   loadUserData();
+
+
+  bool children=m_dbManager->amIChild();
+
+  salodLabel->setVisible(children);
+  kieszonkoweLabel->setVisible(children);
+  kieszonkoweLineEdit->setVisible(children);
+  saldoLineEdit->setVisible(children);
+  zl1Label->setVisible(children);
+zl2Label->setVisible(children);
+
+
+  int myID=m_dbManager->get_user_ID();
+
+  if(children){
+       saldoLineEdit->setText(QString::number(m_dbManager->get_saldo(myID), 'f', 2));
+      kieszonkoweLineEdit->setText(QString::number(m_dbManager->get_kieszonkowe(myID), 'f', 2));
+  }
 }
 void Tab_DaneUzytkownika::ZmienHasloClicked() {
     qDebug() << "Uruchamiam zmianę hasła";

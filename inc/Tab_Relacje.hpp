@@ -28,6 +28,7 @@ signals:
 
     private slots:
     void PrzypiszRodzicaClicked();
+ void Przypisz2RodzicaClicked();
 
     private:
     QString m_userEmail;
@@ -37,6 +38,7 @@ signals:
          QSqlTableModel* rodziceModelUsers;
 
          QPushButton *dodajRelacjeButton;
+          QPushButton *dodaj2RelacjeButton;
          DatabaseManager* m_dbManager = nullptr;
 
       void showTables();
