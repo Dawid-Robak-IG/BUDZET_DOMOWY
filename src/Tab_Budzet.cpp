@@ -10,6 +10,8 @@ Tab_Budzet::Tab_Budzet(QWidget *root,QWidget *parent) : QWidget{parent}{
         qDebug()<<"cos niepoprawnie przypisne";
 
     }
+
+    modelOperacje = nullptr;
 }
 
 void Tab_Budzet::setDatabaseManager(DatabaseManager* dbManager) {
@@ -27,6 +29,10 @@ void Tab_Budzet::setDatabaseManager(DatabaseManager* dbManager) {
 
 void Tab_Budzet::loadOperacjeTable() {
     if (!m_dbManager) return;
+
+    if(modelOperacje){
+        delete modelOperacje;
+    }
 
     modelOperacje = new QSqlTableModel(this, m_dbManager->getDatabase());
     qDebug()<<"BUDZET: nowy model Table";

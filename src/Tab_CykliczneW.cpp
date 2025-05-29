@@ -3,6 +3,7 @@
 Tab_CykliczneW::Tab_CykliczneW(const QString& userEmail,QWidget *root, QWidget *parent)
     : QWidget{parent},m_userEmail(userEmail)
 {
+    modelUsers = nullptr;
 
     stacked= root->findChild<QStackedWidget*>("stackedWidget_CykliczneW");
     cykliczneWTable =root->findChild<QTableView*>("tableView_listaCW");
@@ -166,10 +167,10 @@ void Tab_CykliczneW::goToStartPage() {
 }
 void Tab_CykliczneW::setTableStrategy(){
     qDebug()<<"CYKLCIZNE_W: rozpoczęcie setTabelStrategy";
-    // if(!modelUsers){
+    if(!modelUsers){
         modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
         qDebug()<<"CYKLICZNE_W: stworzono nowy TableModel";
-    // }
+    }
     modelUsers->setTable("`Operacja cykliczna`");
     modelUsers->setEditStrategy(QSqlTableModel::OnFieldChange);
 
