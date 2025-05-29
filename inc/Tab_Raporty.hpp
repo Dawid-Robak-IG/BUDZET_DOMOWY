@@ -31,6 +31,9 @@ private slots:
     void GenerujRaportClicked();
     void GenerujMyRaportClicked();
     void GenerujRaportOsobistyAdminClicked();
+    void GenerujPrognozyBudzetClicked();
+    void GenerujPrognozyMyBudzetClicked();
+    void GenerujPrognozyAdminClicked();
 
 private:
     QString m_userEmail;
@@ -44,6 +47,13 @@ private:
     QComboBox *comboKategoriaRaport;
     QCheckBox* checkBoxKategoria;
     QComboBox * comboUserAdminRaport;
+
+    QComboBox *comboPrognozyOsobiste;
+    QPushButton *generujPrognozyAdmin;
+    QPushButton *generujPrognozyBudżet;
+    QPushButton *generujMojePrognozy;
+    QDateEdit *dataPrognozy;
+
     DatabaseManager* m_dbManager = nullptr;
 
     void loadUżytkownicy();

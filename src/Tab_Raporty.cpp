@@ -16,6 +16,28 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
 
     comboUserAdminRaport=root->findChild<QComboBox*>("comboBox_adminRaportOneUser");
 
+
+    comboPrognozyOsobiste=root->findChild<QComboBox*>("comboBox_prognozy");
+    generujPrognozyAdmin=root->findChild<QPushButton*>("pushButton_adminprognozy");
+    generujPrognozyBudżet=root->findChild<QPushButton*>("pushButton_prognozycaly");
+    generujMojePrognozy=root->findChild<QPushButton*>("pushButton_osobistepprognozy");
+    dataPrognozy= root->findChild<QDateEdit*>("dateEdit_prognozy");
+
+    if (!comboPrognozyOsobiste) {
+        qWarning() << "Nie znaleziono comboBox_prognozy";
+    }
+    if (!generujPrognozyAdmin) {
+        qWarning() << "Nie znaleziono pushButton_adminprognozy";
+    }
+    if (!generujMojePrognozy) {
+        qWarning() << "Nie znaleziono pushButton_generujMojePrognozy";
+    }
+    if (!dataPrognozy) {
+        qWarning() << "Nie znaleziono dateEdit_prognozy";
+    }
+
+
+
     if(generujRaportButton){
         connect(generujRaportButton, &QPushButton::clicked, this, &Tab_Raporty::GenerujRaportClicked);
     }
@@ -27,6 +49,18 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
     if( generujRaportOsobistyAdmin){
         connect( generujRaportOsobistyAdmin, &QPushButton::clicked, this, &Tab_Raporty::GenerujRaportOsobistyAdminClicked);
     }
+
+    if( generujPrognozyBudżet){
+        connect(generujPrognozyBudżet, &QPushButton::clicked, this, &Tab_Raporty::GenerujPrognozyBudzetClicked);
+    }
+
+    if( generujPrognozyAdmin){
+        connect(generujPrognozyAdmin, &QPushButton::clicked, this, &Tab_Raporty::GenerujPrognozyAdminClicked);
+    }
+    if( generujMojePrognozy){
+        connect(generujMojePrognozy, &QPushButton::clicked, this, &Tab_Raporty::GenerujPrognozyMyBudzetClicked);
+    }
+
 
 
     startDataEdit->setDate(QDate::currentDate());
@@ -43,6 +77,11 @@ void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
     loadUżytkownicy();
     connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
             this, &Tab_Raporty::loadKategorie);
+
+
+   comboPrognozyOsobiste->setVisible(m_dbManager->amI_admin());
+    generujPrognozyAdmin->setVisible(m_dbManager->amI_admin());
+
 
 }
 
@@ -152,7 +191,7 @@ void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
     QDate startDate = startDataEdit->date();
     QDate endDate = stopDataEdit->date();
     int selectedUserID=m_dbManager->get_ID_by_mail(comboUserAdminRaport->currentText());
-    qDebug()<<"Ludzik numer: "<<selectedUserID;
+  //  qDebug()<<"Ludzik numer: "<<selectedUserID;
     RaportWindow* raport = new RaportWindow();
     if (checkBoxKategoria ->isChecked()) {  //czyli chcemy z wyborem kategorii
 
@@ -201,7 +240,75 @@ void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
 }
 
 
+void Tab_Raporty::GenerujPrognozyBudzetClicked(){
 
+    if (!m_dbManager) {
+        qWarning() << "Nie ustawiono DatabaseManager!";
+        return;
+    }
+    if(m_dbManager->amIChild()){
+        qDebug() << "Dziecko nie może raportu dla budżetu";
+        QMessageBox::warning(this, "Błąd", "Tylko dorośli użytkownicy mogą generować raport dla całego budżetu");
+        return;
+    }
+
+    QDate dateProg =  dataPrognozy->date();
+
+    double prognoza=m_dbManager-> whole_future_Budzet(dateProg);
+
+    qDebug()<<prognoza;
+
+    QString message = QString("Prognoza budżetu na dzień %1: %2 zł")
+                          .arg(dateProg.toString("yyyy-MM-dd"))
+                          .arg(QString::number(prognoza, 'f', 2));
+
+    QMessageBox::information(this, "Prognoza", message);
+}
+
+
+void Tab_Raporty::GenerujPrognozyMyBudzetClicked(){
+    if (!m_dbManager) {
+        qWarning() << "Nie ustawiono DatabaseManager!";
+        return;
+    }
+    if(m_dbManager->amIChild()){
+        qDebug() << "Dziecko nie może raportu dla budżetu";
+        QMessageBox::warning(this, "Błąd", "Tylko dorośli użytkownicy mogą generować raport dla całego budżetu");
+        return;
+    }
+
+    QDate dateProg =  dataPrognozy->date();
+
+
+    double prognoza=m_dbManager-> user_future_Budzet(m_dbManager->get_user_ID(), dateProg);
+
+    qDebug()<<prognoza;
+
+    QString message = QString("Prognoza budżetu na dzień %1: %2 zł")
+                          .arg(dateProg.toString("yyyy-MM-dd"))
+                          .arg(QString::number(prognoza, 'f', 2));
+
+    QMessageBox::information(this, "Prognoza", message);
+
+}
+
+
+void Tab_Raporty::GenerujPrognozyAdminClicked(){
+    int selectedUserID=m_dbManager->get_ID_by_mail(comboPrognozyOsobiste->currentText());
+     QDate dateProg =  dataPrognozy->date();
+
+
+
+    double prognoza= m_dbManager->user_future_Budzet(selectedUserID,dateProg);
+
+    qDebug()<<prognoza;
+
+    QString message = QString("Prognoza budżetu na dzień %1: %2 zł")
+                          .arg(dateProg.toString("yyyy-MM-dd"))
+                          .arg(QString::number(prognoza, 'f', 2));
+
+    QMessageBox::information(this, "Prognoza", message);
+}
 
 
 void Tab_Raporty::loadUżytkownicy() {
@@ -210,6 +317,9 @@ void Tab_Raporty::loadUżytkownicy() {
     QStringList users = m_dbManager->getAllUsers();
     comboUserAdminRaport->clear();
     comboUserAdminRaport->addItems(users);
+
+    comboPrognozyOsobiste->clear();
+    comboPrognozyOsobiste->addItems(users);
 }
 
 void Tab_Raporty::loadKategorie() {

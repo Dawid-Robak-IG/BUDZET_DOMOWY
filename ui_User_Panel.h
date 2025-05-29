@@ -152,7 +152,6 @@ public:
     QPushButton *pushButton_usunKategorie;
     QSpacerItem *verticalSpacer_12;
     QSpacerItem *horizontalSpacer_27;
-    QTableView *tableView_Kategorie;
     QWidget *tab_CykliczneP;
     QHBoxLayout *horizontalLayout_15;
     QStackedWidget *stackedWidget_CykliczneP;
@@ -219,33 +218,41 @@ public:
     QLineEdit *lineEdit_notatkaCW;
     QPushButton *pushButton_dodajCW;
     QWidget *tab_Raporty;
+    QHBoxLayout *horizontalLayout_45;
+    QSpacerItem *horizontalSpacer_31;
     QVBoxLayout *verticalLayout_16;
     QLabel *label_43;
-    QSpacerItem *verticalSpacer_7;
-    QHBoxLayout *horizontalLayout_29;
-    QVBoxLayout *verticalLayout_17;
+    QHBoxLayout *horizontalLayout_46;
+    QVBoxLayout *verticalLayout_23;
     QLabel *label_44;
     QDateEdit *dateEdit_R_Od;
-    QVBoxLayout *verticalLayout_18;
+    QVBoxLayout *verticalLayout_24;
     QLabel *label_45;
     QDateEdit *dateEdit_R_Do;
-    QSpacerItem *horizontalSpacer_31;
-    QSpacerItem *verticalSpacer_6;
-    QHBoxLayout *horizontalLayout_30;
     QPushButton *pushButton_generujRaport;
-    QSpacerItem *horizontalSpacer_24;
-    QHBoxLayout *horizontalLayout_33;
     QPushButton *pushButton_generujRaportOsobisty;
-    QSpacerItem *horizontalSpacer_30;
-    QHBoxLayout *horizontalLayout_43;
+    QHBoxLayout *horizontalLayout_48;
     QCheckBox *checkBox_tylkoKategoria;
     QComboBox *comboBox_kategoriaRaport;
-    QSpacerItem *horizontalSpacer_37;
-    QHBoxLayout *horizontalLayout_44;
+    QHBoxLayout *horizontalLayout_47;
     QPushButton *pushButton_adminRaportOneUser;
     QComboBox *comboBox_adminRaportOneUser;
-    QSpacerItem *horizontalSpacer_38;
+    QSpacerItem *horizontalSpacer_30;
+    QVBoxLayout *verticalLayout_17;
+    QLabel *label_52;
     QSpacerItem *verticalSpacer_10;
+    QLabel *label_53;
+    QHBoxLayout *horizontalLayout_29;
+    QDateEdit *dateEdit_prognozy;
+    QSpacerItem *horizontalSpacer_24;
+    QSpacerItem *verticalSpacer_6;
+    QPushButton *pushButton_prognozycaly;
+    QPushButton *pushButton_osobistepprognozy;
+    QHBoxLayout *horizontalLayout_30;
+    QPushButton *pushButton_adminprognozy;
+    QComboBox *comboBox_prognozy;
+    QSpacerItem *verticalSpacer_7;
+    QSpacerItem *horizontalSpacer_37;
     QWidget *tab_Uzytkownicy;
     QHBoxLayout *horizontalLayout_10;
     QStackedWidget *stackedWidget_uzytkownicy;
@@ -315,7 +322,7 @@ public:
     {
         if (User_Panel->objectName().isEmpty())
             User_Panel->setObjectName(QString::fromUtf8("User_Panel"));
-        User_Panel->resize(1100, 527);
+        User_Panel->resize(1100, 558);
         verticalLayout = new QVBoxLayout(User_Panel);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
@@ -902,11 +909,6 @@ public:
 
         horizontalLayout_5->addItem(horizontalSpacer_27);
 
-        tableView_Kategorie = new QTableView(tab_Kategorie);
-        tableView_Kategorie->setObjectName(QString::fromUtf8("tableView_Kategorie"));
-
-        horizontalLayout_5->addWidget(tableView_Kategorie);
-
         tabWidget->addTab(tab_Kategorie, QString());
         tab_CykliczneP = new QWidget();
         tab_CykliczneP->setObjectName(QString::fromUtf8("tab_CykliczneP"));
@@ -1222,9 +1224,16 @@ public:
         tabWidget->addTab(tab_CykliczneW, QString());
         tab_Raporty = new QWidget();
         tab_Raporty->setObjectName(QString::fromUtf8("tab_Raporty"));
-        verticalLayout_16 = new QVBoxLayout(tab_Raporty);
-        verticalLayout_16->setSpacing(20);
+        horizontalLayout_45 = new QHBoxLayout(tab_Raporty);
+        horizontalLayout_45->setSpacing(20);
+        horizontalLayout_45->setObjectName(QString::fromUtf8("horizontalLayout_45"));
+        horizontalSpacer_31 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_45->addItem(horizontalSpacer_31);
+
+        verticalLayout_16 = new QVBoxLayout();
         verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
+        verticalLayout_16->setContentsMargins(-1, -1, 0, 0);
         label_43 = new QLabel(tab_Raporty);
         label_43->setObjectName(QString::fromUtf8("label_43"));
         QFont font1;
@@ -1234,125 +1243,159 @@ public:
 
         verticalLayout_16->addWidget(label_43);
 
-        verticalSpacer_7 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_16->addItem(verticalSpacer_7);
-
-        horizontalLayout_29 = new QHBoxLayout();
-        horizontalLayout_29->setObjectName(QString::fromUtf8("horizontalLayout_29"));
-        verticalLayout_17 = new QVBoxLayout();
-        verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
+        horizontalLayout_46 = new QHBoxLayout();
+        horizontalLayout_46->setObjectName(QString::fromUtf8("horizontalLayout_46"));
+        verticalLayout_23 = new QVBoxLayout();
+        verticalLayout_23->setObjectName(QString::fromUtf8("verticalLayout_23"));
         label_44 = new QLabel(tab_Raporty);
         label_44->setObjectName(QString::fromUtf8("label_44"));
 
-        verticalLayout_17->addWidget(label_44);
+        verticalLayout_23->addWidget(label_44);
 
         dateEdit_R_Od = new QDateEdit(tab_Raporty);
         dateEdit_R_Od->setObjectName(QString::fromUtf8("dateEdit_R_Od"));
 
-        verticalLayout_17->addWidget(dateEdit_R_Od);
+        verticalLayout_23->addWidget(dateEdit_R_Od);
 
 
-        horizontalLayout_29->addLayout(verticalLayout_17);
+        horizontalLayout_46->addLayout(verticalLayout_23);
 
-        verticalLayout_18 = new QVBoxLayout();
-        verticalLayout_18->setObjectName(QString::fromUtf8("verticalLayout_18"));
+        verticalLayout_24 = new QVBoxLayout();
+        verticalLayout_24->setObjectName(QString::fromUtf8("verticalLayout_24"));
         label_45 = new QLabel(tab_Raporty);
         label_45->setObjectName(QString::fromUtf8("label_45"));
 
-        verticalLayout_18->addWidget(label_45);
+        verticalLayout_24->addWidget(label_45);
 
         dateEdit_R_Do = new QDateEdit(tab_Raporty);
         dateEdit_R_Do->setObjectName(QString::fromUtf8("dateEdit_R_Do"));
 
-        verticalLayout_18->addWidget(dateEdit_R_Do);
+        verticalLayout_24->addWidget(dateEdit_R_Do);
 
 
-        horizontalLayout_29->addLayout(verticalLayout_18);
-
-        horizontalSpacer_31 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_29->addItem(horizontalSpacer_31);
+        horizontalLayout_46->addLayout(verticalLayout_24);
 
 
-        verticalLayout_16->addLayout(horizontalLayout_29);
+        verticalLayout_16->addLayout(horizontalLayout_46);
 
-        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_16->addItem(verticalSpacer_6);
-
-        horizontalLayout_30 = new QHBoxLayout();
-        horizontalLayout_30->setObjectName(QString::fromUtf8("horizontalLayout_30"));
         pushButton_generujRaport = new QPushButton(tab_Raporty);
         pushButton_generujRaport->setObjectName(QString::fromUtf8("pushButton_generujRaport"));
 
-        horizontalLayout_30->addWidget(pushButton_generujRaport);
+        verticalLayout_16->addWidget(pushButton_generujRaport);
 
-        horizontalSpacer_24 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_30->addItem(horizontalSpacer_24);
-
-
-        verticalLayout_16->addLayout(horizontalLayout_30);
-
-        horizontalLayout_33 = new QHBoxLayout();
-        horizontalLayout_33->setObjectName(QString::fromUtf8("horizontalLayout_33"));
-        horizontalLayout_33->setContentsMargins(-1, 0, -1, -1);
         pushButton_generujRaportOsobisty = new QPushButton(tab_Raporty);
         pushButton_generujRaportOsobisty->setObjectName(QString::fromUtf8("pushButton_generujRaportOsobisty"));
 
-        horizontalLayout_33->addWidget(pushButton_generujRaportOsobisty);
+        verticalLayout_16->addWidget(pushButton_generujRaportOsobisty);
 
-        horizontalSpacer_30 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_33->addItem(horizontalSpacer_30);
-
-
-        verticalLayout_16->addLayout(horizontalLayout_33);
-
-        horizontalLayout_43 = new QHBoxLayout();
-        horizontalLayout_43->setObjectName(QString::fromUtf8("horizontalLayout_43"));
-        horizontalLayout_43->setContentsMargins(-1, 0, -1, -1);
+        horizontalLayout_48 = new QHBoxLayout();
+        horizontalLayout_48->setObjectName(QString::fromUtf8("horizontalLayout_48"));
         checkBox_tylkoKategoria = new QCheckBox(tab_Raporty);
         checkBox_tylkoKategoria->setObjectName(QString::fromUtf8("checkBox_tylkoKategoria"));
 
-        horizontalLayout_43->addWidget(checkBox_tylkoKategoria);
+        horizontalLayout_48->addWidget(checkBox_tylkoKategoria);
 
         comboBox_kategoriaRaport = new QComboBox(tab_Raporty);
         comboBox_kategoriaRaport->setObjectName(QString::fromUtf8("comboBox_kategoriaRaport"));
 
-        horizontalLayout_43->addWidget(comboBox_kategoriaRaport);
-
-        horizontalSpacer_37 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_43->addItem(horizontalSpacer_37);
+        horizontalLayout_48->addWidget(comboBox_kategoriaRaport);
 
 
-        verticalLayout_16->addLayout(horizontalLayout_43);
+        verticalLayout_16->addLayout(horizontalLayout_48);
 
-        horizontalLayout_44 = new QHBoxLayout();
-        horizontalLayout_44->setObjectName(QString::fromUtf8("horizontalLayout_44"));
-        horizontalLayout_44->setContentsMargins(-1, 0, -1, -1);
+        horizontalLayout_47 = new QHBoxLayout();
+        horizontalLayout_47->setObjectName(QString::fromUtf8("horizontalLayout_47"));
         pushButton_adminRaportOneUser = new QPushButton(tab_Raporty);
         pushButton_adminRaportOneUser->setObjectName(QString::fromUtf8("pushButton_adminRaportOneUser"));
 
-        horizontalLayout_44->addWidget(pushButton_adminRaportOneUser);
+        horizontalLayout_47->addWidget(pushButton_adminRaportOneUser);
 
         comboBox_adminRaportOneUser = new QComboBox(tab_Raporty);
         comboBox_adminRaportOneUser->setObjectName(QString::fromUtf8("comboBox_adminRaportOneUser"));
 
-        horizontalLayout_44->addWidget(comboBox_adminRaportOneUser);
-
-        horizontalSpacer_38 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_44->addItem(horizontalSpacer_38);
+        horizontalLayout_47->addWidget(comboBox_adminRaportOneUser);
 
 
-        verticalLayout_16->addLayout(horizontalLayout_44);
+        verticalLayout_16->addLayout(horizontalLayout_47);
+
+
+        horizontalLayout_45->addLayout(verticalLayout_16);
+
+        horizontalSpacer_30 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_45->addItem(horizontalSpacer_30);
+
+        verticalLayout_17 = new QVBoxLayout();
+        verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
+        label_52 = new QLabel(tab_Raporty);
+        label_52->setObjectName(QString::fromUtf8("label_52"));
+        label_52->setFont(font1);
+        label_52->setAlignment(Qt::AlignCenter);
+
+        verticalLayout_17->addWidget(label_52);
 
         verticalSpacer_10 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_16->addItem(verticalSpacer_10);
+        verticalLayout_17->addItem(verticalSpacer_10);
+
+        label_53 = new QLabel(tab_Raporty);
+        label_53->setObjectName(QString::fromUtf8("label_53"));
+
+        verticalLayout_17->addWidget(label_53);
+
+        horizontalLayout_29 = new QHBoxLayout();
+        horizontalLayout_29->setObjectName(QString::fromUtf8("horizontalLayout_29"));
+        dateEdit_prognozy = new QDateEdit(tab_Raporty);
+        dateEdit_prognozy->setObjectName(QString::fromUtf8("dateEdit_prognozy"));
+
+        horizontalLayout_29->addWidget(dateEdit_prognozy);
+
+        horizontalSpacer_24 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_29->addItem(horizontalSpacer_24);
+
+
+        verticalLayout_17->addLayout(horizontalLayout_29);
+
+        verticalSpacer_6 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_17->addItem(verticalSpacer_6);
+
+        pushButton_prognozycaly = new QPushButton(tab_Raporty);
+        pushButton_prognozycaly->setObjectName(QString::fromUtf8("pushButton_prognozycaly"));
+
+        verticalLayout_17->addWidget(pushButton_prognozycaly);
+
+        pushButton_osobistepprognozy = new QPushButton(tab_Raporty);
+        pushButton_osobistepprognozy->setObjectName(QString::fromUtf8("pushButton_osobistepprognozy"));
+
+        verticalLayout_17->addWidget(pushButton_osobistepprognozy);
+
+        horizontalLayout_30 = new QHBoxLayout();
+        horizontalLayout_30->setObjectName(QString::fromUtf8("horizontalLayout_30"));
+        pushButton_adminprognozy = new QPushButton(tab_Raporty);
+        pushButton_adminprognozy->setObjectName(QString::fromUtf8("pushButton_adminprognozy"));
+
+        horizontalLayout_30->addWidget(pushButton_adminprognozy);
+
+        comboBox_prognozy = new QComboBox(tab_Raporty);
+        comboBox_prognozy->setObjectName(QString::fromUtf8("comboBox_prognozy"));
+
+        horizontalLayout_30->addWidget(comboBox_prognozy);
+
+
+        verticalLayout_17->addLayout(horizontalLayout_30);
+
+        verticalSpacer_7 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_17->addItem(verticalSpacer_7);
+
+
+        horizontalLayout_45->addLayout(verticalLayout_17);
+
+        horizontalSpacer_37 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_45->addItem(horizontalSpacer_37);
 
         tabWidget->addTab(tab_Raporty, QString());
         tab_Uzytkownicy = new QWidget();
@@ -1753,6 +1796,11 @@ public:
         pushButton_generujRaportOsobisty->setText(QCoreApplication::translate("User_Panel", "Generuj raport osobisty", nullptr));
         checkBox_tylkoKategoria->setText(QCoreApplication::translate("User_Panel", "Tylko dla wybranej kategorii:", nullptr));
         pushButton_adminRaportOneUser->setText(QCoreApplication::translate("User_Panel", "Generuj raport dla u\305\274ytkownika:", nullptr));
+        label_52->setText(QCoreApplication::translate("User_Panel", "Generuj prognozy", nullptr));
+        label_53->setText(QCoreApplication::translate("User_Panel", "Prognozy do dnia:", nullptr));
+        pushButton_prognozycaly->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla ca\305\202ego bud\305\274etu", nullptr));
+        pushButton_osobistepprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania osobiste", nullptr));
+        pushButton_adminprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla u\305\274ytkownika:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
         pushButton_edytujDane->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));
         checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
