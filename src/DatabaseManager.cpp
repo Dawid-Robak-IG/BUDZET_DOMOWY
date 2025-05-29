@@ -1229,3 +1229,25 @@ double DatabaseManager::whole_future_Budzet(QDate future_Date) {
 
     return currentBalance + futureDelta;
 }
+
+
+QStringList DatabaseManager::getAllUsers() {
+    QStringList userEmails;
+
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return userEmails;
+    }
+
+    QSqlQuery query("SELECT Email FROM `Uzytkownik zalogowany`", m_db);
+
+    if (query.exec()) {
+        while (query.next()) {
+            userEmails << query.value(0).toString();
+        }
+    } else {
+        qDebug() << "Błąd pobierania email:" << query.lastError().text();
+    }
+
+    return userEmails;
+}

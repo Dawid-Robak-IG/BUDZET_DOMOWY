@@ -30,7 +30,7 @@ signals:
 private slots:
     void GenerujRaportClicked();
     void GenerujMyRaportClicked();
-
+    void GenerujRaportOsobistyAdminClicked();
 
 private:
     QString m_userEmail;
@@ -43,9 +43,10 @@ private:
     QPushButton *generujRaportOsobistyAdmin;
     QComboBox *comboKategoriaRaport;
     QCheckBox* checkBoxKategoria;
-
+    QComboBox * comboUserAdminRaport;
     DatabaseManager* m_dbManager = nullptr;
 
+    void loadUżytkownicy();
     void loadKategorie();
 };
 

@@ -25,6 +25,7 @@ public:
 
     QSqlDatabase getDatabase() const {return m_db;}
     QStringList getAllKategorie();
+    QStringList getAllUsers();
 
     //zarządzanie tablicami bazy danych
     bool addWydatek(const QString &email, double amount, const QDate &date, const QString &note, const QString &category);
