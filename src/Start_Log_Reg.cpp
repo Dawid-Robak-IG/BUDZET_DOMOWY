@@ -40,8 +40,8 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
     connect(ui->pushButton_zarejestrujSie, &QPushButton::clicked, this, &Start_Log_Reg::registerUser);
 
 
-    ui->lineEdit_emailLog->setText("janprus@poczta.com");
-    ui->lineEdit_passwordLog->setText("haslo123");
+    ui->lineEdit_emailLog->setText("baska@ya.com");
+    ui->lineEdit_passwordLog->setText("makabasi");
 
     ui->dateEdit_DOB_Reg->setDate(QDate::currentDate());
 }
