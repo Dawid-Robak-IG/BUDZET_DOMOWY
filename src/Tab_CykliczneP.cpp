@@ -113,7 +113,6 @@ void Tab_CykliczneP::setDatabaseManager(DatabaseManager* dbManager) {
     // Ustaw edycję po kliknięciu
     cyklicznePTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
 
-    cyklicznePTable->setModel(modelUsers);
     cyklicznePTable->resizeColumnsToContents();
 
     // Delegat dla "Częstotliwość"

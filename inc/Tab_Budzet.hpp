@@ -16,7 +16,7 @@ class Tab_Budzet : public QWidget
     Q_OBJECT
 public:
     explicit Tab_Budzet(QWidget *root,QWidget *parent = nullptr);
- void setDatabaseManager(DatabaseManager* dbManager);
+    void setDatabaseManager(DatabaseManager* dbManager);
     void loadOperacjeTable();
 signals:
 

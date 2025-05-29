@@ -116,12 +116,14 @@ void Tab_CykliczneW::UsunCW_Clicked(){
 
 void Tab_CykliczneW::setDatabaseManager(DatabaseManager* dbManager) {
     m_dbManager = dbManager;
+    qDebug()<<"CYKLICZNE_W: ustatiowno dbManager";
     loadKategorie();
+    qDebug()<<"CYKLICZNE_W: załadowano kategorie";
     showTable();
+    qDebug()<<"CYKLICZNE_W: pokazano Table";
     connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
             this, &Tab_CykliczneW::loadKategorie);
-
-
+    qDebug()<<"CYKLICZNE_W: polaczono syngal dla nowej kategorii";
 }
 
 void Tab_CykliczneW::showTable(){
@@ -130,8 +132,8 @@ void Tab_CykliczneW::showTable(){
         return;
     }
     setTableStrategy();
+    qDebug()<<"CYKLICZNE_W: ustawiono strategie table";
 
-    cykliczneWTable->setModel(modelUsers);
     cykliczneWTable->resizeColumnsToContents();
 
     // Delegat dla "Częstotliwość"
@@ -163,9 +165,11 @@ void Tab_CykliczneW::goToStartPage() {
     stacked->setCurrentIndex(0);
 }
 void Tab_CykliczneW::setTableStrategy(){
-    if(!modelUsers){
+    qDebug()<<"CYKLCIZNE_W: rozpoczęcie setTabelStrategy";
+    // if(!modelUsers){
         modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
-    }
+        qDebug()<<"CYKLICZNE_W: stworzono nowy TableModel";
+    // }
     modelUsers->setTable("`Operacja cykliczna`");
     modelUsers->setEditStrategy(QSqlTableModel::OnFieldChange);
 
@@ -176,8 +180,10 @@ void Tab_CykliczneW::setTableStrategy(){
     }
 
     modelUsers->setFilter(filter);
+    qDebug()<<"CYKLICZNE_W: nowy filter";
 
-    modelUsers->select();  
+    modelUsers->select(); 
+    qDebug()<<"CYKLICZNE_W: odswierzono tabelke"; 
 
     cykliczneWTable->setModel(modelUsers);
     cykliczneWTable->hideColumn(modelUsers->fieldIndex("ID"));

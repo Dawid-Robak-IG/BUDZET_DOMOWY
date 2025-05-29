@@ -31,21 +31,33 @@ MainWindow::~MainWindow() {
 }
 
 void MainWindow::handleLogin(QString email) {
+    if (!m_dbManager || !m_dbManager->getDatabase().isOpen()) {
+        QMessageBox::critical(this, "Błąd", "Baza danych nie jest otwarta!");
+        return;
+    }
+
     m_dbManager->update_Children();
+    qDebug()<<"Zakończono aktualizacje dzieci";
     m_dbManager->startSystemCykl();
+    qDebug()<<"Zakończono wykonywanie cyklicznych";
 
 
     if (!m_userPanel) {
 
         m_userPanel = new User_Panel(email,this);
+        qDebug()<<"Stworzono nowy UserPanel";
 
         m_userPanel->setDatabaseManager(m_dbManager);
- qDebug()<<"Nowy userPanel";
+        qDebug()<<"Nowy userPanel";
         stackedWidget->addWidget(m_userPanel);
         connect(m_userPanel, &User_Panel::logoutRequested, this, &MainWindow::handleLogout);
+        qDebug()<<"Dodano UserPanel jako widget i połączono syngał wylologowania";
         m_userPanel->displayUserData(email);
+        qDebug()<<"Ustanowiono wyświetlanie UserData";
         m_userPanel->goToStartPage();
+        qDebug()<<"Przeniesiono do ekranu startowego";
     } else {
+        qDebug()<<"User Panel już istnieje, aktualizacja dla nowego użytkownika";
         m_userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
         m_userPanel->displayUserData(email);      // I przeładowujemy rolę
         m_userPanel->goToStartPage();
