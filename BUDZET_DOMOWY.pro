@@ -23,6 +23,7 @@ QT += core gui widgets charts
 SOURCES += src/main.cpp \
            src/ComboBoxDelegate.cpp \
            src/DatabaseManager.cpp \
+           src/KwotaColorDelegate.cpp \
            src/MainWindow.cpp \
            src/Start_Log_Reg.cpp \
            src/Tab_Budzet.cpp \
@@ -41,6 +42,7 @@ SOURCES += src/main.cpp \
 HEADERS += inc/MainWindow.hpp \
     inc/ComboBoxDelegate.hpp \
     inc/DatabaseManager.hpp \
+    inc/KwotaColorDelegate.hpp \
     inc/PasswordDelegate.hpp \
     inc/Start_Log_Reg.hpp \
     inc/Tab_Budzet.hpp \

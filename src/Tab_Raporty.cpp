@@ -65,7 +65,7 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
 
     startDataEdit->setDate(QDate::currentDate());
     stopDataEdit->setDate(QDate::currentDate());
-
+    dataPrognozy->setDate(QDate::currentDate());
 }
 
 void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
@@ -259,7 +259,7 @@ void Tab_Raporty::GenerujPrognozyBudzetClicked(){
     qDebug()<<prognoza;
 
     QString message = QString("Prognoza budżetu na dzień %1: %2 zł")
-                          .arg(dateProg.toString("yyyy-MM-dd"))
+                          .arg(dateProg.toString("dd-MM-yyyy"))
                           .arg(QString::number(prognoza, 'f', 2));
 
     QMessageBox::information(this, "Prognoza", message);
@@ -285,7 +285,7 @@ void Tab_Raporty::GenerujPrognozyMyBudzetClicked(){
     qDebug()<<prognoza;
 
     QString message = QString("Prognoza budżetu na dzień %1: %2 zł")
-                          .arg(dateProg.toString("yyyy-MM-dd"))
+                          .arg(dateProg.toString("dd-MM-yyyy"))
                           .arg(QString::number(prognoza, 'f', 2));
 
     QMessageBox::information(this, "Prognoza", message);
@@ -304,7 +304,7 @@ void Tab_Raporty::GenerujPrognozyAdminClicked(){
     qDebug()<<prognoza;
 
     QString message = QString("Prognoza budżetu na dzień %1: %2 zł")
-                          .arg(dateProg.toString("yyyy-MM-dd"))
+                          .arg(dateProg.toString("dd-MM-yyyy"))
                           .arg(QString::number(prognoza, 'f', 2));
 
     QMessageBox::information(this, "Prognoza", message);

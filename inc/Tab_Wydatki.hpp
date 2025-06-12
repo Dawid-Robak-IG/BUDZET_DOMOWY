@@ -22,6 +22,7 @@ public:
     void setDatabaseManager(DatabaseManager* dbManager);
 
 signals:
+    void daneZmienione();
 
 private slots:
     void DodajWydatekClicked();

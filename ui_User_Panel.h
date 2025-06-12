@@ -619,6 +619,11 @@ public:
 
         tableView_budzet = new QTableView(tab_Budzet);
         tableView_budzet->setObjectName(QString::fromUtf8("tableView_budzet"));
+        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy.setHorizontalStretch(2);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(tableView_budzet->sizePolicy().hasHeightForWidth());
+        tableView_budzet->setSizePolicy(sizePolicy);
 
         horizontalLayout_37->addWidget(tableView_budzet);
 
@@ -652,11 +657,11 @@ public:
 
         label_6 = new QLabel(tab_Przychody);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
-        label_6->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
+        label_6->setSizePolicy(sizePolicy1);
 
         horizontalLayout_2->addWidget(label_6);
 
@@ -1072,11 +1077,11 @@ public:
         stackedWidget_CykliczneW->setObjectName(QString::fromUtf8("stackedWidget_CykliczneW"));
         page_CW_lista = new QWidget();
         page_CW_lista->setObjectName(QString::fromUtf8("page_CW_lista"));
-        QSizePolicy sizePolicy1(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(page_CW_lista->sizePolicy().hasHeightForWidth());
-        page_CW_lista->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(page_CW_lista->sizePolicy().hasHeightForWidth());
+        page_CW_lista->setSizePolicy(sizePolicy2);
         page_CW_lista->setMinimumSize(QSize(200, 200));
         horizontalLayout_18 = new QHBoxLayout(page_CW_lista);
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
@@ -1657,8 +1662,8 @@ public:
         horizontalLayout_33->setContentsMargins(-1, 20, -1, -1);
         tableView_dzieciRelacje = new QTableView(tab_Relacje);
         tableView_dzieciRelacje->setObjectName(QString::fromUtf8("tableView_dzieciRelacje"));
-        sizePolicy1.setHeightForWidth(tableView_dzieciRelacje->sizePolicy().hasHeightForWidth());
-        tableView_dzieciRelacje->setSizePolicy(sizePolicy1);
+        sizePolicy2.setHeightForWidth(tableView_dzieciRelacje->sizePolicy().hasHeightForWidth());
+        tableView_dzieciRelacje->setSizePolicy(sizePolicy2);
 
         horizontalLayout_33->addWidget(tableView_dzieciRelacje);
 
@@ -1710,7 +1715,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(1);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);

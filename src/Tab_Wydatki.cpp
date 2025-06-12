@@ -41,7 +41,7 @@ void Tab_Wydatki::DodajWydatekClicked() {
 
     if (m_dbManager->addWydatek(m_userEmail, kwotaSpinBox->value(), dataEdit->date(), opisLineEdit->text(), kategoriaCombo->currentText())) {
         QMessageBox::information(this, "Sukces", "Wydatek został dodany!");
-
+        emit daneZmienione();
         // Czyść formularz
         kwotaSpinBox->setValue(0.00);
         opisLineEdit->clear();

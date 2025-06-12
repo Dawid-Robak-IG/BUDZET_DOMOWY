@@ -59,7 +59,7 @@ void Start_Log_Reg::registerUser(){
     QString email = ui->lineEdit_emailReg->text();
     QString name = ui->lineEdit_firstNameReg->text();
     QString surname = ui->lineEdit_lastNameReg->text();
-    QString birthDate = ui->dateEdit_DOB_Reg->date().toString("yyyy-MM-dd");
+    QString birthDate = ui->dateEdit_DOB_Reg->date().toString("dd-MM-yyyy");
     QString password = ui->lineEdit_passwordReg->text();
 
     if (email.isEmpty() || name.isEmpty() || surname.isEmpty() || birthDate.isEmpty() || password.isEmpty()) {

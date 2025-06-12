@@ -115,7 +115,7 @@ Po konsultacjach:
 - ✅ usunąć przycisk edytuj z cykliczne - PP
 - zamiast 0 1 w 'czy zablokowany?' to wyświetlać napis zablokowany/aktywny - DR
 - zamiast id wyświetlać imię i nazwisko - DR
-- gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet - DR
+- ✅ gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet - DR
 - poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały - PP
 - przy przelogowaniu nie zmieniają się dane - DR
 - ✅ moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
@@ -128,8 +128,12 @@ Po konsultacjach:
 - ✅ tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji) - PP
 - imiona i nazwiska zamiast id - w Relacjach
 - sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - PP/DR
-- dodać kolor dla tabeli budżetu - PP
-- dodać dla progrnozy poczatkową date - PP
+- ✅ dodać kolor dla tabeli budżetu - PP
+- ✅ dodać dla progrnozy poczatkową date - PP
 - kolorki dla użytkowników zależne od ról - ???
 - zapis raportów - DR
 - ustawić odpowiednie rozmiary dla tabeli i innych pól - PP
+
+-jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać 
+
+

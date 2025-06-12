@@ -25,7 +25,6 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
     connect(ui->button_logout, &QPushButton::clicked, this, &User_Panel::logoutRequested);
-
 }
 
 
@@ -140,6 +139,9 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
         budzetManager->setDatabaseManager(m_dbManager);
         qDebug()<<"Ustawiono dbManager dla budzetu";
     }
+
+    connect(wydatkiManager, &Tab_Wydatki::daneZmienione, budzetManager, &Tab_Budzet::refresh);
+    connect(przychodyManager, &Tab_Przychody::daneZmienione, budzetManager, &Tab_Budzet::refresh);
 }
 
 

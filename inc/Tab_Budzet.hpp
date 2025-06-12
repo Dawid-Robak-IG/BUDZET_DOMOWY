@@ -2,6 +2,7 @@
 #define TAB_BUDZET_HPP
 
 #include "DatabaseManager.hpp"
+#include "KwotaColorDelegate.hpp"
 
 #include <QWidget>
 #include <QLineEdit>
@@ -20,7 +21,10 @@ public:
     void loadOperacjeTable();
 signals:
 
- private:
+public slots:
+    void refresh();
+
+private:
     QLineEdit *dataBudzet;
     QLineEdit *kwotaBudzet;
     QTableView *tabelaOperacje;

@@ -34,7 +34,7 @@ void Tab_Przychody::DodajPrzychodClicked() {
 
     if (m_dbManager->addPrzychod(m_userEmail, kwotaSpinBox->value(), dataEdit->date(), opisLineEdit->text(), kategoriaCombo->currentText())) {
         QMessageBox::information(this, "Sukces", "Przychód został dodany!");
-
+        emit daneZmienione();
         kwotaSpinBox->setValue(0.00);
         opisLineEdit->clear();
         dataEdit->setDate(QDate::currentDate());

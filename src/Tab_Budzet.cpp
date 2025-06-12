@@ -21,7 +21,7 @@ void Tab_Budzet::setDatabaseManager(DatabaseManager* dbManager) {
     kwotaBudzet->setText(QString::number(m_dbManager->get_whole_budzet(), 'f', 2));
     QDate data = m_dbManager->get_update_Date();
     qDebug()<<"BUDZET: Nowa data";
-    dataBudzet->setText(data.toString("yyyy-MM-dd"));
+    dataBudzet->setText(data.toString("dd-MM-yyyy"));
     qDebug()<<"BUDZET: format daty";
     loadOperacjeTable();
     qDebug()<<"BUDZET: Zakonczono loadOperacjeTable";
@@ -40,6 +40,7 @@ void Tab_Budzet::loadOperacjeTable() {
     modelOperacje->setEditStrategy(QSqlTableModel::OnManualSubmit);
     qDebug()<<"BUDZET: Zakonczono setEdutTable";
     modelOperacje->select();
+    tabelaOperacje->setModel(modelOperacje);
 
     tabelaOperacje->resizeColumnsToContents();
     //tabelaOperacje->horizontalHeader()->setStretchLastSection(true);
@@ -48,4 +49,16 @@ void Tab_Budzet::loadOperacjeTable() {
     tabelaOperacje->hideColumn(0);
     tabelaOperacje->hideColumn(7);
 
+    int kolumnaKwota = modelOperacje->fieldIndex("Kwota");
+    tabelaOperacje->setItemDelegateForColumn(kolumnaKwota, new KwotaColorDelegate(this));
+}
+
+void Tab_Budzet::refresh()
+{
+    if (modelOperacje) {
+        modelOperacje->select(); // odśwież dane z tabeli Operacja
+    }
+    kwotaBudzet->setText(QString::number(m_dbManager->get_whole_budzet(), 'f', 2));
+    dataBudzet->setText(m_dbManager->get_update_Date().toString("dd-MM-yyyy"));
+    qDebug() << "Tab_Budzet: odświeżono dane.";
 }
