@@ -6,7 +6,7 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
 
     stacked= root->findChild<QStackedWidget*>("stackedWidget_CykliczneP");
     cyklicznePTable =root->findChild<QTableView*>("tableView_listaCP");
-    edytujCP_Button= root->findChild<QPushButton*>("pushButton_edytujCP");
+    // edytujCP_Button= root->findChild<QPushButton*>("pushButton_edytujCP");
     nowyCP_Button= root->findChild<QPushButton*>("pushButton_nowyCP");
     usunCP_Button= root->findChild<QPushButton*>("pushButton_usunCP");
     //zeby dodać nowy:
@@ -26,9 +26,9 @@ Tab_CykliczneP::Tab_CykliczneP(const QString& userEmail,QWidget *root, QWidget *
         connect(dodajCP_Button, &QPushButton::clicked, this, &Tab_CykliczneP::DodajCP_Clicked);
     }
 
-    if(edytujCP_Button){
-        connect(edytujCP_Button, &QPushButton::clicked, this, &Tab_CykliczneP::EdytujCP_Clicked);
-    }
+    // if(edytujCP_Button){
+    //     connect(edytujCP_Button, &QPushButton::clicked, this, &Tab_CykliczneP::EdytujCP_Clicked);
+    // }
 
     if(usunCP_Button){
         connect(usunCP_Button, &QPushButton::clicked, this, &Tab_CykliczneP::UsunCP_Clicked);

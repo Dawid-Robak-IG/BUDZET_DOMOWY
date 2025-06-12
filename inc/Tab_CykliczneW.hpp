@@ -40,7 +40,7 @@ private:
 
     QStackedWidget *stacked;
     QTableView *cykliczneWTable;
-    QPushButton *edytujCW_Button;
+    // QPushButton *edytujCW_Button;
     QPushButton *nowyCW_Button;
     QPushButton *usunCW_Button;
     QComboBox *kategoriaCombo;

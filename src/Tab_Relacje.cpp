@@ -34,8 +34,12 @@ void Tab_Relacje::PrzypiszRodzicaClicked() {
         QMessageBox::warning(this, "Błąd", "Wybierz dziecko i rodzica.");
         return;
     }
-
-    int dzieckoID = dzieciModelUsers->data(dzieciModelUsers->index(dzieckoIndex.row(), dzieciModelUsers->fieldIndex("ID"))).toInt();
+    int dzieckoID = dzieciModelUsers
+                        ->data(dzieciModelUsers->index(dzieckoIndex.row(),
+                                                       dzieciModelUsers->fieldIndex(
+                                                           "Uzytkownik zalogowanyID")))
+                        .toInt();
+    //  int dzieckoID = dzieciModelUsers->data(dzieciModelUsers->index(dzieckoIndex.row(), dzieciModelUsers->fieldIndex("ID"))).toInt();
     int rodzicID = rodziceModelUsers->data(rodziceModelUsers->index(rodzicIndex.row(), rodziceModelUsers->fieldIndex("ID"))).toInt();
 
     qDebug()<<"Wybrano dziecko: "<<dzieckoID<<" | oraz Rodzica: "<<rodzicID;
@@ -63,7 +67,11 @@ void Tab_Relacje::Przypisz2RodzicaClicked() {
         return;
     }
 
-    int dzieckoID = dzieciModelUsers->data(dzieciModelUsers->index(dzieckoIndex.row(), dzieciModelUsers->fieldIndex("ID"))).toInt();
+    int dzieckoID = dzieciModelUsers
+                        ->data(dzieciModelUsers->index(dzieckoIndex.row(),
+                                                       dzieciModelUsers->fieldIndex(
+                                                           "Uzytkownik zalogowanyID")))
+                        .toInt();
     int rodzicID = rodziceModelUsers->data(rodziceModelUsers->index(rodzicIndex.row(), rodziceModelUsers->fieldIndex("ID"))).toInt();
 
     qDebug()<<"Wybrano dziecko: "<<dzieckoID<<" | oraz Rodzica: "<<rodzicID;
@@ -84,33 +92,28 @@ void Tab_Relacje::setDatabaseManager(DatabaseManager* dbManager)
 
 }
 
-void Tab_Relacje::showTables(){
-//Tablica dzieci
-    if (!dzieciTable) {
-        qDebug() << "Brak dzieciTable - nie można ustawić modelu";
-        return;
-    }
+void Tab_Relacje::showTables()
+{
+    //Tablica dzieci
 
     dzieciModelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
-    dzieciModelUsers->setTable("Uzytkownik zalogowany");
-    dzieciModelUsers->setFilter("Rola = 'Dziecko'");
+    dzieciModelUsers->setTable("Dziecko");
     if (!dzieciModelUsers->select()) {
         qDebug() << "Błąd ładowania danych dzieci:" << dzieciModelUsers->lastError().text();
     }
-
 
     dzieciTable->setModel(dzieciModelUsers);
     dzieciTable->resizeColumnsToContents();
     dzieciTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
-    // Ukryj wszystkie inne kolumny oprócz Imie, Nazwisko, Email
-    for (int col = 0; col < dzieciModelUsers->columnCount(); ++col) {
-        QString colName = dzieciModelUsers->headerData(col, Qt::Horizontal).toString();
-        if (colName != "Imie" && colName != "Nazwisko" && colName != "Email") {
-            dzieciTable->hideColumn(col);
-        }
-    }
+    dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("saldo"));
+    dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("kieszonkowe"));
+    dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DataKolejnaKieszonkowego"));
 
+    // Opcjonalnie zmień nagłówki innych kolumn:
+    dzieciModelUsers->setHeaderData(0, Qt::Horizontal, "Imię");
+    dzieciModelUsers->setHeaderData(3, Qt::Horizontal, "Rodzic 1");
+    dzieciModelUsers->setHeaderData(4, Qt::Horizontal, "Rodzic 2");
 
     //Tablica Rodzice
     if (!rodziceTable) {
@@ -136,4 +139,5 @@ void Tab_Relacje::showTables(){
         }
     }
 
+    rodziceModelUsers->setHeaderData(1, Qt::Horizontal, "Imię");
 }

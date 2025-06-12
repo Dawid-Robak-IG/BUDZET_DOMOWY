@@ -31,21 +31,21 @@ private slots:
     void ZapiszZmianyClicked();
 
 private:
-    QTableView *tabelaTableView;
-    QSqlTableModel* modelUsers;
-    QStackedWidget *stacked;
+    QTableView *tabelaTableView = nullptr;
+    QSqlTableModel *modelUsers = nullptr;
+    QStackedWidget *stacked = nullptr;
 
-    QCheckBox* checkBox_pokazHasla;
-    QPushButton* blokadaButton;
-    QPushButton* edytujButton;
-    QPushButton* powrotButton;
-    QPushButton* zapiszZmianyButton;
-    QComboBox* rolaCombo;
-    QLineEdit* imie;
-    QLineEdit* nazwisko;
-    QLineEdit* mail;
+    QCheckBox *checkBox_pokazHasla = nullptr;
+    QPushButton *blokadaButton = nullptr;
+    QPushButton *edytujButton = nullptr;
+    QPushButton *powrotButton = nullptr;
+    QPushButton *zapiszZmianyButton = nullptr;
+    QComboBox *rolaCombo = nullptr;
+    QLineEdit *imie = nullptr;
+    QLineEdit *nazwisko = nullptr;
+    QLineEdit *mail = nullptr;
 
-    DatabaseManager* m_dbManager = nullptr;
+    DatabaseManager *m_dbManager = nullptr;
 
     void setupModel();
 };

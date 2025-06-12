@@ -31,7 +31,7 @@ Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent): QWidget{parent}
 
     connect(zapiszZmianyButton, &QPushButton::clicked, this, &Tab_Uzytkownicy::ZapiszZmianyClicked);
 
-stacked->setCurrentIndex(0);
+    stacked->setCurrentIndex(0);
 }
 
 

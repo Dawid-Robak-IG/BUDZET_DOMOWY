@@ -3,19 +3,19 @@
 
 #include "DatabaseManager.hpp"
 
-#include <QWidget>
-#include <QDoubleSpinBox>
-#include <QDateEdit>
 #include <QComboBox>
-#include <QLineEdit>
+#include <QDateEdit>
 #include <QDebug>
-#include <QPushButton>
-#include <QSqlQuery>
-#include <QVariant>
-#include <QSqlError>
+#include <QDoubleSpinBox>
+#include <QLineEdit>
 #include <QMessageBox>
-#include <QTableView>
+#include <QPushButton>
+#include <QSqlError>
+#include <QSqlQuery>
 #include <QSqlTableModel>
+#include <QTableView>
+#include <QVariant>
+#include <QWidget>
 
 class Tab_Relacje : public QWidget
 {
@@ -28,20 +28,20 @@ signals:
 
     private slots:
     void PrzypiszRodzicaClicked();
- void Przypisz2RodzicaClicked();
+    void Przypisz2RodzicaClicked();
 
-    private:
+private:
     QString m_userEmail;
          QTableView *dzieciTable;
         QTableView *rodziceTable;
-        QSqlTableModel* dzieciModelUsers;
-         QSqlTableModel* rodziceModelUsers;
+        QSqlTableModel *dzieciModelUsers;
+        QSqlTableModel *rodziceModelUsers;
 
-         QPushButton *dodajRelacjeButton;
-          QPushButton *dodaj2RelacjeButton;
-         DatabaseManager* m_dbManager = nullptr;
+        QPushButton *dodajRelacjeButton;
+        QPushButton *dodaj2RelacjeButton;
+        DatabaseManager *m_dbManager = nullptr;
 
-      void showTables();
+        void showTables();
 };
 
 #endif // TAB_RELACJE_HPP

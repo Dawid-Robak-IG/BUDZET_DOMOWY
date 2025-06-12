@@ -112,13 +112,13 @@ double whole_future_Budzet(QDate future_Date);
 Po konsultacjach: 
 
 - wyświetlać datę następnego wpływu kieszonkowego (???) - PP
-- usunąć przycisk edytuj z cykliczne - PP
+- ✅ usunąć przycisk edytuj z cykliczne - PP
 - zamiast 0 1 w 'czy zablokowany?' to wyświetlać napis zablokowany/aktywny - DR
 - zamiast id wyświetlać imię i nazwisko - DR
 - gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet - DR
 - poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały - PP
 - przy przelogowaniu nie zmieniają się dane - DR
-- moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
+- ✅moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
 - cykliczna / jednorazowa (napis zamiast 0/1) - DR
 - wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
 - od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
@@ -131,3 +131,4 @@ Po konsultacjach:
 - dodać dla progrnozy poczatkową date - PP
 - kolorki dla użytkowników zależne od ról - ???
 - zapis raportów - DR
+- ustawić odpowiednie rozmiary dla tabeli i innych pól - PP

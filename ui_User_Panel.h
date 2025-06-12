@@ -309,7 +309,9 @@ public:
     QHBoxLayout *horizontalLayout_26;
     QVBoxLayout *verticalLayout_13;
     QLabel *label_37;
+    QHBoxLayout *horizontalLayout_33;
     QTableView *tableView_dzieciRelacje;
+    QSpacerItem *horizontalSpacer_38;
     QLabel *label_38;
     QTableView *tableView_rodziceRelacje;
     QVBoxLayout *verticalLayout_22;
@@ -1651,10 +1653,22 @@ public:
 
         verticalLayout_13->addWidget(label_37);
 
+        horizontalLayout_33 = new QHBoxLayout();
+        horizontalLayout_33->setObjectName(QString::fromUtf8("horizontalLayout_33"));
+        horizontalLayout_33->setContentsMargins(-1, 20, -1, -1);
         tableView_dzieciRelacje = new QTableView(tab_Relacje);
         tableView_dzieciRelacje->setObjectName(QString::fromUtf8("tableView_dzieciRelacje"));
+        sizePolicy1.setHeightForWidth(tableView_dzieciRelacje->sizePolicy().hasHeightForWidth());
+        tableView_dzieciRelacje->setSizePolicy(sizePolicy1);
 
-        verticalLayout_13->addWidget(tableView_dzieciRelacje);
+        horizontalLayout_33->addWidget(tableView_dzieciRelacje);
+
+        horizontalSpacer_38 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_33->addItem(horizontalSpacer_38);
+
+
+        verticalLayout_13->addLayout(horizontalLayout_33);
 
         label_38 = new QLabel(tab_Relacje);
         label_38->setObjectName(QString::fromUtf8("label_38"));
@@ -1701,9 +1715,9 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(10);
         stackedWidget_CykliczneP->setCurrentIndex(0);
-        stackedWidget_CykliczneW->setCurrentIndex(1);
+        stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
 
 
@@ -1729,7 +1743,7 @@ public:
         label_zl1->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_saldo->setText(QCoreApplication::translate("User_Panel", "Saldo:", nullptr));
         label_zl2->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
-        tabWidget->setTabText(tabWidget->indexOf(tab_DaneUzytkownika), QCoreApplication::translate("User_Panel", "Dane u\305\274ytkownika", nullptr));
+        tabWidget->setTabText(tabWidget->indexOf(tab_DaneUzytkownika), QCoreApplication::translate("User_Panel", "Moje dane", nullptr));
         label_49->setText(QCoreApplication::translate("User_Panel", "Aktualny stan bud\305\274etu:", nullptr));
         label_50->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_51->setText(QCoreApplication::translate("User_Panel", "Data ostatniej aktualizacji:", nullptr));
