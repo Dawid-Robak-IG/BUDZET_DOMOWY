@@ -103,31 +103,31 @@ double whole_future_Budzet(QDate future_Date);
 ## What to do on 08.06
  Z poprzednich zadań (nie wiem czy to aktualne):
  
-- dla kategorii: by była tabelka z tymi kategoriami
-- dodaj przycisk "update Children" bedzie on tworzyl te encje dzieci dla uzytkownikow z rola dziecko jesli nie ma on encji dzieci (poki co podpiąłem pod wylogowywanie):
-```cpp
-bool update_Children();
-```
-- sprwadzić czy to jest tak jak miało być: dodaj wybor daty dla generowania przyszlego stanu konta (zależne też to będzie od tego wyboru uzytkownika dla admina) można tez dodać przycisk który otworzy okienko z do wyobru datą i użytkownikiem jak wolisz, jak nie wybierzemy uzytkownika to dla calego budzetu (lae wtedy dziecko nie moze) to mozesz dodac do wyboru budzet np:
+- ✅ 
+- ✅ sprwadzić czy to jest tak jak miało być: dodaj wybor daty dla generowania przyszlego stanu konta (zależne też to będzie od tego wyboru uzytkownika dla admina) można tez dodać przycisk który otworzy okienko z do wyobru datą i użytkownikiem jak wolisz, jak nie wybierzemy uzytkownika to dla calego budzetu (lae wtedy dziecko nie moze) to mozesz dodac do wyboru budzet np:
 ```cpp
 double user_future_Budzet(int user_ID, QDate future_Date);
 double whole_future_Budzet(QDate future_Date);
 ```
 Po konsultacjach: 
 
-- wyświetlać datę następnego wpływu kieszonkowego (???)
-- usunąć przycisk edytuj z cykliczne
-- zamiast 0 1 w 'czy zablokowany?' to wyświetlać napis zablokowany/aktywny
-- zamiast id wyświetlać imię i nazwisko 
-- gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet
-- poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały 
-- przy przelogowaniu nie zmieniają się dane
-- moje dane zakładka (zmiana nazwy pierwszej zakładki)
-- cykliczna / jednorazowa (napis zamiast 0/1)
-- wyświetlać przyczynę błędu, gdy nie może usunąć kategorii
-- od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli)
-- wykres budżet schodki, reszta słupki 
-- cały rok, czyli inny format daty 
-- lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista)
-- tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji)
-- sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją)
+- wyświetlać datę następnego wpływu kieszonkowego (???) - PP
+- usunąć przycisk edytuj z cykliczne - PP
+- zamiast 0 1 w 'czy zablokowany?' to wyświetlać napis zablokowany/aktywny - DR
+- zamiast id wyświetlać imię i nazwisko - DR
+- gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet - DR
+- poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały - PP
+- przy przelogowaniu nie zmieniają się dane - DR
+- moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
+- cykliczna / jednorazowa (napis zamiast 0/1) - DR
+- wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
+- od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
+- wykres budżet schodki, reszta słupki - DR
+- cały rok, czyli inny format daty - DR
+- lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista) - PP
+- tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji) - PP
+- sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - PP/DR
+- dodać kolor dla tabeli budżetu - PP
+- dodać dla progrnozy poczatkową date - PP
+- kolorki dla użytkowników zależne od ról - ???
+- zapis raportów - DR
