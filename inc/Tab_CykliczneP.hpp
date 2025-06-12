@@ -32,7 +32,7 @@ signals:
 
 private slots:
     void DodajCP_Clicked();
-    void EdytujCP_Clicked();
+    //void EdytujCP_Clicked();
     void UsunCP_Clicked();
 
 private:

@@ -311,7 +311,6 @@ public:
     QLabel *label_37;
     QHBoxLayout *horizontalLayout_33;
     QTableView *tableView_dzieciRelacje;
-    QSpacerItem *horizontalSpacer_38;
     QLabel *label_38;
     QTableView *tableView_rodziceRelacje;
     QVBoxLayout *verticalLayout_22;
@@ -1663,10 +1662,6 @@ public:
 
         horizontalLayout_33->addWidget(tableView_dzieciRelacje);
 
-        horizontalSpacer_38 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_33->addItem(horizontalSpacer_38);
-
 
         verticalLayout_13->addLayout(horizontalLayout_33);
 
@@ -1715,7 +1710,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(10);
+        tabWidget->setCurrentIndex(5);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);

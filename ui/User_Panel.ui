@@ -55,7 +55,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>10</number>
+      <number>5</number>
      </property>
      <widget class="QWidget" name="tab_DaneUzytkownika">
       <attribute name="title">
@@ -2146,19 +2146,6 @@
               </sizepolicy>
              </property>
             </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_38">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
           </layout>
          </item>

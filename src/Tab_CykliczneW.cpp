@@ -75,15 +75,9 @@ void Tab_CykliczneW::DodajCW_Clicked(){
     }
 }
 
-
-
-
-void Tab_CykliczneW::EdytujCW_Clicked(){//toDo
-    qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
-}
-
-
-
+// void Tab_CykliczneW::EdytujCW_Clicked(){//toDo
+//     qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
+// }
 
 void Tab_CykliczneW::UsunCW_Clicked(){
     qDebug() << "Usuwanie cyklicznego przychodu";

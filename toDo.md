@@ -118,14 +118,15 @@ Po konsultacjach:
 - gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet - DR
 - poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały - PP
 - przy przelogowaniu nie zmieniają się dane - DR
-- ✅moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
+- ✅ moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
 - cykliczna / jednorazowa (napis zamiast 0/1) - DR
 - wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
 - od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
 - wykres budżet schodki, reszta słupki - DR
 - cały rok, czyli inny format daty - DR
-- lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista) - PP
-- tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji) - PP
+- ✅ lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista) - PP
+- ✅ tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji) - PP
+- imiona i nazwiska zamiast id - w Relacjach
 - sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - PP/DR
 - dodać kolor dla tabeli budżetu - PP
 - dodać dla progrnozy poczatkową date - PP

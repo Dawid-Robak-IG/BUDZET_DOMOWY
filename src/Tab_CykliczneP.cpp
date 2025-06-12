@@ -70,10 +70,13 @@ void Tab_CykliczneP::DodajCP_Clicked(){
         QMessageBox::warning(this, "Błąd", "Nie udało się dodać cyklicznego przychodu.");
     }
 }
-void Tab_CykliczneP::EdytujCP_Clicked(){//toDo
-    qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
-}
-void Tab_CykliczneP::UsunCP_Clicked(){
+
+// void Tab_CykliczneP::EdytujCP_Clicked(){//toDo
+//     qDebug()<<"Tutaj będzie edytowanie cyklicznego przychodu";
+// }
+
+void Tab_CykliczneP::UsunCP_Clicked()
+{
     qDebug() << "Usuwanie cyklicznego przychodu";
 
     QModelIndex index = cyklicznePTable->currentIndex();

@@ -129,6 +129,10 @@ void Tab_Uzytkownicy::setTableStrategy(){
         tabelaTableView->showColumn(modelUsers->fieldIndex("Haslo"));
         tabelaTableView->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::EditKeyPressed);
 
+        QStringList role = {"Admin", "Rodzic", "Dorosły", "Dziecko", "Użytkownik"};
+        int rolaCol = modelUsers->fieldIndex("Rola");
+        tabelaTableView->setItemDelegateForColumn(rolaCol, new ComboBoxDelegate(role, this));
+
         connect(tabelaTableView, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
             QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
 
