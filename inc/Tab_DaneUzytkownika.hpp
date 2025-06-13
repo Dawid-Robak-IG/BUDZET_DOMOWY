@@ -47,10 +47,11 @@ signals:
       QLabel *kieszonkoweLabel;
       QLabel *zl1Label;
       QLabel *zl2Label;
+      QLabel *nkLabel;
 
       QLineEdit *kieszonkoweLineEdit;
       QLineEdit *saldoLineEdit;
-
+      QLineEdit *nastepneKieszonkoweLineEdit;
       DatabaseManager* m_dbManager = nullptr;
 
 

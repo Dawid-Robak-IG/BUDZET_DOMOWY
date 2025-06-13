@@ -25,6 +25,8 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     ui->setupUi(this);
     ui->tabWidget->setCurrentIndex(0);
     connect(ui->button_logout, &QPushButton::clicked, this, &User_Panel::logoutRequested);
+
+    ui->tabWidget->setTabVisible(1, false);
 }
 
 
@@ -142,8 +144,9 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
 
     connect(wydatkiManager, &Tab_Wydatki::daneZmienione, budzetManager, &Tab_Budzet::refresh);
     connect(przychodyManager, &Tab_Przychody::daneZmienione, budzetManager, &Tab_Budzet::refresh);
-}
 
+    setTabsVisibility();
+}
 
 User_Panel::~User_Panel()
 {
@@ -196,4 +199,26 @@ void User_Panel::setTablesByNewUser(){
     cykliczneWManager->setTableStrategy();
     uzytkownicyManager->setTableStrategy();
     dzieciManager->loadDzieciListComboBox();
+}
+
+void User_Panel::setTabsVisibility()
+{
+    // Domyślnie pokaż wszystkie zakładki od 0 do 10
+    for (int i = 0; i <= 10; ++i) {
+        ui->tabWidget->setTabVisible(i, true);
+    }
+
+    if (m_dbManager->amIChild()) {
+        ui->tabWidget->setTabVisible(4, false);  // kategoria
+        ui->tabWidget->setTabVisible(5, false);  //cykliczne przychody
+        ui->tabWidget->setTabVisible(6, false);  //cykliczne wydatki
+        ui->tabWidget->setTabVisible(9, false);  //dzieci
+        ui->tabWidget->setTabVisible(10, false); //relacje
+
+    } else if (m_dbManager->amIParent()) {
+        ui->tabWidget->setTabVisible(4, false); // kategoria
+
+    } else {
+        //
+    }
 }

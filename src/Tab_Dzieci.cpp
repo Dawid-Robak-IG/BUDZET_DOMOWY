@@ -15,8 +15,7 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
     zmienKieszonkoweButton= root->findChild<QPushButton*>("pushButton_zmienKieszonkowe");
     listaDzieciCombo=root->findChild<QComboBox*>("comboBox_dzieciLista");
 
-
-    if(generujRaportButton){
+    if (generujRaportButton) {
         connect(generujRaportButton, &QPushButton::clicked, this, &Tab_Dzieci::GenerujRaportClicked);
     }
 

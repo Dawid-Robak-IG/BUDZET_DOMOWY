@@ -587,6 +587,29 @@ float DatabaseManager::get_saldo(int child_ID) {
     }
     return -1.0f;
 }
+
+QDate DatabaseManager::get_date_next_kieszonkowe(int child_ID)
+{
+    if (!m_db.isOpen())
+        return QDate();
+
+    QSqlQuery query(m_db);
+    query.prepare(
+        "SELECT DataKolejnaKieszonkowego FROM Dziecko WHERE `Uzytkownik zalogowanyID` = :id");
+    query.bindValue(":id", child_ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd pobierania kieszonkowego:" << query.lastError().text();
+        return QDate();
+    }
+
+    if (query.next()) {
+        return query.value(0).toDate();
+    }
+
+    return QDate();
+}
+
 QPair<QVector<QDate>, QVector<double>> DatabaseManager::getBudzetData(const QDate& startDate, const QDate& endDate, const QString& category) {
     QVector<QDate> dates;
     QVector<double> values;
@@ -690,6 +713,32 @@ bool DatabaseManager::change_kieszonkowe(int child_ID, float new_kieszonkowe) {
     query.bindValue(":id", child_ID);
 
     return query.exec();
+}
+
+bool DatabaseManager::amIParent()
+{
+    if (!m_db.isOpen())
+        return false;
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT Rola FROM `Uzytkownik zalogowany` WHERE ID = :id");
+    query.bindValue(":id", logged_user_ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd sprawdzania roli:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        QString role = query.value(0).toString();
+        if (role == "Rodzic") {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
+    return false;
 }
 
 bool DatabaseManager::generujZCyklicznych() {

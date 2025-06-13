@@ -53,7 +53,9 @@ OBJECTS_DIR   = build/Obj/
 ####### Files
 
 SOURCES       = src/main.cpp \
+		src/BlockedDelegate.cpp \
 		src/ComboBoxDelegate.cpp \
+		src/CyklicznyDelegate.cpp \
 		src/DatabaseManager.cpp \
 		src/KwotaColorDelegate.cpp \
 		src/MainWindow.cpp \
@@ -71,7 +73,9 @@ SOURCES       = src/main.cpp \
 		src/Tab_Wydatki.cpp \
 		src/User_Panel.cpp \
 		src/Tab_CykliczneW.cpp moc/moc_MainWindow.cpp \
+		moc/moc_BlockedDelegate.cpp \
 		moc/moc_ComboBoxDelegate.cpp \
+		moc/moc_CyklicznyDelegate.cpp \
 		moc/moc_DatabaseManager.cpp \
 		moc/moc_KwotaColorDelegate.cpp \
 		moc/moc_Start_Log_Reg.cpp \
@@ -89,7 +93,9 @@ SOURCES       = src/main.cpp \
 		moc/moc_Tab_Wydatki.cpp \
 		moc/moc_User_Panel.cpp
 OBJECTS       = build/Obj/main.o \
+		build/Obj/BlockedDelegate.o \
 		build/Obj/ComboBoxDelegate.o \
+		build/Obj/CyklicznyDelegate.o \
 		build/Obj/DatabaseManager.o \
 		build/Obj/KwotaColorDelegate.o \
 		build/Obj/MainWindow.o \
@@ -108,7 +114,9 @@ OBJECTS       = build/Obj/main.o \
 		build/Obj/User_Panel.o \
 		build/Obj/Tab_CykliczneW.o \
 		build/Obj/moc_MainWindow.o \
+		build/Obj/moc_BlockedDelegate.o \
 		build/Obj/moc_ComboBoxDelegate.o \
+		build/Obj/moc_CyklicznyDelegate.o \
 		build/Obj/moc_DatabaseManager.o \
 		build/Obj/moc_KwotaColorDelegate.o \
 		build/Obj/moc_Start_Log_Reg.o \
@@ -206,7 +214,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
 		BUDZET_DOMOWY.pro inc/MainWindow.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
+		inc/CyklicznyDelegate.hpp \
 		inc/DatabaseManager.hpp \
 		inc/KwotaColorDelegate.hpp \
 		inc/PasswordDelegate.hpp \
@@ -224,7 +234,9 @@ DIST          = /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf \
 		inc/Tab_Uzytkownicy.hpp \
 		inc/Tab_Wydatki.hpp \
 		inc/User_Panel.hpp src/main.cpp \
+		src/BlockedDelegate.cpp \
 		src/ComboBoxDelegate.cpp \
+		src/CyklicznyDelegate.cpp \
 		src/DatabaseManager.cpp \
 		src/KwotaColorDelegate.cpp \
 		src/MainWindow.cpp \
@@ -431,8 +443,8 @@ distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
-	$(COPY_FILE) --parents inc/MainWindow.hpp inc/ComboBoxDelegate.hpp inc/DatabaseManager.hpp inc/KwotaColorDelegate.hpp inc/PasswordDelegate.hpp inc/Start_Log_Reg.hpp inc/Tab_Budzet.hpp inc/Tab_CykliczneP.hpp inc/Tab_CykliczneW.hpp inc/Tab_DaneUzytkownika.hpp inc/Tab_Dzieci.hpp inc/Tab_Kategorie.hpp inc/Tab_Przychody.hpp inc/Tab_Raporty.hpp inc/RaportWindow.hpp inc/Tab_Relacje.hpp inc/Tab_Uzytkownicy.hpp inc/Tab_Wydatki.hpp inc/User_Panel.hpp $(DISTDIR)/
-	$(COPY_FILE) --parents src/main.cpp src/ComboBoxDelegate.cpp src/DatabaseManager.cpp src/KwotaColorDelegate.cpp src/MainWindow.cpp src/Start_Log_Reg.cpp src/Tab_Budzet.cpp src/Tab_CykliczneP.cpp src/Tab_DaneUzytkownika.cpp src/Tab_Dzieci.cpp src/Tab_Kategorie.cpp src/Tab_Przychody.cpp src/Tab_Raporty.cpp src/RaportWindow.cpp src/Tab_Relacje.cpp src/Tab_Uzytkownicy.cpp src/Tab_Wydatki.cpp src/User_Panel.cpp src/Tab_CykliczneW.cpp $(DISTDIR)/
+	$(COPY_FILE) --parents inc/MainWindow.hpp inc/BlockedDelegate.hpp inc/ComboBoxDelegate.hpp inc/CyklicznyDelegate.hpp inc/DatabaseManager.hpp inc/KwotaColorDelegate.hpp inc/PasswordDelegate.hpp inc/Start_Log_Reg.hpp inc/Tab_Budzet.hpp inc/Tab_CykliczneP.hpp inc/Tab_CykliczneW.hpp inc/Tab_DaneUzytkownika.hpp inc/Tab_Dzieci.hpp inc/Tab_Kategorie.hpp inc/Tab_Przychody.hpp inc/Tab_Raporty.hpp inc/RaportWindow.hpp inc/Tab_Relacje.hpp inc/Tab_Uzytkownicy.hpp inc/Tab_Wydatki.hpp inc/User_Panel.hpp $(DISTDIR)/
+	$(COPY_FILE) --parents src/main.cpp src/BlockedDelegate.cpp src/ComboBoxDelegate.cpp src/CyklicznyDelegate.cpp src/DatabaseManager.cpp src/KwotaColorDelegate.cpp src/MainWindow.cpp src/Start_Log_Reg.cpp src/Tab_Budzet.cpp src/Tab_CykliczneP.cpp src/Tab_DaneUzytkownika.cpp src/Tab_Dzieci.cpp src/Tab_Kategorie.cpp src/Tab_Przychody.cpp src/Tab_Raporty.cpp src/RaportWindow.cpp src/Tab_Relacje.cpp src/Tab_Uzytkownicy.cpp src/Tab_Wydatki.cpp src/User_Panel.cpp src/Tab_CykliczneW.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents ui/Start_Log_Reg.ui ui/User_Panel.ui $(DISTDIR)/
 
 
@@ -465,9 +477,9 @@ compiler_moc_predefs_clean:
 moc/moc_predefs.h: /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 	g++ -pipe -O2 -Wall -Wextra -dM -E -o moc/moc_predefs.h /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp
 
-compiler_moc_header_make_all: moc/moc_MainWindow.cpp moc/moc_ComboBoxDelegate.cpp moc/moc_DatabaseManager.cpp moc/moc_KwotaColorDelegate.cpp moc/moc_Start_Log_Reg.cpp moc/moc_Tab_Budzet.cpp moc/moc_Tab_CykliczneP.cpp moc/moc_Tab_CykliczneW.cpp moc/moc_Tab_DaneUzytkownika.cpp moc/moc_Tab_Dzieci.cpp moc/moc_Tab_Kategorie.cpp moc/moc_Tab_Przychody.cpp moc/moc_Tab_Raporty.cpp moc/moc_RaportWindow.cpp moc/moc_Tab_Relacje.cpp moc/moc_Tab_Uzytkownicy.cpp moc/moc_Tab_Wydatki.cpp moc/moc_User_Panel.cpp
+compiler_moc_header_make_all: moc/moc_MainWindow.cpp moc/moc_BlockedDelegate.cpp moc/moc_ComboBoxDelegate.cpp moc/moc_CyklicznyDelegate.cpp moc/moc_DatabaseManager.cpp moc/moc_KwotaColorDelegate.cpp moc/moc_Start_Log_Reg.cpp moc/moc_Tab_Budzet.cpp moc/moc_Tab_CykliczneP.cpp moc/moc_Tab_CykliczneW.cpp moc/moc_Tab_DaneUzytkownika.cpp moc/moc_Tab_Dzieci.cpp moc/moc_Tab_Kategorie.cpp moc/moc_Tab_Przychody.cpp moc/moc_Tab_Raporty.cpp moc/moc_RaportWindow.cpp moc/moc_Tab_Relacje.cpp moc/moc_Tab_Uzytkownicy.cpp moc/moc_Tab_Wydatki.cpp moc/moc_User_Panel.cpp
 compiler_moc_header_clean:
-	-$(DEL_FILE) moc/moc_MainWindow.cpp moc/moc_ComboBoxDelegate.cpp moc/moc_DatabaseManager.cpp moc/moc_KwotaColorDelegate.cpp moc/moc_Start_Log_Reg.cpp moc/moc_Tab_Budzet.cpp moc/moc_Tab_CykliczneP.cpp moc/moc_Tab_CykliczneW.cpp moc/moc_Tab_DaneUzytkownika.cpp moc/moc_Tab_Dzieci.cpp moc/moc_Tab_Kategorie.cpp moc/moc_Tab_Przychody.cpp moc/moc_Tab_Raporty.cpp moc/moc_RaportWindow.cpp moc/moc_Tab_Relacje.cpp moc/moc_Tab_Uzytkownicy.cpp moc/moc_Tab_Wydatki.cpp moc/moc_User_Panel.cpp
+	-$(DEL_FILE) moc/moc_MainWindow.cpp moc/moc_BlockedDelegate.cpp moc/moc_ComboBoxDelegate.cpp moc/moc_CyklicznyDelegate.cpp moc/moc_DatabaseManager.cpp moc/moc_KwotaColorDelegate.cpp moc/moc_Start_Log_Reg.cpp moc/moc_Tab_Budzet.cpp moc/moc_Tab_CykliczneP.cpp moc/moc_Tab_CykliczneW.cpp moc/moc_Tab_DaneUzytkownika.cpp moc/moc_Tab_Dzieci.cpp moc/moc_Tab_Kategorie.cpp moc/moc_Tab_Przychody.cpp moc/moc_Tab_Raporty.cpp moc/moc_RaportWindow.cpp moc/moc_Tab_Relacje.cpp moc/moc_Tab_Uzytkownicy.cpp moc/moc_Tab_Wydatki.cpp moc/moc_User_Panel.cpp
 moc/moc_MainWindow.cpp: inc/MainWindow.hpp \
 		inc/Start_Log_Reg.hpp \
 		inc/DatabaseManager.hpp \
@@ -475,6 +487,7 @@ moc/moc_MainWindow.cpp: inc/MainWindow.hpp \
 		ui_User_Panel.h \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/PasswordDelegate.hpp \
 		inc/Tab_Przychody.hpp \
@@ -487,14 +500,25 @@ moc/moc_MainWindow.cpp: inc/MainWindow.hpp \
 		inc/Tab_Dzieci.hpp \
 		inc/Tab_Relacje.hpp \
 		inc/Tab_Budzet.hpp \
+		inc/KwotaColorDelegate.hpp \
 		moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/MainWindow.hpp -o moc/moc_MainWindow.cpp
+
+moc/moc_BlockedDelegate.cpp: inc/BlockedDelegate.hpp \
+		moc/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/BlockedDelegate.hpp -o moc/moc_BlockedDelegate.cpp
 
 moc/moc_ComboBoxDelegate.cpp: inc/ComboBoxDelegate.hpp \
 		moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/ComboBoxDelegate.hpp -o moc/moc_ComboBoxDelegate.cpp
+
+moc/moc_CyklicznyDelegate.cpp: inc/CyklicznyDelegate.hpp \
+		moc/moc_predefs.h \
+		/usr/lib/qt5/bin/moc
+	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/CyklicznyDelegate.hpp -o moc/moc_CyklicznyDelegate.cpp
 
 moc/moc_DatabaseManager.cpp: inc/DatabaseManager.hpp \
 		moc/moc_predefs.h \
@@ -514,6 +538,7 @@ moc/moc_Start_Log_Reg.cpp: inc/Start_Log_Reg.hpp \
 
 moc/moc_Tab_Budzet.cpp: inc/Tab_Budzet.hpp \
 		inc/DatabaseManager.hpp \
+		inc/KwotaColorDelegate.hpp \
 		moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/Tab_Budzet.hpp -o moc/moc_Tab_Budzet.cpp
@@ -575,6 +600,7 @@ moc/moc_Tab_Relacje.cpp: inc/Tab_Relacje.hpp \
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/Tab_Relacje.hpp -o moc/moc_Tab_Relacje.cpp
 
 moc/moc_Tab_Uzytkownicy.cpp: inc/Tab_Uzytkownicy.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/DatabaseManager.hpp \
 		inc/PasswordDelegate.hpp \
@@ -593,6 +619,7 @@ moc/moc_User_Panel.cpp: inc/User_Panel.hpp \
 		inc/DatabaseManager.hpp \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/PasswordDelegate.hpp \
 		inc/Tab_Przychody.hpp \
@@ -605,6 +632,7 @@ moc/moc_User_Panel.cpp: inc/User_Panel.hpp \
 		inc/Tab_Dzieci.hpp \
 		inc/Tab_Relacje.hpp \
 		inc/Tab_Budzet.hpp \
+		inc/KwotaColorDelegate.hpp \
 		moc/moc_predefs.h \
 		/usr/lib/qt5/bin/moc
 	/usr/lib/qt5/bin/moc $(DEFINES) --include /home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/moc/moc_predefs.h -I/usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++ -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY -I/home/paulina/Documents/BD/Projekt_Budzet_Domowy/BUDZET_DOMOWY/inc -I/usr/include/x86_64-linux-gnu/qt5 -I/usr/include/x86_64-linux-gnu/qt5/QtCharts -I/usr/include/x86_64-linux-gnu/qt5/QtWidgets -I/usr/include/x86_64-linux-gnu/qt5/QtGui -I/usr/include/x86_64-linux-gnu/qt5/QtSql -I/usr/include/x86_64-linux-gnu/qt5/QtCore -I/usr/include/c++/13 -I/usr/include/x86_64-linux-gnu/c++/13 -I/usr/include/c++/13/backward -I/usr/lib/gcc/x86_64-linux-gnu/13/include -I/usr/local/include -I/usr/include/x86_64-linux-gnu -I/usr/include inc/User_Panel.hpp -o moc/moc_User_Panel.cpp
@@ -641,6 +669,7 @@ build/Obj/main.o: src/main.cpp inc/MainWindow.hpp \
 		ui_User_Panel.h \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/PasswordDelegate.hpp \
 		inc/Tab_Przychody.hpp \
@@ -652,11 +681,18 @@ build/Obj/main.o: src/main.cpp inc/MainWindow.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
 		inc/Tab_Relacje.hpp \
-		inc/Tab_Budzet.hpp
+		inc/Tab_Budzet.hpp \
+		inc/KwotaColorDelegate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/main.o src/main.cpp
+
+build/Obj/BlockedDelegate.o: src/BlockedDelegate.cpp inc/BlockedDelegate.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/BlockedDelegate.o src/BlockedDelegate.cpp
 
 build/Obj/ComboBoxDelegate.o: src/ComboBoxDelegate.cpp inc/ComboBoxDelegate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/ComboBoxDelegate.o src/ComboBoxDelegate.cpp
+
+build/Obj/CyklicznyDelegate.o: src/CyklicznyDelegate.cpp inc/CyklicznyDelegate.hpp
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/CyklicznyDelegate.o src/CyklicznyDelegate.cpp
 
 build/Obj/DatabaseManager.o: src/DatabaseManager.cpp inc/DatabaseManager.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/DatabaseManager.o src/DatabaseManager.cpp
@@ -671,6 +707,7 @@ build/Obj/MainWindow.o: src/MainWindow.cpp inc/MainWindow.hpp \
 		ui_User_Panel.h \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/PasswordDelegate.hpp \
 		inc/Tab_Przychody.hpp \
@@ -682,7 +719,8 @@ build/Obj/MainWindow.o: src/MainWindow.cpp inc/MainWindow.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
 		inc/Tab_Relacje.hpp \
-		inc/Tab_Budzet.hpp
+		inc/Tab_Budzet.hpp \
+		inc/KwotaColorDelegate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/MainWindow.o src/MainWindow.cpp
 
 build/Obj/Start_Log_Reg.o: src/Start_Log_Reg.cpp inc/Start_Log_Reg.hpp \
@@ -691,7 +729,8 @@ build/Obj/Start_Log_Reg.o: src/Start_Log_Reg.cpp inc/Start_Log_Reg.hpp \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Start_Log_Reg.o src/Start_Log_Reg.cpp
 
 build/Obj/Tab_Budzet.o: src/Tab_Budzet.cpp inc/Tab_Budzet.hpp \
-		inc/DatabaseManager.hpp
+		inc/DatabaseManager.hpp \
+		inc/KwotaColorDelegate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Tab_Budzet.o src/Tab_Budzet.cpp
 
 build/Obj/Tab_CykliczneP.o: src/Tab_CykliczneP.cpp inc/Tab_CykliczneP.hpp \
@@ -728,6 +767,7 @@ build/Obj/Tab_Relacje.o: src/Tab_Relacje.cpp inc/Tab_Relacje.hpp \
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Tab_Relacje.o src/Tab_Relacje.cpp
 
 build/Obj/Tab_Uzytkownicy.o: src/Tab_Uzytkownicy.cpp inc/Tab_Uzytkownicy.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/DatabaseManager.hpp \
 		inc/PasswordDelegate.hpp
@@ -742,6 +782,7 @@ build/Obj/User_Panel.o: src/User_Panel.cpp inc/User_Panel.hpp \
 		inc/DatabaseManager.hpp \
 		inc/Tab_Wydatki.hpp \
 		inc/Tab_Uzytkownicy.hpp \
+		inc/BlockedDelegate.hpp \
 		inc/ComboBoxDelegate.hpp \
 		inc/PasswordDelegate.hpp \
 		inc/Tab_Przychody.hpp \
@@ -753,7 +794,8 @@ build/Obj/User_Panel.o: src/User_Panel.cpp inc/User_Panel.hpp \
 		inc/RaportWindow.hpp \
 		inc/Tab_Dzieci.hpp \
 		inc/Tab_Relacje.hpp \
-		inc/Tab_Budzet.hpp
+		inc/Tab_Budzet.hpp \
+		inc/KwotaColorDelegate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/User_Panel.o src/User_Panel.cpp
 
 build/Obj/Tab_CykliczneW.o: src/Tab_CykliczneW.cpp inc/Tab_CykliczneW.hpp \
@@ -764,8 +806,14 @@ build/Obj/Tab_CykliczneW.o: src/Tab_CykliczneW.cpp inc/Tab_CykliczneW.hpp \
 build/Obj/moc_MainWindow.o: moc/moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_MainWindow.o moc/moc_MainWindow.cpp
 
+build/Obj/moc_BlockedDelegate.o: moc/moc_BlockedDelegate.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_BlockedDelegate.o moc/moc_BlockedDelegate.cpp
+
 build/Obj/moc_ComboBoxDelegate.o: moc/moc_ComboBoxDelegate.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_ComboBoxDelegate.o moc/moc_ComboBoxDelegate.cpp
+
+build/Obj/moc_CyklicznyDelegate.o: moc/moc_CyklicznyDelegate.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_CyklicznyDelegate.o moc/moc_CyklicznyDelegate.cpp
 
 build/Obj/moc_DatabaseManager.o: moc/moc_DatabaseManager.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_DatabaseManager.o moc/moc_DatabaseManager.cpp

@@ -20,13 +20,16 @@ Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,
 
    zl1Label=root->findChild<QLabel*>("label_zl1");
    zl2Label=root->findChild<QLabel*>("label_zl2");
+   nkLabel = root->findChild<QLabel *>("label_nk");
 
-    if (pokazHasloCheckBox && hasloLineEdit) {
-        // Obsługa checkboxa do widoczności hasła
-        connect(pokazHasloCheckBox, &QCheckBox::toggled, this, [this](bool checked) {
-            hasloLineEdit->setEchoMode(checked ? QLineEdit::Normal : QLineEdit::Password);
-        });
-    }
+   nastepneKieszonkoweLineEdit = root->findChild<QLineEdit *>("lineEdit_dzieciData");
+
+   if (pokazHasloCheckBox && hasloLineEdit) {
+       // Obsługa checkboxa do widoczności hasła
+       connect(pokazHasloCheckBox, &QCheckBox::toggled, this, [this](bool checked) {
+           hasloLineEdit->setEchoMode(checked ? QLineEdit::Normal : QLineEdit::Password);
+       });
+   }
 
     // Obsługa kliknięcia przycisku zmiany hasła
     if (zmienHasloButton) {
@@ -50,14 +53,17 @@ void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager){
   kieszonkoweLineEdit->setVisible(children);
   saldoLineEdit->setVisible(children);
   zl1Label->setVisible(children);
-zl2Label->setVisible(children);
+  zl2Label->setVisible(children);
+  nastepneKieszonkoweLineEdit->setVisible(children);
+  nkLabel->setVisible(children);
 
-
-  int myID=m_dbManager->get_user_ID();
+  int myID = m_dbManager->get_user_ID();
 
   if(children){
-       saldoLineEdit->setText(QString::number(m_dbManager->get_saldo(myID), 'f', 2));
+      saldoLineEdit->setText(QString::number(m_dbManager->get_saldo(myID), 'f', 2));
       kieszonkoweLineEdit->setText(QString::number(m_dbManager->get_kieszonkowe(myID), 'f', 2));
+      nastepneKieszonkoweLineEdit->setText(
+          m_dbManager->get_date_next_kieszonkowe(myID).toString("dd-MM-yyyy"));
   }
 }
 void Tab_DaneUzytkownika::ZmienHasloClicked() {

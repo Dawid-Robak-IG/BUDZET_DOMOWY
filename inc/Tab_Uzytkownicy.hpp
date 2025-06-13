@@ -1,6 +1,7 @@
 #ifndef TAB_UZYTKOWNICY_HPP
 #define TAB_UZYTKOWNICY_HPP
 
+#include "BlockedDelegate.hpp"
 #include "ComboBoxDelegate.hpp"
 #include "DatabaseManager.hpp"
 #include "PasswordDelegate.hpp"

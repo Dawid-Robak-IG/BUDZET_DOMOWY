@@ -21,7 +21,9 @@ QT+=widgets
 QT += sql
 QT += core gui widgets charts
 SOURCES += src/main.cpp \
+           src/BlockedDelegate.cpp \
            src/ComboBoxDelegate.cpp \
+           src/CyklicznyDelegate.cpp \
            src/DatabaseManager.cpp \
            src/KwotaColorDelegate.cpp \
            src/MainWindow.cpp \
@@ -40,7 +42,9 @@ SOURCES += src/main.cpp \
            src/User_Panel.cpp\
            src/Tab_CykliczneW.cpp
 HEADERS += inc/MainWindow.hpp \
+    inc/BlockedDelegate.hpp \
     inc/ComboBoxDelegate.hpp \
+    inc/CyklicznyDelegate.hpp \
     inc/DatabaseManager.hpp \
     inc/KwotaColorDelegate.hpp \
     inc/PasswordDelegate.hpp \

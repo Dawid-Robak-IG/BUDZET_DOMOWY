@@ -136,7 +136,7 @@ void Tab_Uzytkownicy::setTableStrategy(){
         connect(tabelaTableView, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
             QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
 
-            if (colName == "ID" || colName == "Data urodzenia" || colName == "Czy_zablokowany") {
+            if (colName == "ID" || colName == "Data urodzenia") {
                 qDebug() << "Edycja zabroniona dla kolumny:" << colName;
                 return;
             }
@@ -146,5 +146,6 @@ void Tab_Uzytkownicy::setTableStrategy(){
     }
 
     tabelaTableView->setItemDelegateForColumn(kolumnaHasla, new PasswordDelegate(this));
-
+    int kolumnaZablokowany = modelUsers->fieldIndex("Czy_zablokowany");
+    tabelaTableView->setItemDelegateForColumn(kolumnaZablokowany, new BlockedDelegate(this));
 }

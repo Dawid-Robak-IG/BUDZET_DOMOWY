@@ -28,6 +28,11 @@
      </item>
      <item>
       <widget class="QLabel" name="label_name">
+       <property name="font">
+        <font>
+         <pointsize>15</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>&quot;IMIĘ I NAZWISKO&quot;</string>
        </property>
@@ -42,6 +47,11 @@
      </item>
      <item>
       <widget class="QPushButton" name="button_logout">
+       <property name="font">
+        <font>
+         <pointsize>13</pointsize>
+        </font>
+       </property>
        <property name="text">
         <string>WYLOGUJ</string>
        </property>
@@ -55,7 +65,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="tab_DaneUzytkownika">
       <attribute name="title">
@@ -284,11 +294,50 @@
         </layout>
        </item>
        <item>
-        <widget class="QLabel" name="label_kieszonkowe">
-         <property name="text">
-          <string>Kieszonkowe:</string>
+        <layout class="QHBoxLayout" name="horizontalLayout_44">
+         <property name="topMargin">
+          <number>0</number>
          </property>
-        </widget>
+         <item>
+          <widget class="QLabel" name="label_kieszonkowe">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>1</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Kieszonkowe:</string>
+           </property>
+          </widget>
+         </item>
+         <item>
+          <spacer name="horizontalSpacer_39">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>430</width>
+             <height>20</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_nk">
+           <property name="sizePolicy">
+            <sizepolicy hsizetype="Preferred" vsizetype="Preferred">
+             <horstretch>2</horstretch>
+             <verstretch>0</verstretch>
+            </sizepolicy>
+           </property>
+           <property name="text">
+            <string>Data następnego kieszonkowego:</string>
+           </property>
+          </widget>
+         </item>
+        </layout>
        </item>
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_41">
@@ -327,6 +376,9 @@
             </size>
            </property>
           </spacer>
+         </item>
+         <item>
+          <widget class="QLineEdit" name="lineEdit_dzieciData"/>
          </item>
         </layout>
        </item>
@@ -1787,15 +1839,11 @@
              </property>
              <item>
               <widget class="QPushButton" name="pushButton_edytujDane">
+               <property name="styleSheet">
+                <string notr="true">background-color: #ffffff;</string>
+               </property>
                <property name="text">
                 <string>Edytuj dane</string>
-               </property>
-              </widget>
-             </item>
-             <item>
-              <widget class="QCheckBox" name="checkBox_pokazHasla">
-               <property name="text">
-                <string>Pokaż hasła</string>
                </property>
               </widget>
              </item>
@@ -1803,6 +1851,13 @@
               <widget class="QPushButton" name="pushButton_zablokuj_odblokuj">
                <property name="text">
                 <string>Zablokuj/odblokuj</string>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <widget class="QCheckBox" name="checkBox_pokazHasla">
+               <property name="text">
+                <string>Pokaż hasła</string>
                </property>
               </widget>
              </item>
@@ -2070,6 +2125,26 @@
            </item>
            <item>
             <spacer name="horizontalSpacer_23">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+          </layout>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_43">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <spacer name="horizontalSpacer_38">
              <property name="orientation">
               <enum>Qt::Horizontal</enum>
              </property>

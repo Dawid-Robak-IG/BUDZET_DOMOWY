@@ -52,9 +52,12 @@ public:
     bool amIChild();
     float get_kieszonkowe(int child_ID);
     float get_saldo(int child_ID);
+    QDate get_date_next_kieszonkowe(int child_ID);
     bool update_my_saldo(double amount);
     bool change_kieszonkowe(int child_ID, float new_kieszonkowe);
-    
+
+    bool amIParent();
+
     QPair<QVector<QDate>, QVector<double>> getBudzetData(const QDate& startDate, const QDate& endDate, const QString& category = QString());
     QPair<QVector<QDate>, QVector<double>> getMyBudzetData(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category = QString());
     QPair<QVector<QDate>, QVector<double>> getMyPrzychody(const QDate& startDate, const QDate& endDate, int user_ID, const QString& category = QString());

@@ -39,7 +39,9 @@ public:
     void setUserEmail(const QString& email);
 
     void setTablesByNewUser();
-void displayUserData(const QString &email);
+
+    void setTabsVisibility();
+    void displayUserData(const QString &email);
 
     void goToStartPage();
 

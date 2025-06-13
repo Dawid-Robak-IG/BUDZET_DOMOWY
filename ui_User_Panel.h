@@ -68,11 +68,15 @@ public:
     QSpacerItem *horizontalSpacer_8;
     QPushButton *pushButton_zmienHaslo;
     QSpacerItem *horizontalSpacer_4;
+    QHBoxLayout *horizontalLayout_44;
     QLabel *label_kieszonkowe;
+    QSpacerItem *horizontalSpacer_39;
+    QLabel *label_nk;
     QHBoxLayout *horizontalLayout_41;
     QLineEdit *lineEdit_kieszonkoweDU;
     QLabel *label_zl1;
     QSpacerItem *horizontalSpacer_35;
+    QLineEdit *lineEdit_dzieciData;
     QLabel *label_saldo;
     QHBoxLayout *horizontalLayout_42;
     QLineEdit *lineEdit_saldoDU;
@@ -261,8 +265,8 @@ public:
     QTableView *tableView_uzytkownicy;
     QVBoxLayout *verticalLayout_11;
     QPushButton *pushButton_edytujDane;
-    QCheckBox *checkBox_pokazHasla;
     QPushButton *pushButton_zablokuj_odblokuj;
+    QCheckBox *checkBox_pokazHasla;
     QWidget *page_3;
     QVBoxLayout *verticalLayout_12;
     QHBoxLayout *horizontalLayout_24;
@@ -300,6 +304,8 @@ public:
     QLineEdit *lineEdit_aktualneSaldo;
     QLabel *label_42;
     QSpacerItem *horizontalSpacer_23;
+    QHBoxLayout *horizontalLayout_43;
+    QSpacerItem *horizontalSpacer_38;
     QSpacerItem *verticalSpacer_8;
     QFrame *line;
     QVBoxLayout *verticalLayout_14;
@@ -336,6 +342,9 @@ public:
 
         label_name = new QLabel(User_Panel);
         label_name->setObjectName(QString::fromUtf8("label_name"));
+        QFont font;
+        font.setPointSize(15);
+        label_name->setFont(font);
 
         horizontalLayout->addWidget(label_name);
 
@@ -346,6 +355,9 @@ public:
 
         button_logout = new QPushButton(User_Panel);
         button_logout->setObjectName(QString::fromUtf8("button_logout"));
+        QFont font1;
+        font1.setPointSize(13);
+        button_logout->setFont(font1);
 
         horizontalLayout->addWidget(button_logout);
 
@@ -491,10 +503,35 @@ public:
 
         verticalLayout_4->addLayout(horizontalLayout_6);
 
+        horizontalLayout_44 = new QHBoxLayout();
+        horizontalLayout_44->setObjectName(QString::fromUtf8("horizontalLayout_44"));
+        horizontalLayout_44->setContentsMargins(-1, 0, -1, -1);
         label_kieszonkowe = new QLabel(tab_DaneUzytkownika);
         label_kieszonkowe->setObjectName(QString::fromUtf8("label_kieszonkowe"));
+        QSizePolicy sizePolicy(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(1);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(label_kieszonkowe->sizePolicy().hasHeightForWidth());
+        label_kieszonkowe->setSizePolicy(sizePolicy);
 
-        verticalLayout_4->addWidget(label_kieszonkowe);
+        horizontalLayout_44->addWidget(label_kieszonkowe);
+
+        horizontalSpacer_39 = new QSpacerItem(430, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_44->addItem(horizontalSpacer_39);
+
+        label_nk = new QLabel(tab_DaneUzytkownika);
+        label_nk->setObjectName(QString::fromUtf8("label_nk"));
+        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(2);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(label_nk->sizePolicy().hasHeightForWidth());
+        label_nk->setSizePolicy(sizePolicy1);
+
+        horizontalLayout_44->addWidget(label_nk);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_44);
 
         horizontalLayout_41 = new QHBoxLayout();
         horizontalLayout_41->setObjectName(QString::fromUtf8("horizontalLayout_41"));
@@ -514,6 +551,11 @@ public:
         horizontalSpacer_35 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
 
         horizontalLayout_41->addItem(horizontalSpacer_35);
+
+        lineEdit_dzieciData = new QLineEdit(tab_DaneUzytkownika);
+        lineEdit_dzieciData->setObjectName(QString::fromUtf8("lineEdit_dzieciData"));
+
+        horizontalLayout_41->addWidget(lineEdit_dzieciData);
 
 
         verticalLayout_4->addLayout(horizontalLayout_41);
@@ -619,11 +661,11 @@ public:
 
         tableView_budzet = new QTableView(tab_Budzet);
         tableView_budzet->setObjectName(QString::fromUtf8("tableView_budzet"));
-        QSizePolicy sizePolicy(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy.setHorizontalStretch(2);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(tableView_budzet->sizePolicy().hasHeightForWidth());
-        tableView_budzet->setSizePolicy(sizePolicy);
+        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy2.setHorizontalStretch(2);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(tableView_budzet->sizePolicy().hasHeightForWidth());
+        tableView_budzet->setSizePolicy(sizePolicy2);
 
         horizontalLayout_37->addWidget(tableView_budzet);
 
@@ -657,11 +699,11 @@ public:
 
         label_6 = new QLabel(tab_Przychody);
         label_6->setObjectName(QString::fromUtf8("label_6"));
-        QSizePolicy sizePolicy1(QSizePolicy::Preferred, QSizePolicy::Preferred);
-        sizePolicy1.setHorizontalStretch(0);
-        sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
-        label_6->setSizePolicy(sizePolicy1);
+        QSizePolicy sizePolicy3(QSizePolicy::Preferred, QSizePolicy::Preferred);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(label_6->sizePolicy().hasHeightForWidth());
+        label_6->setSizePolicy(sizePolicy3);
 
         horizontalLayout_2->addWidget(label_6);
 
@@ -974,8 +1016,6 @@ public:
 
         label_26 = new QLabel(page_nowyCP);
         label_26->setObjectName(QString::fromUtf8("label_26"));
-        QFont font;
-        font.setPointSize(15);
         label_26->setFont(font);
 
         horizontalLayout_22->addWidget(label_26);
@@ -1077,11 +1117,11 @@ public:
         stackedWidget_CykliczneW->setObjectName(QString::fromUtf8("stackedWidget_CykliczneW"));
         page_CW_lista = new QWidget();
         page_CW_lista->setObjectName(QString::fromUtf8("page_CW_lista"));
-        QSizePolicy sizePolicy2(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(page_CW_lista->sizePolicy().hasHeightForWidth());
-        page_CW_lista->setSizePolicy(sizePolicy2);
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(page_CW_lista->sizePolicy().hasHeightForWidth());
+        page_CW_lista->setSizePolicy(sizePolicy4);
         page_CW_lista->setMinimumSize(QSize(200, 200));
         horizontalLayout_18 = new QHBoxLayout(page_CW_lista);
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
@@ -1242,9 +1282,9 @@ public:
         verticalLayout_16->setContentsMargins(-1, -1, 0, 0);
         label_43 = new QLabel(tab_Raporty);
         label_43->setObjectName(QString::fromUtf8("label_43"));
-        QFont font1;
-        font1.setPointSize(14);
-        label_43->setFont(font1);
+        QFont font2;
+        font2.setPointSize(14);
+        label_43->setFont(font2);
         label_43->setAlignment(Qt::AlignCenter);
 
         verticalLayout_16->addWidget(label_43);
@@ -1335,7 +1375,7 @@ public:
         verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
         label_52 = new QLabel(tab_Raporty);
         label_52->setObjectName(QString::fromUtf8("label_52"));
-        label_52->setFont(font1);
+        label_52->setFont(font2);
         label_52->setAlignment(Qt::AlignCenter);
 
         verticalLayout_17->addWidget(label_52);
@@ -1425,18 +1465,19 @@ public:
         verticalLayout_11->setContentsMargins(0, -1, -1, -1);
         pushButton_edytujDane = new QPushButton(page);
         pushButton_edytujDane->setObjectName(QString::fromUtf8("pushButton_edytujDane"));
+        pushButton_edytujDane->setStyleSheet(QString::fromUtf8("background-color: #ffffff;"));
 
         verticalLayout_11->addWidget(pushButton_edytujDane);
-
-        checkBox_pokazHasla = new QCheckBox(page);
-        checkBox_pokazHasla->setObjectName(QString::fromUtf8("checkBox_pokazHasla"));
-
-        verticalLayout_11->addWidget(checkBox_pokazHasla);
 
         pushButton_zablokuj_odblokuj = new QPushButton(page);
         pushButton_zablokuj_odblokuj->setObjectName(QString::fromUtf8("pushButton_zablokuj_odblokuj"));
 
         verticalLayout_11->addWidget(pushButton_zablokuj_odblokuj);
+
+        checkBox_pokazHasla = new QCheckBox(page);
+        checkBox_pokazHasla->setObjectName(QString::fromUtf8("checkBox_pokazHasla"));
+
+        verticalLayout_11->addWidget(checkBox_pokazHasla);
 
 
         horizontalLayout_23->addLayout(verticalLayout_11);
@@ -1616,6 +1657,16 @@ public:
 
         verticalLayout_15->addLayout(horizontalLayout_28);
 
+        horizontalLayout_43 = new QHBoxLayout();
+        horizontalLayout_43->setObjectName(QString::fromUtf8("horizontalLayout_43"));
+        horizontalLayout_43->setContentsMargins(-1, 0, -1, -1);
+        horizontalSpacer_38 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_43->addItem(horizontalSpacer_38);
+
+
+        verticalLayout_15->addLayout(horizontalLayout_43);
+
         verticalSpacer_8 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_15->addItem(verticalSpacer_8);
@@ -1662,8 +1713,8 @@ public:
         horizontalLayout_33->setContentsMargins(-1, 20, -1, -1);
         tableView_dzieciRelacje = new QTableView(tab_Relacje);
         tableView_dzieciRelacje->setObjectName(QString::fromUtf8("tableView_dzieciRelacje"));
-        sizePolicy2.setHeightForWidth(tableView_dzieciRelacje->sizePolicy().hasHeightForWidth());
-        tableView_dzieciRelacje->setSizePolicy(sizePolicy2);
+        sizePolicy4.setHeightForWidth(tableView_dzieciRelacje->sizePolicy().hasHeightForWidth());
+        tableView_dzieciRelacje->setSizePolicy(sizePolicy4);
 
         horizontalLayout_33->addWidget(tableView_dzieciRelacje);
 
@@ -1715,7 +1766,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
@@ -1740,6 +1791,7 @@ public:
         checkBox_showPassword->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202o", nullptr));
         pushButton_zmienHaslo->setText(QCoreApplication::translate("User_Panel", "Zmie\305\204 has\305\202o", nullptr));
         label_kieszonkowe->setText(QCoreApplication::translate("User_Panel", "Kieszonkowe:", nullptr));
+        label_nk->setText(QCoreApplication::translate("User_Panel", "Data nast\304\231pnego kieszonkowego:", nullptr));
         label_zl1->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_saldo->setText(QCoreApplication::translate("User_Panel", "Saldo:", nullptr));
         label_zl2->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
@@ -1817,8 +1869,8 @@ public:
         pushButton_adminprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla u\305\274ytkownika:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
         pushButton_edytujDane->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));
-        checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
         pushButton_zablokuj_odblokuj->setText(QCoreApplication::translate("User_Panel", "Zablokuj/odblokuj", nullptr));
+        checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
         pushButton_powrotE->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
         label_32->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));
         label_33->setText(QCoreApplication::translate("User_Panel", "Imi\304\231", nullptr));

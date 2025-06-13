@@ -40,6 +40,10 @@ void Tab_Budzet::loadOperacjeTable() {
     modelOperacje->setEditStrategy(QSqlTableModel::OnManualSubmit);
     qDebug()<<"BUDZET: Zakonczono setEdutTable";
     modelOperacje->select();
+
+    int kolumnaCykliczne = modelOperacje->fieldIndex("czy_z_cyklicznego");
+    modelOperacje->setHeaderData(kolumnaCykliczne, Qt::Horizontal, "Rodzaj operacji");
+
     tabelaOperacje->setModel(modelOperacje);
 
     tabelaOperacje->resizeColumnsToContents();
@@ -51,6 +55,7 @@ void Tab_Budzet::loadOperacjeTable() {
 
     int kolumnaKwota = modelOperacje->fieldIndex("Kwota");
     tabelaOperacje->setItemDelegateForColumn(kolumnaKwota, new KwotaColorDelegate(this));
+    tabelaOperacje->setItemDelegateForColumn(kolumnaCykliczne, new CyklicznyDelegate(this));
 }
 
 void Tab_Budzet::refresh()

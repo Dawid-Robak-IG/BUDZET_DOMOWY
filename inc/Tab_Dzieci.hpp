@@ -44,7 +44,7 @@ private:
     QPushButton *generujRaportButton;
     QPushButton *zmienKieszonkoweButton;
     QComboBox *listaDzieciCombo;
-
+    QLineEdit *nastepneKieszonkoweLineEdit;
     DatabaseManager* m_dbManager = nullptr;
 
     void showTable();

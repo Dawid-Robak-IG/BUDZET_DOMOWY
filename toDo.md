@@ -111,15 +111,15 @@ double whole_future_Budzet(QDate future_Date);
 ```
 Po konsultacjach: 
 
-- wyświetlać datę następnego wpływu kieszonkowego (???) - PP
+- ✅ wyświetlać datę następnego wpływu kieszonkowego (???) - PP
 - ✅ usunąć przycisk edytuj z cykliczne - PP
-- zamiast 0 1 w 'czy zablokowany?' to wyświetlać napis zablokowany/aktywny - DR
+- ✅ zamiast 0 1 w 'czy zablokowany?' to wyświetlać napis zablokowany/aktywny - DR
 - zamiast id wyświetlać imię i nazwisko - DR
 - ✅ gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet - DR
-- poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały - PP
+- ✅ poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały - PP
 - przy przelogowaniu nie zmieniają się dane - DR
 - ✅ moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
-- cykliczna / jednorazowa (napis zamiast 0/1) - DR
+- ✅ cykliczna / jednorazowa (napis zamiast 0/1) - DR
 - wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
 - od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
 - wykres budżet schodki, reszta słupki - DR
@@ -127,13 +127,16 @@ Po konsultacjach:
 - ✅ lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista) - PP
 - ✅ tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji) - PP
 - imiona i nazwiska zamiast id - w Relacjach
-- sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - PP/DR
+- sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - (zrobiłam funkcję i wstępnie ukryłam zakładki, ale to trzeba jeszcze przemyśleć) PP/DR
 - ✅ dodać kolor dla tabeli budżetu - PP
 - ✅ dodać dla progrnozy poczatkową date - PP
 - kolorki dla użytkowników zależne od ról - ???
 - zapis raportów - DR
 - ustawić odpowiednie rozmiary dla tabeli i innych pól - PP
 
--jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać 
+
+- co ostatecznie z raportem generowanym przez dziecko
+
+- jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać, może trzeba przy zamianie częstotliwości obliczać na nowo następną datę?
 
 

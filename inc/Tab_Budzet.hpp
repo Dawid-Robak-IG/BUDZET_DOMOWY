@@ -1,6 +1,7 @@
 #ifndef TAB_BUDZET_HPP
 #define TAB_BUDZET_HPP
 
+#include "CyklicznyDelegate.hpp"
 #include "DatabaseManager.hpp"
 #include "KwotaColorDelegate.hpp"
 
