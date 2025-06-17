@@ -120,7 +120,7 @@ Po konsultacjach:
 - ✅ przy przelogowaniu nie zmieniają się dane - DR
 - ✅ moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
 - ✅ cykliczna / jednorazowa (napis zamiast 0/1) - DR
-- wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
+- ✅ wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
 - od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
 - wykres budżet schodki, reszta słupki - DR
 - cały rok, czyli inny format daty - DR

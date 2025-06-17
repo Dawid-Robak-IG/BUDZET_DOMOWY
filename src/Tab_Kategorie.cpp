@@ -101,8 +101,7 @@ void Tab_Kategorie::DodajKategorieClicked(){
     } else {
         QMessageBox::warning(this, "Błąd", "Nie udało się dodać kategorii.");
     }
-
-
+    nowaKategoriaLineEdit->clear();
 }
 
 
@@ -131,7 +130,7 @@ QString wybranaKategoria = kategoriaCombo->currentText();
            QMessageBox::information(this, "Sukces", "Usunięto kategorię.");
 //            modelUsers->select();
        } else {
-            QMessageBox::warning(this, "Błąd", "Nie udało się usunąć kategorii.");
+            QMessageBox::warning(this, "Błąd", "Nie można usuwać kategorii dla których istnieją wpisy do budżetu");
         }
     }
 
