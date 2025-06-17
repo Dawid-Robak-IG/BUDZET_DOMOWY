@@ -34,24 +34,30 @@ void Tab_Budzet::loadOperacjeTable() {
         delete modelOperacje;
     }
 
-    modelOperacje = new QSqlTableModel(this, m_dbManager->getDatabase());
+    modelOperacje = new QSqlRelationalTableModel(this, m_dbManager->getDatabase());
     qDebug()<<"BUDZET: nowy model Table";
     modelOperacje->setTable("Operacja");
     modelOperacje->setEditStrategy(QSqlTableModel::OnManualSubmit);
     qDebug()<<"BUDZET: Zakonczono setEdutTable";
-    modelOperacje->select();
 
     int kolumnaCykliczne = modelOperacje->fieldIndex("czy_z_cyklicznego");
     modelOperacje->setHeaderData(kolumnaCykliczne, Qt::Horizontal, "Rodzaj operacji");
 
+    modelOperacje->setRelation(
+        modelOperacje->fieldIndex("Uzytkownik zalogowanyID"),
+        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
+    );
+
+    modelOperacje->select();
     tabelaOperacje->setModel(modelOperacje);
 
     tabelaOperacje->resizeColumnsToContents();
     //tabelaOperacje->horizontalHeader()->setStretchLastSection(true);
     tabelaOperacje->setEditTriggers(QAbstractItemView::NoEditTriggers); // tylko do odczytu
 
-    tabelaOperacje->hideColumn(0);
-    tabelaOperacje->hideColumn(7);
+    tabelaOperacje->hideColumn(modelOperacje->fieldIndex("ID"));
+    tabelaOperacje->hideColumn(modelOperacje->fieldIndex("Uzytkownik zalogowanyID"));
+    tabelaOperacje->hideColumn(modelOperacje->fieldIndex("Operacja cyklicznaID"));
 
     int kolumnaKwota = modelOperacje->fieldIndex("Kwota");
     tabelaOperacje->setItemDelegateForColumn(kolumnaKwota, new KwotaColorDelegate(this));

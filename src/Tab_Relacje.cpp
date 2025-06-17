@@ -96,8 +96,39 @@ void Tab_Relacje::showTables()
 {
     //Tablica dzieci
 
-    dzieciModelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
+    dzieciModelUsers = new QSqlRelationalTableModel(this, m_dbManager->getDatabase());
     dzieciModelUsers->setTable("Dziecko");
+    dzieciModelUsers->setRelation(
+        dzieciModelUsers->fieldIndex("Uzytkownik zalogowanyID"),
+        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
+    );
+    dzieciModelUsers->setHeaderData(
+        dzieciModelUsers->fieldIndex("ImieNazwisko"),
+        Qt::Horizontal,
+        "Dziecko"
+    );
+
+    dzieciModelUsers->setRelation(
+        dzieciModelUsers->fieldIndex("ID_Rodzic1"),
+        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
+    );
+    dzieciModelUsers->setHeaderData(
+        dzieciModelUsers->fieldIndex("ImieNazwisko"),
+        Qt::Horizontal,
+        "Rodzic 1"
+    );
+
+    dzieciModelUsers->setRelation(
+        dzieciModelUsers->fieldIndex("ID_Rodzic2"),
+        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
+    );
+    dzieciModelUsers->setHeaderData(
+        dzieciModelUsers->fieldIndex("ImieNazwisko"),
+        Qt::Horizontal,
+        "Rodzic 2"
+    );
+
+
     if (!dzieciModelUsers->select()) {
         qDebug() << "Błąd ładowania danych dzieci:" << dzieciModelUsers->lastError().text();
     }

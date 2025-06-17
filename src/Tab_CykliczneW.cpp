@@ -162,7 +162,7 @@ void Tab_CykliczneW::goToStartPage() {
 void Tab_CykliczneW::setTableStrategy(){
     qDebug()<<"CYKLCIZNE_W: rozpoczęcie setTabelStrategy";
     if(!modelUsers){
-        modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
+        modelUsers = new QSqlRelationalTableModel(this, m_dbManager->getDatabase());
         qDebug()<<"CYKLICZNE_W: stworzono nowy TableModel";
     }
     modelUsers->setTable("`Operacja cykliczna`");
@@ -177,6 +177,12 @@ void Tab_CykliczneW::setTableStrategy(){
     modelUsers->setFilter(filter);
     qDebug()<<"CYKLICZNE_W: nowy filter";
 
+    modelUsers->setRelation(
+        modelUsers->fieldIndex("Uzytkownik zalogowanyID"),
+        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
+    );
+    qDebug()<<"CYKLICZNE_W: dodano kolumny z widoku"; 
+
     modelUsers->select(); 
     qDebug()<<"CYKLICZNE_W: odswierzono tabelke"; 
 
@@ -189,7 +195,7 @@ void Tab_CykliczneW::setTableStrategy(){
     connect(cykliczneWTable, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
         QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
 
-        if (colName == "Uzytkownik zalogowanyID") {
+        if (colName == "Uzytkownik zalogowanyID" or colName=="ImieNazwisko") {
             qDebug() << "Edycja zabroniona dla kolumny:" << colName;
             return;
         }

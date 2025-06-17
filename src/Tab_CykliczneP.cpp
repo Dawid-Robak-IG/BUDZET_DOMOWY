@@ -151,7 +151,7 @@ void Tab_CykliczneP::goToStartPage() {
 }
 void Tab_CykliczneP::setTableStrategy(){
     if(!modelUsers){
-        modelUsers = new QSqlTableModel(this, m_dbManager->getDatabase());
+        modelUsers = new QSqlRelationalTableModel(this, m_dbManager->getDatabase());
     }
     modelUsers->setTable("`Operacja cykliczna`");
     modelUsers->setEditStrategy(QSqlTableModel::OnFieldChange);
@@ -163,8 +163,16 @@ void Tab_CykliczneP::setTableStrategy(){
     }
 
     modelUsers->setFilter(filter);
+    qDebug()<<"CYKLICZNE_P: nowy filter";
+
+    modelUsers->setRelation(
+        modelUsers->fieldIndex("Uzytkownik zalogowanyID"),
+        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
+    );
+    qDebug()<<"CYKLICZNE_P: dodano kolumny z widoku"; 
 
     modelUsers->select();  
+    qDebug()<<"CYKLICZNE_P: odswierzono tabelke"; 
 
     cyklicznePTable->setModel(modelUsers);
     cyklicznePTable->hideColumn(modelUsers->fieldIndex("ID"));

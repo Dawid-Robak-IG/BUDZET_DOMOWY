@@ -18,6 +18,7 @@
 #include <QStackedWidget>
 #include <QTableView>
 #include <QSqlTableModel>
+#include <QSqlRelationalTableModel>
 
 class Tab_CykliczneW : public QWidget
 {
@@ -51,7 +52,7 @@ private:
     QPushButton *dodajCW_Button;
     QLineEdit *notatkaCW_LineEdit;
 
-    QSqlTableModel* modelUsers; //potrzebne do tabelki
+    QSqlRelationalTableModel* modelUsers; //potrzebne do tabelki
     DatabaseManager* m_dbManager = nullptr;
     void loadKategorie();
     void reset_Tab();

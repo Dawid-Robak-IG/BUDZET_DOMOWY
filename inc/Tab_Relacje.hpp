@@ -16,6 +16,7 @@
 #include <QTableView>
 #include <QVariant>
 #include <QWidget>
+#include <QSqlRelationalTableModel>
 
 class Tab_Relacje : public QWidget
 {
@@ -34,7 +35,7 @@ private:
     QString m_userEmail;
          QTableView *dzieciTable;
         QTableView *rodziceTable;
-        QSqlTableModel *dzieciModelUsers;
+        QSqlRelationalTableModel *dzieciModelUsers;
         QSqlTableModel *rodziceModelUsers;
 
         QPushButton *dodajRelacjeButton;

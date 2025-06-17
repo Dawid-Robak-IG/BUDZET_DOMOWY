@@ -10,8 +10,7 @@
 #include <QTableView>
 #include <QSqlTableModel>
 #include <QDebug>
-
-
+#include <QSqlRelationalTableModel>
 
 class Tab_Budzet : public QWidget
 {
@@ -29,7 +28,7 @@ private:
     QLineEdit *dataBudzet;
     QLineEdit *kwotaBudzet;
     QTableView *tabelaOperacje;
-    QSqlTableModel* modelOperacje;
+    QSqlRelationalTableModel* modelOperacje;
 
     DatabaseManager* m_dbManager = nullptr;
 };

@@ -114,7 +114,7 @@ Po konsultacjach:
 - ✅ wyświetlać datę następnego wpływu kieszonkowego (???) - PP
 - ✅ usunąć przycisk edytuj z cykliczne - PP
 - ✅ zamiast 0 1 w 'czy zablokowany?' to wyświetlać napis zablokowany/aktywny - DR
-- zamiast id wyświetlać imię i nazwisko - DR
+- ✅ zamiast id wyświetlać imię i nazwisko (cykliczne, budzet, dzieci)- DR
 - ✅ gdy aktualizuje się budżet to trzeba zrobić, żeby zaktualizowały się pola w zakładce budżet - DR
 - ✅ poblokować zakładki dla dzieci(tych których i tak nie mogą używać)  -> żeby się nie wyświetlały - PP
 - przy przelogowaniu nie zmieniają się dane - DR
