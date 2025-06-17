@@ -17,6 +17,7 @@
 #include <QVariant>
 #include <QWidget>
 #include <QSqlRelationalTableModel>
+#include <QSqlRecord>
 
 class Tab_Relacje : public QWidget
 {

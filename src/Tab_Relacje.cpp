@@ -20,12 +20,13 @@ Tab_Relacje::Tab_Relacje(const QString& userEmail,QWidget *root, QWidget *parent
 
 }
 
-
 void Tab_Relacje::PrzypiszRodzicaClicked() {
     QModelIndex dzieckoIndex = dzieciTable->currentIndex();
+    qDebug()<<"PRZYPISZRODZICA1: idx dziecka w tabeli:"<<dzieckoIndex;
+
     QModelIndex rodzicIndex = rodziceTable->currentIndex();
 
-    if(!m_dbManager->amI_admin()){
+    if (!m_dbManager->amI_admin()) {
         QMessageBox::warning(this, "Błąd", "Tylko admin może przypisywać rodziców do dzieci");
         return;
     }
@@ -36,13 +37,16 @@ void Tab_Relacje::PrzypiszRodzicaClicked() {
     }
     int dzieckoID = dzieciModelUsers
                         ->data(dzieciModelUsers->index(dzieckoIndex.row(),
-                                                       dzieciModelUsers->fieldIndex(
-                                                           "Uzytkownik zalogowanyID")))
+                                                    dzieciModelUsers->fieldIndex(
+                                                        "DzieckoUserID"))) 
                         .toInt();
-    //  int dzieckoID = dzieciModelUsers->data(dzieciModelUsers->index(dzieckoIndex.row(), dzieciModelUsers->fieldIndex("ID"))).toInt();
-    int rodzicID = rodziceModelUsers->data(rodziceModelUsers->index(rodzicIndex.row(), rodziceModelUsers->fieldIndex("ID"))).toInt();
+    int rodzicID = rodziceModelUsers
+                        ->data(rodziceModelUsers->index(
+                                   rodzicIndex.row(),
+                                   rodziceModelUsers->fieldIndex("ID")))
+                        .toInt();
 
-    qDebug()<<"Wybrano dziecko: "<<dzieckoID<<" | oraz Rodzica: "<<rodzicID;
+    qDebug() << "Wybrano dziecko (ID):" << dzieckoID << "| Rodzica (ID):" << rodzicID;
 
     if (m_dbManager->addRelation(dzieckoID, rodzicID, -1)) {
         QMessageBox::information(this, "Sukces", "Relacja została dodana.");
@@ -51,7 +55,6 @@ void Tab_Relacje::PrzypiszRodzicaClicked() {
         QMessageBox::warning(this, "Błąd", "Nie udało się dodać relacji.");
     }
 }
-
 
 void Tab_Relacje::Przypisz2RodzicaClicked() {
     QModelIndex dzieckoIndex = dzieciTable->currentIndex();
@@ -69,8 +72,8 @@ void Tab_Relacje::Przypisz2RodzicaClicked() {
 
     int dzieckoID = dzieciModelUsers
                         ->data(dzieciModelUsers->index(dzieckoIndex.row(),
-                                                       dzieciModelUsers->fieldIndex(
-                                                           "Uzytkownik zalogowanyID")))
+                                                    dzieciModelUsers->fieldIndex(
+                                                        "DzieckoUserID"))) 
                         .toInt();
     int rodzicID = rodziceModelUsers->data(rodziceModelUsers->index(rodzicIndex.row(), rodziceModelUsers->fieldIndex("ID"))).toInt();
 
@@ -97,41 +100,39 @@ void Tab_Relacje::showTables()
     //Tablica dzieci
 
     dzieciModelUsers = new QSqlRelationalTableModel(this, m_dbManager->getDatabase());
-    dzieciModelUsers->setTable("Dziecko");
-    dzieciModelUsers->setRelation(
-        dzieciModelUsers->fieldIndex("Uzytkownik zalogowanyID"),
-        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
-    );
-    dzieciModelUsers->setHeaderData(
-        dzieciModelUsers->fieldIndex("ImieNazwisko"),
-        Qt::Horizontal,
-        "Dziecko"
-    );
+    dzieciModelUsers->setTable("V_Dziecko_Relacje");
+    dzieciModelUsers->setHeaderData(dzieciModelUsers->fieldIndex("DzieckoImieNazwisko"), Qt::Horizontal, "Dziecko");
 
     dzieciModelUsers->setRelation(
         dzieciModelUsers->fieldIndex("ID_Rodzic1"),
         QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
     );
     dzieciModelUsers->setHeaderData(
-        dzieciModelUsers->fieldIndex("ImieNazwisko"),
+        dzieciModelUsers->fieldIndex("ID_Rodzic1"), 
         Qt::Horizontal,
         "Rodzic 1"
     );
 
+    // Relation for "ID_Rodzic2"
     dzieciModelUsers->setRelation(
         dzieciModelUsers->fieldIndex("ID_Rodzic2"),
         QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
     );
     dzieciModelUsers->setHeaderData(
-        dzieciModelUsers->fieldIndex("ImieNazwisko"),
+        dzieciModelUsers->fieldIndex("ID_Rodzic2"),
         Qt::Horizontal,
         "Rodzic 2"
     );
 
-
     if (!dzieciModelUsers->select()) {
         qDebug() << "Błąd ładowania danych dzieci:" << dzieciModelUsers->lastError().text();
     }
+
+    qDebug() << "Dzieci kolumny:";
+    for (int i = 0; i < dzieciModelUsers->record().count(); ++i) {
+        qDebug() << i << "->" << dzieciModelUsers->record().fieldName(i);
+    }
+
 
     dzieciTable->setModel(dzieciModelUsers);
     dzieciTable->resizeColumnsToContents();
@@ -140,11 +141,6 @@ void Tab_Relacje::showTables()
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("saldo"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("kieszonkowe"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DataKolejnaKieszonkowego"));
-
-    // Opcjonalnie zmień nagłówki innych kolumn:
-    dzieciModelUsers->setHeaderData(0, Qt::Horizontal, "Imię");
-    dzieciModelUsers->setHeaderData(3, Qt::Horizontal, "Rodzic 1");
-    dzieciModelUsers->setHeaderData(4, Qt::Horizontal, "Rodzic 2");
 
     //Tablica Rodzice
     if (!rodziceTable) {
