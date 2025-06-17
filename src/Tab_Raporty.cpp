@@ -97,10 +97,10 @@ void Tab_Raporty::GenerujRaportClicked() {
     raport->addStepChart(data.first, data.second,"Budżet domowy");
 
     data = m_dbManager->getBudzetPrzychody(startDate, endDate); 
-    raport->addChart(data.first, data.second,"Przychody budżetu domowego");
+    raport->addBarChart(data.first, data.second,"Przychody budżetu domowego");
 
     data = m_dbManager->getBudzetWydatki(startDate, endDate);
-    raport->addChart(data.first, data.second, "Wydatki Budżetu domowego");
+    raport->addBarChart(data.first, data.second, "Wydatki Budżetu domowego");
 
     raport->setWindowTitle("Raport budżetu domowego");
     raport->show();
@@ -135,10 +135,10 @@ void Tab_Raporty::GenerujMyRaportClicked() {
     raport->addStepChart(data.first, data.second, "Budżet wybranego użytkownika");
 
     data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID()); // toDo -- tu trzeba dać to co wybierzemy w UI
-    raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
+    raport->addBarChart(data.first, data.second, "Przychody wybranego użytkownika");
 
     data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
-    raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
+    raport->addBarChart(data.first, data.second, "Wydatki wybranego użytkownika");
 
 
     raport->setWindowTitle("Raport mojego budżetu");
@@ -173,10 +173,10 @@ void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
     raport->addStepChart(data.first, data.second, "Budżet wybranego użytkownika");
 
     data = m_dbManager->getMyPrzychody(startDate, endDate, selectedUserID); // toDo -- tu trzeba dać to co wybierzemy w UI
-    raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
+    raport->addBarChart(data.first, data.second, "Przychody wybranego użytkownika");
 
     data = m_dbManager->getMyWydatki(startDate, endDate,selectedUserID);// toDo -- tu trzeba dać to co wybierzemy w UI
-    raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
+    raport->addBarChart(data.first, data.second, "Wydatki wybranego użytkownika");
 
 
     raport->setWindowTitle("Raport budżetu dla danego użytkownika");

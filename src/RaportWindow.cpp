@@ -92,3 +92,43 @@ void RaportWindow::addStepChart(const QVector<QDate>& dates, const QVector<doubl
     chartViews.append(chartView);
     mainLayout->addWidget(chartView);
 }
+void RaportWindow::addBarChart(const QVector<QDate>& dates, const QVector<double>& values, const QString& title) {
+    if (dates.isEmpty() || values.isEmpty() || dates.size() != values.size())
+        return;
+
+    QStringList categories;
+    for (const QDate& date : dates) {
+        categories << date.toString("dd.MM.yyyy");
+    }
+
+    auto *set = new QtCharts::QBarSet(title);
+    for (double val : values) {
+        *set << val;
+    }
+
+    auto *series = new QtCharts::QBarSeries();
+    series->append(set);
+
+    auto *chart = new QtCharts::QChart();
+    chart->addSeries(series);
+    chart->setTitle(title);
+    chart->legend()->setVisible(false);
+
+    auto *axisX = new QtCharts::QBarCategoryAxis();
+    axisX->append(categories);
+    chart->addAxis(axisX, Qt::AlignBottom);
+    series->attachAxis(axisX);
+
+    auto *axisY = new QtCharts::QValueAxis();
+    axisY->setTitleText("Kwota");
+    double minVal = *std::min_element(values.constBegin(), values.constEnd());
+    double maxVal = *std::max_element(values.constBegin(), values.constEnd());
+    axisY->setRange(std::min(0.0, minVal), maxVal * 1.1);
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+    auto *chartView = new QtCharts::QChartView(chart);
+    chartView->setRenderHint(QPainter::Antialiasing);
+    chartViews.append(chartView);
+    mainLayout->addWidget(chartView);
+}
