@@ -141,6 +141,7 @@ void Tab_Relacje::showTables()
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("saldo"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("kieszonkowe"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DataKolejnaKieszonkowego"));
+    dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DzieckoUserID"));
 
     //Tablica Rodzice
     if (!rodziceTable) {
