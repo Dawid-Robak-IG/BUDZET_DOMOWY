@@ -75,6 +75,8 @@ public:
     double user_future_Budzet(int user_ID, QDate future_Date);
     double whole_future_Budzet(QDate future_Date);
 
+    QString get_mail();
+
 signals:
     void nowaKategoriaDodana();  //w sumie to też działa na usuniętą
 

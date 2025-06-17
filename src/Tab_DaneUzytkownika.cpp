@@ -43,7 +43,7 @@ Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,
 
 void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager){
     m_dbManager = dbManager;
-  loadUserData();
+  loadUserData(m_userEmail);
 
 
   bool children=m_dbManager->amIChild();
@@ -85,7 +85,8 @@ void Tab_DaneUzytkownika::ZmienHasloClicked() {
     }
 }
 
-void Tab_DaneUzytkownika::loadUserData(){
+void Tab_DaneUzytkownika::loadUserData(const QString &new_mail){
+    m_userEmail = new_mail;
     if (!m_dbManager) {
         qDebug() << "Brak DatabaseManagera!";
         return;

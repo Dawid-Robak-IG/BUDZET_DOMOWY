@@ -1300,3 +1300,26 @@ QStringList DatabaseManager::getAllUsers() {
 
     return userEmails;
 }
+
+QString DatabaseManager::get_mail() {
+    if (!m_db.isOpen()) {
+        qWarning() << "Baza danych nie jest otwarta!";
+        return "!BD";
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT Email FROM `Uzytkownik zalogowany` WHERE ID = :id");
+    query.bindValue(":id", logged_user_ID);
+
+    if (!query.exec()) {
+        qWarning() << "Błąd pobierania maila:" << query.lastError().text();
+        return "!BD";
+    }
+
+    if (query.next()) {
+        return query.value(0).toString();
+    } else {
+        qWarning() << "Nie znaleziono użytkownika o ID:" << logged_user_ID;
+        return "!BD";
+    }
+}

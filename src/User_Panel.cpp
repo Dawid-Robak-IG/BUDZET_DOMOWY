@@ -199,6 +199,7 @@ void User_Panel::setTablesByNewUser(){
     cykliczneWManager->setTableStrategy();
     uzytkownicyManager->setTableStrategy();
     dzieciManager->loadDzieciListComboBox();
+    daneUzytkownikaManager->loadUserData(m_dbManager->get_mail());
 }
 
 void User_Panel::setTabsVisibility()

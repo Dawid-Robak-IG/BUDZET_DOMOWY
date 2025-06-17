@@ -24,7 +24,7 @@ class Tab_DaneUzytkownika : public QWidget
 public:
     explicit Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
       void setDatabaseManager(DatabaseManager* dbManager);
-      void loadUserData();
+      void loadUserData(const QString &new_mail);
 signals:
 
   private slots:
