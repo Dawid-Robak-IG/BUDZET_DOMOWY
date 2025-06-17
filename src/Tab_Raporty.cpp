@@ -1,22 +1,15 @@
 #include "../inc/Tab_Raporty.hpp"
 
 Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent)
-    : QWidget{parent},m_userEmail(userEmail)
-{
-
-
+    : QWidget{parent},m_userEmail(userEmail){
     startDataEdit= root->findChild<QDateEdit*>("dateEdit_R_Od");
     stopDataEdit= root->findChild<QDateEdit*>("dateEdit_R_Do");
     generujRaportButton= root->findChild<QPushButton*>("pushButton_generujRaport");
     generujRaportOsobisty=root->findChild<QPushButton*>("pushButton_generujRaportOsobisty");
-
     generujRaportOsobistyAdmin=root->findChild<QPushButton*>("pushButton_adminRaportOneUser");
     comboKategoriaRaport=root->findChild<QComboBox*>("comboBox_kategoriaRaport");
     checkBoxKategoria=root->findChild<QCheckBox*>("checkBox_tylkoKategoria");
-
     comboUserAdminRaport=root->findChild<QComboBox*>("comboBox_adminRaportOneUser");
-
-
     comboPrognozyOsobiste=root->findChild<QComboBox*>("comboBox_prognozy");
     generujPrognozyAdmin=root->findChild<QPushButton*>("pushButton_adminprognozy");
     generujPrognozyBudżet=root->findChild<QPushButton*>("pushButton_prognozycaly");
@@ -35,9 +28,6 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
     if (!dataPrognozy) {
         qWarning() << "Nie znaleziono dateEdit_prognozy";
     }
-
-
-
     if(generujRaportButton){
         connect(generujRaportButton, &QPushButton::clicked, this, &Tab_Raporty::GenerujRaportClicked);
     }
@@ -60,9 +50,6 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
     if( generujMojePrognozy){
         connect(generujMojePrognozy, &QPushButton::clicked, this, &Tab_Raporty::GenerujPrognozyMyBudzetClicked);
     }
-
-
-
     startDataEdit->setDate(QDate::currentDate());
     stopDataEdit->setDate(QDate::currentDate());
     dataPrognozy->setDate(QDate::currentDate());
@@ -78,11 +65,8 @@ void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
     connect(m_dbManager, &DatabaseManager::nowaKategoriaDodana,
             this, &Tab_Raporty::loadKategorie);
 
-
    comboPrognozyOsobiste->setVisible(m_dbManager->amI_admin());
     generujPrognozyAdmin->setVisible(m_dbManager->amI_admin());
-
-
 }
 
 void Tab_Raporty::GenerujRaportClicked() {
@@ -110,7 +94,7 @@ void Tab_Raporty::GenerujRaportClicked() {
 
     RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->addChart(data.first, data.second,"Budżet domowy");
+    raport->addStepChart(data.first, data.second,"Budżet domowy");
 
     data = m_dbManager->getBudzetPrzychody(startDate, endDate); 
     raport->addChart(data.first, data.second,"Przychody budżetu domowego");
@@ -132,54 +116,34 @@ void Tab_Raporty::GenerujMyRaportClicked() {
     QDate startDate = startDataEdit->date();
     QDate endDate = stopDataEdit->date();
 
-
     RaportWindow* raport = new RaportWindow();
+    QPair<QVector<QDate>, QVector<double>> data;
     if (checkBoxKategoria ->isChecked()) {  //czyli chcemy z wyborem kategorii
-
-
-        auto data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID(),comboKategoriaRaport->currentText());// toDo -- tu trzeba dać to co wybierzemy w UI
-
-        if (data.first.isEmpty()) {
-            QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
-            return;
-        }
-
-        //RaportWindow* raport = new RaportWindow();
-        raport->setAttribute(Qt::WA_DeleteOnClose);
-        raport->addChart(data.first, data.second, "Budżet wybranego użytkownika");
-
-        data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID(),comboKategoriaRaport->currentText()); // toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
-
-        data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID(),comboKategoriaRaport->currentText());// toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");}
-
-    else{
-
-        auto data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
-
-        if (data.first.isEmpty()) {
-            QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
-            return;
-        }
-
-        //RaportWindow* raport = new RaportWindow();
-        raport->setAttribute(Qt::WA_DeleteOnClose);
-        raport->addChart(data.first, data.second, "Budżet wybranego użytkownika");
-
-        data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID()); // toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
-
-        data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
-
+        data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID(),comboKategoriaRaport->currentText());// toDo -- tu trzeba dać to co wybierzemy w UI
     }
+    else{
+        data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
+    }
+
+    if (data.first.isEmpty()) {
+        QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
+        return;
+    }
+
+    //RaportWindow* raport = new RaportWindow();
+    raport->setAttribute(Qt::WA_DeleteOnClose);
+    raport->addStepChart(data.first, data.second, "Budżet wybranego użytkownika");
+
+    data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID()); // toDo -- tu trzeba dać to co wybierzemy w UI
+    raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
+
+    data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
+    raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
+
 
     raport->setWindowTitle("Raport mojego budżetu");
     raport->show();
 }
-
-
 
 void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
 
@@ -193,50 +157,30 @@ void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
     int selectedUserID=m_dbManager->get_ID_by_mail(comboUserAdminRaport->currentText());
   //  qDebug()<<"Ludzik numer: "<<selectedUserID;
     RaportWindow* raport = new RaportWindow();
+    QPair<QVector<QDate>, QVector<double>> data;
     if (checkBoxKategoria ->isChecked()) {  //czyli chcemy z wyborem kategorii
-
-
-        auto data = m_dbManager->getMyBudzetData(startDate, endDate, selectedUserID,comboKategoriaRaport->currentText());// toDo -- tu trzeba dać to co wybierzemy w UI
-
-        if (data.first.isEmpty()) {
-            QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
-            return;
-        }
-
-        //RaportWindow* raport = new RaportWindow();
-        raport->setAttribute(Qt::WA_DeleteOnClose);
-        raport->addChart(data.first, data.second, "Budżet wybranego użytkownika");
-
-        data = m_dbManager->getMyPrzychody(startDate, endDate, selectedUserID,comboKategoriaRaport->currentText()); // toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
-
-        data = m_dbManager->getMyWydatki(startDate, endDate,selectedUserID,comboKategoriaRaport->currentText());// toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
+        data = m_dbManager->getMyBudzetData(startDate, endDate, selectedUserID,comboKategoriaRaport->currentText());// toDo -- tu trzeba dać to co wybierzemy w UI
     } else{
-
-        auto data = m_dbManager->getMyBudzetData(startDate, endDate, selectedUserID);// toDo -- tu trzeba dać to co wybierzemy w UI
-
-        if (data.first.isEmpty()) {
-            QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
-            return;
-        }
-
-        //RaportWindow* raport = new RaportWindow();
-        raport->setAttribute(Qt::WA_DeleteOnClose);
-        raport->addChart(data.first, data.second, "Budżet wybranego użytkownika");
-
-        data = m_dbManager->getMyPrzychody(startDate, endDate, selectedUserID); // toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
-
-        data = m_dbManager->getMyWydatki(startDate, endDate,selectedUserID);// toDo -- tu trzeba dać to co wybierzemy w UI
-        raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
-
+        data = m_dbManager->getMyBudzetData(startDate, endDate, selectedUserID);// toDo -- tu trzeba dać to co wybierzemy w UI
     }
+    if (data.first.isEmpty()) {
+        QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
+        return;
+    }
+
+    //RaportWindow* raport = new RaportWindow();
+    raport->setAttribute(Qt::WA_DeleteOnClose);
+    raport->addStepChart(data.first, data.second, "Budżet wybranego użytkownika");
+
+    data = m_dbManager->getMyPrzychody(startDate, endDate, selectedUserID); // toDo -- tu trzeba dać to co wybierzemy w UI
+    raport->addChart(data.first, data.second, "Przychody wybranego użytkownika");
+
+    data = m_dbManager->getMyWydatki(startDate, endDate,selectedUserID);// toDo -- tu trzeba dać to co wybierzemy w UI
+    raport->addChart(data.first, data.second, "Wydatki wybranego użytkownika");
+
 
     raport->setWindowTitle("Raport budżetu dla danego użytkownika");
     raport->show();
-
-
 }
 
 
