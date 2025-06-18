@@ -34,9 +34,6 @@ Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent): QWidget{parent}
     stacked->setCurrentIndex(0);
 }
 
-
-
-
 void Tab_Uzytkownicy::ZapiszZmianyClicked(){  //toDo
     qDebug()<<"Tutaj będzie zapisanie zmian";
 }
@@ -127,7 +124,7 @@ void Tab_Uzytkownicy::setTableStrategy(){
 
     if (m_dbManager->amI_admin()) {
         tabelaTableView->showColumn(modelUsers->fieldIndex("Haslo"));
-        tabelaTableView->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::EditKeyPressed);
+        // tabelaTableView->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::EditKeyPressed);
 
         QStringList role = {"Admin", "Rodzic", "Dorosły", "Dziecko", "Użytkownik"};
         int rolaCol = modelUsers->fieldIndex("Rola");

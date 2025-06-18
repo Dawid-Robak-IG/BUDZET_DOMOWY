@@ -136,7 +136,7 @@ Po konsultacjach:
 - wyrzucenie przycisków edytuj tam gdzie nie są potrzebne - PP
 - ✅ usunąć możliwość edycji imie i nazwisko w cykliczne P - DR
 - co ostatecznie z raportem generowanym przez dziecko -- przycisk generuj raport w sekcji dzieci - PP
-- poprawić zablokowania usuwania admina - DR
+- ✅ poprawić zablokowania usuwania admina - DR
 
 - ✅ (wyskakiwała przecież wiadomość że nie rozpoznał czestotliwosci wiec nie był w stanie ustawić nowej...) jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać, może trzeba przy zamianie częstotliwości obliczać na nowo następną datę?
 
