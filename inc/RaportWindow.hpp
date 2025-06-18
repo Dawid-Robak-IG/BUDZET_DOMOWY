@@ -7,15 +7,25 @@
 #include <QPushButton>
 #include <QVBoxLayout>
 #include <QtCharts>
+#include <QPrinter>
+#include <QMenu>
+#include <QAction>
 
-class RaportWindow : public QWidget {
+class RaportWindow : public QMainWindow {
     Q_OBJECT
+
+    QWidget *r_centralWidget;    
+    QMenu* fileMenu;
+    QAction* savePdfAction;
 
 public:
     explicit RaportWindow(QWidget *parent = nullptr);
     void addChart(const QVector<QDate>& dates, const QVector<double>& values, const QString& title);
     void addStepChart(const QVector<QDate>& dates, const QVector<double>& values, const QString& title);
     void addBarChart(const QVector<QDate>& dates, const QVector<double>& values, const QString& title);
+
+    void saveToPDF(const QString& filePath);
+    void onSaveToPdfClicked();
 
 private:
     QVBoxLayout* mainLayout;

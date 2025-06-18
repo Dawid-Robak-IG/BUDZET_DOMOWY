@@ -131,7 +131,7 @@ Po konsultacjach:
 - ✅ dodać kolor dla tabeli budżetu - PP
 - ✅ dodać dla progrnozy poczatkową date - PP
 - kolorki dla użytkowników zależne od ról - ???
-- zapis raportów - DR
+- ✅ zapis raportów - DR
 - ustawić odpowiednie rozmiary dla tabeli i innych pól - PP
 - wyrzucenie przycisków edytuj tam gdzie nie są potrzebne - PP
 
@@ -140,4 +140,6 @@ Po konsultacjach:
 
 - jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać, może trzeba przy zamianie częstotliwości obliczać na nowo następną datę?
 
+- czy cykliczne dzialaja poprawnie? xd
+- raport: moje czy twoje przychody? 
 

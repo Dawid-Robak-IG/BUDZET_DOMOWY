@@ -20,6 +20,7 @@ MOC_DIR = moc
 QT+=widgets
 QT += sql
 QT += core gui widgets charts
+QT += printsupport
 SOURCES += src/main.cpp \
            src/BlockedDelegate.cpp \
            src/ComboBoxDelegate.cpp \

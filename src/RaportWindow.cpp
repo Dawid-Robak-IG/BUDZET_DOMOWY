@@ -7,10 +7,17 @@
 #include <QDateTime>
 #include <algorithm>
 
-RaportWindow::RaportWindow(QWidget *parent) : QWidget(parent) {
-    mainLayout = new QVBoxLayout(this);
+RaportWindow::RaportWindow(QWidget *parent) : QMainWindow(parent) {
+    r_centralWidget = new QWidget(this);         
+    mainLayout = new QVBoxLayout(r_centralWidget);        
 
-    setLayout(mainLayout);
+    setCentralWidget(r_centralWidget);                
+
+    fileMenu = menuBar()->addMenu("Plik");
+    savePdfAction = new QAction("Zapisz do PDF", this);
+    fileMenu->addAction(savePdfAction);
+    connect(savePdfAction, &QAction::triggered, this, &RaportWindow::onSaveToPdfClicked);
+
     resize(800, 600);
 }
 
@@ -131,4 +138,56 @@ void RaportWindow::addBarChart(const QVector<QDate>& dates, const QVector<double
     chartView->setRenderHint(QPainter::Antialiasing);
     chartViews.append(chartView);
     mainLayout->addWidget(chartView);
+}
+void RaportWindow::saveToPDF(const QString& filePath) {
+    if (filePath.isEmpty()){
+        qDebug() << "RaportWindow: filePath jest pusty";
+        return;
+    }
+
+    qDebug() << "RaportWindow: Rozpoczęto procedurę zapisu";
+
+    QPrinter printer(QPrinter::HighResolution);
+    printer.setOutputFormat(QPrinter::PdfFormat);
+    printer.setOutputFileName(filePath);
+    printer.setPageMargins(QMarginsF(10, 10, 10, 10), QPageLayout::Millimeter);
+    printer.setPageSize(QPageSize(QPageSize::A4));
+
+    QPainter painter(&printer);
+
+    if (!painter.isActive()) {
+        QMessageBox::warning(this, "Błąd", "Nie udało się rozpocząć rysowania na PDF.");
+        return;
+    }
+
+    QWidget *widget = centralWidget();
+    if (!widget) {
+        QMessageBox::warning(this, "Błąd", "Brak centralnego widżetu.");
+        return;
+    }
+
+    QSize widgetSize = widget->size();
+    QRectF pageRect = printer.pageRect(QPrinter::DevicePixel);
+
+    double scaleX = pageRect.width() / static_cast<double>(widgetSize.width());
+    double scaleY = pageRect.height() / static_cast<double>(widgetSize.height());
+    double scale = qMin(scaleX, scaleY);
+
+    painter.scale(scale, scale);
+    widget->render(&painter);
+
+    painter.end();
+
+    QMessageBox::information(this, "Zapisano", "Raport zapisany do PDF.");
+    qDebug() << "RaportWindow: Zakończono procedurę zapisu";
+}
+
+
+void RaportWindow::onSaveToPdfClicked() {
+    QString fileName = QFileDialog::getSaveFileName(this, "Zapisz raport jako PDF", "", "*.pdf");
+    if (!fileName.isEmpty()) {
+        if (!fileName.endsWith(".pdf"))
+            fileName += ".pdf";
+        saveToPDF(fileName);
+    }
 }
