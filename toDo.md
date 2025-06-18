@@ -142,7 +142,7 @@ Po konsultacjach:
 
 
 ## 18.06.2025
-- raport: moje czy twoje przychody? -- dac moje -- DR
+- ✅ raport: moje czy twoje przychody? -- dac moje -- DR
 - rola podstawowa? : -- ustalamy że użytkownik (nie dziecko)
     - ogólnie w pliku jest że dziecko,
     - moim zdaniem to nie dobrze zeby to bylo dziecko i powinien to byc uzytkownik ( w domysle niezdefiniowany),

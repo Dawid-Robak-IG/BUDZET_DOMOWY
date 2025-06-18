@@ -132,13 +132,13 @@ void Tab_Raporty::GenerujMyRaportClicked() {
 
     //RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->addStepChart(data.first, data.second, "Twój budżet");
+    raport->addStepChart(data.first, data.second, "Mój budżet");
 
     data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID());
-    raport->addBarChart(data.first, data.second, "Twoje przychody");
+    raport->addBarChart(data.first, data.second, "Moje przychody");
 
     data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());
-    raport->addBarChart(data.first, data.second, "Twoje wydatki");
+    raport->addBarChart(data.first, data.second, "Moje wydatki");
 
     raport->setWindowTitle("Raport dla mojego budżetu");
     raport->show();
