@@ -113,9 +113,6 @@ void Tab_CykliczneP::setDatabaseManager(DatabaseManager* dbManager) {
     setTableStrategy();
 
 
-    // Ustaw edycję po kliknięciu
-    cyklicznePTable->setEditTriggers(QAbstractItemView::DoubleClicked | QAbstractItemView::SelectedClicked);
-
     cyklicznePTable->resizeColumnsToContents();
 
     // Delegat dla "Częstotliwość"
@@ -150,8 +147,10 @@ void Tab_CykliczneP::goToStartPage() {
    stacked->setCurrentIndex(0);
 }
 void Tab_CykliczneP::setTableStrategy(){
+    qDebug()<<"CYKLCIZNE_P: rozpoczęcie setTabelStrategy";
     if(!modelUsers){
         modelUsers = new QSqlRelationalTableModel(this, m_dbManager->getDatabase());
+        qDebug()<<"CYKLICZNE_P: stworzono nowy TableModel";
     }
     modelUsers->setTable("`Operacja cykliczna`");
     modelUsers->setEditStrategy(QSqlTableModel::OnFieldChange);
@@ -171,19 +170,19 @@ void Tab_CykliczneP::setTableStrategy(){
     );
     qDebug()<<"CYKLICZNE_P: dodano kolumny z widoku"; 
 
-    modelUsers->select();  
+    modelUsers->select(); 
     qDebug()<<"CYKLICZNE_P: odswierzono tabelke"; 
 
     cyklicznePTable->setModel(modelUsers);
     cyklicznePTable->hideColumn(modelUsers->fieldIndex("ID"));
-    //cyklicznePTable->hideColumn(modelUsers->fieldIndex("Uzytkownik zalogowanyID"));
+    //cykliczneWTable->hideColumn(modelUsers->fieldIndex("Uzytkownik zalogowanyID"));
 
     cyklicznePTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
     connect(cyklicznePTable, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
         QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
 
-        if (colName == "Uzytkownik zalogowanyID") {
+        if (colName == "Uzytkownik zalogowanyID" or colName=="ImieNazwisko") {
             qDebug() << "Edycja zabroniona dla kolumny:" << colName;
             return;
         }

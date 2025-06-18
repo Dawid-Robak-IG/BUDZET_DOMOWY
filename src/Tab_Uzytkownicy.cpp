@@ -43,7 +43,7 @@ void Tab_Uzytkownicy::ZapiszZmianyClicked(){  //toDo
 
 void Tab_Uzytkownicy::BlokadaClicked(){ //toDo
     if(!m_dbManager->amI_admin()){
-        QMessageBox::warning(this, "Błąd", "Tylko admin może dodawać nowe kategorie!");
+        QMessageBox::warning(this, "Błąd", "Tylko admin może blokować/odblokowywać użytkowników");
         return; 
     }
     qDebug() << "Blokowanie/Odblokowywanie";

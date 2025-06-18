@@ -45,7 +45,6 @@ Tab_CykliczneW::Tab_CykliczneW(const QString& userEmail,QWidget *root, QWidget *
 
     startCW_Data->setDate(QDate::currentDate());
     stacked->setCurrentIndex(0);
-
 }
 void Tab_CykliczneW::DodajCW_Clicked(){ 
     if(m_dbManager->amIChild()){

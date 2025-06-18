@@ -130,21 +130,27 @@ Po konsultacjach:
 - 🟡✅ sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - (zrobiłam funkcję i wstępnie ukryłam zakładki, ale to trzeba jeszcze przemyśleć) PP/DR
 - ✅ dodać kolor dla tabeli budżetu - PP
 - ✅ dodać dla progrnozy poczatkową date - PP
-- kolorki dla użytkowników zależne od ról - ???
+- kolorki dla użytkowników zależne od ról - PP
 - ✅ zapis raportów - DR
 - ustawić odpowiednie rozmiary dla tabeli i innych pól - PP
 - wyrzucenie przycisków edytuj tam gdzie nie są potrzebne - PP
-
-
-- co ostatecznie z raportem generowanym przez dziecko (no co ma być? xd)
+- ✅ usunąć możliwość edycji imie i nazwisko w cykliczne P - DR
+- co ostatecznie z raportem generowanym przez dziecko -- przycisk generuj raport w sekcji dzieci - PP
+- poprawić zablokowania usuwania admina - DR
 
 - ✅ (wyskakiwała przecież wiadomość że nie rozpoznał czestotliwosci wiec nie był w stanie ustawić nowej...) jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać, może trzeba przy zamianie częstotliwości obliczać na nowo następną datę?
 
 
 ## 18.06.2025
-- raport: moje czy twoje przychody? 
-- rola podstawowa? :
+- raport: moje czy twoje przychody? -- dac moje -- DR
+- rola podstawowa? : -- ustalamy że użytkownik (nie dziecko)
     - ogólnie w pliku jest że dziecko,
     - moim zdaniem to nie dobrze zeby to bylo dziecko i powinien to byc uzytkownik ( w domysle niezdefiniowany),
-
-
+- dodanie: sprawdzenie informacji na temat aplikacji: - PP
+    - musi być dla niezalogowanego
+    - może przycisk co wświetli okienko,
+    - info o autorach,
+    - info o wersji
+    - info o wykorzystanych technologiach (MySQL, Qt5),
+- wypieprzyć stare wpisy, zrobić porządne nowe - PP
+- poprawić prognozy bo są stałe - DR

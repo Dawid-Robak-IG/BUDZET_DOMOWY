@@ -41,7 +41,7 @@ void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager){
     loadUserData(m_userEmail);
 
 
-    bool children=m_dbManager->amIChild();
+    bool children=(m_dbManager->amIChild() && !m_dbManager->amI_Noone());
 
     salodLabel->setVisible(children);
     kieszonkoweLabel->setVisible(children);

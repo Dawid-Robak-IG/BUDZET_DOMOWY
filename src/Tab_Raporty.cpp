@@ -150,7 +150,7 @@ void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
         qWarning() << "Nie ustawiono DatabaseManager!";
         return;
     }
-    if(m_dbManager->amI_admin()){
+    if(!m_dbManager->amI_admin()){
         QMessageBox::warning(this, "Błąd", "Tylko admin może generować wykresy dla wybranych użytkowników");
         return;
     }
