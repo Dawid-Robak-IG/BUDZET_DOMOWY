@@ -123,7 +123,7 @@ Po konsultacjach:
 - ✅ wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
 - od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
 - ✅ wykres budżet schodki, reszta słupki - DR
-- cały rok, czyli inny format daty - DR
+- ✅ cały rok, czyli inny format daty - DR
 - ✅ lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista) - PP
 - ✅ tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji) - PP
 - imiona i nazwiska zamiast id - w Relacjach
