@@ -14,9 +14,14 @@ RaportWindow::RaportWindow(QWidget *parent) : QMainWindow(parent) {
     setCentralWidget(r_centralWidget);                
 
     fileMenu = menuBar()->addMenu("Plik");
+
     savePdfAction = new QAction("Zapisz do PDF", this);
     fileMenu->addAction(savePdfAction);
     connect(savePdfAction, &QAction::triggered, this, &RaportWindow::onSaveToPdfClicked);
+
+    savePngAction = new QAction("Zapisz do PNG", this);
+    fileMenu->addAction(savePngAction);
+    connect(savePngAction, &QAction::triggered, this, &RaportWindow::onSaveToPngClicked);
 
     resize(800, 600);
 }
@@ -189,5 +194,36 @@ void RaportWindow::onSaveToPdfClicked() {
         if (!fileName.endsWith(".pdf"))
             fileName += ".pdf";
         saveToPDF(fileName);
+    }
+}
+void RaportWindow::saveToPNG(const QString& filePath) {
+    if (filePath.isEmpty()) {
+        qDebug() << "RaportWindow: filePath jest pusty";
+        return;
+    }
+
+    QWidget *widget = centralWidget();
+    if (!widget) {
+        QMessageBox::warning(this, "Błąd", "Brak centralnego widżetu.");
+        return;
+    }
+
+    QPixmap pixmap(widget->size());
+    widget->render(&pixmap);
+
+    if (pixmap.save(filePath, "PNG")) {
+        QMessageBox::information(this, "Zapisano", "Raport zapisany do PNG.");
+        qDebug() << "RaportWindow: Zapisano PNG do " << filePath;
+    } else {
+        QMessageBox::warning(this, "Błąd", "Nie udało się zapisać PNG.");
+        qDebug() << "RaportWindow: Nie udało się zapisać PNG do " << filePath;
+    }
+}
+void RaportWindow::onSaveToPngClicked() {
+    QString fileName = QFileDialog::getSaveFileName(this, "Zapisz raport jako PNG", "", "*.png");
+    if (!fileName.isEmpty()) {
+        if (!fileName.endsWith(".png"))
+            fileName += ".png";
+        saveToPNG(fileName);
     }
 }

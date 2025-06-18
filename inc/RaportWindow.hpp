@@ -17,6 +17,7 @@ class RaportWindow : public QMainWindow {
     QWidget *r_centralWidget;    
     QMenu* fileMenu;
     QAction* savePdfAction;
+    QAction* savePngAction;
 
 public:
     explicit RaportWindow(QWidget *parent = nullptr);
@@ -25,8 +26,11 @@ public:
     void addBarChart(const QVector<QDate>& dates, const QVector<double>& values, const QString& title);
 
     void saveToPDF(const QString& filePath);
+    void saveToPNG(const QString& filePath);
+    
+public slots:
+    void onSaveToPngClicked();
     void onSaveToPdfClicked();
-
 private:
     QVBoxLayout* mainLayout;
     QVector<QtCharts::QChartView*> chartViews;
