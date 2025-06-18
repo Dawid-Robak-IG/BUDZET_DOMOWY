@@ -1371,3 +1371,23 @@ QString DatabaseManager::get_mail() {
         return "!BD";
     }
 }
+int DatabaseManager::how_many_admins() {
+    if (!m_db.isOpen()) {
+        qWarning() << "Baza danych nie jest otwarta!";
+        return -1;
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT COUNT(*) FROM `Uzytkownik zalogowany` WHERE Rola = :admin");
+    query.bindValue(":admin", "Admin");
+
+    if (!query.exec()) {
+        qWarning() << "Błąd pobierania liczby adminów:" << query.lastError().text();
+        return -1;
+    }
+
+    if (query.next()) {
+        return query.value(0).toInt();
+    }
+    return 0;
+}

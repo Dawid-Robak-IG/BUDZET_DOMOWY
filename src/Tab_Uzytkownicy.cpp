@@ -140,7 +140,20 @@ void Tab_Uzytkownicy::setTableStrategy(){
                 qDebug() << "Edycja zabroniona dla kolumny:" << colName;
                 return;
             }
+            if (colName == "Rola") {
+                QString rolaUzytkownika = modelUsers->data(modelUsers->index(index.row(), modelUsers->fieldIndex("Rola"))).toString();
+                int idUzytkownika = modelUsers->data(modelUsers->index(index.row(), modelUsers->fieldIndex("ID"))).toInt();
+                int mojeId = m_dbManager->get_user_ID(); 
 
+                if (rolaUzytkownika == "Admin" && idUzytkownika != mojeId) {
+                    QMessageBox::warning(this, "Zabronione", "Nie można zmienić roli innemu administratorowi");
+                    return;
+                }
+                if(rolaUzytkownika == "Admin" && m_dbManager->how_many_admins()<2){
+                    QMessageBox::warning(this, "Zabronione", "W systemie musi istnieć co najmniej jeden admin");
+                    return;
+                }
+            }
             tabelaTableView->edit(index);
         });
     }

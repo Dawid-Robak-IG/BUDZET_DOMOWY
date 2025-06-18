@@ -79,6 +79,8 @@ public:
 
     QString get_mail();
 
+    int how_many_admins();
+
 signals:
     void nowaKategoriaDodana();  //w sumie to też działa na usuniętą
 

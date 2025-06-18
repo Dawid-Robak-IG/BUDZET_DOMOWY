@@ -140,6 +140,11 @@ Po konsultacjach:
 
 - ✅ (wyskakiwała przecież wiadomość że nie rozpoznał czestotliwosci wiec nie był w stanie ustawić nowej...) jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać, może trzeba przy zamianie częstotliwości obliczać na nowo następną datę?
 
-- czy cykliczne dzialaja poprawnie? xd
+
+## 18.06.2025
 - raport: moje czy twoje przychody? 
+- rola podstawowa? :
+    - ogólnie w pliku jest że dziecko,
+    - moim zdaniem to nie dobrze zeby to bylo dziecko i powinien to byc uzytkownik ( w domysle niezdefiniowany),
+
 
