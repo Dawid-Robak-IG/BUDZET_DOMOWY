@@ -1183,12 +1183,12 @@ int DatabaseManager::get_ID_by_mail(QString mail) {
     }
 }
 double DatabaseManager::user_future_Budzet(int user_ID, QDate future_Date) {
+    qDebug()<<"Dostano datę dla przyszłego osobistego budżetu: "<<future_Date;
     if (!m_db.isOpen()) {
         qDebug() << "Baza danych nie jest otwarta!";
         return 0.0;
     }
 
-    // 🔹 Krok 1: znajdź najstarszą datę operacji użytkownika
     QSqlQuery minDateQuery(m_db);
     minDateQuery.prepare(R"(
         SELECT MIN(Data)
@@ -1212,7 +1212,6 @@ double DatabaseManager::user_future_Budzet(int user_ID, QDate future_Date) {
 
     QDate today = QDate::currentDate();
 
-    // 🔹 Krok 2: oblicz sumę i liczbę miesięcy
     QSqlQuery historyQuery(m_db);
     historyQuery.prepare(R"(
         SELECT Kwota
@@ -1236,7 +1235,7 @@ double DatabaseManager::user_future_Budzet(int user_ID, QDate future_Date) {
     }
 
     int months = static_cast<int>(historyStart.daysTo(today) / 30)+1;
-    qDebug()<<"Dla przewidywanego budzetu uzytkownika liczba miesiecy: "<< months;
+    qDebug()<<"Dla przewidywanego budzetu uzytkownika znaleziona liczba miesiecydo estymacji: "<< months;
     double monthlyAverage = historySum / months;
     qDebug()<<"Dla przewidywanego budzetu uzytkownika sredni zarobek na miesiac: "<< monthlyAverage;
 
@@ -1256,9 +1255,9 @@ double DatabaseManager::user_future_Budzet(int user_ID, QDate future_Date) {
         currentBalance = currentQuery.value(0).toDouble();
     }
 
-    // 🔹 Krok 4: prognoza
-    int futureMonths = (today.year() - future_Date.year()) * 12 + (future_Date.month() - today.month());
-    futureMonths = std::max(0, futureMonths);  // zabezpieczenie przed ujemną wartością
+    int futureMonths = (future_Date.year() - today.year()) * 12 + (future_Date.month() - today.month());
+    futureMonths = std::max(0, futureMonths);
+    qDebug()<<"Dla przewidywanego budzetu uzytkownika lcizba miesięcy do ustalonej daty: "<< futureMonths;
 
     double futureDelta = monthlyAverage * futureMonths;
     qDebug()<<"Dla przewidywanego budzetu uzytkownika przewidywany zarobek: "<< futureDelta;
@@ -1266,6 +1265,7 @@ double DatabaseManager::user_future_Budzet(int user_ID, QDate future_Date) {
     return currentBalance + futureDelta;
 }
 double DatabaseManager::whole_future_Budzet(QDate future_Date) {
+    qDebug()<<"Dostano datę dla przyszłego budżetu: "<<future_Date;
     if (!m_db.isOpen()) {
         qDebug() << "Baza danych nie jest otwarta!";
         return 0.0;
@@ -1291,11 +1291,9 @@ double DatabaseManager::whole_future_Budzet(QDate future_Date) {
     }
 
     double historySum = 0.0;
-    int count = 0;
 
     while (historyQuery.next()) {
         historySum += historyQuery.value(0).toDouble();
-        ++count;
     }
 
     int months = static_cast<int>(historyStart.daysTo(today) / 30) +1;
@@ -1318,8 +1316,7 @@ double DatabaseManager::whole_future_Budzet(QDate future_Date) {
         qDebug() << "Błąd pobierania bieżącego salda (budżet domowy):" << currentQuery.lastError().text();
     }
 
-    // Krok 3: Oszacuj przyszły budżet
-    int futureMonths = (today.year() - future_Date.year()) * 12 + (future_Date.month() - today.month());
+    int futureMonths = (future_Date.year() - today.year()) * 12 + (future_Date.month() - today.month());
     futureMonths = std::max(0, futureMonths);
 
     double futureDelta = monthlyAverage * futureMonths;

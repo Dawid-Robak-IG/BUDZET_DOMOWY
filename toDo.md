@@ -152,5 +152,5 @@ Po konsultacjach:
     - info o autorach,
     - info o wersji
     - info o wykorzystanych technologiach (MySQL, Qt5),
-- wypieprzyć stare wpisy, zrobić porządne nowe - PP
-- poprawić prognozy bo są stałe - DR
+- skasować stare wpisy, zrobić porządne nowe - PP
+- ✅ poprawić prognozy bo są stałe - DR
