@@ -232,7 +232,7 @@ bool DatabaseManager::addCykliczny(double amount, const QDate &date, const QStri
     QDate dataKolejna = date;
     if (frequency == "Codziennie")
         dataKolejna = date.addDays(1);
-    else if (frequency == "Co tydzień")
+    else if (frequency == "Co tydzien" || frequency == "Co tydzień")
         dataKolejna = date.addDays(7);
     else if (frequency == "Co miesiąc")
         dataKolejna = date.addMonths(1);
@@ -845,7 +845,7 @@ bool DatabaseManager::generujZCyklicznych() {
             // Aktualizujemy dataKolejna o kolejny okres:
             if (czest == "Codziennie")
                 dataKolejna = dataKolejna.addDays(1);
-            else if (czest == "Co tydzien")
+            else if (czest == "Co tydzien" || czest == "Co tydzień")
                 dataKolejna = dataKolejna.addDays(7);
             else if (czest == "Co miesiąc")
                 dataKolejna = dataKolejna.addMonths(1);

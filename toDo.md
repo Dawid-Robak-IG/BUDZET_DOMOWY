@@ -121,7 +121,7 @@ Po konsultacjach:
 - ✅ moje dane zakładka (zmiana nazwy pierwszej zakładki) - PP
 - ✅ cykliczna / jednorazowa (napis zamiast 0/1) - DR
 - ✅ wyświetlać przyczynę błędu, gdy nie może usunąć kategorii - DR
-- od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
+- 🟡 od razu wyświetlać że nie jest wybrany (chodziło o kolejność pokazywania się okienek z ostrzeżeniami/błędami przy wybieraniu pól z tabeli) - PP
 - ✅ wykres budżet schodki, reszta słupki - DR
 - ✅ cały rok, czyli inny format daty - DR
 - ✅ lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista) - PP
@@ -136,9 +136,9 @@ Po konsultacjach:
 - wyrzucenie przycisków edytuj tam gdzie nie są potrzebne - PP
 
 
-- co ostatecznie z raportem generowanym przez dziecko
+- co ostatecznie z raportem generowanym przez dziecko (no co ma być? xd)
 
-- jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać, może trzeba przy zamianie częstotliwości obliczać na nowo następną datę?
+- ✅ (wyskakiwała przecież wiadomość że nie rozpoznał czestotliwosci wiec nie był w stanie ustawić nowej...) jak się dodaje cykliczny to chyba nie aktualizuje się data kolejnego, więc za każdym razem jak wchodzi się do aplikacji to odejmuje się jeśli jest ten dzień w którym ta operacja ma się wykonać, może trzeba przy zamianie częstotliwości obliczać na nowo następną datę?
 
 - czy cykliczne dzialaja poprawnie? xd
 - raport: moje czy twoje przychody? 
