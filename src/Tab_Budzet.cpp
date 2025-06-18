@@ -25,6 +25,8 @@ void Tab_Budzet::setDatabaseManager(DatabaseManager* dbManager) {
     qDebug()<<"BUDZET: format daty";
     loadOperacjeTable();
     qDebug()<<"BUDZET: Zakonczono loadOperacjeTable";
+
+    refresh();
 }
 
 void Tab_Budzet::loadOperacjeTable() {
@@ -48,6 +50,11 @@ void Tab_Budzet::loadOperacjeTable() {
         QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
     );
 
+    if (m_dbManager->amIChild()) {
+        int userId = m_dbManager->get_user_ID();
+        modelOperacje->setFilter(QString("`Uzytkownik zalogowanyID` = %1").arg(userId));
+    }
+
     modelOperacje->select();
     tabelaOperacje->setModel(modelOperacje);
 
@@ -62,6 +69,8 @@ void Tab_Budzet::loadOperacjeTable() {
     int kolumnaKwota = modelOperacje->fieldIndex("Kwota");
     tabelaOperacje->setItemDelegateForColumn(kolumnaKwota, new KwotaColorDelegate(this));
     tabelaOperacje->setItemDelegateForColumn(kolumnaCykliczne, new CyklicznyDelegate(this));
+
+    refresh();
 }
 
 void Tab_Budzet::refresh()
@@ -69,7 +78,14 @@ void Tab_Budzet::refresh()
     if (modelOperacje) {
         modelOperacje->select(); // odśwież dane z tabeli Operacja
     }
-    kwotaBudzet->setText(QString::number(m_dbManager->get_whole_budzet(), 'f', 2));
-    dataBudzet->setText(m_dbManager->get_update_Date().toString("dd-MM-yyyy"));
+    
+    if(m_dbManager->amIChild()){
+        kwotaBudzet->setText(QString::number(m_dbManager->get_saldo(m_dbManager->get_user_ID()), 'f', 2));
+        dataBudzet->setText(m_dbManager->get_my_last_update_Date().toString("dd-MM-yyyy")); 
+    }
+    else{
+        kwotaBudzet->setText(QString::number(m_dbManager->get_whole_budzet(), 'f', 2));
+        dataBudzet->setText(m_dbManager->get_update_Date().toString("dd-MM-yyyy")); 
+    }
     qDebug() << "Tab_Budzet: odświeżono dane.";
 }

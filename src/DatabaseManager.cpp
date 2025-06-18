@@ -425,6 +425,31 @@ QDate DatabaseManager::get_update_Date() {
 
     return QDate(); // pusty obiekt jeśli brak wyniku
 }
+QDate DatabaseManager::get_my_last_update_Date() {
+    if (!m_db.isOpen()) {
+        qDebug() << "Baza danych nie jest otwarta!";
+        return QDate();
+    }
+
+    QSqlQuery query(m_db);
+    query.prepare(R"(
+        SELECT o.Data 
+        FROM `Operacja` o
+        WHERE `Uzytkownik zalogowanyID` = :id
+    )");
+    query.bindValue(":id", logged_user_ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd zapytania get_update_Date:" << query.lastError().text();
+        return QDate();
+    }
+
+    if (query.next()) {
+        return query.value(0).toDate();
+    }
+
+    return QDate(); // pusty obiekt jeśli brak wyniku
+}
 bool DatabaseManager::addRelation(int IDchild, int IDparent1, int IDparent2){
     bool success = false;
     if(IDparent1!=-1){
@@ -545,6 +570,29 @@ bool DatabaseManager::amIChild() {
     if (query.next()) {
         QString role = query.value(0).toString();
         if(role == "Admin" || role=="Rodzic" || role=="Dorosly"){
+            return false;
+        } else{
+            return true;
+        }
+    }
+
+    return false;
+}
+bool DatabaseManager::amI_Noone(){
+    if (!m_db.isOpen()) return false;
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT Rola FROM `Uzytkownik zalogowany` WHERE ID = :id");
+    query.bindValue(":id", logged_user_ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd sprawdzania roli:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        QString role = query.value(0).toString();
+        if(role == "Admin" || role=="Rodzic" || role=="Dorosly" || role=="Dziecko"){
             return false;
         } else{
             return true;

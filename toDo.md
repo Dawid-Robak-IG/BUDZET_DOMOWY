@@ -126,13 +126,14 @@ Po konsultacjach:
 - ✅ cały rok, czyli inny format daty - DR
 - ✅ lista roli w użytkownicy (zamiast wpisywać z palca, żeby była rozwiajna lista) - PP
 - ✅ tabela z rodzicami żeby było widać jakich rodziców ma dziecko (dodać kolumnę z rodzicami tam gdzie jest podpinanie relacji) - PP
-- imiona i nazwiska zamiast id - w Relacjach
-- sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - (zrobiłam funkcję i wstępnie ukryłam zakładki, ale to trzeba jeszcze przemyśleć) PP/DR
+- ✅ imiona i nazwiska zamiast id - w Relacjach
+- 🟡✅ sprawdzić dla różnych ról czy mają dostęp tylko do tych opcji i zakładek do których powinni (zgodnie z naszą dokumentacją) - (zrobiłam funkcję i wstępnie ukryłam zakładki, ale to trzeba jeszcze przemyśleć) PP/DR
 - ✅ dodać kolor dla tabeli budżetu - PP
 - ✅ dodać dla progrnozy poczatkową date - PP
 - kolorki dla użytkowników zależne od ról - ???
 - zapis raportów - DR
 - ustawić odpowiednie rozmiary dla tabeli i innych pól - PP
+- wyrzucenie przycisków edytuj tam gdzie nie są potrzebne - PP
 
 
 - co ostatecznie z raportem generowanym przez dziecko

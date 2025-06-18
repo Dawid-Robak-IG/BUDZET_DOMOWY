@@ -199,7 +199,11 @@ void User_Panel::setTablesByNewUser(){
     cykliczneWManager->setTableStrategy();
     uzytkownicyManager->setTableStrategy();
     dzieciManager->loadDzieciListComboBox();
+    raportyManager->setDatabaseManager(m_dbManager);
+    daneUzytkownikaManager->setDatabaseManager(m_dbManager);
+    budzetManager->loadOperacjeTable();
     daneUzytkownikaManager->loadUserData(m_dbManager->get_mail());
+    setTabsVisibility();
 }
 
 void User_Panel::setTabsVisibility()
@@ -219,7 +223,13 @@ void User_Panel::setTabsVisibility()
     } else if (m_dbManager->amIParent()) {
         ui->tabWidget->setTabVisible(4, false); // kategoria
 
-    } else {
-        //
+    }
+    
+    if (m_dbManager->amI_Noone()){
+        ui->tabWidget->setTabVisible(1, false);
+        ui->tabWidget->setTabVisible(2, false);
+        ui->tabWidget->setTabVisible(3, false);
+        ui->tabWidget->setTabVisible(7, false);
+        ui->tabWidget->setTabVisible(8, false);
     }
 }

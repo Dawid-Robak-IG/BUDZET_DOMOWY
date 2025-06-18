@@ -42,6 +42,7 @@ public:
     void reload_whole_budzet();
     double get_whole_budzet();
     QDate get_update_Date();
+    QDate get_my_last_update_Date();
     bool addRelation(int IDchild, int IDparent1, int IDparent2);
     bool addFirstParent(int IDchild, int IDparent1);
     bool addSecondParent(int IDchild, int IDparent2);
@@ -50,6 +51,7 @@ public:
 
 
     bool amIChild();
+    bool amI_Noone();
     float get_kieszonkowe(int child_ID);
     float get_saldo(int child_ID);
     QDate get_date_next_kieszonkowe(int child_ID);

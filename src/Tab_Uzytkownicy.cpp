@@ -118,9 +118,9 @@ void Tab_Uzytkownicy::setTableStrategy(){
     //tabelaTableView->hideColumn(modelUsers->fieldIndex("Data urodzenia"));
 
 
-
     tabelaTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabelaTableView->hideColumn(modelUsers->fieldIndex("Haslo"));
+    tabelaTableView->hideColumn(modelUsers->fieldIndex("ID"));
 
     // Odłącz poprzednie połączenia (zapobiega pozostaniu trybu edycji po zmianie użytkownika)
     disconnect(tabelaTableView, &QTableView::doubleClicked, nullptr, nullptr);

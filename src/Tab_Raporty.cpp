@@ -118,11 +118,11 @@ void Tab_Raporty::GenerujMyRaportClicked() {
 
     RaportWindow* raport = new RaportWindow();
     QPair<QVector<QDate>, QVector<double>> data;
-    if (checkBoxKategoria ->isChecked()) {  //czyli chcemy z wyborem kategorii
-        data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID(),comboKategoriaRaport->currentText());// toDo -- tu trzeba dać to co wybierzemy w UI
+    if (checkBoxKategoria ->isChecked()) {  
+        data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID(),comboKategoriaRaport->currentText());
     }
     else{
-        data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
+        data = m_dbManager->getMyBudzetData(startDate, endDate, m_dbManager->get_user_ID());
     }
 
     if (data.first.isEmpty()) {
@@ -132,16 +132,15 @@ void Tab_Raporty::GenerujMyRaportClicked() {
 
     //RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->addStepChart(data.first, data.second, "Budżet wybranego użytkownika");
+    raport->addStepChart(data.first, data.second, "Twój budżet");
 
-    data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID()); // toDo -- tu trzeba dać to co wybierzemy w UI
-    raport->addBarChart(data.first, data.second, "Przychody wybranego użytkownika");
+    data = m_dbManager->getMyPrzychody(startDate, endDate, m_dbManager->get_user_ID());
+    raport->addBarChart(data.first, data.second, "Twoje przychody");
 
-    data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());// toDo -- tu trzeba dać to co wybierzemy w UI
-    raport->addBarChart(data.first, data.second, "Wydatki wybranego użytkownika");
+    data = m_dbManager->getMyWydatki(startDate, endDate, m_dbManager->get_user_ID());
+    raport->addBarChart(data.first, data.second, "Twoje wydatki");
 
-
-    raport->setWindowTitle("Raport mojego budżetu");
+    raport->setWindowTitle("Raport dla mojego budżetu");
     raport->show();
 }
 
@@ -149,6 +148,10 @@ void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
 
     if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
+        return;
+    }
+    if(m_dbManager->amI_admin()){
+        QMessageBox::warning(this, "Błąd", "Tylko admin może generować wykresy dla wybranych użytkowników");
         return;
     }
 
@@ -213,11 +216,6 @@ void Tab_Raporty::GenerujPrognozyBudzetClicked(){
 void Tab_Raporty::GenerujPrognozyMyBudzetClicked(){
     if (!m_dbManager) {
         qWarning() << "Nie ustawiono DatabaseManager!";
-        return;
-    }
-    if(m_dbManager->amIChild()){
-        qDebug() << "Dziecko nie może raportu dla budżetu";
-        QMessageBox::warning(this, "Błąd", "Tylko dorośli użytkownicy mogą generować raport dla całego budżetu");
         return;
     }
 

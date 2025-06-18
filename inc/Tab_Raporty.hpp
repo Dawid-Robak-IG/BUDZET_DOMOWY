@@ -25,6 +25,8 @@ class Tab_Raporty : public QWidget
 public:
     explicit Tab_Raporty(const QString& userEmail,QWidget *root,QWidget *parent = nullptr);
     void setDatabaseManager(DatabaseManager* dbManager);
+    void loadUżytkownicy();
+    void loadKategorie();
 signals:
 
 private slots:
@@ -56,8 +58,6 @@ private:
 
     DatabaseManager* m_dbManager = nullptr;
 
-    void loadUżytkownicy();
-    void loadKategorie();
 };
 
 #endif // TAB_RAPORTY_HPP

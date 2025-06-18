@@ -11,8 +11,6 @@ Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,
     zmienHasloButton=root->findChild<QPushButton*>("pushButton_zmienHaslo");
     pokazHasloCheckBox= root->findChild<QCheckBox*>("checkBox_showPassword");
 
-
-
     salodLabel=root->findChild<QLabel*>("label_saldo");
    kieszonkoweLabel=root->findChild<QLabel*>("label_kieszonkowe");
    kieszonkoweLineEdit= root->findChild<QLineEdit*>("lineEdit_kieszonkoweDU");
@@ -36,35 +34,32 @@ Tab_DaneUzytkownika::Tab_DaneUzytkownika(const QString& userEmail,QWidget *root,
         connect(zmienHasloButton, &QPushButton::clicked, this, &Tab_DaneUzytkownika::ZmienHasloClicked);
     }
 
-
-
-
 }
 
 void Tab_DaneUzytkownika::setDatabaseManager(DatabaseManager *dbManager){
     m_dbManager = dbManager;
-  loadUserData(m_userEmail);
+    loadUserData(m_userEmail);
 
 
-  bool children=m_dbManager->amIChild();
+    bool children=m_dbManager->amIChild();
 
-  salodLabel->setVisible(children);
-  kieszonkoweLabel->setVisible(children);
-  kieszonkoweLineEdit->setVisible(children);
-  saldoLineEdit->setVisible(children);
-  zl1Label->setVisible(children);
-  zl2Label->setVisible(children);
-  nastepneKieszonkoweLineEdit->setVisible(children);
-  nkLabel->setVisible(children);
+    salodLabel->setVisible(children);
+    kieszonkoweLabel->setVisible(children);
+    kieszonkoweLineEdit->setVisible(children);
+    saldoLineEdit->setVisible(children);
+    zl1Label->setVisible(children);
+    zl2Label->setVisible(children);
+    nastepneKieszonkoweLineEdit->setVisible(children);
+    nkLabel->setVisible(children);
 
-  int myID = m_dbManager->get_user_ID();
+    int myID = m_dbManager->get_user_ID();
 
-  if(children){
-      saldoLineEdit->setText(QString::number(m_dbManager->get_saldo(myID), 'f', 2));
-      kieszonkoweLineEdit->setText(QString::number(m_dbManager->get_kieszonkowe(myID), 'f', 2));
-      nastepneKieszonkoweLineEdit->setText(
-          m_dbManager->get_date_next_kieszonkowe(myID).toString("dd-MM-yyyy"));
-  }
+    if(children){
+        saldoLineEdit->setText(QString::number(m_dbManager->get_saldo(myID), 'f', 2));
+        kieszonkoweLineEdit->setText(QString::number(m_dbManager->get_kieszonkowe(myID), 'f', 2));
+        nastepneKieszonkoweLineEdit->setText(
+            m_dbManager->get_date_next_kieszonkowe(myID).toString("dd-MM-yyyy"));
+    }
 }
 void Tab_DaneUzytkownika::ZmienHasloClicked() {
     qDebug() << "Uruchamiam zmianę hasła";
