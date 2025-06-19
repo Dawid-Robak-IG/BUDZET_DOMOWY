@@ -154,3 +154,4 @@ Po konsultacjach:
     - info o wykorzystanych technologiach (MySQL, Qt5),
 - skasować stare wpisy, zrobić porządne nowe - PP
 - ✅ poprawić prognozy bo są stałe - DR
+- dodać możliwość segregacji danych w tabelce budzet domowy - PP
