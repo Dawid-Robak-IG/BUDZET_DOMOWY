@@ -152,11 +152,11 @@ Po konsultacjach:
     - info o autorach,
     - info o wersji
     - info o wykorzystanych technologiach (MySQL, Qt5),
-- skasować stare wpisy, zrobić porządne nowe - PP
+- ✅🟡 skasować stare wpisy, zrobić porządne nowe - PP
 - ✅ poprawić prognozy bo są stałe - DR
 - ✅dodać możliwość segregacji danych w tabelce budzet domowy - PP
 - ✅ po zmianie hasła nie aktualizuje się w "moje dane"
-- prognozy bez dnia --> sam rok i miesiąc PP
+- ✅ prognozy bez dnia --> sam rok i miesiąc PP
 
 - porządki w kodzie (np. wyrzucić niepotrzebne qDebug())
 - sprawdzać i czytać dokładnie to co się wyświetla i czy to ma sens (czy nie ma literówek, czy dany użytkownik powinien mieć do tego dostęp itp.)

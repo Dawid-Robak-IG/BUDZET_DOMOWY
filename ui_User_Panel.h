@@ -2091,6 +2091,7 @@ public:
         pushButton_adminRaportOneUser->setText(QCoreApplication::translate("User_Panel", "Generuj raport dla u\305\274ytkownika:", nullptr));
         label_52->setText(QCoreApplication::translate("User_Panel", "Generuj prognozy", nullptr));
         label_53->setText(QCoreApplication::translate("User_Panel", "Prognozy do dnia:", nullptr));
+        dateEdit_prognozy->setDisplayFormat(QCoreApplication::translate("User_Panel", "MM.yyyy", nullptr));
         label_54->setText(QString());
         pushButton_prognozycaly->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla ca\305\202ego bud\305\274etu", nullptr));
         pushButton_osobistepprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania osobiste", nullptr));

@@ -2195,12 +2195,16 @@ QPushButton {
            <item>
             <widget class="QLabel" name="label_53">
              <property name="text">
-              <string>Prognozy do dnia:</string>
+              <string>Prognozy dla miesiąca:</string>
              </property>
             </widget>
            </item>
            <item>
-            <widget class="QDateEdit" name="dateEdit_prognozy"/>
+            <widget class="QDateEdit" name="dateEdit_prognozy">
+             <property name="displayFormat">
+              <string>MM.yyyy</string>
+             </property>
+            </widget>
            </item>
            <item>
             <spacer name="horizontalSpacer_24">
