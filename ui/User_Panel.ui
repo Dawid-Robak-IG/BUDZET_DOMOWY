@@ -210,7 +210,7 @@ QPushButton {
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>1</number>
+      <number>9</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>

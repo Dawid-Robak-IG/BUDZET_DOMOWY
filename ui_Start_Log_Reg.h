@@ -50,6 +50,9 @@ public:
     QPushButton *pushButton_Zarejestruj;
     QSpacerItem *horizontalSpacer_16;
     QSpacerItem *verticalSpacer_5;
+    QHBoxLayout *horizontalLayout_3;
+    QSpacerItem *horizontalSpacer_8;
+    QPushButton *infoButton;
     QWidget *Login_page;
     QVBoxLayout *verticalLayout_2;
     QSpacerItem *verticalSpacer;
@@ -231,6 +234,42 @@ public:
 
         verticalLayout_4->addItem(verticalSpacer_5);
 
+        horizontalLayout_3 = new QHBoxLayout();
+        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(-1, 0, -1, -1);
+        horizontalSpacer_8 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_3->addItem(horizontalSpacer_8);
+
+        infoButton = new QPushButton(Start_page);
+        infoButton->setObjectName(QString::fromUtf8("infoButton"));
+        infoButton->setMinimumSize(QSize(50, 50));
+        infoButton->setMaximumSize(QSize(50, 50));
+        QFont font2;
+        font2.setFamily(QString::fromUtf8("Ubuntu Sans"));
+        font2.setPointSize(30);
+        font2.setBold(true);
+        infoButton->setFont(font2);
+        infoButton->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgba(0, 59, 91, 255);\n"
+"    color: white;\n"
+"    border-radius: 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(0, 59, 91, 200);   \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(0, 59, 91, 150);   \n"
+"}\n"
+""));
+
+        horizontalLayout_3->addWidget(infoButton);
+
+
+        verticalLayout_4->addLayout(horizontalLayout_3);
+
 
         horizontalLayout_4->addLayout(verticalLayout_4);
 
@@ -247,10 +286,10 @@ public:
 
         label_2 = new QLabel(Login_page);
         label_2->setObjectName(QString::fromUtf8("label_2"));
-        QFont font2;
-        font2.setPointSize(20);
-        font2.setBold(true);
-        label_2->setFont(font2);
+        QFont font3;
+        font3.setPointSize(20);
+        font3.setBold(true);
+        label_2->setFont(font3);
 
         verticalLayout_2->addWidget(label_2);
 
@@ -342,7 +381,7 @@ public:
         verticalLayout_3->setContentsMargins(800, -1, -1, -1);
         label_5 = new QLabel(Register_page);
         label_5->setObjectName(QString::fromUtf8("label_5"));
-        label_5->setFont(font2);
+        label_5->setFont(font3);
 
         verticalLayout_3->addWidget(label_5);
 
@@ -475,6 +514,7 @@ public:
         label->setText(QCoreApplication::translate("Start_Log_Reg", "Bud\305\274et domowy", nullptr));
         pushButton_Zaloguj->setText(QCoreApplication::translate("Start_Log_Reg", "ZALOGUJ", nullptr));
         pushButton_Zarejestruj->setText(QCoreApplication::translate("Start_Log_Reg", "ZAREJESTRUJ", nullptr));
+        infoButton->setText(QCoreApplication::translate("Start_Log_Reg", "i", nullptr));
         label_2->setText(QCoreApplication::translate("Start_Log_Reg", "Logowanie", nullptr));
         label_3->setText(QCoreApplication::translate("Start_Log_Reg", "E-mail", nullptr));
         label_4->setText(QCoreApplication::translate("Start_Log_Reg", "Has\305\202o", nullptr));

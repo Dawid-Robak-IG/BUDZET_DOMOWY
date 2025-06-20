@@ -285,6 +285,68 @@ QPushButton:pressed {
            </property>
           </spacer>
          </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_3">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <spacer name="horizontalSpacer_8">
+             <property name="orientation">
+              <enum>Qt::Horizontal</enum>
+             </property>
+             <property name="sizeHint" stdset="0">
+              <size>
+               <width>40</width>
+               <height>20</height>
+              </size>
+             </property>
+            </spacer>
+           </item>
+           <item>
+            <widget class="QPushButton" name="infoButton">
+             <property name="minimumSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="maximumSize">
+              <size>
+               <width>50</width>
+               <height>50</height>
+              </size>
+             </property>
+             <property name="font">
+              <font>
+               <family>Ubuntu Sans</family>
+               <pointsize>30</pointsize>
+               <bold>true</bold>
+              </font>
+             </property>
+             <property name="styleSheet">
+              <string notr="true">QPushButton {
+    background-color: rgba(0, 59, 91, 255);
+    color: white;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: rgba(0, 59, 91, 200);   
+}
+
+QPushButton:pressed {
+    background-color: rgba(0, 59, 91, 150);   
+}
+</string>
+             </property>
+             <property name="text">
+              <string>i</string>
+             </property>
+            </widget>
+           </item>
+          </layout>
+         </item>
         </layout>
        </item>
       </layout>

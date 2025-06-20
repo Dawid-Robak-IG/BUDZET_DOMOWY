@@ -1927,7 +1927,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(9);
         stackedWidget_CykliczneP->setCurrentIndex(1);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);

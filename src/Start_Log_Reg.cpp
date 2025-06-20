@@ -58,6 +58,21 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
     connect(ui->pushButton_zalogujSie, &QPushButton::clicked, this, &Start_Log_Reg::loginUser);
     connect(ui->pushButton_zarejestrujSie, &QPushButton::clicked, this, &Start_Log_Reg::registerUser);
 
+    connect(ui->infoButton, &QPushButton::clicked, this, [this]() {
+        QMessageBox::about(this,
+                           "O aplikacji",
+                           "Budżet Domowy v1.0\n\n"
+                           "Autorzy: Paulina Piorun, Dawid Robak\n\n"
+
+                           "Aplikacja służy do zarządzania domowym budżetem.\n"
+                           "Zawiera moduły do kontroli stanu budżetu, zapisywania wydatków, "
+                           "przychodów, generowania raportów i więcej.\n\n"
+                           "Technologie:\n"
+                           "- Qt 5/6 (GUI, bazy danych, MVC)\n"
+                           "- C++ (logika aplikacji)\n"
+                           "- SQLite (lokalna baza danych)\n"
+                           "- Qt Designer (interfejs użytkownika)");
+    });
 
     ui->lineEdit_emailLog->setText("janprus@poczta.com");
     ui->lineEdit_passwordLog->setText("haslo123");
