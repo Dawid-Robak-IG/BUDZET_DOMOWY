@@ -71,6 +71,9 @@ void Tab_Budzet::loadOperacjeTable() {
     tabelaOperacje->setItemDelegateForColumn(kolumnaKwota, new KwotaColorDelegate(this));
     tabelaOperacje->setItemDelegateForColumn(kolumnaCykliczne, new CyklicznyDelegate(this));
 
+    modelOperacje->setHeaderData(4, Qt::Horizontal, "Imię i nazwisko");
+    modelOperacje->setHeaderData(5, Qt::Horizontal, "Kategoria");
+
     refresh();
 }
 

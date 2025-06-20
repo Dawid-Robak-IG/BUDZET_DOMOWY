@@ -155,7 +155,10 @@ void Tab_Uzytkownicy::setTableStrategy(){
         });
     }
 
+    modelUsers->setHeaderData(1, Qt::Horizontal, "Imię");
+    modelUsers->setHeaderData(4, Qt::Horizontal, "Hasło");
     tabelaTableView->setItemDelegateForColumn(kolumnaHasla, new PasswordDelegate(this));
     int kolumnaZablokowany = modelUsers->fieldIndex("Czy_zablokowany");
+    modelUsers->setHeaderData(5, Qt::Horizontal, "Status");
     tabelaTableView->setItemDelegateForColumn(kolumnaZablokowany, new BlockedDelegate(this));
 }

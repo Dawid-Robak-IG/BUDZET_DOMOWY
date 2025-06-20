@@ -7,17 +7,18 @@
 #include <QDateEdit>
 #include <QDebug>
 #include <QDoubleSpinBox>
+#include <QHeaderView>
 #include <QLineEdit>
 #include <QMessageBox>
 #include <QPushButton>
 #include <QSqlError>
 #include <QSqlQuery>
+#include <QSqlRecord>
+#include <QSqlRelationalTableModel>
 #include <QSqlTableModel>
 #include <QTableView>
 #include <QVariant>
 #include <QWidget>
-#include <QSqlRelationalTableModel>
-#include <QSqlRecord>
 
 class Tab_Relacje : public QWidget
 {

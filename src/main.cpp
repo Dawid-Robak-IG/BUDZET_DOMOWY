@@ -47,7 +47,7 @@ QLineEdit {
     }
 )");
     MainWindow mainwindow;
-    mainwindow.resize(1200, 700);
+    mainwindow.resize(1300, 700);
     mainwindow.show();
 
     return app.exec();

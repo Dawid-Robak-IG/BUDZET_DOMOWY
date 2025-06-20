@@ -142,7 +142,7 @@ void Tab_Relacje::showTables()
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("kieszonkowe"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DataKolejnaKieszonkowego"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DzieckoUserID"));
-
+    dzieciTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //Tablica Rodzice
     if (!rodziceTable) {
         qDebug() << "Brak rodziceTable - nie można ustawić modelu";
@@ -159,7 +159,7 @@ void Tab_Relacje::showTables()
 
     rodziceTable->setModel(rodziceModelUsers);
     rodziceTable->resizeColumnsToContents();
-
+    rodziceTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     for (int col = 0; col < rodziceModelUsers->columnCount(); ++col) {
         QString colName = rodziceModelUsers->headerData(col, Qt::Horizontal).toString();
         if (colName != "Imie" && colName != "Nazwisko" && colName != "Email") {

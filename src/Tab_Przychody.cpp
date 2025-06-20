@@ -27,8 +27,8 @@ void Tab_Przychody::DodajPrzychodClicked() {
         return;
     }
     if(kwotaSpinBox->value()<=0){
-        qWarning() << "Wstawiono złą kwotę";
-        QMessageBox::warning(this, "Błąd", "Wstawiono kwotę <=0");
+        qWarning() << "Wpisano złą kwotę";
+        QMessageBox::warning(this, "Błąd", "Wpisano kwotę <=0");
         return;
     }
 

@@ -99,7 +99,8 @@ void Tab_Kategorie::DodajKategorieClicked(){
         QMessageBox::information(this, "Sukces", "Kategoria została dodana!");
        //showTable();
     } else {
-        QMessageBox::warning(this, "Błąd", "Nie udało się dodać kategorii.");
+        QMessageBox::warning(
+            this, "Błąd", "Nie udało się dodać kategorii.\n Brak wpisanej nazwy nowej kategorii.");
     }
     nowaKategoriaLineEdit->clear();
 }

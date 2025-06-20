@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1100</width>
-    <height>565</height>
+    <height>680</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -210,7 +210,7 @@ QPushButton {
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>6</number>
+      <number>1</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>
@@ -595,7 +595,13 @@ QPushButton {
       <layout class="QHBoxLayout" name="horizontalLayout_38">
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_37">
+         <property name="leftMargin">
+          <number>50</number>
+         </property>
          <property name="topMargin">
+          <number>50</number>
+         </property>
+         <property name="rightMargin">
           <number>50</number>
          </property>
          <property name="bottomMargin">
@@ -607,7 +613,7 @@ QPushButton {
             <number>20</number>
            </property>
            <property name="leftMargin">
-            <number>50</number>
+            <number>0</number>
            </property>
            <property name="bottomMargin">
             <number>0</number>
@@ -1327,7 +1333,7 @@ QPushButton {
        <item>
         <widget class="QStackedWidget" name="stackedWidget_CykliczneP">
          <property name="currentIndex">
-          <number>0</number>
+          <number>1</number>
          </property>
          <widget class="QWidget" name="page_CP_lista">
           <layout class="QHBoxLayout" name="horizontalLayout_21">
@@ -1347,15 +1353,47 @@ QPushButton {
                <property name="text">
                 <string>Cykliczne przychody</string>
                </property>
+               <property name="margin">
+                <number>50</number>
+               </property>
               </widget>
              </item>
              <item>
-              <widget class="QTableView" name="tableView_listaCP"/>
+              <widget class="QTableView" name="tableView_listaCP">
+               <property name="sizePolicy">
+                <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                 <horstretch>0</horstretch>
+                 <verstretch>0</verstretch>
+                </sizepolicy>
+               </property>
+               <property name="maximumSize">
+                <size>
+                 <width>1500</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_23">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_10">
+             <property name="spacing">
+              <number>40</number>
+             </property>
              <property name="leftMargin">
               <number>20</number>
              </property>
@@ -1383,19 +1421,6 @@ QPushButton {
               </widget>
              </item>
              <item>
-              <spacer name="verticalSpacer_4">
-               <property name="orientation">
-                <enum>Qt::Vertical</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>20</width>
-                 <height>40</height>
-                </size>
-               </property>
-              </spacer>
-             </item>
-             <item>
               <widget class="QPushButton" name="pushButton_nowyCP">
                <property name="text">
                 <string>Dodaj nowy przychód cykliczny</string>
@@ -1421,6 +1446,15 @@ QPushButton {
          </widget>
          <widget class="QWidget" name="page_nowyCP">
           <layout class="QVBoxLayout" name="verticalLayout_6">
+           <property name="spacing">
+            <number>20</number>
+           </property>
+           <property name="leftMargin">
+            <number>100</number>
+           </property>
+           <property name="rightMargin">
+            <number>200</number>
+           </property>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_22">
              <item>
@@ -1447,7 +1481,7 @@ QPushButton {
               <widget class="QLabel" name="label_26">
                <property name="font">
                 <font>
-                 <pointsize>15</pointsize>
+                 <pointsize>20</pointsize>
                 </font>
                </property>
                <property name="text">
@@ -1481,8 +1515,17 @@ QPushButton {
             <layout class="QHBoxLayout" name="horizontalLayout_32">
              <item>
               <widget class="QDoubleSpinBox" name="doubleSpinBox_kwotaCP">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+               <property name="alignment">
+                <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+               </property>
                <property name="maximum">
-                <double>999999.989999999990687</double>
+                <double>99999999.989999994635582</double>
                </property>
               </widget>
              </item>
@@ -1492,19 +1535,6 @@ QPushButton {
                 <string>zł</string>
                </property>
               </widget>
-             </item>
-             <item>
-              <spacer name="horizontalSpacer_28">
-               <property name="orientation">
-                <enum>Qt::Horizontal</enum>
-               </property>
-               <property name="sizeHint" stdset="0">
-                <size>
-                 <width>40</width>
-                 <height>20</height>
-                </size>
-               </property>
-              </spacer>
              </item>
             </layout>
            </item>
@@ -1517,6 +1547,12 @@ QPushButton {
            </item>
            <item>
             <widget class="QComboBox" name="comboBox_kategoriaCP">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <item>
               <property name="text">
                <string>codziennie</string>
@@ -1548,6 +1584,12 @@ QPushButton {
            </item>
            <item>
             <widget class="QDateEdit" name="dateEdit_CP">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="calendarPopup">
               <bool>true</bool>
              </property>
@@ -1561,7 +1603,14 @@ QPushButton {
             </widget>
            </item>
            <item>
-            <widget class="QComboBox" name="comboBox_czestotliwoscCP"/>
+            <widget class="QComboBox" name="comboBox_czestotliwoscCP">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QLabel" name="label_30">
@@ -1571,10 +1620,23 @@ QPushButton {
             </widget>
            </item>
            <item>
-            <widget class="QLineEdit" name="lineEdit_notatkaCP"/>
+            <widget class="QLineEdit" name="lineEdit_notatkaCP">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+            </widget>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_dodajCP">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
              <property name="text">
               <string>Dodaj przychód cykliczny</string>
              </property>
@@ -1628,15 +1690,41 @@ QPushButton {
                  <property name="text">
                   <string>Cykliczne wydatki</string>
                  </property>
+                 <property name="margin">
+                  <number>50</number>
+                 </property>
                 </widget>
                </item>
                <item>
-                <widget class="QTableView" name="tableView_listaCW"/>
+                <widget class="QTableView" name="tableView_listaCW">
+                 <property name="sizePolicy">
+                  <sizepolicy hsizetype="Expanding" vsizetype="Fixed">
+                   <horstretch>0</horstretch>
+                   <verstretch>0</verstretch>
+                  </sizepolicy>
+                 </property>
+                </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_24">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
               </layout>
              </item>
              <item>
               <layout class="QVBoxLayout" name="verticalLayout_7">
+               <property name="spacing">
+                <number>40</number>
+               </property>
                <property name="leftMargin">
                 <number>20</number>
                </property>
@@ -1662,19 +1750,6 @@ QPushButton {
                   <string>Usuń</string>
                  </property>
                 </widget>
-               </item>
-               <item>
-                <spacer name="verticalSpacer_5">
-                 <property name="orientation">
-                  <enum>Qt::Vertical</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>20</width>
-                   <height>40</height>
-                  </size>
-                 </property>
-                </spacer>
                </item>
                <item>
                 <widget class="QPushButton" name="pushButton_nowyCW">
@@ -1881,15 +1956,15 @@ QPushButton {
         <number>20</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_16">
+        <layout class="QVBoxLayout" name="verticalLayout_16" stretch="1,1,1,1,1,1">
          <property name="spacing">
-          <number>20</number>
+          <number>30</number>
          </property>
          <property name="leftMargin">
           <number>50</number>
          </property>
          <property name="topMargin">
-          <number>50</number>
+          <number>30</number>
          </property>
          <property name="rightMargin">
           <number>50</number>
@@ -1917,6 +1992,9 @@ QPushButton {
           <layout class="QHBoxLayout" name="horizontalLayout_46">
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_50">
+             <property name="rightMargin">
+              <number>50</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_44">
                <property name="text">
@@ -1931,6 +2009,9 @@ QPushButton {
            </item>
            <item>
             <layout class="QHBoxLayout" name="horizontalLayout_51">
+             <property name="rightMargin">
+              <number>50</number>
+             </property>
              <item>
               <widget class="QLabel" name="label_45">
                <property name="text">
@@ -1947,6 +2028,9 @@ QPushButton {
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_48">
+           <property name="spacing">
+            <number>6</number>
+           </property>
            <item>
             <widget class="QCheckBox" name="checkBox_tylkoKategoria">
              <property name="text">
@@ -2002,15 +2086,15 @@ QPushButton {
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_17" stretch="0,0,0,0,0,0">
+        <layout class="QVBoxLayout" name="verticalLayout_17" stretch="1,0,1,0,1,1,1">
          <property name="spacing">
-          <number>20</number>
+          <number>30</number>
          </property>
          <property name="leftMargin">
           <number>50</number>
          </property>
          <property name="topMargin">
-          <number>50</number>
+          <number>30</number>
          </property>
          <property name="rightMargin">
           <number>50</number>
@@ -2033,6 +2117,19 @@ QPushButton {
             <set>Qt::AlignCenter</set>
            </property>
           </widget>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_25">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
          <item>
           <layout class="QHBoxLayout" name="horizontalLayout_29">
@@ -2060,6 +2157,13 @@ QPushButton {
             </spacer>
            </item>
           </layout>
+         </item>
+         <item>
+          <widget class="QLabel" name="label_54">
+           <property name="text">
+            <string>                                                 </string>
+           </property>
+          </widget>
          </item>
          <item>
           <widget class="QPushButton" name="pushButton_prognozycaly">
@@ -2101,16 +2205,6 @@ QPushButton {
            </item>
           </layout>
          </item>
-         <item>
-          <widget class="QLabel" name="label_54">
-           <property name="styleSheet">
-            <string notr="true">color: transparent</string>
-           </property>
-           <property name="text">
-            <string>xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx</string>
-           </property>
-          </widget>
-         </item>
         </layout>
        </item>
       </layout>
@@ -2139,12 +2233,28 @@ QPushButton {
            </item>
            <item>
             <layout class="QVBoxLayout" name="verticalLayout_11">
+             <property name="spacing">
+              <number>40</number>
+             </property>
              <property name="leftMargin">
               <number>20</number>
              </property>
              <property name="rightMargin">
               <number>20</number>
              </property>
+             <item>
+              <spacer name="verticalSpacer_5">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
+             </item>
              <item>
               <widget class="QPushButton" name="pushButton_zablokuj_odblokuj">
                <property name="text">
@@ -2157,7 +2267,26 @@ QPushButton {
                <property name="text">
                 <string>Pokaż hasła</string>
                </property>
+               <property name="iconSize">
+                <size>
+                 <width>20</width>
+                 <height>20</height>
+                </size>
+               </property>
               </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_4">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </item>
@@ -2323,6 +2452,9 @@ QPushButton {
          <property name="rightMargin">
           <number>100</number>
          </property>
+         <property name="bottomMargin">
+          <number>50</number>
+         </property>
          <item>
           <widget class="QLabel" name="label_59">
            <property name="font">
@@ -2417,22 +2549,9 @@ QPushButton {
            <item>
             <widget class="QLabel" name="label_48">
              <property name="text">
-              <string>zł</string>
+              <string>zł                   </string>
              </property>
             </widget>
-           </item>
-           <item>
-            <spacer name="horizontalSpacer_9">
-             <property name="orientation">
-              <enum>Qt::Horizontal</enum>
-             </property>
-             <property name="sizeHint" stdset="0">
-              <size>
-               <width>40</width>
-               <height>20</height>
-              </size>
-             </property>
-            </spacer>
            </item>
            <item>
             <widget class="QPushButton" name="pushButton_zmienKieszonkowe">
@@ -2547,6 +2666,9 @@ QPushButton {
        <property name="rightMargin">
         <number>50</number>
        </property>
+       <property name="bottomMargin">
+        <number>50</number>
+       </property>
        <item>
         <layout class="QVBoxLayout" name="verticalLayout_13">
          <item>
@@ -2559,6 +2681,9 @@ QPushButton {
            </property>
            <property name="text">
             <string>Przypisz relacje</string>
+           </property>
+           <property name="margin">
+            <number>10</number>
            </property>
           </widget>
          </item>

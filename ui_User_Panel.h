@@ -163,11 +163,13 @@ public:
     QStackedWidget *stackedWidget_CykliczneP;
     QWidget *page_CP_lista;
     QHBoxLayout *horizontalLayout_21;
+    QVBoxLayout *verticalLayout_14;
+    QLabel *label_61;
     QTableView *tableView_listaCP;
+    QSpacerItem *verticalSpacer_23;
     QVBoxLayout *verticalLayout_10;
     QSpacerItem *verticalSpacer_19;
     QPushButton *pushButton_usunCP;
-    QSpacerItem *verticalSpacer_4;
     QPushButton *pushButton_nowyCP;
     QSpacerItem *verticalSpacer_20;
     QWidget *page_nowyCP;
@@ -181,7 +183,6 @@ public:
     QHBoxLayout *horizontalLayout_32;
     QDoubleSpinBox *doubleSpinBox_kwotaCP;
     QLabel *label_47;
-    QSpacerItem *horizontalSpacer_28;
     QLabel *label_31;
     QComboBox *comboBox_kategoriaCP;
     QLabel *label_28;
@@ -197,11 +198,13 @@ public:
     QStackedWidget *stackedWidget_CykliczneW;
     QWidget *page_CW_lista;
     QHBoxLayout *horizontalLayout_18;
+    QVBoxLayout *verticalLayout_18;
+    QLabel *label_62;
     QTableView *tableView_listaCW;
+    QSpacerItem *verticalSpacer_24;
     QVBoxLayout *verticalLayout_7;
     QSpacerItem *verticalSpacer_17;
     QPushButton *pushButton_usunCW;
-    QSpacerItem *verticalSpacer_5;
     QPushButton *pushButton_nowyCW;
     QSpacerItem *verticalSpacer_18;
     QWidget *page_CW_nowy;
@@ -246,16 +249,17 @@ public:
     QComboBox *comboBox_adminRaportOneUser;
     QVBoxLayout *verticalLayout_17;
     QLabel *label_52;
+    QSpacerItem *verticalSpacer_25;
     QHBoxLayout *horizontalLayout_29;
     QLabel *label_53;
     QDateEdit *dateEdit_prognozy;
     QSpacerItem *horizontalSpacer_24;
+    QLabel *label_54;
     QPushButton *pushButton_prognozycaly;
     QPushButton *pushButton_osobistepprognozy;
     QHBoxLayout *horizontalLayout_30;
     QPushButton *pushButton_adminprognozy;
     QComboBox *comboBox_prognozy;
-    QLabel *label_54;
     QWidget *tab_Uzytkownicy;
     QHBoxLayout *horizontalLayout_10;
     QStackedWidget *stackedWidget_uzytkownicy;
@@ -263,8 +267,10 @@ public:
     QHBoxLayout *horizontalLayout_23;
     QTableView *tableView_uzytkownicy;
     QVBoxLayout *verticalLayout_11;
+    QSpacerItem *verticalSpacer_5;
     QPushButton *pushButton_zablokuj_odblokuj;
     QCheckBox *checkBox_pokazHasla;
+    QSpacerItem *verticalSpacer_4;
     QWidget *page_3;
     QVBoxLayout *verticalLayout_12;
     QHBoxLayout *horizontalLayout_24;
@@ -298,7 +304,6 @@ public:
     QHBoxLayout *horizontalLayout_34;
     QLineEdit *lineEdit_aktualneKieszonkoweKwota;
     QLabel *label_48;
-    QSpacerItem *horizontalSpacer_9;
     QPushButton *pushButton_zmienKieszonkowe;
     QSpacerItem *horizontalSpacer_25;
     QLabel *label_41;
@@ -328,7 +333,7 @@ public:
     {
         if (User_Panel->objectName().isEmpty())
             User_Panel->setObjectName(QString::fromUtf8("User_Panel"));
-        User_Panel->resize(1100, 565);
+        User_Panel->resize(1100, 680);
         User_Panel->setAutoFillBackground(true);
         User_Panel->setStyleSheet(QString::fromUtf8(""));
         verticalLayout = new QVBoxLayout(User_Panel);
@@ -660,10 +665,11 @@ public:
         horizontalLayout_38->setObjectName(QString::fromUtf8("horizontalLayout_38"));
         horizontalLayout_37 = new QHBoxLayout();
         horizontalLayout_37->setObjectName(QString::fromUtf8("horizontalLayout_37"));
+        horizontalLayout_37->setContentsMargins(50, 50, 50, 50);
         verticalLayout_21 = new QVBoxLayout();
         verticalLayout_21->setSpacing(20);
         verticalLayout_21->setObjectName(QString::fromUtf8("verticalLayout_21"));
-        verticalLayout_21->setContentsMargins(50, -1, -1, 0);
+        verticalLayout_21->setContentsMargins(0, -1, -1, 0);
         verticalSpacer_14 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_21->addItem(verticalSpacer_14);
@@ -1053,12 +1059,36 @@ public:
         page_CP_lista->setObjectName(QString::fromUtf8("page_CP_lista"));
         horizontalLayout_21 = new QHBoxLayout(page_CP_lista);
         horizontalLayout_21->setObjectName(QString::fromUtf8("horizontalLayout_21"));
+        verticalLayout_14 = new QVBoxLayout();
+        verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
+        verticalLayout_14->setContentsMargins(-1, -1, 20, -1);
+        label_61 = new QLabel(page_CP_lista);
+        label_61->setObjectName(QString::fromUtf8("label_61"));
+        label_61->setFont(font3);
+        label_61->setMargin(50);
+
+        verticalLayout_14->addWidget(label_61);
+
         tableView_listaCP = new QTableView(page_CP_lista);
         tableView_listaCP->setObjectName(QString::fromUtf8("tableView_listaCP"));
+        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Fixed);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(tableView_listaCP->sizePolicy().hasHeightForWidth());
+        tableView_listaCP->setSizePolicy(sizePolicy4);
+        tableView_listaCP->setMaximumSize(QSize(1500, 16777215));
 
-        horizontalLayout_21->addWidget(tableView_listaCP);
+        verticalLayout_14->addWidget(tableView_listaCP);
+
+        verticalSpacer_23 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_14->addItem(verticalSpacer_23);
+
+
+        horizontalLayout_21->addLayout(verticalLayout_14);
 
         verticalLayout_10 = new QVBoxLayout();
+        verticalLayout_10->setSpacing(40);
         verticalLayout_10->setObjectName(QString::fromUtf8("verticalLayout_10"));
         verticalLayout_10->setContentsMargins(20, -1, 20, -1);
         verticalSpacer_19 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -1069,10 +1099,6 @@ public:
         pushButton_usunCP->setObjectName(QString::fromUtf8("pushButton_usunCP"));
 
         verticalLayout_10->addWidget(pushButton_usunCP);
-
-        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_10->addItem(verticalSpacer_4);
 
         pushButton_nowyCP = new QPushButton(page_CP_lista);
         pushButton_nowyCP->setObjectName(QString::fromUtf8("pushButton_nowyCP"));
@@ -1090,7 +1116,9 @@ public:
         page_nowyCP = new QWidget();
         page_nowyCP->setObjectName(QString::fromUtf8("page_nowyCP"));
         verticalLayout_6 = new QVBoxLayout(page_nowyCP);
+        verticalLayout_6->setSpacing(20);
         verticalLayout_6->setObjectName(QString::fromUtf8("verticalLayout_6"));
+        verticalLayout_6->setContentsMargins(100, -1, 200, -1);
         horizontalLayout_22 = new QHBoxLayout();
         horizontalLayout_22->setObjectName(QString::fromUtf8("horizontalLayout_22"));
         pushButton_powrotCP = new QPushButton(page_nowyCP);
@@ -1105,7 +1133,7 @@ public:
         label_26 = new QLabel(page_nowyCP);
         label_26->setObjectName(QString::fromUtf8("label_26"));
         QFont font4;
-        font4.setPointSize(15);
+        font4.setPointSize(20);
         label_26->setFont(font4);
 
         horizontalLayout_22->addWidget(label_26);
@@ -1126,7 +1154,9 @@ public:
         horizontalLayout_32->setObjectName(QString::fromUtf8("horizontalLayout_32"));
         doubleSpinBox_kwotaCP = new QDoubleSpinBox(page_nowyCP);
         doubleSpinBox_kwotaCP->setObjectName(QString::fromUtf8("doubleSpinBox_kwotaCP"));
-        doubleSpinBox_kwotaCP->setMaximum(999999.989999999990687);
+        doubleSpinBox_kwotaCP->setMaximumSize(QSize(300, 16777215));
+        doubleSpinBox_kwotaCP->setAlignment(Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter);
+        doubleSpinBox_kwotaCP->setMaximum(99999999.989999994635582);
 
         horizontalLayout_32->addWidget(doubleSpinBox_kwotaCP);
 
@@ -1134,10 +1164,6 @@ public:
         label_47->setObjectName(QString::fromUtf8("label_47"));
 
         horizontalLayout_32->addWidget(label_47);
-
-        horizontalSpacer_28 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_32->addItem(horizontalSpacer_28);
 
 
         verticalLayout_6->addLayout(horizontalLayout_32);
@@ -1153,6 +1179,7 @@ public:
         comboBox_kategoriaCP->addItem(QString());
         comboBox_kategoriaCP->addItem(QString());
         comboBox_kategoriaCP->setObjectName(QString::fromUtf8("comboBox_kategoriaCP"));
+        comboBox_kategoriaCP->setMaximumSize(QSize(300, 16777215));
 
         verticalLayout_6->addWidget(comboBox_kategoriaCP);
 
@@ -1163,6 +1190,7 @@ public:
 
         dateEdit_CP = new QDateEdit(page_nowyCP);
         dateEdit_CP->setObjectName(QString::fromUtf8("dateEdit_CP"));
+        dateEdit_CP->setMaximumSize(QSize(300, 16777215));
         dateEdit_CP->setCalendarPopup(true);
 
         verticalLayout_6->addWidget(dateEdit_CP);
@@ -1174,6 +1202,7 @@ public:
 
         comboBox_czestotliwoscCP = new QComboBox(page_nowyCP);
         comboBox_czestotliwoscCP->setObjectName(QString::fromUtf8("comboBox_czestotliwoscCP"));
+        comboBox_czestotliwoscCP->setMaximumSize(QSize(300, 16777215));
 
         verticalLayout_6->addWidget(comboBox_czestotliwoscCP);
 
@@ -1184,11 +1213,13 @@ public:
 
         lineEdit_notatkaCP = new QLineEdit(page_nowyCP);
         lineEdit_notatkaCP->setObjectName(QString::fromUtf8("lineEdit_notatkaCP"));
+        lineEdit_notatkaCP->setMaximumSize(QSize(300, 16777215));
 
         verticalLayout_6->addWidget(lineEdit_notatkaCP);
 
         pushButton_dodajCP = new QPushButton(page_nowyCP);
         pushButton_dodajCP->setObjectName(QString::fromUtf8("pushButton_dodajCP"));
+        pushButton_dodajCP->setMaximumSize(QSize(300, 16777215));
 
         verticalLayout_6->addWidget(pushButton_dodajCP);
 
@@ -1207,20 +1238,40 @@ public:
         stackedWidget_CykliczneW->setObjectName(QString::fromUtf8("stackedWidget_CykliczneW"));
         page_CW_lista = new QWidget();
         page_CW_lista->setObjectName(QString::fromUtf8("page_CW_lista"));
-        QSizePolicy sizePolicy4(QSizePolicy::Expanding, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(page_CW_lista->sizePolicy().hasHeightForWidth());
-        page_CW_lista->setSizePolicy(sizePolicy4);
+        QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Expanding);
+        sizePolicy5.setHorizontalStretch(0);
+        sizePolicy5.setVerticalStretch(0);
+        sizePolicy5.setHeightForWidth(page_CW_lista->sizePolicy().hasHeightForWidth());
+        page_CW_lista->setSizePolicy(sizePolicy5);
         page_CW_lista->setMinimumSize(QSize(200, 200));
         horizontalLayout_18 = new QHBoxLayout(page_CW_lista);
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
+        verticalLayout_18 = new QVBoxLayout();
+        verticalLayout_18->setObjectName(QString::fromUtf8("verticalLayout_18"));
+        verticalLayout_18->setContentsMargins(-1, -1, 20, -1);
+        label_62 = new QLabel(page_CW_lista);
+        label_62->setObjectName(QString::fromUtf8("label_62"));
+        label_62->setFont(font3);
+        label_62->setMargin(50);
+
+        verticalLayout_18->addWidget(label_62);
+
         tableView_listaCW = new QTableView(page_CW_lista);
         tableView_listaCW->setObjectName(QString::fromUtf8("tableView_listaCW"));
+        sizePolicy4.setHeightForWidth(tableView_listaCW->sizePolicy().hasHeightForWidth());
+        tableView_listaCW->setSizePolicy(sizePolicy4);
 
-        horizontalLayout_18->addWidget(tableView_listaCW);
+        verticalLayout_18->addWidget(tableView_listaCW);
+
+        verticalSpacer_24 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_18->addItem(verticalSpacer_24);
+
+
+        horizontalLayout_18->addLayout(verticalLayout_18);
 
         verticalLayout_7 = new QVBoxLayout();
+        verticalLayout_7->setSpacing(40);
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(20, -1, 20, -1);
         verticalSpacer_17 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
@@ -1231,10 +1282,6 @@ public:
         pushButton_usunCW->setObjectName(QString::fromUtf8("pushButton_usunCW"));
 
         verticalLayout_7->addWidget(pushButton_usunCW);
-
-        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_7->addItem(verticalSpacer_5);
 
         pushButton_nowyCW = new QPushButton(page_CW_lista);
         pushButton_nowyCW->setObjectName(QString::fromUtf8("pushButton_nowyCW"));
@@ -1266,7 +1313,9 @@ public:
 
         label_25 = new QLabel(page_CW_nowy);
         label_25->setObjectName(QString::fromUtf8("label_25"));
-        label_25->setFont(font4);
+        QFont font5;
+        font5.setPointSize(15);
+        label_25->setFont(font5);
         label_25->setAlignment(Qt::AlignCenter);
 
         horizontalLayout_19->addWidget(label_25);
@@ -1367,9 +1416,9 @@ public:
         horizontalLayout_45->setSpacing(20);
         horizontalLayout_45->setObjectName(QString::fromUtf8("horizontalLayout_45"));
         verticalLayout_16 = new QVBoxLayout();
-        verticalLayout_16->setSpacing(20);
+        verticalLayout_16->setSpacing(30);
         verticalLayout_16->setObjectName(QString::fromUtf8("verticalLayout_16"));
-        verticalLayout_16->setContentsMargins(50, 50, 50, 50);
+        verticalLayout_16->setContentsMargins(50, 30, 50, 50);
         label_43 = new QLabel(tab_Raporty);
         label_43->setObjectName(QString::fromUtf8("label_43"));
         label_43->setFont(font3);
@@ -1381,6 +1430,7 @@ public:
         horizontalLayout_46->setObjectName(QString::fromUtf8("horizontalLayout_46"));
         horizontalLayout_50 = new QHBoxLayout();
         horizontalLayout_50->setObjectName(QString::fromUtf8("horizontalLayout_50"));
+        horizontalLayout_50->setContentsMargins(-1, -1, 50, -1);
         label_44 = new QLabel(tab_Raporty);
         label_44->setObjectName(QString::fromUtf8("label_44"));
 
@@ -1396,6 +1446,7 @@ public:
 
         horizontalLayout_51 = new QHBoxLayout();
         horizontalLayout_51->setObjectName(QString::fromUtf8("horizontalLayout_51"));
+        horizontalLayout_51->setContentsMargins(-1, -1, 50, -1);
         label_45 = new QLabel(tab_Raporty);
         label_45->setObjectName(QString::fromUtf8("label_45"));
 
@@ -1413,6 +1464,7 @@ public:
         verticalLayout_16->addLayout(horizontalLayout_46);
 
         horizontalLayout_48 = new QHBoxLayout();
+        horizontalLayout_48->setSpacing(6);
         horizontalLayout_48->setObjectName(QString::fromUtf8("horizontalLayout_48"));
         checkBox_tylkoKategoria = new QCheckBox(tab_Raporty);
         checkBox_tylkoKategoria->setObjectName(QString::fromUtf8("checkBox_tylkoKategoria"));
@@ -1454,19 +1506,29 @@ public:
 
         verticalLayout_16->addLayout(horizontalLayout_47);
 
+        verticalLayout_16->setStretch(0, 1);
+        verticalLayout_16->setStretch(1, 1);
+        verticalLayout_16->setStretch(2, 1);
+        verticalLayout_16->setStretch(3, 1);
+        verticalLayout_16->setStretch(4, 1);
+        verticalLayout_16->setStretch(5, 1);
 
         horizontalLayout_45->addLayout(verticalLayout_16);
 
         verticalLayout_17 = new QVBoxLayout();
-        verticalLayout_17->setSpacing(20);
+        verticalLayout_17->setSpacing(30);
         verticalLayout_17->setObjectName(QString::fromUtf8("verticalLayout_17"));
-        verticalLayout_17->setContentsMargins(50, 50, 50, 50);
+        verticalLayout_17->setContentsMargins(50, 30, 50, 50);
         label_52 = new QLabel(tab_Raporty);
         label_52->setObjectName(QString::fromUtf8("label_52"));
         label_52->setFont(font3);
         label_52->setAlignment(Qt::AlignCenter);
 
         verticalLayout_17->addWidget(label_52);
+
+        verticalSpacer_25 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_17->addItem(verticalSpacer_25);
 
         horizontalLayout_29 = new QHBoxLayout();
         horizontalLayout_29->setObjectName(QString::fromUtf8("horizontalLayout_29"));
@@ -1486,6 +1548,11 @@ public:
 
 
         verticalLayout_17->addLayout(horizontalLayout_29);
+
+        label_54 = new QLabel(tab_Raporty);
+        label_54->setObjectName(QString::fromUtf8("label_54"));
+
+        verticalLayout_17->addWidget(label_54);
 
         pushButton_prognozycaly = new QPushButton(tab_Raporty);
         pushButton_prognozycaly->setObjectName(QString::fromUtf8("pushButton_prognozycaly"));
@@ -1514,12 +1581,11 @@ public:
 
         verticalLayout_17->addLayout(horizontalLayout_30);
 
-        label_54 = new QLabel(tab_Raporty);
-        label_54->setObjectName(QString::fromUtf8("label_54"));
-        label_54->setStyleSheet(QString::fromUtf8("color: transparent"));
-
-        verticalLayout_17->addWidget(label_54);
-
+        verticalLayout_17->setStretch(0, 1);
+        verticalLayout_17->setStretch(2, 1);
+        verticalLayout_17->setStretch(4, 1);
+        verticalLayout_17->setStretch(5, 1);
+        verticalLayout_17->setStretch(6, 1);
 
         horizontalLayout_45->addLayout(verticalLayout_17);
 
@@ -1543,8 +1609,13 @@ public:
         horizontalLayout_23->addWidget(tableView_uzytkownicy);
 
         verticalLayout_11 = new QVBoxLayout();
+        verticalLayout_11->setSpacing(40);
         verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
-        verticalLayout_11->setContentsMargins(0, -1, -1, -1);
+        verticalLayout_11->setContentsMargins(20, -1, 20, -1);
+        verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_11->addItem(verticalSpacer_5);
+
         pushButton_zablokuj_odblokuj = new QPushButton(page);
         pushButton_zablokuj_odblokuj->setObjectName(QString::fromUtf8("pushButton_zablokuj_odblokuj"));
 
@@ -1552,8 +1623,13 @@ public:
 
         checkBox_pokazHasla = new QCheckBox(page);
         checkBox_pokazHasla->setObjectName(QString::fromUtf8("checkBox_pokazHasla"));
+        checkBox_pokazHasla->setIconSize(QSize(20, 20));
 
         verticalLayout_11->addWidget(checkBox_pokazHasla);
+
+        verticalSpacer_4 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_11->addItem(verticalSpacer_4);
 
 
         horizontalLayout_23->addLayout(verticalLayout_11);
@@ -1657,7 +1733,7 @@ public:
         verticalLayout_15 = new QVBoxLayout();
         verticalLayout_15->setSpacing(20);
         verticalLayout_15->setObjectName(QString::fromUtf8("verticalLayout_15"));
-        verticalLayout_15->setContentsMargins(100, 50, 100, -1);
+        verticalLayout_15->setContentsMargins(100, 50, 100, 50);
         label_59 = new QLabel(tab_Dzieci);
         label_59->setObjectName(QString::fromUtf8("label_59"));
         label_59->setFont(font3);
@@ -1710,10 +1786,6 @@ public:
         label_48->setObjectName(QString::fromUtf8("label_48"));
 
         horizontalLayout_34->addWidget(label_48);
-
-        horizontalSpacer_9 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
-
-        horizontalLayout_34->addItem(horizontalSpacer_9);
 
         pushButton_zmienKieszonkowe = new QPushButton(tab_Dzieci);
         pushButton_zmienKieszonkowe->setObjectName(QString::fromUtf8("pushButton_zmienKieszonkowe"));
@@ -1772,12 +1844,13 @@ public:
         tab_Relacje->setObjectName(QString::fromUtf8("tab_Relacje"));
         horizontalLayout_26 = new QHBoxLayout(tab_Relacje);
         horizontalLayout_26->setObjectName(QString::fromUtf8("horizontalLayout_26"));
-        horizontalLayout_26->setContentsMargins(50, 50, 50, -1);
+        horizontalLayout_26->setContentsMargins(50, 50, 50, 50);
         verticalLayout_13 = new QVBoxLayout();
         verticalLayout_13->setObjectName(QString::fromUtf8("verticalLayout_13"));
         label_60 = new QLabel(tab_Relacje);
         label_60->setObjectName(QString::fromUtf8("label_60"));
         label_60->setFont(font3);
+        label_60->setMargin(10);
 
         verticalLayout_13->addWidget(label_60);
 
@@ -1793,11 +1866,8 @@ public:
 
         tableView_dzieciRelacje = new QTableView(tab_Relacje);
         tableView_dzieciRelacje->setObjectName(QString::fromUtf8("tableView_dzieciRelacje"));
-        QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Fixed);
-        sizePolicy5.setHorizontalStretch(0);
-        sizePolicy5.setVerticalStretch(0);
-        sizePolicy5.setHeightForWidth(tableView_dzieciRelacje->sizePolicy().hasHeightForWidth());
-        tableView_dzieciRelacje->setSizePolicy(sizePolicy5);
+        sizePolicy4.setHeightForWidth(tableView_dzieciRelacje->sizePolicy().hasHeightForWidth());
+        tableView_dzieciRelacje->setSizePolicy(sizePolicy4);
         tableView_dzieciRelacje->setMaximumSize(QSize(500, 16777215));
 
         verticalLayout_13->addWidget(tableView_dzieciRelacje);
@@ -1814,8 +1884,8 @@ public:
 
         tableView_rodziceRelacje = new QTableView(tab_Relacje);
         tableView_rodziceRelacje->setObjectName(QString::fromUtf8("tableView_rodziceRelacje"));
-        sizePolicy5.setHeightForWidth(tableView_rodziceRelacje->sizePolicy().hasHeightForWidth());
-        tableView_rodziceRelacje->setSizePolicy(sizePolicy5);
+        sizePolicy4.setHeightForWidth(tableView_rodziceRelacje->sizePolicy().hasHeightForWidth());
+        tableView_rodziceRelacje->setSizePolicy(sizePolicy4);
         tableView_rodziceRelacje->setMaximumSize(QSize(500, 16777215));
 
         verticalLayout_13->addWidget(tableView_rodziceRelacje);
@@ -1857,8 +1927,8 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(10);
-        stackedWidget_CykliczneP->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(1);
+        stackedWidget_CykliczneP->setCurrentIndex(1);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
 
@@ -1914,6 +1984,7 @@ public:
         label_46->setText(QCoreApplication::translate("User_Panel", "Dost\304\231pne kategorie", nullptr));
         pushButton_usunKategorie->setText(QCoreApplication::translate("User_Panel", "Usu\305\204 kategori\304\231", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Kategorie), QCoreApplication::translate("User_Panel", "Kategorie", nullptr));
+        label_61->setText(QCoreApplication::translate("User_Panel", "Cykliczne przychody", nullptr));
         pushButton_usunCP->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
         pushButton_nowyCP->setText(QCoreApplication::translate("User_Panel", "Dodaj nowy przych\303\263d cykliczny", nullptr));
         pushButton_powrotCP->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
@@ -1931,6 +2002,7 @@ public:
         label_30->setText(QCoreApplication::translate("User_Panel", "Notatka (opcjonalnie)", nullptr));
         pushButton_dodajCP->setText(QCoreApplication::translate("User_Panel", "Dodaj przych\303\263d cykliczny", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_CykliczneP), QCoreApplication::translate("User_Panel", "Cykliczne przychody", nullptr));
+        label_62->setText(QCoreApplication::translate("User_Panel", "Cykliczne wydatki", nullptr));
         pushButton_usunCW->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
         pushButton_nowyCW->setText(QCoreApplication::translate("User_Panel", "Dodaj nowy wydatek cykliczny", nullptr));
         pushButton_powrotCW->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
@@ -1957,10 +2029,10 @@ public:
         pushButton_adminRaportOneUser->setText(QCoreApplication::translate("User_Panel", "Generuj raport dla u\305\274ytkownika:", nullptr));
         label_52->setText(QCoreApplication::translate("User_Panel", "Generuj prognozy", nullptr));
         label_53->setText(QCoreApplication::translate("User_Panel", "Prognozy do dnia:", nullptr));
+        label_54->setText(QString());
         pushButton_prognozycaly->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla ca\305\202ego bud\305\274etu", nullptr));
         pushButton_osobistepprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania osobiste", nullptr));
         pushButton_adminprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla u\305\274ytkownika:", nullptr));
-        label_54->setText(QCoreApplication::translate("User_Panel", "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
         pushButton_zablokuj_odblokuj->setText(QCoreApplication::translate("User_Panel", "Zablokuj/odblokuj", nullptr));
         checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
@@ -1975,7 +2047,7 @@ public:
         label_59->setText(QCoreApplication::translate("User_Panel", "Informacje o dziecku", nullptr));
         label_39->setText(QCoreApplication::translate("User_Panel", "Wybierz dziecko:", nullptr));
         label_40->setText(QCoreApplication::translate("User_Panel", "Aktualne kieszonkowe:", nullptr));
-        label_48->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
+        label_48->setText(QCoreApplication::translate("User_Panel", "z\305\202                   ", nullptr));
         pushButton_zmienKieszonkowe->setText(QCoreApplication::translate("User_Panel", "Zmie\305\204 kieszonkowe", nullptr));
         label_41->setText(QCoreApplication::translate("User_Panel", "Aktualne saldo:", nullptr));
         label_42->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));

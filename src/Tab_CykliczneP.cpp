@@ -189,6 +189,10 @@ void Tab_CykliczneP::setTableStrategy(){
 
         cyklicznePTable->edit(index);
     });
+
+    modelUsers->setHeaderData(4, Qt::Horizontal, "Częstotliwość");
+    modelUsers->setHeaderData(5, Qt::Horizontal, "Imię i nazwisko");
+    modelUsers->setHeaderData(7, Qt::Horizontal, "Kolejna data");
 }
 void Tab_CykliczneP::reset_Tab(){
     kategoriaCombo->setCurrentIndex(0);

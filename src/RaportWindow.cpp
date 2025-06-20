@@ -11,9 +11,9 @@ RaportWindow::RaportWindow(QWidget *parent) : QMainWindow(parent) {
     r_centralWidget = new QWidget(this);         
     mainLayout = new QVBoxLayout(r_centralWidget);        
 
-    setCentralWidget(r_centralWidget);                
+    setCentralWidget(r_centralWidget);
 
-    fileMenu = menuBar()->addMenu("Plik");
+    fileMenu = menuBar()->addMenu("Zapisz do pliku");
 
     savePdfAction = new QAction("Zapisz do PDF", this);
     fileMenu->addAction(savePdfAction);
