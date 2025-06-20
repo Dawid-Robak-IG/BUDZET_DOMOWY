@@ -23,19 +23,13 @@ private slots:
        void handleLogout();
 
 private:
-    QStackedWidget *stackedWidget; 
-    Start_Log_Reg *logRegScreen;
-    User_Panel *m_userPanel;
+    QStackedWidget *stackedWidget = nullptr;
+    Start_Log_Reg *logRegScreen = nullptr;
+    User_Panel *m_userPanel = nullptr;
 
-    DatabaseManager* m_dbManager;
+    DatabaseManager *m_dbManager = nullptr;
 
-
-    enum WidgetIndex {
-        LogRegIndex,
-        UserPanelIndex
-    };
-
-
+    enum WidgetIndex { LogRegIndex, UserPanelIndex };
 };
 
 

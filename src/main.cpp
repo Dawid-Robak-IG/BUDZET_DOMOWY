@@ -16,6 +16,23 @@ int main(int argc, char** argv){
     QLocale polish(QLocale::Polish, QLocale::Poland);
     QLocale::setDefault(polish);
 
+    qApp->setStyleSheet("QWidget { color:#003b5b; }");
+    qApp->setStyleSheet(R"(
+    QPushButton {
+        border-radius: 10px;
+        background-color: rgba(0,59,91,255); 
+        color: white;
+        padding: 6px 12px;
+    }
+
+    QPushButton:hover {
+        background-color: rgba(52, 152, 219, 200);  /* ten sam kolor, ale bardziej przezroczysty */
+    }
+
+    QPushButton:pressed {
+        background-color: rgba(52, 152, 219, 180);  /* jeszcze ciemniejszy */
+    }
+)");
     MainWindow mainwindow;
     mainwindow.resize(1200, 700);
     mainwindow.show();
