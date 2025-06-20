@@ -127,7 +127,7 @@ public:
 
         stackedWidget = new QStackedWidget(Start_Log_Reg);
         stackedWidget->setObjectName(QString::fromUtf8("stackedWidget"));
-        stackedWidget->setStyleSheet(QString::fromUtf8("#a6e3de"));
+        stackedWidget->setStyleSheet(QString::fromUtf8(""));
         Start_page = new QWidget();
         Start_page->setObjectName(QString::fromUtf8("Start_page"));
         horizontalLayout_4 = new QHBoxLayout(Start_page);

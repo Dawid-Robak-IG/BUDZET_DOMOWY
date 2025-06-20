@@ -6,17 +6,18 @@
 #include "DatabaseManager.hpp"
 #include "PasswordDelegate.hpp"
 
-#include <QWidget>
-#include <QTableView>
-#include <QSqlTableModel>
-#include <QDebug>
-#include <QSqlError>
-#include <QPushButton>
+#include <QCheckBox>
 #include <QComboBox>
-#include <QStackedWidget>
+#include <QDebug>
+#include <QHeaderView>
 #include <QLineEdit>
 #include <QMessageBox>
-#include <QCheckBox>
+#include <QPushButton>
+#include <QSqlError>
+#include <QSqlTableModel>
+#include <QStackedWidget>
+#include <QTableView>
+#include <QWidget>
 
 class Tab_Uzytkownicy : public QWidget
 {

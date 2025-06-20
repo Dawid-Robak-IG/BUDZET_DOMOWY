@@ -178,7 +178,7 @@ void Tab_CykliczneP::setTableStrategy(){
     //cykliczneWTable->hideColumn(modelUsers->fieldIndex("Uzytkownik zalogowanyID"));
 
     cyklicznePTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
+    cyklicznePTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     connect(cyklicznePTable, &QTableView::doubleClicked, this, [=](const QModelIndex &index){
         QString colName = modelUsers->headerData(index.column(), Qt::Horizontal).toString();
 

@@ -175,7 +175,7 @@ void User_Panel::displayUserData(const QString &email){
             QString role = query.value("Rola").toString();
 
             ui->label_name->setText(name + " " + surname);
-            ui->label_role->setText("Rola: " + role);
+            ui->label_role->setText(role);
             qDebug() << "Zalogowano jako: " << name << surname << "rola:" << role;
 
         } else {

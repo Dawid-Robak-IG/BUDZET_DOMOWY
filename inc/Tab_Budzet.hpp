@@ -5,12 +5,13 @@
 #include "DatabaseManager.hpp"
 #include "KwotaColorDelegate.hpp"
 
-#include <QWidget>
-#include <QLineEdit>
-#include <QTableView>
-#include <QSqlTableModel>
 #include <QDebug>
+#include <QHeaderView>
+#include <QLineEdit>
 #include <QSqlRelationalTableModel>
+#include <QSqlTableModel>
+#include <QTableView>
+#include <QWidget>
 
 class Tab_Budzet : public QWidget
 {

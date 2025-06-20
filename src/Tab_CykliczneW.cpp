@@ -187,6 +187,7 @@ void Tab_CykliczneW::setTableStrategy(){
 
     cykliczneWTable->setModel(modelUsers);
     cykliczneWTable->hideColumn(modelUsers->fieldIndex("ID"));
+    cykliczneWTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //cykliczneWTable->hideColumn(modelUsers->fieldIndex("Uzytkownik zalogowanyID"));
 
     cykliczneWTable->setEditTriggers(QAbstractItemView::NoEditTriggers);

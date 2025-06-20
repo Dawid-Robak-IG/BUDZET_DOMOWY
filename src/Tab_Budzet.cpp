@@ -58,7 +58,8 @@ void Tab_Budzet::loadOperacjeTable() {
     modelOperacje->select();
     tabelaOperacje->setModel(modelOperacje);
 
-    tabelaOperacje->resizeColumnsToContents();
+    //  tabelaOperacje->resizeColumnsToContents();
+    tabelaOperacje->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
     //tabelaOperacje->horizontalHeader()->setStretchLastSection(true);
     tabelaOperacje->setEditTriggers(QAbstractItemView::NoEditTriggers); // tylko do odczytu
 

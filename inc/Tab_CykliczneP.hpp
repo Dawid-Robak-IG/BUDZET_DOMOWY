@@ -4,21 +4,22 @@
 #include "DatabaseManager.hpp"
 #include "ComboBoxDelegate.hpp"
 
-#include <QWidget>
-#include <QDoubleSpinBox>
-#include <QDateEdit>
 #include <QComboBox>
-#include <QLineEdit>
+#include <QDateEdit>
 #include <QDebug>
-#include <QPushButton>
-#include <QSqlQuery>
-#include <QVariant>
-#include <QSqlError>
+#include <QDoubleSpinBox>
+#include <QHeaderView>
+#include <QLineEdit>
 #include <QMessageBox>
+#include <QPushButton>
+#include <QSqlError>
+#include <QSqlQuery>
+#include <QSqlRelationalTableModel>
+#include <QSqlTableModel>
 #include <QStackedWidget>
 #include <QTableView>
-#include <QSqlTableModel>
-#include <QSqlRelationalTableModel>
+#include <QVariant>
+#include <QWidget>
 
 class Tab_CykliczneP : public QWidget
 {
