@@ -32,8 +32,8 @@ public slots:
     void onSaveToPngClicked();
     void onSaveToPdfClicked();
 private:
-    QVBoxLayout* mainLayout;
-    QVector<QtCharts::QChartView*> chartViews;
+    QVBoxLayout *mainLayout = nullptr;
+    QVector<QtCharts::QChartView *> chartViews;
 };
 
 #endif // RAPORTWINDOW_HPP

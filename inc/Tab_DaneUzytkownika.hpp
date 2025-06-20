@@ -33,25 +33,24 @@ signals:
   private:
       QString m_userEmail;
 
-      QDateEdit *dataEdit;
-      QLineEdit *imieLineEdit;
-      QLineEdit *nazwiskoLineEdit;
-      QLineEdit *rolaLineEdit;
-      QLineEdit *emailLineEdit;
-      QLineEdit *hasloLineEdit;
-      QPushButton *zmienHasloButton;
-      QCheckBox *pokazHasloCheckBox;
+      QDateEdit *dataEdit = nullptr;
+      QLineEdit *imieLineEdit = nullptr;
+      QLineEdit *nazwiskoLineEdit = nullptr;
+      QLineEdit *rolaLineEdit = nullptr;
+      QLineEdit *emailLineEdit = nullptr;
+      QLineEdit *hasloLineEdit = nullptr;
+      QPushButton *zmienHasloButton = nullptr;
+      QCheckBox *pokazHasloCheckBox = nullptr;
 
+      QLabel *salodLabel = nullptr;
+      QLabel *kieszonkoweLabel = nullptr;
+      QLabel *zl1Label = nullptr;
+      QLabel *zl2Label = nullptr;
+      QLabel *nkLabel = nullptr;
 
-      QLabel *salodLabel;
-      QLabel *kieszonkoweLabel;
-      QLabel *zl1Label;
-      QLabel *zl2Label;
-      QLabel *nkLabel;
-
-      QLineEdit *kieszonkoweLineEdit;
-      QLineEdit *saldoLineEdit;
-      QLineEdit *nastepneKieszonkoweLineEdit;
+      QLineEdit *kieszonkoweLineEdit = nullptr;
+      QLineEdit *saldoLineEdit = nullptr;
+      QLineEdit *nastepneKieszonkoweLineEdit = nullptr;
       DatabaseManager* m_dbManager = nullptr;
 
 

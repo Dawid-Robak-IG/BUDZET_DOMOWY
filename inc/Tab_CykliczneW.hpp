@@ -39,20 +39,20 @@ private slots:
 private:
     QString m_userEmail;
 
-    QStackedWidget *stacked;
-    QTableView *cykliczneWTable;
+    QStackedWidget *stacked = nullptr;
+    QTableView *cykliczneWTable = nullptr;
     // QPushButton *edytujCW_Button;
-    QPushButton *nowyCW_Button;
-    QPushButton *usunCW_Button;
-    QComboBox *kategoriaCombo;
-    QComboBox *czestotliwoscCombo;
-    QDateEdit *startCW_Data;
-    QDoubleSpinBox *kwotaCW;
-    QPushButton *powrotCW_Button;
-    QPushButton *dodajCW_Button;
-    QLineEdit *notatkaCW_LineEdit;
+    QPushButton *nowyCW_Button = nullptr;
+    QPushButton *usunCW_Button = nullptr;
+    QComboBox *kategoriaCombo = nullptr;
+    QComboBox *czestotliwoscCombo = nullptr;
+    QDateEdit *startCW_Data = nullptr;
+    QDoubleSpinBox *kwotaCW = nullptr;
+    QPushButton *powrotCW_Button = nullptr;
+    QPushButton *dodajCW_Button = nullptr;
+    QLineEdit *notatkaCW_LineEdit = nullptr;
 
-    QSqlRelationalTableModel* modelUsers; //potrzebne do tabelki
+    QSqlRelationalTableModel *modelUsers = nullptr; //potrzebne do tabelki
     DatabaseManager* m_dbManager = nullptr;
     void loadKategorie();
     void reset_Tab();

@@ -74,6 +74,19 @@
      <widget class="QWidget" name="Start_page">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
        <item>
+        <spacer name="horizontalSpacer_10">
+         <property name="orientation">
+          <enum>Qt::Horizontal</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>40</width>
+           <height>20</height>
+          </size>
+         </property>
+        </spacer>
+       </item>
+       <item>
         <layout class="QVBoxLayout" name="verticalLayout_4">
          <property name="spacing">
           <number>20</number>
@@ -103,6 +116,12 @@
             <size>
              <width>300</width>
              <height>300</height>
+            </size>
+           </property>
+           <property name="maximumSize">
+            <size>
+             <width>500</width>
+             <height>16777215</height>
             </size>
            </property>
            <property name="styleSheet">
@@ -145,7 +164,19 @@
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">background-color: #00c2c7; color:#ffffff</string>
+                 <string notr="true">QPushButton {
+    background-color: rgba(0, 194, 199, 255);
+    color: white;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: rgba(0, 194, 199, 200);
+}
+
+QPushButton:pressed {
+    background-color: rgba(0, 194, 199, 150);
+}</string>
                 </property>
                 <property name="text">
                  <string>Zaloguj</string>
@@ -200,7 +231,20 @@
                  </font>
                 </property>
                 <property name="styleSheet">
-                 <string notr="true">background-color: #005582; color:#ffffff</string>
+                 <string notr="true">QPushButton {
+    background-color: rgba(0, 59, 91, 255);
+    color: white;
+    border-radius: 10px;
+}
+
+QPushButton:hover {
+    background-color: rgba(0, 59, 91, 200);   
+}
+
+QPushButton:pressed {
+    background-color: rgba(0, 59, 91, 150);   
+}
+</string>
                 </property>
                 <property name="text">
                  <string>Zarejestruj</string>
@@ -224,12 +268,6 @@
             </item>
            </layout>
           </widget>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_3"/>
-         </item>
-         <item>
-          <layout class="QHBoxLayout" name="horizontalLayout_10"/>
          </item>
          <item>
           <spacer name="verticalSpacer_5">

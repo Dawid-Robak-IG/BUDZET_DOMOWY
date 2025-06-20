@@ -38,13 +38,13 @@ private:
     // QTableView *kieszonkoweTable;
     // QSqlTableModel* modelUsers; //potrzebne do tabelki
 
-    QLineEdit *aktualneSaldoLineEdit;
-    QLineEdit *aktualneKieszonkoweLineEdit;
+    QLineEdit *aktualneSaldoLineEdit = nullptr;
+    QLineEdit *aktualneKieszonkoweLineEdit = nullptr;
 
-    QPushButton *generujRaportButton;
-    QPushButton *zmienKieszonkoweButton;
-    QComboBox *listaDzieciCombo;
-    QLineEdit *nastepneKieszonkoweLineEdit;
+    QPushButton *generujRaportButton = nullptr;
+    QPushButton *zmienKieszonkoweButton = nullptr;
+    QComboBox *listaDzieciCombo = nullptr;
+    QLineEdit *nastepneKieszonkoweLineEdit = nullptr;
     DatabaseManager* m_dbManager = nullptr;
 
     void showTable();

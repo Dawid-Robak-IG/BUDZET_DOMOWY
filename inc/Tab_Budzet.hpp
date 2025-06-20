@@ -25,10 +25,10 @@ public slots:
     void refresh();
 
 private:
-    QLineEdit *dataBudzet;
-    QLineEdit *kwotaBudzet;
-    QTableView *tabelaOperacje;
-    QSqlRelationalTableModel* modelOperacje;
+    QLineEdit *dataBudzet = nullptr;
+    QLineEdit *kwotaBudzet = nullptr;
+    QTableView *tabelaOperacje = nullptr;
+    QSqlRelationalTableModel *modelOperacje = nullptr;
 
     DatabaseManager* m_dbManager = nullptr;
 };

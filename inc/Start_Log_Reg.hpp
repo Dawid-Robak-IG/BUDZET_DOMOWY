@@ -35,7 +35,7 @@ public:
 
     void goToStartPage();
 private:
-    Ui::Start_Log_Reg *ui;
+    Ui::Start_Log_Reg *ui = nullptr;
     QLabel *backgroundLabel = nullptr;
     DatabaseManager *m_dbManager = nullptr;
     bool isValidReg();

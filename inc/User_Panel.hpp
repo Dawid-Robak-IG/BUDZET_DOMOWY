@@ -49,22 +49,22 @@ signals:
     void logoutRequested();
 
 private:
-    Ui::User_Panel *ui;
+    Ui::User_Panel *ui = nullptr;
     QString userEmail;  //email zalogowanego użytkownika
 
     DatabaseManager* m_dbManager = nullptr;
 
-    Tab_Wydatki *wydatkiManager;
-    Tab_Przychody *przychodyManager;
-    Tab_Uzytkownicy *uzytkownicyManager;
-    Tab_Kategorie *kategorieManager;
-    Tab_DaneUzytkownika *daneUzytkownikaManager;
-    Tab_CykliczneP* cyklicznePManager;
-    Tab_CykliczneW* cykliczneWManager;
-    Tab_Raporty* raportyManager;
-    Tab_Dzieci* dzieciManager;
-    Tab_Relacje* relacjeManager;
-    Tab_Budzet* budzetManager;
+    Tab_Wydatki *wydatkiManager = nullptr;
+    Tab_Przychody *przychodyManager = nullptr;
+    Tab_Uzytkownicy *uzytkownicyManager = nullptr;
+    Tab_Kategorie *kategorieManager = nullptr;
+    Tab_DaneUzytkownika *daneUzytkownikaManager = nullptr;
+    Tab_CykliczneP *cyklicznePManager = nullptr;
+    Tab_CykliczneW *cykliczneWManager = nullptr;
+    Tab_Raporty *raportyManager = nullptr;
+    Tab_Dzieci *dzieciManager = nullptr;
+    Tab_Relacje *relacjeManager = nullptr;
+    Tab_Budzet *budzetManager = nullptr;
 };
 
 #endif // USER_PANEL_H

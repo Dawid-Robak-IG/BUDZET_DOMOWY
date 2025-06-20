@@ -32,11 +32,11 @@ private slots:
 private:
     QString m_userEmail;
 
-    QDoubleSpinBox *kwotaSpinBox;
-    QLineEdit *opisLineEdit;
-    QDateEdit *dataEdit;
-    QComboBox *kategoriaCombo;
-    QPushButton *dodajPrzychodButton;
+    QDoubleSpinBox *kwotaSpinBox = nullptr;
+    QLineEdit *opisLineEdit = nullptr;
+    QDateEdit *dataEdit = nullptr;
+    QComboBox *kategoriaCombo = nullptr;
+    QPushButton *dodajPrzychodButton = nullptr;
 
     DatabaseManager* m_dbManager = nullptr;
     void loadKategorie();

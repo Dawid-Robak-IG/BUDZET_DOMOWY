@@ -39,10 +39,10 @@ private:
    // QTableView *tabelaKategorie;
    // QSqlTableModel* modelUsersX;
 
-    QLineEdit *nowaKategoriaLineEdit;
-    QPushButton *dodajKategorieButton;
-    QPushButton *usunKategorieButton;
-    QComboBox *kategoriaCombo;
+    QLineEdit *nowaKategoriaLineEdit = nullptr;
+    QPushButton *dodajKategorieButton = nullptr;
+    QPushButton *usunKategorieButton = nullptr;
+    QComboBox *kategoriaCombo = nullptr;
 
     DatabaseManager* m_dbManager = nullptr;
 

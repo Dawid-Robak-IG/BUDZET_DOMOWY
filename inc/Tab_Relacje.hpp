@@ -34,16 +34,16 @@ signals:
 
 private:
     QString m_userEmail;
-         QTableView *dzieciTable;
-        QTableView *rodziceTable;
-        QSqlRelationalTableModel *dzieciModelUsers;
-        QSqlTableModel *rodziceModelUsers;
+    QTableView *dzieciTable = nullptr;
+    QTableView *rodziceTable = nullptr;
+    QSqlRelationalTableModel *dzieciModelUsers = nullptr;
+    QSqlTableModel *rodziceModelUsers = nullptr;
 
-        QPushButton *dodajRelacjeButton;
-        QPushButton *dodaj2RelacjeButton;
-        DatabaseManager *m_dbManager = nullptr;
+    QPushButton *dodajRelacjeButton = nullptr;
+    QPushButton *dodaj2RelacjeButton = nullptr;
+    DatabaseManager *m_dbManager = nullptr;
 
-        void showTables();
+    void showTables();
 };
 
 #endif // TAB_RELACJE_HPP

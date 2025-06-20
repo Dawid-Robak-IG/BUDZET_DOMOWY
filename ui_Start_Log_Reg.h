@@ -36,6 +36,7 @@ public:
     QStackedWidget *stackedWidget;
     QWidget *Start_page;
     QHBoxLayout *horizontalLayout_4;
+    QSpacerItem *horizontalSpacer_10;
     QVBoxLayout *verticalLayout_4;
     QSpacerItem *verticalSpacer_6;
     QFrame *frame;
@@ -48,8 +49,6 @@ public:
     QSpacerItem *horizontalSpacer_3;
     QPushButton *pushButton_Zarejestruj;
     QSpacerItem *horizontalSpacer_16;
-    QHBoxLayout *horizontalLayout_3;
-    QHBoxLayout *horizontalLayout_10;
     QSpacerItem *verticalSpacer_5;
     QWidget *Login_page;
     QVBoxLayout *verticalLayout_2;
@@ -133,6 +132,10 @@ public:
         Start_page->setObjectName(QString::fromUtf8("Start_page"));
         horizontalLayout_4 = new QHBoxLayout(Start_page);
         horizontalLayout_4->setObjectName(QString::fromUtf8("horizontalLayout_4"));
+        horizontalSpacer_10 = new QSpacerItem(40, 20, QSizePolicy::Expanding, QSizePolicy::Minimum);
+
+        horizontalLayout_4->addItem(horizontalSpacer_10);
+
         verticalLayout_4 = new QVBoxLayout();
         verticalLayout_4->setSpacing(20);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
@@ -144,6 +147,7 @@ public:
         frame = new QFrame(Start_page);
         frame->setObjectName(QString::fromUtf8("frame"));
         frame->setMinimumSize(QSize(300, 300));
+        frame->setMaximumSize(QSize(500, 16777215));
         frame->setStyleSheet(QString::fromUtf8(" background-color: rgba(255, 255, 255, 180); border-radius: 15px;"));
         frame->setFrameShape(QFrame::StyledPanel);
         frame->setFrameShadow(QFrame::Raised);
@@ -162,7 +166,19 @@ public:
         font1.setPointSize(16);
         font1.setBold(true);
         pushButton_Zaloguj->setFont(font1);
-        pushButton_Zaloguj->setStyleSheet(QString::fromUtf8("background-color: #00c2c7; color:#ffffff"));
+        pushButton_Zaloguj->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgba(0, 194, 199, 255);\n"
+"    color: white;\n"
+"    border-radius: 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(0, 194, 199, 200);\n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(0, 194, 199, 150);\n"
+"}"));
 
         horizontalLayout_11->addWidget(pushButton_Zaloguj);
 
@@ -184,7 +200,20 @@ public:
         pushButton_Zarejestruj->setObjectName(QString::fromUtf8("pushButton_Zarejestruj"));
         pushButton_Zarejestruj->setMinimumSize(QSize(150, 50));
         pushButton_Zarejestruj->setFont(font1);
-        pushButton_Zarejestruj->setStyleSheet(QString::fromUtf8("background-color: #005582; color:#ffffff"));
+        pushButton_Zarejestruj->setStyleSheet(QString::fromUtf8("QPushButton {\n"
+"    background-color: rgba(0, 59, 91, 255);\n"
+"    color: white;\n"
+"    border-radius: 10px;\n"
+"}\n"
+"\n"
+"QPushButton:hover {\n"
+"    background-color: rgba(0, 59, 91, 200);   \n"
+"}\n"
+"\n"
+"QPushButton:pressed {\n"
+"    background-color: rgba(0, 59, 91, 150);   \n"
+"}\n"
+""));
 
         horizontalLayout_12->addWidget(pushButton_Zarejestruj);
 
@@ -197,16 +226,6 @@ public:
 
 
         verticalLayout_4->addWidget(frame);
-
-        horizontalLayout_3 = new QHBoxLayout();
-        horizontalLayout_3->setObjectName(QString::fromUtf8("horizontalLayout_3"));
-
-        verticalLayout_4->addLayout(horizontalLayout_3);
-
-        horizontalLayout_10 = new QHBoxLayout();
-        horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
-
-        verticalLayout_4->addLayout(horizontalLayout_10);
 
         verticalSpacer_5 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 

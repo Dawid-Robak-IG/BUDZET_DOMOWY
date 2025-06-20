@@ -16,8 +16,18 @@ int main(int argc, char** argv){
     QLocale polish(QLocale::Polish, QLocale::Poland);
     QLocale::setDefault(polish);
 
-    qApp->setStyleSheet("QWidget { color:#003b5b; }");
     qApp->setStyleSheet(R"(
+
+    QWidget { color:#003b5b; }
+
+QLineEdit {
+    background-color: white;
+    min-height: 30px;
+    max-height: 30px;
+    border-radius: 5px;
+    padding-left: 5px;
+}
+
     QPushButton {
         border-radius: 10px;
         background-color: rgba(0,59,91,255); 
@@ -26,11 +36,11 @@ int main(int argc, char** argv){
     }
 
     QPushButton:hover {
-        background-color: rgba(52, 152, 219, 200);  /* ten sam kolor, ale bardziej przezroczysty */
+        background-color: rgba(0,59,91, 200);  /* ten sam kolor, ale bardziej przezroczysty */
     }
 
     QPushButton:pressed {
-        background-color: rgba(52, 152, 219, 180);  /* jeszcze ciemniejszy */
+        background-color: rgba(0,59,91, 180);  /* jeszcze ciemniejszy */
     }
 )");
     MainWindow mainwindow;

@@ -40,21 +40,21 @@ private slots:
 private:
     QString m_userEmail;
 
-    QDateEdit *startDataEdit;
-    QDateEdit *stopDataEdit;
-    QPushButton *generujRaportButton;
-    QPushButton *generujRaportOsobisty;
+    QDateEdit *startDataEdit = nullptr;
+    QDateEdit *stopDataEdit = nullptr;
+    QPushButton *generujRaportButton = nullptr;
+    QPushButton *generujRaportOsobisty = nullptr;
 
-    QPushButton *generujRaportOsobistyAdmin;
-    QComboBox *comboKategoriaRaport;
-    QCheckBox* checkBoxKategoria;
-    QComboBox * comboUserAdminRaport;
+    QPushButton *generujRaportOsobistyAdmin = nullptr;
+    QComboBox *comboKategoriaRaport = nullptr;
+    QCheckBox *checkBoxKategoria = nullptr;
+    QComboBox *comboUserAdminRaport = nullptr;
 
-    QComboBox *comboPrognozyOsobiste;
-    QPushButton *generujPrognozyAdmin;
-    QPushButton *generujPrognozyBudżet;
-    QPushButton *generujMojePrognozy;
-    QDateEdit *dataPrognozy;
+    QComboBox *comboPrognozyOsobiste = nullptr;
+    QPushButton *generujPrognozyAdmin = nullptr;
+    QPushButton *generujPrognozyBudżet = nullptr;
+    QPushButton *generujMojePrognozy = nullptr;
+    QDateEdit *dataPrognozy = nullptr;
 
     DatabaseManager* m_dbManager = nullptr;
 
