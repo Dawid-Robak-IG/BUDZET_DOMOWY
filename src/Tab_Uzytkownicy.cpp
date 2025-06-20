@@ -6,7 +6,7 @@ Tab_Uzytkownicy::Tab_Uzytkownicy(QWidget *root,QWidget *parent): QWidget{parent}
    stacked= root->findChild<QStackedWidget*>("stackedWidget_uzytkownicy");
 
     blokadaButton= root->findChild<QPushButton*>("pushButton_zablokuj_odblokuj");
-    edytujButton= root->findChild<QPushButton*>("pushButton_edytujDane");
+    // edytujButton= root->findChild<QPushButton*>("pushButton_edytujDane");
     powrotButton= root->findChild<QPushButton*>("pushButton_powrotE");
     zapiszZmianyButton= root->findChild<QPushButton*>("pushButton_zapiszE");
     rolaCombo= root->findChild<QComboBox*>("comboBox_rolaE");

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1100</width>
-    <height>558</height>
+    <height>565</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -65,7 +65,7 @@
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>10</number>
      </property>
      <widget class="QWidget" name="tab_DaneUzytkownika">
       <attribute name="title">
@@ -1101,11 +1101,17 @@
               <number>0</number>
              </property>
              <item>
-              <widget class="QPushButton" name="pushButton_edytujCP">
-               <property name="text">
-                <string>Edytuj</string>
+              <spacer name="verticalSpacer_19">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
                </property>
-              </widget>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_usunCP">
@@ -1133,6 +1139,19 @@
                 <string>Dodaj nowy przychód cykliczny</string>
                </property>
               </widget>
+             </item>
+             <item>
+              <spacer name="verticalSpacer_20">
+               <property name="orientation">
+                <enum>Qt::Vertical</enum>
+               </property>
+               <property name="sizeHint" stdset="0">
+                <size>
+                 <width>20</width>
+                 <height>40</height>
+                </size>
+               </property>
+              </spacer>
              </item>
             </layout>
            </item>
@@ -1340,11 +1359,17 @@
                 <number>0</number>
                </property>
                <item>
-                <widget class="QPushButton" name="pushButton_edytujCW">
-                 <property name="text">
-                  <string>Edytuj</string>
+                <spacer name="verticalSpacer_17">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
                  </property>
-                </widget>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
                <item>
                 <widget class="QPushButton" name="pushButton_usunCW">
@@ -1372,6 +1397,19 @@
                   <string>Dodaj nowy wydatek cykliczny</string>
                  </property>
                 </widget>
+               </item>
+               <item>
+                <spacer name="verticalSpacer_18">
+                 <property name="orientation">
+                  <enum>Qt::Vertical</enum>
+                 </property>
+                 <property name="sizeHint" stdset="0">
+                  <size>
+                   <width>20</width>
+                   <height>40</height>
+                  </size>
+                 </property>
+                </spacer>
                </item>
               </layout>
              </item>
@@ -1837,16 +1875,6 @@
              <property name="leftMargin">
               <number>0</number>
              </property>
-             <item>
-              <widget class="QPushButton" name="pushButton_edytujDane">
-               <property name="styleSheet">
-                <string notr="true">background-color: #ffffff;</string>
-               </property>
-               <property name="text">
-                <string>Edytuj dane</string>
-               </property>
-              </widget>
-             </item>
              <item>
               <widget class="QPushButton" name="pushButton_zablokuj_odblokuj">
                <property name="text">

@@ -163,10 +163,11 @@ public:
     QHBoxLayout *horizontalLayout_21;
     QTableView *tableView_listaCP;
     QVBoxLayout *verticalLayout_10;
-    QPushButton *pushButton_edytujCP;
+    QSpacerItem *verticalSpacer_19;
     QPushButton *pushButton_usunCP;
     QSpacerItem *verticalSpacer_4;
     QPushButton *pushButton_nowyCP;
+    QSpacerItem *verticalSpacer_20;
     QWidget *page_nowyCP;
     QVBoxLayout *verticalLayout_6;
     QHBoxLayout *horizontalLayout_22;
@@ -196,10 +197,11 @@ public:
     QHBoxLayout *horizontalLayout_18;
     QTableView *tableView_listaCW;
     QVBoxLayout *verticalLayout_7;
-    QPushButton *pushButton_edytujCW;
+    QSpacerItem *verticalSpacer_17;
     QPushButton *pushButton_usunCW;
     QSpacerItem *verticalSpacer_5;
     QPushButton *pushButton_nowyCW;
+    QSpacerItem *verticalSpacer_18;
     QWidget *page_CW_nowy;
     QVBoxLayout *verticalLayout_9;
     QHBoxLayout *horizontalLayout_19;
@@ -264,7 +266,6 @@ public:
     QHBoxLayout *horizontalLayout_23;
     QTableView *tableView_uzytkownicy;
     QVBoxLayout *verticalLayout_11;
-    QPushButton *pushButton_edytujDane;
     QPushButton *pushButton_zablokuj_odblokuj;
     QCheckBox *checkBox_pokazHasla;
     QWidget *page_3;
@@ -329,7 +330,7 @@ public:
     {
         if (User_Panel->objectName().isEmpty())
             User_Panel->setObjectName(QString::fromUtf8("User_Panel"));
-        User_Panel->resize(1100, 558);
+        User_Panel->resize(1100, 565);
         verticalLayout = new QVBoxLayout(User_Panel);
         verticalLayout->setObjectName(QString::fromUtf8("verticalLayout"));
         horizontalLayout = new QHBoxLayout();
@@ -976,10 +977,9 @@ public:
         verticalLayout_10 = new QVBoxLayout();
         verticalLayout_10->setObjectName(QString::fromUtf8("verticalLayout_10"));
         verticalLayout_10->setContentsMargins(0, -1, -1, -1);
-        pushButton_edytujCP = new QPushButton(page_CP_lista);
-        pushButton_edytujCP->setObjectName(QString::fromUtf8("pushButton_edytujCP"));
+        verticalSpacer_19 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_10->addWidget(pushButton_edytujCP);
+        verticalLayout_10->addItem(verticalSpacer_19);
 
         pushButton_usunCP = new QPushButton(page_CP_lista);
         pushButton_usunCP->setObjectName(QString::fromUtf8("pushButton_usunCP"));
@@ -994,6 +994,10 @@ public:
         pushButton_nowyCP->setObjectName(QString::fromUtf8("pushButton_nowyCP"));
 
         verticalLayout_10->addWidget(pushButton_nowyCP);
+
+        verticalSpacer_20 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_10->addItem(verticalSpacer_20);
 
 
         horizontalLayout_21->addLayout(verticalLayout_10);
@@ -1133,10 +1137,9 @@ public:
         verticalLayout_7 = new QVBoxLayout();
         verticalLayout_7->setObjectName(QString::fromUtf8("verticalLayout_7"));
         verticalLayout_7->setContentsMargins(0, -1, -1, -1);
-        pushButton_edytujCW = new QPushButton(page_CW_lista);
-        pushButton_edytujCW->setObjectName(QString::fromUtf8("pushButton_edytujCW"));
+        verticalSpacer_17 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_7->addWidget(pushButton_edytujCW);
+        verticalLayout_7->addItem(verticalSpacer_17);
 
         pushButton_usunCW = new QPushButton(page_CW_lista);
         pushButton_usunCW->setObjectName(QString::fromUtf8("pushButton_usunCW"));
@@ -1151,6 +1154,10 @@ public:
         pushButton_nowyCW->setObjectName(QString::fromUtf8("pushButton_nowyCW"));
 
         verticalLayout_7->addWidget(pushButton_nowyCW);
+
+        verticalSpacer_18 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_7->addItem(verticalSpacer_18);
 
 
         horizontalLayout_18->addLayout(verticalLayout_7);
@@ -1463,12 +1470,6 @@ public:
         verticalLayout_11 = new QVBoxLayout();
         verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
         verticalLayout_11->setContentsMargins(0, -1, -1, -1);
-        pushButton_edytujDane = new QPushButton(page);
-        pushButton_edytujDane->setObjectName(QString::fromUtf8("pushButton_edytujDane"));
-        pushButton_edytujDane->setStyleSheet(QString::fromUtf8("background-color: #ffffff;"));
-
-        verticalLayout_11->addWidget(pushButton_edytujDane);
-
         pushButton_zablokuj_odblokuj = new QPushButton(page);
         pushButton_zablokuj_odblokuj->setObjectName(QString::fromUtf8("pushButton_zablokuj_odblokuj"));
 
@@ -1766,7 +1767,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(0);
+        tabWidget->setCurrentIndex(10);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
@@ -1819,7 +1820,6 @@ public:
         label_46->setText(QCoreApplication::translate("User_Panel", "Dost\304\231pne kategorie", nullptr));
         pushButton_usunKategorie->setText(QCoreApplication::translate("User_Panel", "Usu\305\204 kategori\304\231", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Kategorie), QCoreApplication::translate("User_Panel", "Dodaj kategorie", nullptr));
-        pushButton_edytujCP->setText(QCoreApplication::translate("User_Panel", "Edytuj", nullptr));
         pushButton_usunCP->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
         pushButton_nowyCP->setText(QCoreApplication::translate("User_Panel", "Dodaj nowy przych\303\263d cykliczny", nullptr));
         pushButton_powrotCP->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
@@ -1837,7 +1837,6 @@ public:
         label_30->setText(QCoreApplication::translate("User_Panel", "Notatka (opcjonalnie)", nullptr));
         pushButton_dodajCP->setText(QCoreApplication::translate("User_Panel", "Dodaj przych\303\263d cykliczny", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_CykliczneP), QCoreApplication::translate("User_Panel", "Cykliczne przychody", nullptr));
-        pushButton_edytujCW->setText(QCoreApplication::translate("User_Panel", "Edytuj", nullptr));
         pushButton_usunCW->setText(QCoreApplication::translate("User_Panel", "Usu\305\204", nullptr));
         pushButton_nowyCW->setText(QCoreApplication::translate("User_Panel", "Dodaj nowy wydatek cykliczny", nullptr));
         pushButton_powrotCW->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
@@ -1868,7 +1867,6 @@ public:
         pushButton_osobistepprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania osobiste", nullptr));
         pushButton_adminprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla u\305\274ytkownika:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
-        pushButton_edytujDane->setText(QCoreApplication::translate("User_Panel", "Edytuj dane", nullptr));
         pushButton_zablokuj_odblokuj->setText(QCoreApplication::translate("User_Panel", "Zablokuj/odblokuj", nullptr));
         checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
         pushButton_powrotE->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));
