@@ -18,7 +18,7 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
 
     // QLabel z obrazkiem w naturalnym rozmiarze
     backgroundLabel = new QLabel(this);
-    backgroundLabel->setPixmap(QPixmap(":/Start/startPage.png"));
+    backgroundLabel->setPixmap(QPixmap(":/Start/resources/startPage.png"));
     backgroundLabel->setScaledContents(false);
     backgroundLabel->setGeometry(0,
                                  0,

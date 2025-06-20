@@ -2,4 +2,7 @@
     <qresource prefix="/Start">
         <file>startPage.png</file>
     </qresource>
+    <qresource prefix="/Font">
+        <file>Lato_Font/Lato-Regular.ttf</file>
+    </qresource>
 </RCC>
