@@ -15,6 +15,9 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
     zmienKieszonkoweButton= root->findChild<QPushButton*>("pushButton_zmienKieszonkowe");
     listaDzieciCombo=root->findChild<QComboBox*>("comboBox_dzieciLista");
 
+    startDataEdit = root->findChild<QDateEdit *>("dateEdit_RDod");
+    stopDataEdit = root->findChild<QDateEdit *>("dateEdit_RDdo");
+
     if (generujRaportButton) {
         connect(generujRaportButton, &QPushButton::clicked, this, &Tab_Dzieci::GenerujRaportClicked);
     }
@@ -27,6 +30,13 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
     connect(listaDzieciCombo, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &Tab_Dzieci::onDzieckoSelected);
     }
+    if (startDataEdit) {
+        startDataEdit->setDate(QDate::currentDate());
+    }
+
+    if (stopDataEdit) {
+        stopDataEdit->setDate(QDate::currentDate());
+    }
 }
 
 void Tab_Dzieci::setDatabaseManager(DatabaseManager* dbManager) {
@@ -35,9 +45,40 @@ void Tab_Dzieci::setDatabaseManager(DatabaseManager* dbManager) {
     showTable();
 }
 
+void Tab_Dzieci::GenerujRaportClicked()
+{
+    if (!m_dbManager) {
+        qWarning() << "Nie ustawiono DatabaseManager!";
+        return;
+    }
 
-void Tab_Dzieci::GenerujRaportClicked(){ //toDo
-    qDebug()<<"Tu będzie generowanie raportu dla dziecka";
+    QDate startDate = startDataEdit->date();
+    QDate endDate = stopDataEdit->date();
+    bool ok = false;
+    int dzieckoID = listaDzieciCombo->currentData().toInt(&ok);
+    if (!ok)
+        return;
+    RaportWindow *raport = new RaportWindow();
+    QPair<QVector<QDate>, QVector<double>> data;
+
+    data = m_dbManager->getMyBudzetData(startDate, endDate, dzieckoID);
+
+    if (data.first.isEmpty()) {
+        QMessageBox::information(this, "Brak danych", "Brak danych w podanym zakresie dat.");
+        return;
+    }
+
+    raport->setAttribute(Qt::WA_DeleteOnClose);
+    raport->addStepChart(data.first, data.second, "Budżet wybranego dziecka");
+
+    data = m_dbManager->getMyPrzychody(startDate, endDate, dzieckoID);
+    raport->addBarChart(data.first, data.second, "Przychody wybranego dziecka");
+
+    data = m_dbManager->getMyWydatki(startDate, endDate, dzieckoID);
+    raport->addBarChart(data.first, data.second, "Wydatki wybranego dziecka");
+
+    raport->setWindowTitle("Raport budżetu dla danego dziecka");
+    raport->show();
 }
 
 void Tab_Dzieci::ZmienKieszonkoweClicked() {
@@ -141,10 +182,6 @@ void Tab_Dzieci::onDzieckoSelected(int index) {
     float saldo = m_dbManager->get_saldo(dzieckoID);
     float kieszonkowe = m_dbManager->get_kieszonkowe(dzieckoID);
 
-    // QString text = QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
-    //                    .arg(saldo, 0, 'f', 2)
-    //                    .arg(kieszonkowe, 0, 'f', 2);
-    // aktualneSaldoLineEdit->setText(text);
     aktualneKieszonkoweLineEdit->setText(QString::number(kieszonkowe, 'f', 2));
     aktualneSaldoLineEdit->setText(QString::number(saldo, 'f', 2));
 }
@@ -157,13 +194,5 @@ void Tab_Dzieci::updateSaldoIKieszonkoweLabel(int childID) {
     if (aktualneSaldoLineEdit) {
         aktualneKieszonkoweLineEdit->setText(QString::number(kieszonkowe, 'f', 2));
         aktualneSaldoLineEdit->setText(QString::number(saldo, 'f', 2));
-
-        // aktualneSaldoLineEdit->setText(
-        //     QString("Saldo: %1 zł | Kieszonkowe: %2 zł")
-        //     .arg(saldo, 0, 'f', 2)
-        //     .arg(kieszonkowe, 0, 'f', 2)
-        // );
-
-
     }
 }

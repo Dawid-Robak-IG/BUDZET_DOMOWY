@@ -65,19 +65,31 @@ void Tab_DaneUzytkownika::ZmienHasloClicked() {
     qDebug() << "Uruchamiam zmianę hasła";
 
     bool ok;
+    QInputDialog dialog(this);
+    dialog.setWindowTitle("Zmiana hasła");
+    dialog.setLabelText("Podaj nowe hasło:");
+    dialog.setTextEchoMode(QLineEdit::Password);
 
-    QString noweHaslo = QInputDialog::getText(this, "Zmiana hasła",
-        "Podaj nowe hasło:", QLineEdit::Password, "", &ok);
-    if (!ok) return;
-    if (noweHaslo.length() < 8) {
-        QMessageBox::warning(this, "Błąd", "Hasło musi mieć co najmniej 8 znaków.");
-        return;
+    // Zmieniamy teksty przycisków
+    dialog.setOkButtonText("Zmień");
+    dialog.setCancelButtonText("Odrzuć");
+
+    // Opcjonalnie: ustaw rozmiar
+    dialog.resize(300, 120);
+
+    if (dialog.exec() == QDialog::Accepted) {
+        QString noweHaslo = dialog.textValue();
+        if (noweHaslo.length() < 8) {
+            QMessageBox::warning(this, "Błąd", "Hasło musi mieć co najmniej 8 znaków.");
+            return;
+        }
+        if (m_dbManager->changePassword(noweHaslo)) {
+            QMessageBox::information(this, "Sukces", "Hasło zostało zmienione.");
+        } else {
+            QMessageBox::warning(this, "Błąd", "Nie udało się zmienić hasła.");
+        }
     }
-    if (m_dbManager->changePassword(noweHaslo)) {
-        QMessageBox::information(this, "Sukces", "Hasło zostało zmienione.");
-    } else {
-        QMessageBox::warning(this, "Błąd", "Nie udało się zmienić hasła. Sprawdź stare hasło.");
-    }
+    loadUserData(m_userEmail);
 }
 
 void Tab_DaneUzytkownika::loadUserData(const QString &new_mail){

@@ -7,7 +7,7 @@
     <x>0</x>
     <y>0</y>
     <width>1100</width>
-    <height>680</height>
+    <height>741</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -210,7 +210,7 @@ QPushButton {
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>9</number>
+      <number>7</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>
@@ -1482,6 +1482,7 @@ QPushButton {
                <property name="font">
                 <font>
                  <pointsize>20</pointsize>
+                 <bold>true</bold>
                 </font>
                </property>
                <property name="text">
@@ -1658,7 +1659,7 @@ QPushButton {
          <item>
           <widget class="QStackedWidget" name="stackedWidget_CykliczneW">
            <property name="currentIndex">
-            <number>0</number>
+            <number>1</number>
            </property>
            <widget class="QWidget" name="page_CW_lista">
             <property name="sizePolicy">
@@ -1777,6 +1778,15 @@ QPushButton {
            </widget>
            <widget class="QWidget" name="page_CW_nowy">
             <layout class="QVBoxLayout" name="verticalLayout_9">
+             <property name="spacing">
+              <number>20</number>
+             </property>
+             <property name="leftMargin">
+              <number>100</number>
+             </property>
+             <property name="rightMargin">
+              <number>200</number>
+             </property>
              <item>
               <layout class="QHBoxLayout" name="horizontalLayout_19">
                <item>
@@ -1803,7 +1813,8 @@ QPushButton {
                 <widget class="QLabel" name="label_25">
                  <property name="font">
                   <font>
-                   <pointsize>15</pointsize>
+                   <pointsize>20</pointsize>
+                   <bold>true</bold>
                   </font>
                  </property>
                  <property name="text">
@@ -1840,6 +1851,15 @@ QPushButton {
               <layout class="QHBoxLayout" name="horizontalLayout_20">
                <item>
                 <widget class="QDoubleSpinBox" name="doubleSpinBox_kwotaCW">
+                 <property name="maximumSize">
+                  <size>
+                   <width>300</width>
+                   <height>16777215</height>
+                  </size>
+                 </property>
+                 <property name="alignment">
+                  <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+                 </property>
                  <property name="maximum">
                   <double>999999.989999999990687</double>
                  </property>
@@ -1852,19 +1872,6 @@ QPushButton {
                  </property>
                 </widget>
                </item>
-               <item>
-                <spacer name="horizontalSpacer_15">
-                 <property name="orientation">
-                  <enum>Qt::Horizontal</enum>
-                 </property>
-                 <property name="sizeHint" stdset="0">
-                  <size>
-                   <width>40</width>
-                   <height>20</height>
-                  </size>
-                 </property>
-                </spacer>
-               </item>
               </layout>
              </item>
              <item>
@@ -1876,6 +1883,12 @@ QPushButton {
              </item>
              <item>
               <widget class="QComboBox" name="comboBox_kategoriaCW">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <item>
                 <property name="text">
                  <string>codziennie</string>
@@ -1907,6 +1920,12 @@ QPushButton {
              </item>
              <item>
               <widget class="QDateEdit" name="dateEdit_CW">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <property name="calendarPopup">
                 <bool>true</bool>
                </property>
@@ -1920,7 +1939,14 @@ QPushButton {
               </widget>
              </item>
              <item>
-              <widget class="QComboBox" name="comboBox_czestotliwoscCW"/>
+              <widget class="QComboBox" name="comboBox_czestotliwoscCW">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QLabel" name="label_24">
@@ -1930,10 +1956,23 @@ QPushButton {
               </widget>
              </item>
              <item>
-              <widget class="QLineEdit" name="lineEdit_notatkaCW"/>
+              <widget class="QLineEdit" name="lineEdit_notatkaCW">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
+              </widget>
              </item>
              <item>
               <widget class="QPushButton" name="pushButton_dodajCW">
+               <property name="maximumSize">
+                <size>
+                 <width>300</width>
+                 <height>16777215</height>
+                </size>
+               </property>
                <property name="text">
                 <string>Dodaj wydatek cykliczny</string>
                </property>
@@ -1951,12 +1990,12 @@ QPushButton {
       <attribute name="title">
        <string>Raporty</string>
       </attribute>
-      <layout class="QHBoxLayout" name="horizontalLayout_45" stretch="1,1">
+      <layout class="QHBoxLayout" name="horizontalLayout_45" stretch="10,1,10">
        <property name="spacing">
         <number>20</number>
        </property>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_16" stretch="1,1,1,1,1,1">
+        <layout class="QVBoxLayout" name="verticalLayout_16" stretch="1,1,1,1,1,1,0">
          <property name="spacing">
           <number>30</number>
          </property>
@@ -2083,10 +2122,30 @@ QPushButton {
            </item>
           </layout>
          </item>
+         <item>
+          <spacer name="verticalSpacer_12">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
+         </item>
         </layout>
        </item>
        <item>
-        <layout class="QVBoxLayout" name="verticalLayout_17" stretch="1,0,1,0,1,1,1">
+        <widget class="Line" name="line_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+        </widget>
+       </item>
+       <item>
+        <layout class="QVBoxLayout" name="verticalLayout_17" stretch="1,0,1,0,1,1,1,0">
          <property name="spacing">
           <number>30</number>
          </property>
@@ -2161,7 +2220,7 @@ QPushButton {
          <item>
           <widget class="QLabel" name="label_54">
            <property name="text">
-            <string>                                                 </string>
+            <string/>
            </property>
           </widget>
          </item>
@@ -2204,6 +2263,19 @@ QPushButton {
             <widget class="QComboBox" name="comboBox_prognozy"/>
            </item>
           </layout>
+         </item>
+         <item>
+          <spacer name="verticalSpacer_22">
+           <property name="orientation">
+            <enum>Qt::Vertical</enum>
+           </property>
+           <property name="sizeHint" stdset="0">
+            <size>
+             <width>20</width>
+             <height>40</height>
+            </size>
+           </property>
+          </spacer>
          </item>
         </layout>
        </item>
@@ -2636,17 +2708,65 @@ QPushButton {
           </spacer>
          </item>
          <item>
-          <widget class="QPushButton" name="pushButton_generujRaportD">
-           <property name="maximumSize">
-            <size>
-             <width>300</width>
-             <height>16777215</height>
-            </size>
-           </property>
-           <property name="text">
-            <string>Generuj raport dla dziecka</string>
+          <widget class="Line" name="line">
+           <property name="orientation">
+            <enum>Qt::Horizontal</enum>
            </property>
           </widget>
+         </item>
+         <item>
+          <layout class="QHBoxLayout" name="horizontalLayout_33">
+           <property name="topMargin">
+            <number>0</number>
+           </property>
+           <item>
+            <widget class="QPushButton" name="pushButton_generujRaportD">
+             <property name="maximumSize">
+              <size>
+               <width>300</width>
+               <height>16777215</height>
+              </size>
+             </property>
+             <property name="text">
+              <string>Generuj raport dla dziecka</string>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_63">
+             <property name="text">
+              <string>Od:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="dateEdit_RDod">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QLabel" name="label_64">
+             <property name="text">
+              <string>Do:</string>
+             </property>
+             <property name="alignment">
+              <set>Qt::AlignRight|Qt::AlignTrailing|Qt::AlignVCenter</set>
+             </property>
+            </widget>
+           </item>
+           <item>
+            <widget class="QDateEdit" name="dateEdit_RDdo">
+             <property name="calendarPopup">
+              <bool>true</bool>
+             </property>
+            </widget>
+           </item>
+          </layout>
          </item>
         </layout>
        </item>

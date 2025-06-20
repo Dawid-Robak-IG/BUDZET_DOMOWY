@@ -2,6 +2,7 @@
 #define TAB_DZIECI_HPP
 
 #include "DatabaseManager.hpp"
+#include "RaportWindow.hpp"
 
 #include <QWidget>
 #include <QDoubleSpinBox>
@@ -35,9 +36,6 @@ private slots:
 private:
     QString m_userEmail;
 
-    // QTableView *kieszonkoweTable;
-    // QSqlTableModel* modelUsers; //potrzebne do tabelki
-
     QLineEdit *aktualneSaldoLineEdit = nullptr;
     QLineEdit *aktualneKieszonkoweLineEdit = nullptr;
 
@@ -46,6 +44,9 @@ private:
     QComboBox *listaDzieciCombo = nullptr;
     QLineEdit *nastepneKieszonkoweLineEdit = nullptr;
     DatabaseManager* m_dbManager = nullptr;
+
+    QDateEdit *startDataEdit = nullptr;
+    QDateEdit *stopDataEdit = nullptr;
 
     void showTable();
 

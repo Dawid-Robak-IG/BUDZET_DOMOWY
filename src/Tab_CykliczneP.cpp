@@ -89,11 +89,20 @@ void Tab_CykliczneP::UsunCP_Clicked()
     int row = index.row();
     int id = modelUsers->data(modelUsers->index(row, 0)).toInt();
 
-    QMessageBox::StandardButton reply = QMessageBox::question(
-        this, "Potwierdzenie usunięcia",
-        "Czy na pewno chcesz usunąć ten cykliczny przychód?",
-        QMessageBox::Yes | QMessageBox::No
-    );
+    QMessageBox msgBox;
+    msgBox.setWindowTitle("Potwierdzenie usunięcia");
+    msgBox.setText("Czy na pewno chcesz usunąć ten cykliczny przychód?");
+    msgBox.setIcon(QMessageBox::Question);
+
+    // Dodaj przyciski standardowe
+    msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+
+    // Ustaw własne teksty przycisków
+    msgBox.button(QMessageBox::Yes)->setText("Tak");
+    msgBox.button(QMessageBox::No)->setText("Nie");
+
+    // Wyświetl i sprawdź odpowiedź
+    QMessageBox::StandardButton reply = static_cast<QMessageBox::StandardButton>(msgBox.exec());
 
     if (reply == QMessageBox::Yes) {
         if (m_dbManager->deleteCykliczny(id)) {
@@ -189,7 +198,7 @@ void Tab_CykliczneP::setTableStrategy(){
 
         cyklicznePTable->edit(index);
     });
-
+    cyklicznePTable->setSortingEnabled(true);
     modelUsers->setHeaderData(4, Qt::Horizontal, "Częstotliwość");
     modelUsers->setHeaderData(5, Qt::Horizontal, "Imię i nazwisko");
     modelUsers->setHeaderData(7, Qt::Horizontal, "Kolejna data");

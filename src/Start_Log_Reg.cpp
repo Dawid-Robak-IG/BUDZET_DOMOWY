@@ -65,12 +65,12 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
                            "Autorzy: Paulina Piorun, Dawid Robak\n\n"
 
                            "Aplikacja służy do zarządzania domowym budżetem.\n"
-                           "Zawiera moduły do kontroli stanu budżetu, zapisywania wydatków, "
+                           "Zawiera moduły do kontroli stanu budżetu, zapisywania wydatków oraz "
                            "przychodów, generowania raportów i więcej.\n\n"
                            "Technologie:\n"
-                           "- Qt 5/6 (GUI, bazy danych, MVC)\n"
+                           "- Qt 5 (GUI, bazy danych)\n"
                            "- C++ (logika aplikacji)\n"
-                           "- SQLite (lokalna baza danych)\n"
+                           "- MySQL (lokalna baza danych)\n"
                            "- Qt Designer (interfejs użytkownika)");
     });
 

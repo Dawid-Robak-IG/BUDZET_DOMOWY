@@ -128,11 +128,10 @@ void Tab_Relacje::showTables()
         qDebug() << "Błąd ładowania danych dzieci:" << dzieciModelUsers->lastError().text();
     }
 
-    qDebug() << "Dzieci kolumny:";
-    for (int i = 0; i < dzieciModelUsers->record().count(); ++i) {
-        qDebug() << i << "->" << dzieciModelUsers->record().fieldName(i);
-    }
-
+    // qDebug() << "Dzieci kolumny:";
+    // for (int i = 0; i < dzieciModelUsers->record().count(); ++i) {
+    //     qDebug() << i << "->" << dzieciModelUsers->record().fieldName(i);
+    // }
 
     dzieciTable->setModel(dzieciModelUsers);
     dzieciTable->resizeColumnsToContents();
@@ -143,6 +142,7 @@ void Tab_Relacje::showTables()
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DataKolejnaKieszonkowego"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DzieckoUserID"));
     dzieciTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+    dzieciTable->setSortingEnabled(true);
     //Tablica Rodzice
     if (!rodziceTable) {
         qDebug() << "Brak rodziceTable - nie można ustawić modelu";
@@ -153,6 +153,7 @@ void Tab_Relacje::showTables()
     rodziceModelUsers->setTable("Uzytkownik zalogowany");
     rodziceModelUsers->setFilter("Rola = 'Rodzic'");
     rodziceTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    rodziceTable->setSortingEnabled(true);
     if (!rodziceModelUsers->select()) {
         qDebug() << "Błąd ładowania danych rodziców:" << rodziceModelUsers->lastError().text();
     }

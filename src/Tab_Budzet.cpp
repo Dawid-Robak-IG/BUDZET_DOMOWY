@@ -21,7 +21,7 @@ void Tab_Budzet::setDatabaseManager(DatabaseManager* dbManager) {
     kwotaBudzet->setText(QString::number(m_dbManager->get_whole_budzet(), 'f', 2));
     QDate data = m_dbManager->get_update_Date();
     qDebug()<<"BUDZET: Nowa data";
-    dataBudzet->setText(data.toString("dd-MM-yyyy"));
+    dataBudzet->setText(data.toString("dd.MM.yyyy"));
     qDebug()<<"BUDZET: format daty";
     loadOperacjeTable();
     qDebug()<<"BUDZET: Zakonczono loadOperacjeTable";
@@ -73,7 +73,7 @@ void Tab_Budzet::loadOperacjeTable() {
 
     modelOperacje->setHeaderData(4, Qt::Horizontal, "Imię i nazwisko");
     modelOperacje->setHeaderData(5, Qt::Horizontal, "Kategoria");
-
+    tabelaOperacje->setSortingEnabled(true);
     refresh();
 }
 
@@ -85,11 +85,11 @@ void Tab_Budzet::refresh()
     
     if(m_dbManager->amIChild()){
         kwotaBudzet->setText(QString::number(m_dbManager->get_saldo(m_dbManager->get_user_ID()), 'f', 2));
-        dataBudzet->setText(m_dbManager->get_my_last_update_Date().toString("dd-MM-yyyy")); 
+        dataBudzet->setText(m_dbManager->get_my_last_update_Date().toString("dd.MM.yyyy"));
     }
     else{
         kwotaBudzet->setText(QString::number(m_dbManager->get_whole_budzet(), 'f', 2));
-        dataBudzet->setText(m_dbManager->get_update_Date().toString("dd-MM-yyyy")); 
+        dataBudzet->setText(m_dbManager->get_update_Date().toString("dd.MM.yyyy"));
     }
     qDebug() << "Tab_Budzet: odświeżono dane.";
 }

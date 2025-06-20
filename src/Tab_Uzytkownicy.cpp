@@ -103,18 +103,7 @@ void Tab_Uzytkownicy::setTableStrategy(){
         }
     });
 
-
-    // Ukryj wszystkie kolumny poza Imie, Nazwisko, Email
-    // for (int col = 0; col < modelUsers->columnCount(); ++col) {
-    //     QString colName = modelUsers->headerData(col, Qt::Horizontal).toString();
-    //     if (colName != "Imie" && colName != "Nazwisko" && colName != "Email") {
-    //         tabelaTableView->hideColumn(col);
-    //     }
-    // }
-
-    //tabelaTableView->hideColumn(modelUsers->fieldIndex("Data urodzenia"));
-
-
+    tabelaTableView->setSortingEnabled(true);
     tabelaTableView->setEditTriggers(QAbstractItemView::NoEditTriggers);
     tabelaTableView->hideColumn(modelUsers->fieldIndex("Haslo"));
     tabelaTableView->hideColumn(modelUsers->fieldIndex("ID"));
