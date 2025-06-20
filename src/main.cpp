@@ -11,7 +11,7 @@ int main(int argc, char** argv){
     QLocale::setDefault(polish);
 
     MainWindow mainwindow;
-    mainwindow.resize(1100, 600);
+    mainwindow.resize(1100, 700);
     mainwindow.show();
 
     return app.exec();

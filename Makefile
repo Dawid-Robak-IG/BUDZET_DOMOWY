@@ -72,7 +72,8 @@ SOURCES       = src/main.cpp \
 		src/Tab_Uzytkownicy.cpp \
 		src/Tab_Wydatki.cpp \
 		src/User_Panel.cpp \
-		src/Tab_CykliczneW.cpp moc/moc_MainWindow.cpp \
+		src/Tab_CykliczneW.cpp qrc_resources.cpp \
+		moc/moc_MainWindow.cpp \
 		moc/moc_BlockedDelegate.cpp \
 		moc/moc_ComboBoxDelegate.cpp \
 		moc/moc_CyklicznyDelegate.cpp \
@@ -113,6 +114,7 @@ OBJECTS       = build/Obj/main.o \
 		build/Obj/Tab_Wydatki.o \
 		build/Obj/User_Panel.o \
 		build/Obj/Tab_CykliczneW.o \
+		build/Obj/qrc_resources.o \
 		build/Obj/moc_MainWindow.o \
 		build/Obj/moc_BlockedDelegate.o \
 		build/Obj/moc_ComboBoxDelegate.o \
@@ -345,7 +347,8 @@ Makefile: BUDZET_DOMOWY.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmak
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/exceptions.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf \
 		/usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf \
-		BUDZET_DOMOWY.pro
+		BUDZET_DOMOWY.pro \
+		resources.qrc
 	$(QMAKE) -o Makefile BUDZET_DOMOWY.pro -spec linux-g++
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/spec_pre.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/common/unix.conf:
@@ -428,6 +431,7 @@ Makefile: BUDZET_DOMOWY.pro /usr/lib/x86_64-linux-gnu/qt5/mkspecs/linux-g++/qmak
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/yacc.prf:
 /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/lex.prf:
 BUDZET_DOMOWY.pro:
+resources.qrc:
 qmake: FORCE
 	@$(QMAKE) -o Makefile BUDZET_DOMOWY.pro -spec linux-g++
 
@@ -442,6 +446,7 @@ dist: distdir FORCE
 distdir: FORCE
 	@test -d $(DISTDIR) || mkdir -p $(DISTDIR)
 	$(COPY_FILE) --parents $(DIST) $(DISTDIR)/
+	$(COPY_FILE) --parents resources.qrc $(DISTDIR)/
 	$(COPY_FILE) --parents /usr/lib/x86_64-linux-gnu/qt5/mkspecs/features/data/dummy.cpp $(DISTDIR)/
 	$(COPY_FILE) --parents inc/MainWindow.hpp inc/BlockedDelegate.hpp inc/ComboBoxDelegate.hpp inc/CyklicznyDelegate.hpp inc/DatabaseManager.hpp inc/KwotaColorDelegate.hpp inc/PasswordDelegate.hpp inc/Start_Log_Reg.hpp inc/Tab_Budzet.hpp inc/Tab_CykliczneP.hpp inc/Tab_CykliczneW.hpp inc/Tab_DaneUzytkownika.hpp inc/Tab_Dzieci.hpp inc/Tab_Kategorie.hpp inc/Tab_Przychody.hpp inc/Tab_Raporty.hpp inc/RaportWindow.hpp inc/Tab_Relacje.hpp inc/Tab_Uzytkownicy.hpp inc/Tab_Wydatki.hpp inc/User_Panel.hpp $(DISTDIR)/
 	$(COPY_FILE) --parents src/main.cpp src/BlockedDelegate.cpp src/ComboBoxDelegate.cpp src/CyklicznyDelegate.cpp src/DatabaseManager.cpp src/KwotaColorDelegate.cpp src/MainWindow.cpp src/Start_Log_Reg.cpp src/Tab_Budzet.cpp src/Tab_CykliczneP.cpp src/Tab_DaneUzytkownika.cpp src/Tab_Dzieci.cpp src/Tab_Kategorie.cpp src/Tab_Przychody.cpp src/Tab_Raporty.cpp src/RaportWindow.cpp src/Tab_Relacje.cpp src/Tab_Uzytkownicy.cpp src/Tab_Wydatki.cpp src/User_Panel.cpp src/Tab_CykliczneW.cpp $(DISTDIR)/
@@ -469,8 +474,14 @@ check: first
 
 benchmark: first
 
-compiler_rcc_make_all:
+compiler_rcc_make_all: qrc_resources.cpp
 compiler_rcc_clean:
+	-$(DEL_FILE) qrc_resources.cpp
+qrc_resources.cpp: resources.qrc \
+		/usr/lib/qt5/bin/rcc \
+		startPage.png
+	/usr/lib/qt5/bin/rcc -name resources resources.qrc -o qrc_resources.cpp
+
 compiler_moc_predefs_make_all: moc/moc_predefs.h
 compiler_moc_predefs_clean:
 	-$(DEL_FILE) moc/moc_predefs.h
@@ -661,7 +672,7 @@ compiler_yacc_impl_make_all:
 compiler_yacc_impl_clean:
 compiler_lex_make_all:
 compiler_lex_clean:
-compiler_clean: compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
+compiler_clean: compiler_rcc_clean compiler_moc_predefs_clean compiler_moc_header_clean compiler_uic_clean 
 
 ####### Compile
 
@@ -809,6 +820,9 @@ build/Obj/Tab_CykliczneW.o: src/Tab_CykliczneW.cpp inc/Tab_CykliczneW.hpp \
 		inc/DatabaseManager.hpp \
 		inc/ComboBoxDelegate.hpp
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/Tab_CykliczneW.o src/Tab_CykliczneW.cpp
+
+build/Obj/qrc_resources.o: qrc_resources.cpp 
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/qrc_resources.o qrc_resources.cpp
 
 build/Obj/moc_MainWindow.o: moc/moc_MainWindow.cpp 
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o build/Obj/moc_MainWindow.o moc/moc_MainWindow.cpp

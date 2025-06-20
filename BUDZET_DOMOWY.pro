@@ -68,3 +68,6 @@ HEADERS += inc/MainWindow.hpp \
 FORMS += \
     ui/Start_Log_Reg.ui \
     ui/User_Panel.ui
+
+RESOURCES += \
+    resources.qrc

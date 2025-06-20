@@ -1,8 +1,9 @@
 #ifndef STARTLOGREG_H
 #define STARTLOGREG_H
 
-#include <QWidget>
+#include <QLabel>
 #include <QSqlDatabase>
+#include <QWidget>
 #include "DatabaseManager.hpp"
 
 namespace Ui {
@@ -26,6 +27,7 @@ signals:
 
 public:
     explicit Start_Log_Reg(QWidget *parent = nullptr);
+    void resizeEvent(QResizeEvent *event);
     ~Start_Log_Reg();
 
     void setDatabaseManager(DatabaseManager* dbManager) { m_dbManager = dbManager; }
@@ -34,7 +36,8 @@ public:
     void goToStartPage();
 private:
     Ui::Start_Log_Reg *ui;
-    DatabaseManager* m_dbManager = nullptr;
+    QLabel *backgroundLabel = nullptr;
+    DatabaseManager *m_dbManager = nullptr;
     bool isValidReg();
     void clear_reg();
 

@@ -133,7 +133,7 @@ Po konsultacjach:
 - kolorki dla użytkowników zależne od ról - PP
 - ✅ zapis raportów - DR
 - ustawić odpowiednie rozmiary dla tabeli i innych pól - PP
-- wyrzucenie przycisków edytuj tam gdzie nie są potrzebne - PP
+- ✅ wyrzucenie przycisków edytuj tam gdzie nie są potrzebne - PP
 - ✅ usunąć możliwość edycji imie i nazwisko w cykliczne P - DR
 - co ostatecznie z raportem generowanym przez dziecko -- przycisk generuj raport w sekcji dzieci - PP
 - ✅ poprawić zablokowania usuwania admina - DR
@@ -155,3 +155,4 @@ Po konsultacjach:
 - skasować stare wpisy, zrobić porządne nowe - PP
 - ✅ poprawić prognozy bo są stałe - DR
 - dodać możliwość segregacji danych w tabelce budzet domowy - PP
+- sortowanie tabeli z wpisami według daty 

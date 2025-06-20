@@ -9,6 +9,25 @@
 Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start_Log_Reg){
 
     ui->setupUi(this);
+
+    // Ustaw tło całego widgetu przez paletę (na samym dole)
+    QPalette pal = this->palette();
+    pal.setColor(QPalette::Window, QColor("#a6e3de"));
+    this->setAutoFillBackground(true);
+    this->setPalette(pal);
+
+    // QLabel z obrazkiem w naturalnym rozmiarze
+    backgroundLabel = new QLabel(this);
+    backgroundLabel->setPixmap(QPixmap(":/Start/startPage.png"));
+    backgroundLabel->setScaledContents(false);
+    backgroundLabel->setGeometry(0,
+                                 0,
+                                 backgroundLabel->pixmap()->width(),
+                                 backgroundLabel->pixmap()->height());
+
+    backgroundLabel->setAttribute(Qt::WA_TranslucentBackground);
+    backgroundLabel->lower(); // umieść na sam dół (pod innymi widgetami)
+
     ui->stackedWidget->setCurrentIndex(startPageIndex);
 
     connect(ui->pushButton_Zaloguj, &QPushButton::clicked, [this](){
@@ -45,6 +64,18 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
 
     ui->dateEdit_DOB_Reg->setDate(QDate::currentDate());
 }
+
+void Start_Log_Reg::resizeEvent(QResizeEvent *event)
+{
+    QWidget::resizeEvent(event);
+    if (backgroundLabel) {
+        QPixmap pix(":/Start/startPage.png");
+        QPixmap scaled = pix.scaled(this->size(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        backgroundLabel->setPixmap(scaled);
+        backgroundLabel->setGeometry(0, 0, scaled.width(), scaled.height());
+    }
+}
+
 Start_Log_Reg::~Start_Log_Reg(){
     delete ui;
 }
