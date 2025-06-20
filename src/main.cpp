@@ -18,7 +18,8 @@ int main(int argc, char** argv){
 
     qApp->setStyleSheet(R"(
 
-    QWidget { color:#003b5b; }
+    QWidget {
+color:#003b5b; }
 
 QLineEdit {
     background-color: white;
@@ -26,7 +27,9 @@ QLineEdit {
     max-height: 30px;
     border-radius: 5px;
     padding-left: 5px;
+    border: 1px solid #003b5b
 }
+
 
     QPushButton {
         border-radius: 10px;
@@ -36,11 +39,11 @@ QLineEdit {
     }
 
     QPushButton:hover {
-        background-color: rgba(0,59,91, 200);  /* ten sam kolor, ale bardziej przezroczysty */
+        background-color: rgba(0,59,91, 200); 
     }
 
     QPushButton:pressed {
-        background-color: rgba(0,59,91, 180);  /* jeszcze ciemniejszy */
+        background-color: rgba(0,59,91, 180); 
     }
 )");
     MainWindow mainwindow;

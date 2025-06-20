@@ -1,9 +1,8 @@
-#include<QMessageBox>
 #include "User_Panel.hpp"
-#include "ui_User_Panel.h"
-#include "Tab_Wydatki.hpp"
-#include<QMessageBox>
+#include <QMessageBox>
 #include <QSqlDatabase>
+#include "Tab_Wydatki.hpp"
+#include "ui_User_Panel.h"
 
 User_Panel::User_Panel(QString email,QWidget *parent)
     : QWidget(parent),
@@ -23,7 +22,9 @@ User_Panel::User_Panel(QString email,QWidget *parent)
       budzetManager(nullptr)
 {
     ui->setupUi(this);
+
     ui->tabWidget->setCurrentIndex(0);
+
     connect(ui->button_logout, &QPushButton::clicked, this, &User_Panel::logoutRequested);
 
     ui->tabWidget->setTabVisible(1, false);

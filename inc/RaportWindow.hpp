@@ -14,7 +14,7 @@
 class RaportWindow : public QMainWindow {
     Q_OBJECT
 
-    QWidget *r_centralWidget;    
+    QWidget *r_centralWidget = nullptr;
     QMenu* fileMenu;
     QAction* savePdfAction;
     QAction* savePngAction;

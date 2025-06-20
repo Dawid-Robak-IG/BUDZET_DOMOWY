@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1100</width>
-    <height>648</height>
+    <width>1142</width>
+    <height>676</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -68,6 +68,9 @@
    </item>
    <item>
     <widget class="QStackedWidget" name="stackedWidget">
+     <property name="styleSheet">
+      <string notr="true">#a6e3de</string>
+     </property>
      <property name="currentIndex">
       <number>0</number>
      </property>
@@ -179,7 +182,7 @@ QPushButton:pressed {
 }</string>
                 </property>
                 <property name="text">
-                 <string>Zaloguj</string>
+                 <string>ZALOGUJ</string>
                 </property>
                </widget>
               </item>
@@ -247,7 +250,7 @@ QPushButton:pressed {
 </string>
                 </property>
                 <property name="text">
-                 <string>Zarejestruj</string>
+                 <string>ZAREJESTRUJ</string>
                 </property>
                </widget>
               </item>
@@ -414,6 +417,19 @@ QPushButton:pressed {
         </widget>
        </item>
        <item>
+        <widget class="QPushButton" name="pushButton_zalogujSie">
+         <property name="maximumSize">
+          <size>
+           <width>250</width>
+           <height>16777215</height>
+          </size>
+         </property>
+         <property name="text">
+          <string>Zaloguj się</string>
+         </property>
+        </widget>
+       </item>
+       <item>
         <spacer name="verticalSpacer_2">
          <property name="orientation">
           <enum>Qt::Vertical</enum>
@@ -451,26 +467,6 @@ QPushButton:pressed {
            </property>
           </spacer>
          </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_zalogujSie">
-           <property name="text">
-            <string>Zaloguj się</string>
-           </property>
-          </widget>
-         </item>
-         <item>
-          <spacer name="horizontalSpacer_8">
-           <property name="orientation">
-            <enum>Qt::Horizontal</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>40</width>
-             <height>20</height>
-            </size>
-           </property>
-          </spacer>
-         </item>
         </layout>
        </item>
       </layout>
@@ -478,7 +474,7 @@ QPushButton:pressed {
      <widget class="QWidget" name="Register_page">
       <layout class="QVBoxLayout" name="verticalLayout_3">
        <property name="spacing">
-        <number>20</number>
+        <number>10</number>
        </property>
        <property name="leftMargin">
         <number>800</number>
@@ -593,7 +589,7 @@ QPushButton:pressed {
        <item>
         <layout class="QHBoxLayout" name="horizontalLayout_5">
          <property name="topMargin">
-          <number>20</number>
+          <number>0</number>
          </property>
          <item>
           <widget class="QLineEdit" name="lineEdit_passwordReg">
@@ -629,6 +625,13 @@ QPushButton:pressed {
           </spacer>
          </item>
         </layout>
+       </item>
+       <item>
+        <widget class="QPushButton" name="pushButton_zarejestrujSie">
+         <property name="text">
+          <string>Zarejestruj</string>
+         </property>
+        </widget>
        </item>
        <item>
         <spacer name="verticalSpacer_4">
@@ -667,13 +670,6 @@ QPushButton:pressed {
             </size>
            </property>
           </spacer>
-         </item>
-         <item>
-          <widget class="QPushButton" name="pushButton_zarejestrujSie">
-           <property name="text">
-            <string>Zarejestruj</string>
-           </property>
-          </widget>
          </item>
          <item>
           <spacer name="horizontalSpacer_9">

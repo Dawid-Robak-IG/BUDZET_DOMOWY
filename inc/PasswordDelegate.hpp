@@ -15,7 +15,7 @@ public:
 
         // Zastępujemy dane "kropkami"
         QString password = index.data().toString();
-        QString masked(password.length(), QChar(0x2022)); // Unicode: '•'
+        QString masked(password.length(), QChar(0x2022));
 
         opt.text = masked;
 
