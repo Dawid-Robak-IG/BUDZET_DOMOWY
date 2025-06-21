@@ -157,6 +157,9 @@ Po konsultacjach:
 - ✅dodać możliwość segregacji danych w tabelce budzet domowy - PP
 - ✅ po zmianie hasła nie aktualizuje się w "moje dane"
 - ✅ prognozy bez dnia --> sam rok i miesiąc PP
+- nie mam pojećia czemu jak zaloguję się jako rodzic, a póxniej jako admin to zakłądka kategorie się nie pojawia 
+- można doadc kiesoznkowe nawet jak nie ma dziecka wybranego 
+
 
 - porządki w kodzie (np. wyrzucić niepotrzebne qDebug())
 - sprawdzać i czytać dokładnie to co się wyświetla i czy to ma sens (czy nie ma literówek, czy dany użytkownik powinien mieć do tego dostęp itp.)

@@ -76,6 +76,8 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
         return;
     }
 
+    bool children = (m_dbManager->amIChild() && !m_dbManager->amI_Noone());
+    blokadaButton->setVisible(m_dbManager->amI_admin());
     setTableStrategy();
     checkBox_pokazHasla->setVisible(m_dbManager->amI_admin());
 }

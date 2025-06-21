@@ -4,6 +4,7 @@ Tab_Budzet::Tab_Budzet(QWidget *root,QWidget *parent) : QWidget{parent}{
     dataBudzet=root->findChild<QLineEdit*>("lineEdit_dataBudzet");
     kwotaBudzet=root->findChild<QLineEdit*>("lineEdit_stanBudzet");
     tabelaOperacje=root->findChild<QTableView*>("tableView_budzet");
+    labeldata = root->findChild<QLabel *>("label_51");
 
     if(!dataBudzet || !kwotaBudzet || !tabelaOperacje)
     {
@@ -26,6 +27,9 @@ void Tab_Budzet::setDatabaseManager(DatabaseManager* dbManager) {
     loadOperacjeTable();
     qDebug()<<"BUDZET: Zakonczono loadOperacjeTable";
 
+    bool children = (m_dbManager->amIChild() && !m_dbManager->amI_Noone());
+    dataBudzet->setVisible(!children);
+    labeldata->setVisible(!children);
     refresh();
 }
 

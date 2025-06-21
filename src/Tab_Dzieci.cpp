@@ -37,6 +37,13 @@ Tab_Dzieci::Tab_Dzieci(const QString& userEmail,QWidget *root, QWidget *parent)
     if (stopDataEdit) {
         stopDataEdit->setDate(QDate::currentDate());
     }
+
+    if (aktualneSaldoLineEdit) {
+        aktualneSaldoLineEdit->setText("0.00");
+    }
+    if (aktualneKieszonkoweLineEdit) {
+        aktualneKieszonkoweLineEdit->setText("0.00");
+    }
 }
 
 void Tab_Dzieci::setDatabaseManager(DatabaseManager* dbManager) {

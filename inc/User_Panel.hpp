@@ -47,6 +47,7 @@ public:
 
 signals:
     void logoutRequested();
+    void odswiezBudzetIUzytkownika();
 
 private:
     Ui::User_Panel *ui = nullptr;

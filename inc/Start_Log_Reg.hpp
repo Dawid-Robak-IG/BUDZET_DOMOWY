@@ -16,8 +16,6 @@ class Start_Log_Reg : public QWidget
 
     //może raczej private slots
 public slots:
-              // void handleLogin();
-    //   void handleRegister();
 
     void loginUser();
     void registerUser();

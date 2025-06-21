@@ -4,7 +4,7 @@ Tab_Raporty::Tab_Raporty(const QString& userEmail,QWidget *root, QWidget *parent
     : QWidget{parent},m_userEmail(userEmail){
     startDataEdit= root->findChild<QDateEdit*>("dateEdit_R_Od");
     stopDataEdit= root->findChild<QDateEdit*>("dateEdit_R_Do");
-    generujRaportButton= root->findChild<QPushButton*>("pushButton_generujRaport");
+    generujRaportButton = root->findChild<QPushButton *>("pushButton_generujRaport");
     generujRaportOsobisty=root->findChild<QPushButton*>("pushButton_generujRaportOsobisty");
     generujRaportOsobistyAdmin=root->findChild<QPushButton*>("pushButton_adminRaportOneUser");
     comboKategoriaRaport=root->findChild<QComboBox*>("comboBox_kategoriaRaport");
@@ -67,6 +67,10 @@ void Tab_Raporty::setDatabaseManager(DatabaseManager* dbManager) {
 
    comboPrognozyOsobiste->setVisible(m_dbManager->amI_admin());
     generujPrognozyAdmin->setVisible(m_dbManager->amI_admin());
+
+    bool children = (m_dbManager->amIChild() && !m_dbManager->amI_Noone());
+    generujRaportButton->setVisible(!children);
+    generujPrognozyBudżet->setVisible(!children);
 }
 
 void Tab_Raporty::GenerujRaportClicked() {

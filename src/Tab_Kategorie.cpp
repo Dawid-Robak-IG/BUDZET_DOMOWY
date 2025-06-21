@@ -110,31 +110,33 @@ void Tab_Kategorie::DodajKategorieClicked(){
 void Tab_Kategorie::UsunKategorieClicked(){
     qDebug() << "Usuwanie kategorii";
 
-//     QModelIndex index = tabelaKategorie->currentIndex();
-
-//     if (!index.isValid()) {
-//         QMessageBox::warning(this, "Brak wyboru", "Wybierz pozycję do usunięcia.");
-//         return;
-//     }
-
-//     int row = index.row();
-//     int id = modelUsers->data(modelUsers->index(row, 0)).toInt();
 QString wybranaKategoria = kategoriaCombo->currentText();
-    QMessageBox::StandardButton reply = QMessageBox::question(
-        this, "Potwierdzenie usunięcia",
-         "Czy na pewno chcesz usunąć kategorię?",
-        QMessageBox::Yes | QMessageBox::No
-        );
 
-    if (reply == QMessageBox::Yes) {
-        if (m_dbManager->deleteCategory(wybranaKategoria)) {
-           QMessageBox::information(this, "Sukces", "Usunięto kategorię.");
-//            modelUsers->select();
-       } else {
-            QMessageBox::warning(this, "Błąd", "Nie można usuwać kategorii dla których istnieją wpisy do budżetu");
-        }
+QMessageBox msgBox;
+msgBox.setWindowTitle("Potwierdzenie usunięcia");
+msgBox.setText("Czy na pewno chcesz usunąć kategorię?");
+msgBox.setIcon(QMessageBox::Question);
+
+// Dodaj przyciski standardowe
+msgBox.setStandardButtons(QMessageBox::Yes | QMessageBox::No);
+
+// Ustaw własne teksty przycisków
+msgBox.button(QMessageBox::Yes)->setText("Tak");
+msgBox.button(QMessageBox::No)->setText("Nie");
+
+// Wyświetl i sprawdź odpowiedź
+QMessageBox::StandardButton reply = static_cast<QMessageBox::StandardButton>(msgBox.exec());
+
+if (reply == QMessageBox::Yes) {
+    if (m_dbManager->deleteCategory(wybranaKategoria)) {
+        QMessageBox::information(this, "Sukces", "Usunięto kategorię.");
+        //            modelUsers->select();
+    } else {
+        QMessageBox::warning(this,
+                             "Błąd",
+                             "Nie można usuwać kategorii dla których istnieją wpisy do budżetu");
     }
-
+}
 }
 
 void Tab_Kategorie::loadKategorie() {

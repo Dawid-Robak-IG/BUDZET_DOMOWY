@@ -124,4 +124,12 @@ void Tab_DaneUzytkownika::loadUserData(const QString &new_mail){
     } else {
         QMessageBox::warning(this, "Błąd", "Nie znaleziono danych użytkownika.");
     }
+    bool children = (m_dbManager->amIChild() && !m_dbManager->amI_Noone());
+    int myID = m_dbManager->get_user_ID();
+    if (children) {
+        saldoLineEdit->setText(QString::number(m_dbManager->get_saldo(myID), 'f', 2));
+        kieszonkoweLineEdit->setText(QString::number(m_dbManager->get_kieszonkowe(myID), 'f', 2));
+        nastepneKieszonkoweLineEdit->setText(
+            m_dbManager->get_date_next_kieszonkowe(myID).toString("dd-MM-yyyy"));
+    }
 }

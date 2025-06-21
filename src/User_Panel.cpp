@@ -143,8 +143,18 @@ void User_Panel::setDatabaseManager(DatabaseManager* dbManager) {
         qDebug()<<"Ustawiono dbManager dla budzetu";
     }
 
-    connect(wydatkiManager, &Tab_Wydatki::daneZmienione, budzetManager, &Tab_Budzet::refresh);
-    connect(przychodyManager, &Tab_Przychody::daneZmienione, budzetManager, &Tab_Budzet::refresh);
+    // connect(wydatkiManager, &Tab_Wydatki::daneZmienione, budzetManager, &Tab_Budzet::refresh);
+    //connect(przychodyManager, &Tab_Przychody::daneZmienione, budzetManager, &Tab_Budzet::refresh);
+
+    connect(wydatkiManager, &Tab_Wydatki::daneZmienione, this, [this]() {
+        budzetManager->refresh();
+        daneUzytkownikaManager->loadUserData(m_dbManager->get_mail());
+    });
+
+    connect(przychodyManager, &Tab_Przychody::daneZmienione, this, [this]() {
+        budzetManager->refresh();
+        daneUzytkownikaManager->loadUserData(m_dbManager->get_mail());
+    });
 
     setTabsVisibility();
 }
@@ -158,6 +168,7 @@ User_Panel::~User_Panel()
 void User_Panel::setUserEmail(const QString& email)
 {
     userEmail = email;
+    setTabsVisibility();
 }
 
 
@@ -185,7 +196,7 @@ void User_Panel::displayUserData(const QString &email){
         qDebug() << "Błąd podczas pobierania danych użytkownika:" << query.lastError().text();
         QMessageBox::critical(this, "Błąd", "Nie udało się pobrać danych użytkownika.");
     }
-
+    setTabsVisibility();
 }
 
 
@@ -194,6 +205,7 @@ void User_Panel::goToStartPage() {
     cykliczneWManager->goToStartPage();
     cyklicznePManager->goToStartPage();
     uzytkownicyManager->goToStartPage();
+    setTabsVisibility();
 }
 void User_Panel::setTablesByNewUser(){
     cyklicznePManager->setTableStrategy();
@@ -208,13 +220,18 @@ void User_Panel::setTablesByNewUser(){
 }
 
 void User_Panel::setTabsVisibility()
+
 {
+    qDebug() << "Aktualizuję zakładki";
+
     // Domyślnie pokaż wszystkie zakładki od 0 do 10
     for (int i = 0; i <= 10; ++i) {
         ui->tabWidget->setTabVisible(i, true);
+        qDebug() << "Aktualizuję zakładki" << i;
     }
 
     if (m_dbManager->amIChild()) {
+        qDebug() << "Aktualizuję zakładki CHILD";
         ui->tabWidget->setTabVisible(4, false);  // kategoria
         ui->tabWidget->setTabVisible(5, false);  //cykliczne przychody
         ui->tabWidget->setTabVisible(6, false);  //cykliczne wydatki
@@ -222,15 +239,22 @@ void User_Panel::setTabsVisibility()
         ui->tabWidget->setTabVisible(10, false); //relacje
 
     } else if (m_dbManager->amIParent()) {
-        ui->tabWidget->setTabVisible(4, false); // kategoria
-
+        qDebug() << "Aktualizuję zakładki PARENT ";
+        ui->tabWidget->setTabVisible(4, false);  // kategoria
+        ui->tabWidget->setTabVisible(10, false); //relacje
     }
-    
-    if (m_dbManager->amI_Noone()){
+
+    if (m_dbManager->amI_Noone()) {
+        qDebug() << "Aktualizuję zakładki NOONE";
         ui->tabWidget->setTabVisible(1, false);
         ui->tabWidget->setTabVisible(2, false);
         ui->tabWidget->setTabVisible(3, false);
         ui->tabWidget->setTabVisible(7, false);
         ui->tabWidget->setTabVisible(8, false);
+    }
+
+    if (m_dbManager->amI_admin()) {
+        qDebug() << "Aktualizuję zakładki ADMIN";
+        ui->tabWidget->setTabVisible(4, true);
     }
 }

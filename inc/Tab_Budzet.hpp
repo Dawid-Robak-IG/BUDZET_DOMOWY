@@ -7,6 +7,7 @@
 
 #include <QDebug>
 #include <QHeaderView>
+#include <QLabel>
 #include <QLineEdit>
 #include <QSqlRelationalTableModel>
 #include <QSqlTableModel>
@@ -30,6 +31,7 @@ private:
     QLineEdit *kwotaBudzet = nullptr;
     QTableView *tabelaOperacje = nullptr;
     QSqlRelationalTableModel *modelOperacje = nullptr;
+    QLabel *labeldata = nullptr;
 
     DatabaseManager* m_dbManager = nullptr;
 };

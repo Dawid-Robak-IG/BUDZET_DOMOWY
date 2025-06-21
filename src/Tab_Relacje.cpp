@@ -128,12 +128,13 @@ void Tab_Relacje::showTables()
         qDebug() << "Błąd ładowania danych dzieci:" << dzieciModelUsers->lastError().text();
     }
 
-    // qDebug() << "Dzieci kolumny:";
-    // for (int i = 0; i < dzieciModelUsers->record().count(); ++i) {
-    //     qDebug() << i << "->" << dzieciModelUsers->record().fieldName(i);
-    // }
+    qDebug() << "Dzieci kolumny:";
+    for (int i = 0; i < dzieciModelUsers->record().count(); ++i) {
+        qDebug() << i << "->" << dzieciModelUsers->record().fieldName(i);
+    }
 
     dzieciTable->setModel(dzieciModelUsers);
+
     dzieciTable->resizeColumnsToContents();
     dzieciTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
 

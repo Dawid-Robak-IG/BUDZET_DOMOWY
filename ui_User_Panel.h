@@ -47,6 +47,7 @@ public:
     QTabWidget *tabWidget;
     QWidget *tab_DaneUzytkownika;
     QVBoxLayout *verticalLayout_4;
+    QLabel *label_65;
     QLabel *label_8;
     QHBoxLayout *horizontalLayout_11;
     QLineEdit *lineEdit_nameUD;
@@ -70,6 +71,9 @@ public:
     QLineEdit *lineEdit_passwordUD;
     QCheckBox *checkBox_showPassword;
     QPushButton *pushButton_zmienHaslo;
+    QSpacerItem *verticalSpacer_27;
+    QFrame *line_3;
+    QSpacerItem *verticalSpacer_26;
     QHBoxLayout *horizontalLayout_44;
     QLabel *label_kieszonkowe;
     QSpacerItem *horizontalSpacer_39;
@@ -121,6 +125,7 @@ public:
     QLabel *label_5;
     QLineEdit *lineEdit_notatkaPrzychod;
     QPushButton *pushButton_dodajPrzychod;
+    QSpacerItem *verticalSpacer_29;
     QWidget *tab_Wydatki;
     QVBoxLayout *verticalLayout_5;
     QLabel *label_55;
@@ -141,6 +146,7 @@ public:
     QLabel *label_17;
     QLineEdit *lineEdit_notatkaWydatek;
     QPushButton *pushButton_dodajWydatek;
+    QSpacerItem *verticalSpacer_28;
     QWidget *tab_Kategorie;
     QHBoxLayout *horizontalLayout_5;
     QVBoxLayout *verticalLayout_3;
@@ -455,7 +461,17 @@ public:
         tab_DaneUzytkownika->setObjectName(QString::fromUtf8("tab_DaneUzytkownika"));
         verticalLayout_4 = new QVBoxLayout(tab_DaneUzytkownika);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
-        verticalLayout_4->setContentsMargins(200, -1, 200, 20);
+        verticalLayout_4->setContentsMargins(200, 20, 200, 20);
+        label_65 = new QLabel(tab_DaneUzytkownika);
+        label_65->setObjectName(QString::fromUtf8("label_65"));
+        QFont font3;
+        font3.setPointSize(20);
+        font3.setBold(true);
+        label_65->setFont(font3);
+        label_65->setMargin(15);
+
+        verticalLayout_4->addWidget(label_65);
+
         label_8 = new QLabel(tab_DaneUzytkownika);
         label_8->setObjectName(QString::fromUtf8("label_8"));
 
@@ -579,6 +595,24 @@ public:
 
 
         verticalLayout_4->addLayout(horizontalLayout_6);
+
+        verticalSpacer_27 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_27);
+
+        line_3 = new QFrame(tab_DaneUzytkownika);
+        line_3->setObjectName(QString::fromUtf8("line_3"));
+        line_3->setStyleSheet(QString::fromUtf8("background-color:  rgba(0,59,91,255); "));
+        line_3->setFrameShadow(QFrame::Plain);
+        line_3->setLineWidth(10);
+        line_3->setMidLineWidth(10);
+        line_3->setFrameShape(QFrame::HLine);
+
+        verticalLayout_4->addWidget(line_3);
+
+        verticalSpacer_26 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_26);
 
         horizontalLayout_44 = new QHBoxLayout();
         horizontalLayout_44->setObjectName(QString::fromUtf8("horizontalLayout_44"));
@@ -766,9 +800,6 @@ public:
         verticalLayout_2->setContentsMargins(200, 50, 200, 50);
         label_56 = new QLabel(tab_Przychody);
         label_56->setObjectName(QString::fromUtf8("label_56"));
-        QFont font3;
-        font3.setPointSize(20);
-        font3.setBold(true);
         label_56->setFont(font3);
 
         verticalLayout_2->addWidget(label_56);
@@ -867,6 +898,10 @@ public:
         pushButton_dodajPrzychod->setMaximumSize(QSize(200, 16777215));
 
         verticalLayout_2->addWidget(pushButton_dodajPrzychod);
+
+        verticalSpacer_29 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_2->addItem(verticalSpacer_29);
 
         tabWidget->addTab(tab_Przychody, QString());
         tab_Wydatki = new QWidget();
@@ -970,6 +1005,10 @@ public:
         pushButton_dodajWydatek->setMaximumSize(QSize(200, 16777215));
 
         verticalLayout_5->addWidget(pushButton_dodajWydatek);
+
+        verticalSpacer_28 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_5->addItem(verticalSpacer_28);
 
         tabWidget->addTab(tab_Wydatki, QString());
         tab_Kategorie = new QWidget();
@@ -1989,7 +2028,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(7);
+        tabWidget->setCurrentIndex(3);
         stackedWidget_CykliczneP->setCurrentIndex(1);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
@@ -2006,6 +2045,7 @@ public:
         label_58->setText(QCoreApplication::translate("User_Panel", "Rola", nullptr));
         label_role->setText(QCoreApplication::translate("User_Panel", "\"ROLA\"", nullptr));
         button_logout->setText(QCoreApplication::translate("User_Panel", "WYLOGUJ", nullptr));
+        label_65->setText(QCoreApplication::translate("User_Panel", "Moje dane", nullptr));
         label_8->setText(QCoreApplication::translate("User_Panel", "Imi\304\231", nullptr));
         label_9->setText(QCoreApplication::translate("User_Panel", "Nazwisko", nullptr));
         label_10->setText(QCoreApplication::translate("User_Panel", "Data urodzenia", nullptr));
@@ -2090,7 +2130,7 @@ public:
         pushButton_generujRaportOsobisty->setText(QCoreApplication::translate("User_Panel", "Generuj raport osobisty", nullptr));
         pushButton_adminRaportOneUser->setText(QCoreApplication::translate("User_Panel", "Generuj raport dla u\305\274ytkownika:", nullptr));
         label_52->setText(QCoreApplication::translate("User_Panel", "Generuj prognozy", nullptr));
-        label_53->setText(QCoreApplication::translate("User_Panel", "Prognozy do dnia:", nullptr));
+        label_53->setText(QCoreApplication::translate("User_Panel", "Prognozy dla miesi\304\205ca:", nullptr));
         dateEdit_prognozy->setDisplayFormat(QCoreApplication::translate("User_Panel", "MM.yyyy", nullptr));
         label_54->setText(QString());
         pushButton_prognozycaly->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla ca\305\202ego bud\305\274etu", nullptr));

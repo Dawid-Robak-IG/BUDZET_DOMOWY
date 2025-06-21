@@ -74,8 +74,8 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
                            "- Qt Designer (interfejs użytkownika)");
     });
 
-    ui->lineEdit_emailLog->setText("janprus@poczta.com");
-    ui->lineEdit_passwordLog->setText("haslo123");
+    ui->lineEdit_emailLog->setText("me@gmail.com");
+    ui->lineEdit_passwordLog->setText("hasloMocne)(00");
 
     ui->dateEdit_DOB_Reg->setDate(QDate::currentDate());
 }
