@@ -2,7 +2,7 @@
 --
 -- Host: localhost    Database: BUDZET_DOMOWY
 -- ------------------------------------------------------
--- Server version	8.0.42-0ubuntu0.24.04.1
+-- Server version	8.0.42
 
 /*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
 /*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
@@ -71,7 +71,7 @@ CREATE TABLE `Dziecko` (
 
 LOCK TABLES `Dziecko` WRITE;
 /*!40000 ALTER TABLE `Dziecko` DISABLE KEYS */;
-INSERT INTO `Dziecko` VALUES (2,-17,0,NULL,NULL,'2025-07-01'),(7,-56,0,NULL,NULL,'2025-07-01'),(8,157,0,NULL,NULL,'2025-07-01'),(11,0,0,NULL,NULL,'2025-07-01');
+INSERT INTO `Dziecko` VALUES (2,-17,0,3,6,'2025-07-01'),(7,-56,0,6,10,'2025-07-01'),(8,157,0,NULL,NULL,'2025-07-01'),(11,0,0,NULL,NULL,'2025-07-01'),(16,0,0,10,4,'2025-07-01');
 /*!40000 ALTER TABLE `Dziecko` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -189,7 +189,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
   `Rola` varchar(255) NOT NULL,
   PRIMARY KEY (`ID`),
   UNIQUE KEY `Email` (`Email`)
-) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -198,7 +198,7 @@ CREATE TABLE `Uzytkownik zalogowany` (
 
 LOCK TABLES `Uzytkownik zalogowany` WRITE;
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` DISABLE KEYS */;
-INSERT INTO `Uzytkownik zalogowany` VALUES (1,'Janusz','Janski','januszek@gmail.com','haslo123',0,'1975-01-20','Admin'),(2,'Mikołaj','Wielki','mikolaj96@gmail.com','miki018',0,'2020-05-10','Dziecko'),(3,'Basia','Maczna','baska@ya.com','makabasi',0,'1980-01-10','Rodzic'),(4,'Artur','Dobry','asd@asd.com','asdasd',0,'1970-12-29','Rodzic'),(5,'Jan','Prus','janprus@poczta.com','haslo123',0,'2000-03-04','Admin'),(6,'Jakub','Test','jakub.test@gmail.com','testjakub',0,'2005-03-20','Rodzic'),(7,'Aleksandra','Gral','ola.gral@wp.pl','aleksandra63',0,'2009-01-20','Dziecko'),(8,'Jan','Nowak','abc@gmail.com','haslo123',0,'2020-01-20','Dziecko'),(9,'Teresa','Sad','teresa@gmail.com','sad54321',0,'1955-05-22','Użytkownik'),(10,'Ela','Kot','elakot@wp.pl','elaToJa318',0,'1979-05-22','Rodzic'),(11,'Szaralinda','Łączka','szaraL@o2.pl','popopoko',1,'2015-03-01','Dziecko'),(12,'Maja','Ełska','me@gmail.com','hasloMocne)(00',0,'1986-08-26','Rodzic'),(14,'Małgorzata','Prus','gosiaP@gmail.com','mo54yh',0,'2010-06-18','Użytkownik'),(15,'Tomasz','Prus','tPrus@wp.pl','prust749',0,'2000-10-20','Dorosły');
+INSERT INTO `Uzytkownik zalogowany` VALUES (1,'Janusz','Janski','januszek@gmail.com','haslo123',0,'1975-01-20','Admin'),(2,'Mikołaj','Wielki','mikolaj96@gmail.com','miki018',0,'2020-05-10','Dziecko'),(3,'Basia','Maczna','baska@ya.com','makabasi',0,'1980-01-10','Rodzic'),(4,'Artur','Dobry','asd@asd.com','asdasd',0,'1970-12-29','Rodzic'),(5,'Jan','Prus','janprus@poczta.com','haslo123',0,'2000-03-04','Admin'),(6,'Jakub','Test','jakub.test@gmail.com','testjakub',0,'2005-03-20','Rodzic'),(7,'Aleksandra','Gral','ola.gral@wp.pl','aleksandra63',0,'2009-01-20','Dziecko'),(8,'Jan','Nowak','abc@gmail.com','haslo123',0,'2020-01-20','Dziecko'),(9,'Teresa','Sad','teresa@gmail.com','sad54321',0,'1955-05-22','Użytkownik'),(10,'Ela','Kot','elakot@wp.pl','elaToJa318',0,'1979-05-22','Rodzic'),(11,'Szaralinda','Łączka','szaraL@o2.pl','popopoko',1,'2015-03-01','Dziecko'),(12,'Maja','Ełska','me@gmail.com','hasloMocne)(00',0,'1986-08-26','Admin'),(14,'Małgorzata','Prus','gosiaP@gmail.com','mo54yh',0,'2010-06-18','Użytkownik'),(15,'Tomasz','Prus','tPrus@wp.pl','prust749',0,'2000-10-20','Dorosły'),(16,'Miotrek','Pirecki','pirecki@gmail.com','haslo123',0,'2025-06-21','Dziecko');
 /*!40000 ALTER TABLE `Uzytkownik zalogowany` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -213,10 +213,12 @@ SET @saved_cs_client     = @@character_set_client;
 /*!50001 CREATE VIEW `V_Dziecko_Relacje` AS SELECT 
  1 AS `DzieckoUserID`,
  1 AS `DzieckoImieNazwisko`,
- 1 AS `saldo`,
- 1 AS `kieszonkowe`,
  1 AS `ID_Rodzic1`,
  1 AS `ID_Rodzic2`,
+ 1 AS `Rodzic1ImieNazwisko`,
+ 1 AS `Rodzic2ImieNazwisko`,
+ 1 AS `Saldo`,
+ 1 AS `Kieszonkowe`,
  1 AS `DataKolejnaKieszonkowego`*/;
 SET character_set_client = @saved_cs_client;
 
@@ -246,7 +248,7 @@ SET character_set_client = @saved_cs_client;
 /*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
 /*!50001 CREATE ALGORITHM=UNDEFINED */
 /*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
-/*!50001 VIEW `V_Dziecko_Relacje` AS select `d`.`Uzytkownik zalogowanyID` AS `DzieckoUserID`,`u`.`ImieNazwisko` AS `DzieckoImieNazwisko`,`d`.`Saldo` AS `saldo`,`d`.`Kieszonkowe` AS `kieszonkowe`,`d`.`ID_Rodzic1` AS `ID_Rodzic1`,`d`.`ID_Rodzic2` AS `ID_Rodzic2`,`d`.`DataKolejnaKieszonkowego` AS `DataKolejnaKieszonkowego` from (`Dziecko` `d` join `V_UzytkownikWidoczny` `u` on((`d`.`Uzytkownik zalogowanyID` = `u`.`ID`))) */;
+/*!50001 VIEW `V_Dziecko_Relacje` AS select `d`.`Uzytkownik zalogowanyID` AS `DzieckoUserID`,concat(`ud`.`Imie`,' ',`ud`.`Nazwisko`) AS `DzieckoImieNazwisko`,`d`.`ID_Rodzic1` AS `ID_Rodzic1`,`d`.`ID_Rodzic2` AS `ID_Rodzic2`,concat(`r1`.`Imie`,' ',`r1`.`Nazwisko`) AS `Rodzic1ImieNazwisko`,concat(`r2`.`Imie`,' ',`r2`.`Nazwisko`) AS `Rodzic2ImieNazwisko`,`d`.`Saldo` AS `Saldo`,`d`.`Kieszonkowe` AS `Kieszonkowe`,`d`.`DataKolejnaKieszonkowego` AS `DataKolejnaKieszonkowego` from (((`Dziecko` `d` left join `Uzytkownik zalogowany` `ud` on((`d`.`Uzytkownik zalogowanyID` = `ud`.`ID`))) left join `Uzytkownik zalogowany` `r1` on((`d`.`ID_Rodzic1` = `r1`.`ID`))) left join `Uzytkownik zalogowany` `r2` on((`d`.`ID_Rodzic2` = `r2`.`ID`))) */;
 /*!50001 SET character_set_client      = @saved_cs_client */;
 /*!50001 SET character_set_results     = @saved_cs_results */;
 /*!50001 SET collation_connection      = @saved_col_connection */;
@@ -278,4 +280,4 @@ SET character_set_client = @saved_cs_client;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-06-21 13:59:08
+-- Dump completed on 2025-06-21 16:10:12

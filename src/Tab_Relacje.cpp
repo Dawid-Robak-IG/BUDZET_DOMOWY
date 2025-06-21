@@ -16,8 +16,6 @@ Tab_Relacje::Tab_Relacje(const QString& userEmail,QWidget *root, QWidget *parent
     if(dodaj2RelacjeButton){
         connect(dodaj2RelacjeButton, &QPushButton::clicked, this, &Tab_Relacje::Przypisz2RodzicaClicked);
     }
-
-
 }
 
 void Tab_Relacje::PrzypiszRodzicaClicked() {
@@ -92,34 +90,24 @@ void Tab_Relacje::setDatabaseManager(DatabaseManager* dbManager)
 {
     m_dbManager = dbManager;
     showTables();
-
 }
 
 void Tab_Relacje::showTables()
 {
     //Tablica dzieci
-
+    qDebug()<<"=========================================";
+    qDebug()<<"Tab relacje start show tables";
     dzieciModelUsers = new QSqlRelationalTableModel(this, m_dbManager->getDatabase());
     dzieciModelUsers->setTable("V_Dziecko_Relacje");
     dzieciModelUsers->setHeaderData(dzieciModelUsers->fieldIndex("DzieckoImieNazwisko"), Qt::Horizontal, "Dziecko");
 
-    dzieciModelUsers->setRelation(
-        dzieciModelUsers->fieldIndex("ID_Rodzic1"),
-        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
+    dzieciModelUsers->setHeaderData(
+    dzieciModelUsers->fieldIndex("Rodzic1ImieNazwisko"),
+    Qt::Horizontal,
+    "Rodzic 1"
     );
     dzieciModelUsers->setHeaderData(
-        dzieciModelUsers->fieldIndex("ID_Rodzic1"), 
-        Qt::Horizontal,
-        "Rodzic 1"
-    );
-
-    // Relation for "ID_Rodzic2"
-    dzieciModelUsers->setRelation(
-        dzieciModelUsers->fieldIndex("ID_Rodzic2"),
-        QSqlRelation("V_UzytkownikWidoczny", "ID", "ImieNazwisko")
-    );
-    dzieciModelUsers->setHeaderData(
-        dzieciModelUsers->fieldIndex("ID_Rodzic2"),
+        dzieciModelUsers->fieldIndex("Rodzic2ImieNazwisko"),
         Qt::Horizontal,
         "Rodzic 2"
     );
@@ -142,7 +130,11 @@ void Tab_Relacje::showTables()
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("kieszonkowe"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DataKolejnaKieszonkowego"));
     dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("DzieckoUserID"));
+    dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("ID_Rodzic1"));
+    dzieciTable->hideColumn(dzieciModelUsers->fieldIndex("ID_Rodzic2"));
+
     dzieciTable->horizontalHeader()->setSectionResizeMode(QHeaderView::Stretch);
+
     dzieciTable->setSortingEnabled(true);
     //Tablica Rodzice
     if (!rodziceTable) {
@@ -170,4 +162,5 @@ void Tab_Relacje::showTables()
     }
 
     rodziceModelUsers->setHeaderData(1, Qt::Horizontal, "Imię");
+    qDebug()<<"=========================================";
 }
