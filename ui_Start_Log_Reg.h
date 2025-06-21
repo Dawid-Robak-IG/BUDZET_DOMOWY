@@ -450,10 +450,6 @@ public:
         dateEdit_DOB_Reg = new QDateEdit(frame_3);
         dateEdit_DOB_Reg->setObjectName(QString::fromUtf8("dateEdit_DOB_Reg"));
         dateEdit_DOB_Reg->setMaximumSize(QSize(200, 16777215));
-        dateEdit_DOB_Reg->setStyleSheet(QString::fromUtf8("QCalendarWidget QAbstractItemView {\n"
-"    background-color: white;\n"
-"    color: black;\n"
-"}"));
         dateEdit_DOB_Reg->setAlignment(Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter);
         dateEdit_DOB_Reg->setCalendarPopup(true);
 

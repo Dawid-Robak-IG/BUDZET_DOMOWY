@@ -111,7 +111,8 @@ void Tab_CykliczneW::UsunCW_Clicked(){
             QMessageBox::information(this, "Sukces", "Usunięto wydatek cykliczny.");
             modelUsers->select();
         } else {
-            QMessageBox::warning(this, "Błąd", "Nie udało się usunąć wydatku.");
+            QMessageBox::warning(
+                this, "Błąd", "Nie udało się usunąć wydatku. Możesz usunąć jedynie swoje wpisy.");
         }
     }
 }

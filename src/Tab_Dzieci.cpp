@@ -103,7 +103,8 @@ void Tab_Dzieci::ZmienKieszonkoweClicked() {
     dialog.setWindowTitle("Nowe kieszonkowe");
     dialog.setLabelText("Podaj nową kwotę kieszonkowego:");
     dialog.setInputMode(QInputDialog::DoubleInput);
-
+    dialog.setDoubleRange(0.0, 1000000.0);
+    dialog.setDoubleDecimals(2);
     dialog.setOkButtonText("Zmień");
     dialog.setCancelButtonText("Anuluj");
 

@@ -699,12 +699,6 @@ QLabel{
               <height>16777215</height>
              </size>
             </property>
-            <property name="styleSheet">
-             <string notr="true">QCalendarWidget QAbstractItemView {
-    background-color: white;
-    color: black;
-}</string>
-            </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
             </property>

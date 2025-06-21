@@ -30,21 +30,26 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     //ui->tabWidget->setTabVisible(1, false);
 
     ui->tabWidget->setStyleSheet(R"(
-    QTabBar::tab {
-        background: #daf8e3;
-        color: #003b5b;
-        padding: 6px;
-    }
+QTabBar::tab {
+    background: #daf8e3;
+    color: #003b5b;
+    padding: 6px;
+    border: 1px solid #ffffff; 
+    border-bottom: none;    
+}
 
-    QTabBar::tab:selected {
-        background:  white;
-        color: #003b5b;
-    }
+QTabBar::tab:selected {
+    background: white;
+    color: #003b5b;
+    border: 1px solid #003b5b;
+    border-bottom: none;
+}
 
-    QTabBar::tab:!selected {
-        background: #003b5b;
-        color: white;
-    }
+QTabBar::tab:!selected {
+    background: #003b5b;
+    color: white;
+    border: 1px solid #ffffff;
+}
 )");
 }
 

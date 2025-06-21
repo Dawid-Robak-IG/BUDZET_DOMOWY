@@ -109,7 +109,8 @@ void Tab_CykliczneP::UsunCP_Clicked()
             QMessageBox::information(this, "Sukces", "Usunięto przychód.");
             modelUsers->select();
         } else {
-            QMessageBox::warning(this, "Błąd", "Nie udało się usunąć przychodu.");
+            QMessageBox::warning(
+                this, "Błąd", "Nie udało się usunąć przychodu. Możesz usunąć jedynie swoje wpisy.");
         }
     }
 }
