@@ -68,9 +68,10 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
                            "Zawiera moduły do kontroli stanu budżetu, zapisywania wydatków oraz "
                            "przychodów, generowania raportów i więcej.\n\n"
                            "Technologie:\n"
-                           "- Qt 5 (GUI, bazy danych)\n"
+
                            "- C++ (logika aplikacji)\n"
                            "- MySQL (lokalna baza danych)\n"
+                           "- Qt 5 (GUI, bazy danych)\n"
                            "- Qt Designer (interfejs użytkownika)");
     });
 

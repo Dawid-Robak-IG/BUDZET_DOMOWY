@@ -44,6 +44,15 @@ QLineEdit {
 QPushButton:focus {
     outline: none;
 }
+QCalendarWidget QWidget {
+    background-color: white;
+    color: black;
+}
+QCalendarWidget QAbstractItemView {
+    background-color: white;
+    color: black;
+}
+
 
 )");
     MainWindow mainwindow;

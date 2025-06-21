@@ -88,7 +88,7 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>0</number>
+      <number>2</number>
      </property>
      <widget class="QWidget" name="Start_page">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -698,6 +698,12 @@ QLabel{
               <width>200</width>
               <height>16777215</height>
              </size>
+            </property>
+            <property name="styleSheet">
+             <string notr="true">QCalendarWidget QAbstractItemView {
+    background-color: white;
+    color: black;
+}</string>
             </property>
             <property name="alignment">
              <set>Qt::AlignLeading|Qt::AlignLeft|Qt::AlignVCenter</set>
