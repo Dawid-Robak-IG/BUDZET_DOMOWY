@@ -90,20 +90,22 @@ public:
     QSpacerItem *horizontalSpacer_36;
     QWidget *tab_Budzet;
     QHBoxLayout *horizontalLayout_38;
-    QHBoxLayout *horizontalLayout_37;
-    QVBoxLayout *verticalLayout_21;
-    QSpacerItem *verticalSpacer_14;
+    QVBoxLayout *verticalLayout_24;
+    QLabel *label_67;
+    QHBoxLayout *horizontalLayout_36;
+    QVBoxLayout *verticalLayout_25;
+    QSpacerItem *verticalSpacer_13;
     QLabel *label_49;
     QHBoxLayout *horizontalLayout_39;
     QLineEdit *lineEdit_stanBudzet;
     QLabel *label_50;
     QSpacerItem *horizontalSpacer_33;
-    QSpacerItem *verticalSpacer_21;
+    QSpacerItem *verticalSpacer_14;
     QLabel *label_51;
     QHBoxLayout *horizontalLayout_40;
     QLineEdit *lineEdit_dataBudzet;
     QSpacerItem *horizontalSpacer_34;
-    QSpacerItem *verticalSpacer_13;
+    QSpacerItem *verticalSpacer_21;
     QTableView *tableView_budzet;
     QWidget *tab_Przychody;
     QVBoxLayout *verticalLayout_2;
@@ -270,10 +272,12 @@ public:
     QSpacerItem *verticalSpacer_22;
     QWidget *tab_Uzytkownicy;
     QHBoxLayout *horizontalLayout_10;
+    QVBoxLayout *verticalLayout_23;
+    QLabel *label_66;
+    QTableView *tableView_uzytkownicy;
     QStackedWidget *stackedWidget_uzytkownicy;
     QWidget *page;
     QHBoxLayout *horizontalLayout_23;
-    QTableView *tableView_uzytkownicy;
     QVBoxLayout *verticalLayout_11;
     QSpacerItem *verticalSpacer_5;
     QPushButton *pushButton_zablokuj_odblokuj;
@@ -438,21 +442,7 @@ public:
 
         tabWidget = new QTabWidget(User_Panel);
         tabWidget->setObjectName(QString::fromUtf8("tabWidget"));
-        tabWidget->setStyleSheet(QString::fromUtf8("QTabWidget{background-color:#ffffff}\n"
-"QPushButton {\n"
-"        border-radius: 10px;\n"
-"        background-color: rgba(0,59,91,255); \n"
-"        color: white;\n"
-"        padding: 6px 12px;\n"
-"    }\n"
-"\n"
-"    QPushButton:hover {\n"
-"        background-color: rgba(0,59,91, 200); \n"
-"    }\n"
-"\n"
-"    QPushButton:pressed {\n"
-"        background-color: rgba(0,59,91, 180); \n"
-"    }"));
+        tabWidget->setStyleSheet(QString::fromUtf8(""));
         tabWidget->setTabPosition(QTabWidget::North);
         tabWidget->setElideMode(Qt::ElideNone);
         tabWidget->setDocumentMode(false);
@@ -705,21 +695,30 @@ public:
         tab_Budzet->setObjectName(QString::fromUtf8("tab_Budzet"));
         horizontalLayout_38 = new QHBoxLayout(tab_Budzet);
         horizontalLayout_38->setObjectName(QString::fromUtf8("horizontalLayout_38"));
-        horizontalLayout_37 = new QHBoxLayout();
-        horizontalLayout_37->setObjectName(QString::fromUtf8("horizontalLayout_37"));
-        horizontalLayout_37->setContentsMargins(50, 50, 50, 50);
-        verticalLayout_21 = new QVBoxLayout();
-        verticalLayout_21->setSpacing(20);
-        verticalLayout_21->setObjectName(QString::fromUtf8("verticalLayout_21"));
-        verticalLayout_21->setContentsMargins(0, -1, -1, 0);
-        verticalSpacer_14 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalLayout_24 = new QVBoxLayout();
+        verticalLayout_24->setObjectName(QString::fromUtf8("verticalLayout_24"));
+        verticalLayout_24->setContentsMargins(50, 20, 50, 50);
+        label_67 = new QLabel(tab_Budzet);
+        label_67->setObjectName(QString::fromUtf8("label_67"));
+        label_67->setFont(font3);
+        label_67->setMargin(20);
 
-        verticalLayout_21->addItem(verticalSpacer_14);
+        verticalLayout_24->addWidget(label_67);
+
+        horizontalLayout_36 = new QHBoxLayout();
+        horizontalLayout_36->setObjectName(QString::fromUtf8("horizontalLayout_36"));
+        horizontalLayout_36->setContentsMargins(-1, 0, -1, -1);
+        verticalLayout_25 = new QVBoxLayout();
+        verticalLayout_25->setObjectName(QString::fromUtf8("verticalLayout_25"));
+        verticalLayout_25->setContentsMargins(-1, -1, 0, -1);
+        verticalSpacer_13 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_25->addItem(verticalSpacer_13);
 
         label_49 = new QLabel(tab_Budzet);
         label_49->setObjectName(QString::fromUtf8("label_49"));
 
-        verticalLayout_21->addWidget(label_49);
+        verticalLayout_25->addWidget(label_49);
 
         horizontalLayout_39 = new QHBoxLayout();
         horizontalLayout_39->setObjectName(QString::fromUtf8("horizontalLayout_39"));
@@ -742,16 +741,16 @@ public:
         horizontalLayout_39->addItem(horizontalSpacer_33);
 
 
-        verticalLayout_21->addLayout(horizontalLayout_39);
+        verticalLayout_25->addLayout(horizontalLayout_39);
 
-        verticalSpacer_21 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_14 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_21->addItem(verticalSpacer_21);
+        verticalLayout_25->addItem(verticalSpacer_14);
 
         label_51 = new QLabel(tab_Budzet);
         label_51->setObjectName(QString::fromUtf8("label_51"));
 
-        verticalLayout_21->addWidget(label_51);
+        verticalLayout_25->addWidget(label_51);
 
         horizontalLayout_40 = new QHBoxLayout();
         horizontalLayout_40->setObjectName(QString::fromUtf8("horizontalLayout_40"));
@@ -769,14 +768,14 @@ public:
         horizontalLayout_40->addItem(horizontalSpacer_34);
 
 
-        verticalLayout_21->addLayout(horizontalLayout_40);
+        verticalLayout_25->addLayout(horizontalLayout_40);
 
-        verticalSpacer_13 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+        verticalSpacer_21 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
-        verticalLayout_21->addItem(verticalSpacer_13);
+        verticalLayout_25->addItem(verticalSpacer_21);
 
 
-        horizontalLayout_37->addLayout(verticalLayout_21);
+        horizontalLayout_36->addLayout(verticalLayout_25);
 
         tableView_budzet = new QTableView(tab_Budzet);
         tableView_budzet->setObjectName(QString::fromUtf8("tableView_budzet"));
@@ -786,10 +785,13 @@ public:
         sizePolicy2.setHeightForWidth(tableView_budzet->sizePolicy().hasHeightForWidth());
         tableView_budzet->setSizePolicy(sizePolicy2);
 
-        horizontalLayout_37->addWidget(tableView_budzet);
+        horizontalLayout_36->addWidget(tableView_budzet);
 
 
-        horizontalLayout_38->addLayout(horizontalLayout_37);
+        verticalLayout_24->addLayout(horizontalLayout_36);
+
+
+        horizontalLayout_38->addLayout(verticalLayout_24);
 
         tabWidget->addTab(tab_Budzet, QString());
         tab_Przychody = new QWidget();
@@ -1660,18 +1662,30 @@ public:
         tab_Uzytkownicy->setObjectName(QString::fromUtf8("tab_Uzytkownicy"));
         horizontalLayout_10 = new QHBoxLayout(tab_Uzytkownicy);
         horizontalLayout_10->setObjectName(QString::fromUtf8("horizontalLayout_10"));
+        verticalLayout_23 = new QVBoxLayout();
+        verticalLayout_23->setObjectName(QString::fromUtf8("verticalLayout_23"));
+        verticalLayout_23->setContentsMargins(20, 20, -1, -1);
+        label_66 = new QLabel(tab_Uzytkownicy);
+        label_66->setObjectName(QString::fromUtf8("label_66"));
+        label_66->setFont(font3);
+
+        verticalLayout_23->addWidget(label_66);
+
+        tableView_uzytkownicy = new QTableView(tab_Uzytkownicy);
+        tableView_uzytkownicy->setObjectName(QString::fromUtf8("tableView_uzytkownicy"));
+        tableView_uzytkownicy->setMinimumSize(QSize(0, 0));
+
+        verticalLayout_23->addWidget(tableView_uzytkownicy);
+
+
+        horizontalLayout_10->addLayout(verticalLayout_23);
+
         stackedWidget_uzytkownicy = new QStackedWidget(tab_Uzytkownicy);
         stackedWidget_uzytkownicy->setObjectName(QString::fromUtf8("stackedWidget_uzytkownicy"));
         page = new QWidget();
         page->setObjectName(QString::fromUtf8("page"));
         horizontalLayout_23 = new QHBoxLayout(page);
         horizontalLayout_23->setObjectName(QString::fromUtf8("horizontalLayout_23"));
-        tableView_uzytkownicy = new QTableView(page);
-        tableView_uzytkownicy->setObjectName(QString::fromUtf8("tableView_uzytkownicy"));
-        tableView_uzytkownicy->setMinimumSize(QSize(0, 0));
-
-        horizontalLayout_23->addWidget(tableView_uzytkownicy);
-
         verticalLayout_11 = new QVBoxLayout();
         verticalLayout_11->setSpacing(40);
         verticalLayout_11->setObjectName(QString::fromUtf8("verticalLayout_11"));
@@ -2028,7 +2042,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(3);
+        tabWidget->setCurrentIndex(1);
         stackedWidget_CykliczneP->setCurrentIndex(1);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
@@ -2060,6 +2074,7 @@ public:
         label_saldo->setText(QCoreApplication::translate("User_Panel", "Saldo:", nullptr));
         label_zl2->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_DaneUzytkownika), QCoreApplication::translate("User_Panel", "Moje dane", nullptr));
+        label_67->setText(QCoreApplication::translate("User_Panel", "Aktualny stan bud\305\274etu", nullptr));
         label_49->setText(QCoreApplication::translate("User_Panel", "Aktualny stan bud\305\274etu:", nullptr));
         label_50->setText(QCoreApplication::translate("User_Panel", "z\305\202", nullptr));
         label_51->setText(QCoreApplication::translate("User_Panel", "Data ostatniej aktualizacji:", nullptr));
@@ -2137,6 +2152,7 @@ public:
         pushButton_osobistepprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania osobiste", nullptr));
         pushButton_adminprognozy->setText(QCoreApplication::translate("User_Panel", "Generuj przewidywania dla u\305\274ytkownika:", nullptr));
         tabWidget->setTabText(tabWidget->indexOf(tab_Raporty), QCoreApplication::translate("User_Panel", "Raporty", nullptr));
+        label_66->setText(QCoreApplication::translate("User_Panel", "Lista u\305\274ytkownik\303\263w", nullptr));
         pushButton_zablokuj_odblokuj->setText(QCoreApplication::translate("User_Panel", "Zablokuj/odblokuj", nullptr));
         checkBox_pokazHasla->setText(QCoreApplication::translate("User_Panel", "Poka\305\274 has\305\202a", nullptr));
         pushButton_powrotE->setText(QCoreApplication::translate("User_Panel", "Powr\303\263t", nullptr));

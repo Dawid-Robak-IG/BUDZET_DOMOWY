@@ -42,9 +42,7 @@ QLineEdit {
         background-color: rgba(0,59,91, 200); 
     }
 
-    QPushButton:pressed {
-        background-color: rgba(0,59,91, 180); 
-    }
+
 )");
     MainWindow mainwindow;
     mainwindow.resize(1300, 700);

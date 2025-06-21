@@ -56,14 +56,18 @@ void MainWindow::handleLogin(QString email) {
         qDebug()<<"Ustanowiono wyświetlanie UserData";
         m_userPanel->goToStartPage();
         qDebug()<<"Przeniesiono do ekranu startowego";
+        stackedWidget->setCurrentWidget(m_userPanel);
+        m_userPanel->setTabsVisibility();
     } else {
         qDebug()<<"User Panel już istnieje, aktualizacja dla nowego użytkownika";
+
         m_userPanel->setUserEmail(email); // Jeśli userPanel już istnieje, tylko aktualizujemy email
         m_userPanel->displayUserData(email);      // I przeładowujemy rolę
         m_userPanel->goToStartPage();
         m_userPanel->setTablesByNewUser();
+        stackedWidget->setCurrentWidget(m_userPanel);
+        m_userPanel->setTabsVisibility();
     }
-    stackedWidget->setCurrentWidget(m_userPanel);
 }
 
 

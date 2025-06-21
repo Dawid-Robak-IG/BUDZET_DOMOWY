@@ -27,7 +27,25 @@ User_Panel::User_Panel(QString email,QWidget *parent)
 
     connect(ui->button_logout, &QPushButton::clicked, this, &User_Panel::logoutRequested);
 
-    ui->tabWidget->setTabVisible(1, false);
+    //ui->tabWidget->setTabVisible(1, false);
+
+    ui->tabWidget->setStyleSheet(R"(
+    QTabBar::tab {
+        background: #daf8e3;
+        color: #003b5b;
+        padding: 6px;
+    }
+
+    QTabBar::tab:selected {
+        background: #daf8e3;
+        color: #003b5b;
+    }
+
+    QTabBar::tab:!selected {
+        background: #003b5b;
+        color: white;
+    }
+)");
 }
 
 

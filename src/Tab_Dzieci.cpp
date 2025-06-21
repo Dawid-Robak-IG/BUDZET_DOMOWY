@@ -99,19 +99,22 @@ void Tab_Dzieci::ZmienKieszonkoweClicked() {
 
     int childID = listaDzieciCombo->itemData(currentIndex).toInt();
 
-    bool ok;
-    double newKieszonkowe = QInputDialog::getDouble(this,
-                                "Nowe kieszonkowe",
-                                "Podaj nową kwotę kieszonkowego:",
-                                0.0, 0.0, 100000.0, 2, &ok);
+    QInputDialog dialog(this);
+    dialog.setWindowTitle("Nowe kieszonkowe");
+    dialog.setLabelText("Podaj nową kwotę kieszonkowego:");
+    dialog.setInputMode(QInputDialog::DoubleInput);
 
-    if (!ok) return;
+    dialog.setOkButtonText("Zmień");
+    dialog.setCancelButtonText("Anuluj");
 
-    if (!m_dbManager->change_kieszonkowe(childID, newKieszonkowe)) {
-        QMessageBox::critical(this, "Błąd", "Nie udało się zmienić kieszonkowego!");
-    } else {
-        QMessageBox::information(this, "Sukces", "Kieszonkowe zostało zaktualizowane.");
-        updateSaldoIKieszonkoweLabel(childID);
+    if (dialog.exec() == QDialog::Accepted) {
+        double newKieszonkowe = dialog.doubleValue();
+        if (!m_dbManager->change_kieszonkowe(childID, newKieszonkowe)) {
+            QMessageBox::critical(this, "Błąd", "Nie udało się zmienić kieszonkowego!");
+        } else {
+            QMessageBox::information(this, "Sukces", "Kieszonkowe zostało zaktualizowane.");
+            updateSaldoIKieszonkoweLabel(childID);
+        }
     }
 }
 
