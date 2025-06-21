@@ -73,7 +73,6 @@ public:
     QPushButton *pushButton_zmienHaslo;
     QSpacerItem *verticalSpacer_27;
     QFrame *line_3;
-    QSpacerItem *verticalSpacer_26;
     QHBoxLayout *horizontalLayout_44;
     QLabel *label_kieszonkowe;
     QSpacerItem *horizontalSpacer_39;
@@ -88,6 +87,7 @@ public:
     QLineEdit *lineEdit_saldoDU;
     QLabel *label_zl2;
     QSpacerItem *horizontalSpacer_36;
+    QSpacerItem *verticalSpacer_26;
     QWidget *tab_Budzet;
     QHBoxLayout *horizontalLayout_38;
     QVBoxLayout *verticalLayout_24;
@@ -447,7 +447,7 @@ public:
         tab_DaneUzytkownika = new QWidget();
         tab_DaneUzytkownika->setObjectName(QString::fromUtf8("tab_DaneUzytkownika"));
         verticalLayout_4 = new QVBoxLayout(tab_DaneUzytkownika);
-        verticalLayout_4->setSpacing(15);
+        verticalLayout_4->setSpacing(8);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(200, 20, 200, 20);
         label_65 = new QLabel(tab_DaneUzytkownika);
@@ -598,10 +598,6 @@ public:
 
         verticalLayout_4->addWidget(line_3);
 
-        verticalSpacer_26 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_4->addItem(verticalSpacer_26);
-
         horizontalLayout_44 = new QHBoxLayout();
         horizontalLayout_44->setObjectName(QString::fromUtf8("horizontalLayout_44"));
         horizontalLayout_44->setContentsMargins(-1, 0, -1, -1);
@@ -687,6 +683,10 @@ public:
 
 
         verticalLayout_4->addLayout(horizontalLayout_42);
+
+        verticalSpacer_26 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_4->addItem(verticalSpacer_26);
 
         tabWidget->addTab(tab_DaneUzytkownika, QString());
         tab_Budzet = new QWidget();
@@ -2042,7 +2042,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(9);
+        tabWidget->setCurrentIndex(0);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
