@@ -103,7 +103,7 @@ public:
     {
         if (Start_Log_Reg->objectName().isEmpty())
             Start_Log_Reg->setObjectName(QString::fromUtf8("Start_Log_Reg"));
-        Start_Log_Reg->resize(1142, 676);
+        Start_Log_Reg->resize(1297, 676);
         Start_Log_Reg->setAutoFillBackground(false);
         Start_Log_Reg->setStyleSheet(QString::fromUtf8(""));
         verticalLayout = new QVBoxLayout(Start_Log_Reg);
@@ -262,9 +262,6 @@ public:
 "    background-color: rgba(0, 59, 91, 200);   \n"
 "}\n"
 "\n"
-"QPushButton:pressed {\n"
-"    background-color: rgba(0, 59, 91, 150);   \n"
-"}\n"
 ""));
 
         horizontalLayout_3->addWidget(infoButton);
@@ -525,7 +522,7 @@ public:
 
         retranslateUi(Start_Log_Reg);
 
-        stackedWidget->setCurrentIndex(2);
+        stackedWidget->setCurrentIndex(0);
 
 
         QMetaObject::connectSlotsByName(Start_Log_Reg);

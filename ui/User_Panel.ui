@@ -64,9 +64,7 @@
         background-color: rgba(0,59,91, 200); 
     }
 
-    QPushButton:pressed {
-        background-color: rgba(0,59,91, 180); 
-    }
+   
 QFrame{
 background-color:#a6e3de;}</string>
        </property>
@@ -177,6 +175,9 @@ background-color:#a6e3de;}</string>
             <pointsize>13</pointsize>
            </font>
           </property>
+          <property name="layoutDirection">
+           <enum>Qt::RightToLeft</enum>
+          </property>
           <property name="text">
            <string>WYLOGUJ</string>
           </property>
@@ -196,7 +197,7 @@ background-color:#a6e3de;}</string>
       <enum>QTabWidget::North</enum>
      </property>
      <property name="currentIndex">
-      <number>5</number>
+      <number>6</number>
      </property>
      <property name="elideMode">
       <enum>Qt::ElideNone</enum>
@@ -1762,6 +1763,9 @@ background-color:#a6e3de;}</string>
         <layout class="QHBoxLayout" name="horizontalLayout_17">
          <item>
           <widget class="QStackedWidget" name="stackedWidget_CykliczneW">
+           <property name="styleSheet">
+            <string notr="true"/>
+           </property>
            <property name="currentIndex">
             <number>0</number>
            </property>
@@ -2426,19 +2430,6 @@ background-color:#a6e3de;}</string>
             </size>
            </property>
           </widget>
-         </item>
-         <item>
-          <spacer name="verticalSpacer_30">
-           <property name="orientation">
-            <enum>Qt::Vertical</enum>
-           </property>
-           <property name="sizeHint" stdset="0">
-            <size>
-             <width>20</width>
-             <height>40</height>
-            </size>
-           </property>
-          </spacer>
          </item>
         </layout>
        </item>

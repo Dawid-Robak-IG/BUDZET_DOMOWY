@@ -6,7 +6,7 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>1142</width>
+    <width>1297</width>
     <height>676</height>
    </rect>
   </property>
@@ -88,7 +88,7 @@
       <string notr="true"/>
      </property>
      <property name="currentIndex">
-      <number>2</number>
+      <number>0</number>
      </property>
      <widget class="QWidget" name="Start_page">
       <layout class="QHBoxLayout" name="horizontalLayout_4">
@@ -346,9 +346,6 @@ QPushButton:hover {
     background-color: rgba(0, 59, 91, 200);   
 }
 
-QPushButton:pressed {
-    background-color: rgba(0, 59, 91, 150);   
-}
 </string>
              </property>
              <property name="text">

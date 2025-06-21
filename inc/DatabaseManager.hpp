@@ -52,6 +52,7 @@ public:
 
     bool amIChild();
     bool amI_Noone();
+    bool amIAdult();
     float get_kieszonkowe(int child_ID);
     float get_saldo(int child_ID);
     QDate get_date_next_kieszonkowe(int child_ID);

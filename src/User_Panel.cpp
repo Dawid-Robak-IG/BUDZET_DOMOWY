@@ -264,6 +264,12 @@ void User_Panel::setTabsVisibility()
         ui->tabWidget->setTabVisible(8, false);
     }
 
+    if (m_dbManager->amIAdult()) {
+        ui->tabWidget->setTabVisible(4, false); // kategoria
+
+        ui->tabWidget->setTabVisible(9, false);  //dzieci
+        ui->tabWidget->setTabVisible(10, false); //relacje
+    }
     if (m_dbManager->amI_admin()) {
         ui->tabWidget->setTabVisible(4, true);
     }

@@ -569,9 +569,9 @@ bool DatabaseManager::amIChild() {
 
     if (query.next()) {
         QString role = query.value(0).toString();
-        if(role == "Admin" || role=="Rodzic" || role=="Dorosly"){
+        if (role == "Admin" || role == "Rodzic" || role == "Dorosły") {
             return false;
-        } else{
+        } else {
             return true;
         }
     }
@@ -601,6 +601,33 @@ bool DatabaseManager::amI_Noone(){
 
     return false;
 }
+
+bool DatabaseManager::amIAdult()
+{
+    if (!m_db.isOpen())
+        return false;
+
+    QSqlQuery query(m_db);
+    query.prepare("SELECT Rola FROM `Uzytkownik zalogowany` WHERE ID = :id");
+    query.bindValue(":id", logged_user_ID);
+
+    if (!query.exec()) {
+        qDebug() << "Błąd sprawdzania roli:" << query.lastError().text();
+        return false;
+    }
+
+    if (query.next()) {
+        QString role = query.value(0).toString();
+        if (role == "Admin" || role == "Rodzic" || role == "Użytkownik" || role == "Dziecko") {
+            return false;
+        } else {
+            return true;
+        }
+    }
+
+    return false;
+}
+
 float DatabaseManager::get_kieszonkowe(int child_ID) {
     if (!m_db.isOpen()) return -1.0f;
 

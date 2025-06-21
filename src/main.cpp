@@ -39,9 +39,11 @@ QLineEdit {
     }
 
     QPushButton:hover {
-        background-color: rgba(0,59,91, 200); 
+        background-color: rgba(0,59,91,200); 
     }
-
+QPushButton:focus {
+    outline: none;
+}
 
 )");
     MainWindow mainwindow;

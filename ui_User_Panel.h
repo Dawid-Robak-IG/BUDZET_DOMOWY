@@ -273,7 +273,6 @@ public:
     QVBoxLayout *verticalLayout_23;
     QLabel *label_66;
     QTableView *tableView_uzytkownicy;
-    QSpacerItem *verticalSpacer_30;
     QStackedWidget *stackedWidget_uzytkownicy;
     QWidget *page;
     QHBoxLayout *horizontalLayout_23;
@@ -374,9 +373,7 @@ public:
 "        background-color: rgba(0,59,91, 200); \n"
 "    }\n"
 "\n"
-"    QPushButton:pressed {\n"
-"        background-color: rgba(0,59,91, 180); \n"
-"    }\n"
+"   \n"
 "QFrame{\n"
 "background-color:#a6e3de;}"));
         frame->setFrameShape(QFrame::StyledPanel);
@@ -430,6 +427,7 @@ public:
         QFont font2;
         font2.setPointSize(13);
         button_logout->setFont(font2);
+        button_logout->setLayoutDirection(Qt::RightToLeft);
 
         horizontalLayout_49->addWidget(button_logout);
 
@@ -1283,6 +1281,7 @@ public:
         horizontalLayout_17->setObjectName(QString::fromUtf8("horizontalLayout_17"));
         stackedWidget_CykliczneW = new QStackedWidget(tab_CykliczneW);
         stackedWidget_CykliczneW->setObjectName(QString::fromUtf8("stackedWidget_CykliczneW"));
+        stackedWidget_CykliczneW->setStyleSheet(QString::fromUtf8(""));
         page_CW_lista = new QWidget();
         page_CW_lista->setObjectName(QString::fromUtf8("page_CW_lista"));
         QSizePolicy sizePolicy5(QSizePolicy::Expanding, QSizePolicy::Expanding);
@@ -1676,10 +1675,6 @@ public:
 
         verticalLayout_23->addWidget(tableView_uzytkownicy);
 
-        verticalSpacer_30 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_23->addItem(verticalSpacer_30);
-
 
         horizontalLayout_10->addLayout(verticalLayout_23);
 
@@ -2047,7 +2042,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(5);
+        tabWidget->setCurrentIndex(6);
         stackedWidget_CykliczneP->setCurrentIndex(0);
         stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
