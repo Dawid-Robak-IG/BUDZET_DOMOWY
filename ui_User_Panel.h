@@ -275,6 +275,7 @@ public:
     QVBoxLayout *verticalLayout_23;
     QLabel *label_66;
     QTableView *tableView_uzytkownicy;
+    QSpacerItem *verticalSpacer_30;
     QStackedWidget *stackedWidget_uzytkownicy;
     QWidget *page;
     QHBoxLayout *horizontalLayout_23;
@@ -450,6 +451,7 @@ public:
         tab_DaneUzytkownika = new QWidget();
         tab_DaneUzytkownika->setObjectName(QString::fromUtf8("tab_DaneUzytkownika"));
         verticalLayout_4 = new QVBoxLayout(tab_DaneUzytkownika);
+        verticalLayout_4->setSpacing(15);
         verticalLayout_4->setObjectName(QString::fromUtf8("verticalLayout_4"));
         verticalLayout_4->setContentsMargins(200, 20, 200, 20);
         label_65 = new QLabel(tab_DaneUzytkownika);
@@ -709,8 +711,9 @@ public:
         horizontalLayout_36->setObjectName(QString::fromUtf8("horizontalLayout_36"));
         horizontalLayout_36->setContentsMargins(-1, 0, -1, -1);
         verticalLayout_25 = new QVBoxLayout();
+        verticalLayout_25->setSpacing(15);
         verticalLayout_25->setObjectName(QString::fromUtf8("verticalLayout_25"));
-        verticalLayout_25->setContentsMargins(-1, -1, 0, -1);
+        verticalLayout_25->setContentsMargins(20, -1, 0, -1);
         verticalSpacer_13 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
 
         verticalLayout_25->addItem(verticalSpacer_13);
@@ -1677,6 +1680,10 @@ public:
 
         verticalLayout_23->addWidget(tableView_uzytkownicy);
 
+        verticalSpacer_30 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
+
+        verticalLayout_23->addItem(verticalSpacer_30);
+
 
         horizontalLayout_10->addLayout(verticalLayout_23);
 
@@ -1802,6 +1809,8 @@ public:
 
         horizontalLayout_10->addWidget(stackedWidget_uzytkownicy);
 
+        horizontalLayout_10->setStretch(0, 4);
+        horizontalLayout_10->setStretch(1, 1);
         tabWidget->addTab(tab_Uzytkownicy, QString());
         tab_Dzieci = new QWidget();
         tab_Dzieci->setObjectName(QString::fromUtf8("tab_Dzieci"));
@@ -2042,7 +2051,7 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(8);
         stackedWidget_CykliczneP->setCurrentIndex(1);
         stackedWidget_CykliczneW->setCurrentIndex(1);
         stackedWidget_uzytkownicy->setCurrentIndex(0);

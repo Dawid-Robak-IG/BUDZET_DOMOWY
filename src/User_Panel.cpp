@@ -37,7 +37,7 @@ User_Panel::User_Panel(QString email,QWidget *parent)
     }
 
     QTabBar::tab:selected {
-        background: #daf8e3;
+        background:  white;
         color: #003b5b;
     }
 
@@ -238,18 +238,13 @@ void User_Panel::setTablesByNewUser(){
 }
 
 void User_Panel::setTabsVisibility()
-
 {
-    qDebug() << "Aktualizuję zakładki";
-
     // Domyślnie pokaż wszystkie zakładki od 0 do 10
     for (int i = 0; i <= 10; ++i) {
         ui->tabWidget->setTabVisible(i, true);
-        qDebug() << "Aktualizuję zakładki" << i;
     }
 
     if (m_dbManager->amIChild()) {
-        qDebug() << "Aktualizuję zakładki CHILD";
         ui->tabWidget->setTabVisible(4, false);  // kategoria
         ui->tabWidget->setTabVisible(5, false);  //cykliczne przychody
         ui->tabWidget->setTabVisible(6, false);  //cykliczne wydatki
@@ -257,13 +252,11 @@ void User_Panel::setTabsVisibility()
         ui->tabWidget->setTabVisible(10, false); //relacje
 
     } else if (m_dbManager->amIParent()) {
-        qDebug() << "Aktualizuję zakładki PARENT ";
         ui->tabWidget->setTabVisible(4, false);  // kategoria
         ui->tabWidget->setTabVisible(10, false); //relacje
     }
 
     if (m_dbManager->amI_Noone()) {
-        qDebug() << "Aktualizuję zakładki NOONE";
         ui->tabWidget->setTabVisible(1, false);
         ui->tabWidget->setTabVisible(2, false);
         ui->tabWidget->setTabVisible(3, false);
@@ -272,7 +265,6 @@ void User_Panel::setTabsVisibility()
     }
 
     if (m_dbManager->amI_admin()) {
-        qDebug() << "Aktualizuję zakładki ADMIN";
         ui->tabWidget->setTabVisible(4, true);
     }
 }
