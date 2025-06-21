@@ -174,7 +174,6 @@ public:
     QVBoxLayout *verticalLayout_14;
     QLabel *label_61;
     QTableView *tableView_listaCP;
-    QSpacerItem *verticalSpacer_23;
     QVBoxLayout *verticalLayout_10;
     QSpacerItem *verticalSpacer_19;
     QPushButton *pushButton_usunCP;
@@ -209,7 +208,6 @@ public:
     QVBoxLayout *verticalLayout_18;
     QLabel *label_62;
     QTableView *tableView_listaCW;
-    QSpacerItem *verticalSpacer_24;
     QVBoxLayout *verticalLayout_7;
     QSpacerItem *verticalSpacer_17;
     QPushButton *pushButton_usunCW;
@@ -352,7 +350,7 @@ public:
     {
         if (User_Panel->objectName().isEmpty())
             User_Panel->setObjectName(QString::fromUtf8("User_Panel"));
-        User_Panel->resize(1100, 741);
+        User_Panel->resize(1100, 880);
         User_Panel->setAutoFillBackground(true);
         User_Panel->setStyleSheet(QString::fromUtf8(""));
         verticalLayout = new QVBoxLayout(User_Panel);
@@ -1113,11 +1111,11 @@ public:
         horizontalLayout_21->setObjectName(QString::fromUtf8("horizontalLayout_21"));
         verticalLayout_14 = new QVBoxLayout();
         verticalLayout_14->setObjectName(QString::fromUtf8("verticalLayout_14"));
-        verticalLayout_14->setContentsMargins(-1, -1, 20, -1);
+        verticalLayout_14->setContentsMargins(20, 20, 20, 50);
         label_61 = new QLabel(page_CP_lista);
         label_61->setObjectName(QString::fromUtf8("label_61"));
         label_61->setFont(font3);
-        label_61->setMargin(50);
+        label_61->setMargin(15);
 
         verticalLayout_14->addWidget(label_61);
 
@@ -1128,14 +1126,13 @@ public:
         sizePolicy4.setVerticalStretch(0);
         sizePolicy4.setHeightForWidth(tableView_listaCP->sizePolicy().hasHeightForWidth());
         tableView_listaCP->setSizePolicy(sizePolicy4);
+        tableView_listaCP->setMinimumSize(QSize(0, 500));
         tableView_listaCP->setMaximumSize(QSize(1500, 16777215));
 
         verticalLayout_14->addWidget(tableView_listaCP);
 
-        verticalSpacer_23 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_14->addItem(verticalSpacer_23);
-
+        verticalLayout_14->setStretch(0, 1);
+        verticalLayout_14->setStretch(1, 5);
 
         horizontalLayout_21->addLayout(verticalLayout_14);
 
@@ -1298,11 +1295,11 @@ public:
         horizontalLayout_18->setObjectName(QString::fromUtf8("horizontalLayout_18"));
         verticalLayout_18 = new QVBoxLayout();
         verticalLayout_18->setObjectName(QString::fromUtf8("verticalLayout_18"));
-        verticalLayout_18->setContentsMargins(-1, -1, 20, -1);
+        verticalLayout_18->setContentsMargins(20, 20, 20, 50);
         label_62 = new QLabel(page_CW_lista);
         label_62->setObjectName(QString::fromUtf8("label_62"));
         label_62->setFont(font3);
-        label_62->setMargin(50);
+        label_62->setMargin(15);
 
         verticalLayout_18->addWidget(label_62);
 
@@ -1310,13 +1307,12 @@ public:
         tableView_listaCW->setObjectName(QString::fromUtf8("tableView_listaCW"));
         sizePolicy4.setHeightForWidth(tableView_listaCW->sizePolicy().hasHeightForWidth());
         tableView_listaCW->setSizePolicy(sizePolicy4);
+        tableView_listaCW->setMinimumSize(QSize(0, 500));
 
         verticalLayout_18->addWidget(tableView_listaCW);
 
-        verticalSpacer_24 = new QSpacerItem(20, 40, QSizePolicy::Minimum, QSizePolicy::Expanding);
-
-        verticalLayout_18->addItem(verticalSpacer_24);
-
+        verticalLayout_18->setStretch(0, 1);
+        verticalLayout_18->setStretch(1, 5);
 
         horizontalLayout_18->addLayout(verticalLayout_18);
 
@@ -2051,9 +2047,9 @@ public:
 
         retranslateUi(User_Panel);
 
-        tabWidget->setCurrentIndex(8);
-        stackedWidget_CykliczneP->setCurrentIndex(1);
-        stackedWidget_CykliczneW->setCurrentIndex(1);
+        tabWidget->setCurrentIndex(5);
+        stackedWidget_CykliczneP->setCurrentIndex(0);
+        stackedWidget_CykliczneW->setCurrentIndex(0);
         stackedWidget_uzytkownicy->setCurrentIndex(0);
 
 

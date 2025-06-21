@@ -74,8 +74,8 @@ Start_Log_Reg::Start_Log_Reg(QWidget *parent): QWidget(parent), ui(new Ui::Start
                            "- Qt Designer (interfejs użytkownika)");
     });
 
-    ui->lineEdit_emailLog->setText("me@gmail.com");
-    ui->lineEdit_passwordLog->setText("hasloMocne)(00");
+    ui->lineEdit_emailLog->setText("tPrus@wp.pl");
+    ui->lineEdit_passwordLog->setText("prust749");
 
     ui->dateEdit_DOB_Reg->setDate(QDate::currentDate());
 }
@@ -130,7 +130,7 @@ void Start_Log_Reg::registerUser(){
 
 
     // Ustalenie roli - jeśli to pierwszy użytkownik, przypisz rolę "Admin"
-    QString role = "Uzytkownik"; // Domyślna rola
+    QString role = "Użytkownik"; // Domyślna rola
     QSqlQuery countQuery(m_dbManager->getDatabase());
     if (countQuery.exec("SELECT COUNT(*) FROM `Uzytkownik zalogowany`") && countQuery.next()) {
         if (countQuery.value(0).toInt() == 0) {

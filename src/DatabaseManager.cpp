@@ -592,9 +592,9 @@ bool DatabaseManager::amI_Noone(){
 
     if (query.next()) {
         QString role = query.value(0).toString();
-        if(role == "Admin" || role=="Rodzic" || role=="Dorosly" || role=="Dziecko"){
+        if (role == "Admin" || role == "Rodzic" || role == "Dorosły" || role == "Dziecko") {
             return false;
-        } else{
+        } else {
             return true;
         }
     }
