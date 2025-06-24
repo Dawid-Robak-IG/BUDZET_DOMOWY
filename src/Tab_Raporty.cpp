@@ -108,7 +108,9 @@ void Tab_Raporty::GenerujRaportClicked() {
 
     RaportWindow* raport = new RaportWindow();
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->addStepChart(dataB.first, dataB.second,"Budżet domowy");
+    if(dataB.first.size()>1){
+        raport->addStepChart(dataB.first, dataB.second, "Mój budżet");
+    }
     raport->addBarChart(dataP.first, dataP.second,"Przychody budżetu domowego");
     raport->addBarChart(dataW.first, dataW.second, "Wydatki Budżetu domowego");
 
@@ -189,7 +191,9 @@ void Tab_Raporty::GenerujRaportOsobistyAdminClicked(){
     }
 
     raport->setAttribute(Qt::WA_DeleteOnClose);
-    raport->addStepChart(dataB.first, dataB.second, "Budżet wybranego użytkownika");
+    if(dataB.first.size()>1){
+        raport->addStepChart(dataB.first, dataB.second, "Mój budżet");
+    }
     raport->addBarChart(dataP.first, dataP.second, "Przychody wybranego użytkownika");
     raport->addBarChart(dataW.first, dataW.second, "Wydatki wybranego użytkownika");
 
