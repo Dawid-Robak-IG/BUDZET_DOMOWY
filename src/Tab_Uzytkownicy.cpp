@@ -77,8 +77,10 @@ void Tab_Uzytkownicy::setDatabaseManager(DatabaseManager* dbManager){
     }
 
     bool children = (m_dbManager->amIChild() && !m_dbManager->amI_Noone());
-    blokadaButton->setVisible(m_dbManager->amI_admin());
+
     setTableStrategy();
+
+    blokadaButton->setVisible(m_dbManager->amI_admin());
     checkBox_pokazHasla->setVisible(m_dbManager->amI_admin());
 }
 
@@ -152,4 +154,7 @@ void Tab_Uzytkownicy::setTableStrategy(){
     int kolumnaZablokowany = modelUsers->fieldIndex("Czy_zablokowany");
     modelUsers->setHeaderData(5, Qt::Horizontal, "Status");
     tabelaTableView->setItemDelegateForColumn(kolumnaZablokowany, new BlockedDelegate(this));
+
+    blokadaButton->setVisible(m_dbManager->amI_admin());
+    checkBox_pokazHasla->setVisible(m_dbManager->amI_admin());
 }
