@@ -239,6 +239,7 @@ void User_Panel::setTablesByNewUser(){
     daneUzytkownikaManager->setDatabaseManager(m_dbManager);
     budzetManager->loadOperacjeTable();
     daneUzytkownikaManager->loadUserData(m_dbManager->get_mail());
+    relacjeManager->setDatabaseManager(m_dbManager);
     setTabsVisibility();
 }
 

@@ -1,4 +1,4 @@
-## CO nalezy zaprezentować dla apki:
+## Co nalezy zaprezentować dla apki:
 1. Rejestracja -- niepoprawne haslo i poprawne
 2. Logowanie jako: (I pokaz ich zakładek)
     - niezdefiniowany,
@@ -19,3 +19,9 @@
 10. prognozy z wyprzedzeniem 2,3 miesiace dla:
     - budzetu
     - osobistego
+
+
+
+raporty kategorie dla całego budzetu
+nie rysuje sie wykres dla konkretnej kategorii
+aktualizacja dzieci
